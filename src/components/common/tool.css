@@ -40,3 +40,6 @@ body,html{
     text-align: center;
     color: #333333
 }
+.el-header {
+    height: auto!important;
+}

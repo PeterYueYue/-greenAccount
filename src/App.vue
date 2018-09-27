@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import '@/assets/tool.css'
+  import '@/components/common/tool.css';
   import headContent from '@/components/common/head.vue'
   import footerContent from '@/components/common/footer.vue'
 
