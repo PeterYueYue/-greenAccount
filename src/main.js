@@ -5,10 +5,13 @@ import App from './App'
 import router from './router'
 import store from './vuex/store'
 import ElementUI from 'element-ui';
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import Axios from 'axios';
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+Vue.use(VueAwesomeSwiper)
 /* eslint-disable no-new */
 
 Vue.prototype.$http = Axios;

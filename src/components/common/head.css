@@ -1,6 +1,8 @@
 .head-contain{
-    padding:20px 15%;
-    /* width: 1200px */
+    padding:20px 0;
+    margin: 0 auto;
+    z-index: 9999999999;
+    width: 1300px
 }
 .nav-contain{
     text-align: right;
@@ -16,6 +18,7 @@
     z-index: 999999999;
 }
 .area-contain{
+    background-color: white;
     position: absolute;
     left: 77px;
     top: 31px;
@@ -131,8 +134,8 @@
     height: auto !important;
     line-height: 1 !important;
     padding-bottom: 20px !important;
-    font-size: 19px;
-    margin-left: 33px !important;
+    font-size: 18px;
+    margin-left: 32px !important;
     padding: 0 20px 15px 10px !important;
     position: relative;
     color: black !important;
