@@ -89,7 +89,7 @@
 
 .ex_list {
   width: 300px;
-  height: 372px;
+  height: 386px;
   float: left;
   margin: 50px 0 0 21px;
   border: 1px #fff solid;
@@ -100,6 +100,10 @@
   border: 1px #52b54b solid;
   cursor: pointer;
   background: #52b54b;
+  color: #fff;
+}
+
+.ex_list:hover div {
   color: #fff;
 }
 
@@ -135,8 +139,23 @@
   margin: 8px 0 0 20px;
 }
 
+.ex_list_address img {
+  position: relative;
+  top: 1px;
+  right: 0;
+}
+
 .ex_list_time {
   font-size: 14px;
   color: #888;
   margin: 8px 0 0 20px;
+}
+
+.ex_list_btn {
+  line-height: 46px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border-top: 1px #fff solid;
+  margin-top: 20px;
 }
