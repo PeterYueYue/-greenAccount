@@ -40,11 +40,14 @@ body,html{
     text-align: center;
     color: #333333
 }
-.el-header {
+.el-header{
     height: auto!important;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 999999999999;
     background-color: white;
+}
+.el-main {
+    padding: 0!important;
 }
