@@ -8,7 +8,7 @@
                 <el-row :gutter="24">
                     <el-col :span="24" :offset="0" class="head-right-top">
                         <div class="search-area">
-                            <el-input v-model="input" placeholder="请输入您要查找的文章关键字" class="input-area"></el-input>
+                            <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"></el-input>
                             <div class="search-btn"></div>
                         </div>
                         <div  class="login-area">
@@ -20,11 +20,14 @@
                 <el-row :gutter="24">
                     <div class="head-bottom-left">
                         <span>所在区域 :</span>
-                        <div class="select-city-contain" @mouseover="areahover=true" @mouseleave="areahover=false">
-                            <span class="select-city">&#x3000;全市</span>
-                            <div class="area-contain" v-show="areahover">
+                        <div class="select-city-contain"  @mouseenter="areahover=true" @mouseleave="areahover=false;">
+                            <span class="select-city" :class="{active:areahover}">&#x3000;全市</span>
+                            <div class="area-contain" v-show="areahover" >
                                 <ul class="area-list">
                                     <li class="active">黄浦区</li>
+                                    <li>徐汇区</li>
+                                    <li>长宁区</li>
+                                    <li>静安区</li>
                                     <li>徐汇区</li>
                                     <li>长宁区</li>
                                     <li>静安区</li>
@@ -89,7 +92,8 @@ export default {
         return {
             activeIndex: '1',
             areahover:false,
-            navIndex:1
+            navIndex:1,
+            searchContent:''
         }
     },
     methods: {

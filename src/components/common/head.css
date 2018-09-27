@@ -13,6 +13,7 @@
 }
 .select-city-contain{
     display: inline-block;
+    z-index: 999999999;
 }
 .area-contain{
     position: absolute;
@@ -102,6 +103,8 @@
 }
 .select-city:hover{
     cursor: pointer;
+}
+.select-city.active{
     border-top: 1px solid #e2e2e2;
     border-left: 1px solid #e2e2e2;
     border-right: 1px solid #e2e2e2;
@@ -117,7 +120,7 @@
     right: 4px;
     transition: all .4s;
 }
-.select-city:hover:after,.angle-icon.active{
+.select-city.active:after,.angle-icon.active{
     transform:rotate(180deg);
     -ms-transform:rotate(180g);
 }
