@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import Home from '@/components/home.vue'  //首页
+import Home from '@/components/home/home.vue'  //首页
 import exchange from '@/components/pages/exchange.vue'  //首页
 
 export default new Router({
