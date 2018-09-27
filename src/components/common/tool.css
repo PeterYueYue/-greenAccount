@@ -40,6 +40,9 @@ body,html{
     text-align: center;
     color: #333333
 }
-.el-header {
+.el-header, .el-footer {
     height: auto!important;
+}
+.el-main {
+    padding: 0!important;
 }

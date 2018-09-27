@@ -1,3 +1,142 @@
-.ex_wrap{
-    color: red;
+.ex_banner {
+  width: 100%;
+  display: block;
+}
+
+.ex_wrap {
+  width: 1280px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.ex_remind {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #f7f7f7;
+  font-size: 14px;
+  color: #333;
+}
+
+.ex_remind img {
+  position: relative;
+  top: 6px;
+}
+
+/* 定义一个走马灯动画  */
+@-webkit-keyframes marquee {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+/* Firefox */
+@-moz-keyframes marquee {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@-ms-keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+/* Opera */
+@-o-keyframes marquee {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes marquee {
+  from {
+    left: 0
+  }
+  to {
+    left: -100%
+  }
+}
+
+.ex_remind .marquee {
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ex_remind .marquee div {
+  position: absolute;
+  -webkit-animation: marquee 15s linear infinite;
+  -moz-animation: marquee 15s linear infinite;
+  -ms-animation: marquee 15s linear infinite;
+  -o-animation: marquee 15s linear infinite;
+  animation: marquee 15s linear infinite;
+  margin-left: 30px;
+}
+
+.ex_list {
+  width: 300px;
+  height: 372px;
+  float: left;
+  margin: 50px 0 0 21px;
+  border: 1px #fff solid;
+}
+
+.ex_list:hover {
+  box-shadow: 0 0 15px #e5e5e5;
+  border: 1px #52b54b solid;
+  cursor: pointer;
+  background: #52b54b;
+  color: #fff;
+}
+
+.ex_list:nth-child(4n-3) {
+  margin-left: 10px;
+}
+
+.ex_list:nth-child(4n-3):hover {
+  margin-left: 10px;
+}
+
+.ex_list_pic {
+  width: 298px;
+  height: 210px;
+  display: block;
+}
+
+.ex_list_name {
+  font-size: 16px;
+  color: #333;
+  margin: 20px 0 0 20px;
+}
+
+.ex_list_score {
+  font-size: 20px;
+  color: #20a345;
+  margin: 10px 0 0 20px;
+}
+
+.ex_list_address {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0 0 20px;
+}
+
+.ex_list_time {
+  font-size: 14px;
+  color: #888;
+  margin: 8px 0 0 20px;
 }
