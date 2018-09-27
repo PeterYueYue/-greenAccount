@@ -1,5 +1,7 @@
 <template>
     <div class="footer-contain">
+        <div class="footer-background"> 
+        </div>
         <div class="footer-top">
             <div class="footer-top-part">
                 <p class="part-name">

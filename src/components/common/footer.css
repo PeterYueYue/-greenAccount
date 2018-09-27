@@ -2,10 +2,20 @@
     margin-top: 100px;
     padding: 81px 0;
     width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.footer-background{
+    position: absolute;
+    top: 100px;
+    width: 1920px;
+    height: 1010px;
     background-image: url('../../assets/bottomback.png');
     background-position: bottom;
-    background-size:cover;
+    background-size:100% 75%;
     background-repeat: no-repeat;
+    padding-bottom: 80px;
+    z-index: -999999;
 }
 .footer-top{
     color: #333333;
