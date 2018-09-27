@@ -48,5 +48,139 @@
     top: 605px !important;
     }
   /* ----------------------------轮播图结束----------------------------- */
+    .part-contain{
+      /* margin-top: -403px; */
+      width: 90%;
+      z-index: 999999;
+      margin: 0 auto;
+      position: relative;
+      top: -403px;
+      padding-top: 15px;
+      background-color: white;
+    }
+    .part-content{
+      margin-top: 35px; 
+      position: relative;
+    }
+    .title-right,.title-left{
+      display: inline-block;
+    }
+    .part-title .title-right{
+      float: right;
+      line-height: 59px; 
+    }
+    .part-title .title-right span, .title-right-icon{
+      vertical-align: middle;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .part-title .title-left .title-name{
+      font-size: 24px;
+    }
+    .part-title .title-left .en-title-name{
+      font-size: 14px;
+      color: #666666;
+      margin-top: 9px;
+    }
+    .part-title .title-left .title-name::before{
+      content: '';
+      display: inline-block;
+      width: 22px;
+      border-top: 3px solid #333333;
+      vertical-align: middle;
+      margin-right: 18px;
+    }
 
-  /*  */
+  /*-----------------------------首页兑换板块---------------------------  */
+  .home-exchange-contain{
+    padding-top: 55px;
+
+    min-width: 1280px;
+  }
+  .home-exchange-content{
+    width: 1280px;
+    margin: 0 auto;
+  }
+  .exchange-content-left{
+    width: 352px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .exchange-content-right{
+    width: 900px;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    padding:0 27px
+  }
+  .exchange-inside-contain{
+    white-space: nowrap;
+    transition: all .3s;
+    /* transform: translateX(-327px) */
+  }
+  .exchange-content-left .green-line{
+    border-top: 3px solid #20a345;
+    width: 100px;
+  }
+  .exchange-content{
+    display: inline-block;
+    border: 1px solid rgba(159,159,159,0.97);
+    margin-right: 27px;
+  }
+  .exchange-detail{
+    margin-top: 28px;
+  }
+  .exchange-detail.dec{
+    color: #333333;
+    font-size: 16px;
+    line-height: 30px;
+  }
+  .exchange-detail.code div{
+    display: inline-block;
+    text-align: center;
+  }
+  .exchange-detail.code div.paycode{
+    margin-right: 20px;
+  }
+  .exchange-content-bottom{
+    padding: 20px 20px 12px 20px;
+  }
+  .exchange-content-bottom p{
+    line-height: 24px;
+    margin-bottom: 14px;
+  }
+  .exchange-content-bottom .exchange-detail-name{
+    font-size: 16px;
+    color: #333333;
+  }
+  .exchange-content-bottom .exchange-detail-count{
+    font-size: 20px;
+    color: #20a345;
+  }
+  .exchange-content-bottom .exchange-detail-address{
+    font-size: 14px;
+    color: #666666;
+  }
+  .exchange-content-bottom .exchange-detail-time{
+    font-size: 14px;
+    color: #888888;
+  }
+  .exchange-content-right-btn{
+    position: absolute;
+    right: 40px;
+   bottom: -73px;
+  }
+  .exchange-content-right-btn div{
+    display: inline-block;
+  }
+  .exchange-content-right-btn div:hover{
+    cursor: pointer;
+  }
+  
+
+
+
+
+
+
+  /* -----------------------------首页兑换结束--------------------------- */
