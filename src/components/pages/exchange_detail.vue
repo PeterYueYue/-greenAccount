@@ -1,17 +1,17 @@
 <template>
   <div>
-    <bread></bread>
+    <!--<bread></bread>-->
     <div>asdf</div>
   </div>
 </template>
 <script>
-	import bread from '@/components/common/bread.vue'
+	// import bread from '@/components/common/bread.vue'
 
 	export default {
 		data(){
 			return {}
 		},
-		components: {bread},
+		// components: {bread},
 		methods: {}
 	}
 </script>

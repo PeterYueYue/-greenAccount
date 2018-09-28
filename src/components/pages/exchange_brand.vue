@@ -1,6 +1,5 @@
 <template>
   <div>
-    <bread></bread>
     <div class="ex_wrap ex_select">
       <div class="ex_select_name">类型：<select>
         <option value="quanbu">全部</option>
@@ -35,7 +34,6 @@
 </template>
 <script>
   import '@/assets/pages/exchange.css';
-  import bread from '@/components/common/bread.vue';
   import pagination from '@/components/common/pagination.vue';
 
   export default {
@@ -74,7 +72,7 @@
         }]
       }
     },
-    components: {bread, pagination},
+    components: {pagination},
     methods: {
       listHover(status, index) {
         this.listData[index].hoverShow = status
