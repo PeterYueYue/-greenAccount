@@ -1,0 +1,159 @@
+.de_shop {
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.de_left {
+  float: left;
+}
+
+.de_shop_pic {
+  display: block;
+  width: 480px;
+  height: 380px;
+}
+
+.de_shop_reference {
+  float: none;
+  font-size: 12px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.de_shop_details {
+  float: left;
+  margin-left: 70px;
+}
+
+.de_shop_details_name {
+  font-size: 18px;
+  color: #333;
+}
+
+.de_shop_details_remind {
+  font-size: 12px;
+  color: #333;
+  margin-top: 20px;
+}
+
+.de_shop_details_price {
+  width: 715px;
+  height: 77px;
+  line-height: 77px;
+  margin: 30px 0 25px;
+  background: rgba(245, 245, 245, 0.3);
+  padding-left: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.de_shop_details_price span {
+  font-size: 48px;
+  color: #20A345;
+}
+
+.de_shop_details_text {
+  font-size: 12px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.de_shop_details_btn_numbox {
+  overflow: hidden;
+  margin-top: 22px;
+}
+
+.de_shop_details_btn_numbox li {
+  float: left;
+}
+
+.de_shop_details_btn_numbox li .number,
+.de_shop_details_btn_numbox li .kucun {
+  display: inline-block;
+  font-size: 12px;
+  color: #333;
+  vertical-align: sub;
+}
+
+.de_shop_details_btn_numbox .count {
+  overflow: hidden;
+  margin: 2px 20px 0;
+}
+
+.de_shop_details_btn_numbox .count .num-jian,
+.de_shop_details_btn_numbox .count .input-num,
+.de_shop_details_btn_numbox .count .num-jia {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  border: 1px solid rgba(179, 179, 179, 1);
+}
+
+.de_shop_details_btn_numbox .count .input-num {
+  width: 58px;
+  height: 28px;
+  font-size: 14px;
+  color: #333;
+  border-left: 0;
+  border-right: 0;
+  outline: 0;
+  cursor: default;
+}
+
+.ex_shop_btn {
+  display: inline-block;
+  width: 199px;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  background: #20A345;
+  border-radius: 2px;
+  margin-top: 28px;
+}
+
+.ex_shop_more {
+  font-size: 12px;
+  color: #20A345;
+  padding-left: 20px;
+}
+
+.de_shop_details_price {
+  width: 715px;
+  height: 77px;
+  line-height: 77px;
+  margin: 30px 0 25px;
+  background: rgba(245, 245, 245, 0.3);
+  padding-left: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.de_center {
+  width: 1280px;
+  height: 108px;
+  background: rgba(247, 247, 247, 1);
+  margin-top: 50px;
+  padding: 12px 0 0 50px;
+  font-size: 14px;
+  color: #333;
+}
+
+.de_center div {
+  font-size: 14px;
+  color: #333;
+  margin-top: 15px;
+}
+
+.de_title {
+  font-size: 14px;
+  color: #333;
+  margin-top: 80px;
+  font-weight: bold;
+}
