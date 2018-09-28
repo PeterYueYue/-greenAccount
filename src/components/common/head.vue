@@ -40,9 +40,9 @@
                             <el-menu-item index="1" @mouseover.native="navIndex=1" @mouseleave.native="navIndex=activeIndex">
                                 <span class="nav-title">首页</span>
                             </el-menu-item>
-                            <el-menu-item index="2" @mouseover.native="navIndex=2" @mouseleave.native="navIndex=activeIndex">
-                                <span class="nav-title">礼品兑换</span>
-                            </el-menu-item>
+                                <el-menu-item index="2" @mouseover.native="navIndex=2" @mouseleave.native="navIndex=activeIndex">
+                                    <router-link to="/exchange"><span class="nav-title">礼品兑换</span></router-link>
+                                </el-menu-item>
                             <el-menu-item index="3" disabled @mouseover.native="navIndex=3" @mouseleave.native="navIndex=activeIndex">
                                 <span class="nav-title">绿账宝
                                     <img src="@/assets/icon/downangle.png" alt="" class="angle-icon" v-show="navIndex!=3">
