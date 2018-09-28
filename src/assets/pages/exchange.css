@@ -23,6 +23,69 @@
   top: 6px;
 }
 
+.ex_area_name {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.ex_area ul {
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.ex_area ul li {
+  float: left;
+  margin-left: 30px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.ex_area ul li:first-child {
+  margin-left: 0;
+}
+
+.ex_area ul li:hover, .ex_area ul li.active {
+  color: #20A345;
+}
+
+.ex_select {
+  margin-top: 30px;
+}
+
+.ex_select_name {
+  display: inline-block;
+  font-size: 14px;
+  color: #333;
+  margin-right: 20px;
+}
+
+.ex_select_name select {
+  width: 140px;
+  height: 32px;
+  font-size: 14px;
+  color: #333;
+  margin-left: 10px;
+  border: 1px #A2A2A2 solid;
+}
+
+.ex_select_brand {
+  float: right;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  background: #20A345;
+  border-radius: 25px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
 /* 定义一个走马灯动画  */
 @-webkit-keyframes marquee {
   from {

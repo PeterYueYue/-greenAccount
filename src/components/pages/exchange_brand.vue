@@ -1,28 +1,6 @@
 <template>
   <div>
-    <div class="ex_wrap ex_area">
-      <div class="ex_area_name">所在区域：</div>
-      <ul>
-        <li class="active">全市</li>
-        <li>徐汇区</li>
-        <li>长宁区</li>
-        <li>普陀区</li>
-        <li>静安北</li>
-        <li>虹口区</li>
-        <li>闵行区</li>
-        <li>宝山区</li>
-        <li>嘉定区</li>
-        <li>浦东新区</li>
-        <li>金山区</li>
-        <li>青浦区</li>
-        <li>奉贤区</li>
-        <li>崇明区</li>
-        <li>杨浦区</li>
-        <li>黄浦区</li>
-        <li>静安区</li>
-        <li>松江区</li>
-      </ul>
-    </div>
+    <bread></bread>
     <div class="ex_wrap ex_select">
       <div class="ex_select_name">类型：<select>
         <option value="quanbu">全部</option>
@@ -36,7 +14,6 @@
       <div class="ex_select_name">积分值：<select>
         <option value="quanbu">全部</option>
       </select></div>
-      <div class="ex_select_brand" @click="jumpBrand">爱心品牌专区</div>
     </div>
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
@@ -58,6 +35,7 @@
 </template>
 <script>
   import '@/assets/pages/exchange.css';
+  import bread from '@/components/common/bread.vue';
   import pagination from '@/components/common/pagination.vue';
 
   export default {
@@ -96,7 +74,7 @@
         }]
       }
     },
-    components: {pagination},
+    components: {bread, pagination},
     methods: {
       listHover(status, index) {
         this.listData[index].hoverShow = status
@@ -104,11 +82,6 @@
       jumpDetails() {
         this.$router.push({
           path: '/exchange/detail'
-        })
-      },
-      jumpBrand() {
-        this.$router.push({
-          path: '/exchange/brand'
         })
       },
     }

@@ -2,7 +2,7 @@
     <div class="head-contain">
         <el-row :gutter="24">
             <div  class="head-left">
-                <img src="@/assets/logo.png" alt="">
+                <router-link to="/"><img src="@/assets/logo.png" alt=""></router-link>
             </div>
             <div class="head-right">
                 <el-row :gutter="24">
@@ -24,7 +24,7 @@
                             <span class="select-city" :class="{active:areahover}">&#x3000;全市</span>
                             <div class="area-contain" v-show="areahover" >
                                 <ul class="area-list">
-                                    <li class="active">黄浦区</li>
+                                    <router-link to="/home_exchange"><li class="active">黄浦区</li></router-link>
                                     <li>徐汇区</li>
                                     <li>长宁区</li>
                                     <li>静安区</li>
