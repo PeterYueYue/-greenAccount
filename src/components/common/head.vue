@@ -47,9 +47,9 @@
                                 <span class="nav-title">绿账宝
                                     <img src="@/assets/icon/downangle.png" alt="" class="angle-icon" v-show="navIndex!=3">
                                     <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==3">
-                                </span> 
+                                </span>
                                 <div class="list-detail" v-show="navIndex==3">
-                                    <div>绿账积分</div>
+                                    <router-link to="/lvzhanghu"><div>绿账积分</div></router-link>
                                     <div>我的兑换</div>
                                     <div>我的积分</div>
                                 </div>                            
