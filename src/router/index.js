@@ -9,7 +9,8 @@ import exchangeList from '@/components/pages/exchange_list.vue'  //礼品兑换 
 import exchangeDetail from '@/components/pages/exchange_detail.vue'  //礼品兑换 详情
 import homeExchange from '@/components/pages/home_exchange.vue'  //首页兑换
 import exchangeBrand from '@/components/pages/exchange_brand.vue'  //爱心品牌专区
-import lvzhanghu from '@/components/pages/lvzhanghu.vue'  //绿账宝
+import lvzhanghu from '@/components/pages/lvzhanghu.vue'  //绿账户
+import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
 
 export default new Router({
   routes: [
@@ -44,6 +45,10 @@ export default new Router({
       path: '/lvzhanghu',
       name: '绿账宝',
       component: lvzhanghu,
+    },{
+      path: '/apply_company',
+      name: '申请爱心单位',
+      component: applyCompany,
     },
   ]
 })
