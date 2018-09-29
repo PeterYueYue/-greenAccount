@@ -92,15 +92,28 @@
       margin-right: 18px;
     }
 
-  /*-----------------------------首页兑换板块---------------------------  */
-  .home-exchange-contain{
+  .home-exchange-contain,.home-active-contain,.home-action-contain{
     padding-top: 55px;
-
     min-width: 1280px;
+    margin-bottom:50px;
   }
-  .home-exchange-content{
+  .home-exchange-content,.home-active-content,.home-action-content{
     width: 1280px;
     margin: 0 auto;
+  }
+    /*-----------------------------首页兑换板块---------------------------  */
+  .change-content-top{
+    width: 346px;
+    height: 264px;;
+    overflow: hidden;
+    text-align: center;
+  }
+  .change-content-top img{
+    width: 100%;
+    transition: all .4s;
+  }
+  .change-content-top img:hover{
+    transform: scale(1.1,1.1)
   }
   .exchange-content-left{
     width: 352px;
@@ -110,14 +123,14 @@
   .exchange-content-right{
     width: 900px;
     display: inline-block;
-    overflow: hidden;
     vertical-align: middle;
-    padding:0 27px
+    padding:0 27px;
+    overflow: hidden;
   }
   .exchange-inside-contain{
     white-space: nowrap;
     transition: all .3s;
-    /* transform: translateX(-327px) */
+    /* overflow: hidden; */
   }
   .exchange-content-left .green-line{
     border-top: 3px solid #20a345;
@@ -127,6 +140,10 @@
     display: inline-block;
     border: 1px solid rgba(159,159,159,0.97);
     margin-right: 27px;
+    transition: all .5s;
+  }
+  .exchange-content:hover{
+    cursor: pointer;
   }
   .exchange-detail{
     margin-top: 28px;
@@ -178,10 +195,242 @@
     cursor: pointer;
   }
   
-
-
-
-
-
-
   /* -----------------------------首页兑换结束--------------------------- */
+
+  /* -----------------------------首页活动版块---------------------------- */
+  .active-content-left{
+    width: 158px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .active-content-right{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 1114px;
+  }
+  .active-content-title{
+    text-align: center;
+    line-height: 32px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  .active-content-title.active{
+    color: #20a345;
+    /* border-left: 2px solid #20a345; */
+  }
+  .active-content-title .active-line{
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .active-content-title.active .active-line{
+    height: 11px;
+    border-left: 2px solid #20a345;
+  }
+  .active-content-big-img{
+    width: 515px;
+    height: 514px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+  }
+  .active-content-big-img .img-items,.active-content-item{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all .6s;
+    z-index: 1;
+  }
+  .active-content-big-img .img-items.active,.active-content-item.active{
+    z-index: 2;
+    opacity: 1;
+  }
+  .active-content-big-img .img-items.active:hover{
+    transform: scale(1.1,1.1)
+  }
+  .active-content-des{
+    position: absolute;
+    top: 83px;
+    left:392px;
+    background-color: white;
+    width: 540px;
+    height: 241px;
+    z-index: 3;
+  }
+  .active-content-item{
+    padding: 51px 30px;
+  }
+  .active-content-des .active-content-des-title{
+    font-size: 14px;
+    margin-bottom: 19px;
+  }
+  .active-content-des .active-content-detail{
+    font-size: 12px;
+    color: #333333;
+  }
+  .active-content-des .active-content-detail p{
+    line-height: 18px;
+  }
+  .active-content-des .active-content-more{
+    text-align: right;
+    font-size: 12px;
+    width: auto;
+  }
+  .active-content-des .active-content-more span{
+    vertical-align: middle;
+  }
+  .active-content-des .active-content-more .more-right-icon{
+    width: 12px;
+    vertical-align: middle;
+    margin-left: 8px;
+    /* height: 10px; */
+  }
+  .active-content-des .active-content-more span:hover,.active-content-des .active-content-more .more-right-icon:hover{
+    cursor: pointer;
+  }
+  .active-maintitle{
+    width: 92px;
+    height: 176px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .active-maintitle .font-back{
+     position: absolute;
+     height: 100%;
+     width: 100%;
+     z-index: -99;
+  }
+  .maintitle-inside{
+    width: 100%;
+    height: 100%;
+    position: relative;
+   
+  }
+  .white-back{
+    font-size: 40px;
+    line-height: 1;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    height: 100%;
+    writing-mode: vertical-lr;
+    /* writing-mode: tb-lr */
+  }
+  .white-back,.white-back::before{
+    background-image: url('../../assets/heart.png');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+            background-size: cover;
+    background-position: 100% 100%;
+  }
+  .white-back::before,.white-back::after{
+    position: absolute;
+    content: '';
+    height: 176px;
+    width: 92px;
+  }
+  .white-back::after{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    
+  }
+  .white-back::before{
+    z-index: -2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+  }
+  .white-back div:nth-child(2){
+   height: 100%;
+   width: 43px;
+  }
+  .white-back div:nth-child(1){
+    text-align: right;
+    padding-bottom: 32px;
+    padding-right: 5px;
+  }
+  .tip-icon{
+    writing-mode: vertical-lr;
+    padding-left: 20px;
+    font-size: 12px;
+    color: #333333;
+    margin-top: -10px;
+  }
+
+  .active-content-small-img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 207px;
+    height: 207px;
+    z-index: 4;
+    overflow: hidden;
+  }
+  .small-img-items{
+    width: 207px;
+    height: 207px;
+    float: left;
+    transition: all .6s
+  }
+  .active-content-small-inside{
+    white-space: nowrap;
+    width: 621px;
+  }
+  .active-btn{
+    position: absolute;
+    bottom: 0px;
+    right: 115px;
+    width: 185px;
+    height: 82px;;
+    background-color: white;
+    z-index: 5;
+  }
+  .active-btn div{
+    display: inline-block;
+    /* padding: 30px 20px */
+    width: 45%;
+    height: 100%;
+    line-height: 82px;
+    text-align: center;
+  }
+  .active-btn div:hover{
+    cursor: pointer;
+  }
+  .active-btn-line{
+    display: inline-block;
+    border-left: 1px solid #BFBFBF;
+    height: 18px;
+  }
+  
+  /* -----------------------------首页活动结束-----------------------------*/
+
+  /* -----------------------------首页绿色行动----------------------------- */
+  .part-title .title-right>.action-choose span{
+    font-size: 14px;
+    width: 68px;
+    height: 32px;
+    display: inline-block;
+    background-color: white;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 16px;
+    margin: 0 15px
+  }
+  .part-title .title-right>.action-choose span.active{
+    background-color: #20a345;
+    color: white;
+  }
