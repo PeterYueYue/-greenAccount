@@ -71,9 +71,11 @@
                                     <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==5">
                                 </span>
                                 <div class="list-detail" v-show="navIndex==5">
-                                    <div>绿账积分</div>
-                                    <div>我的兑换</div>
-                                    <div>我的积分</div>
+                                    <div>活动天地</div>
+                                    <div>中行专区</div>
+                                    <div>志愿者申请</div>
+                                    <div>周周秀</div>
+                                    <div>趣味游戏</div>
                                 </div>                                 
                             </el-menu-item>
                             <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item>
