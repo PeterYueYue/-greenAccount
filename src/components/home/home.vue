@@ -18,18 +18,23 @@
         </div>
         <div class="part-contain">
             <exchange-part></exchange-part>
-
+            <activce-part></activce-part>
+            <action-part></action-part>
         </div>
         
     </div>
 </template>
 
 <script>
-import '@/assets/pages/home.css'
+  import '@/assets/pages/home.css'
   import exchangePart from '@/components/home/homepartone.vue'
+  import activcePart from '@/components/home/homeparttwo.vue'
+  import actionPart from '@/components/home/homepartthree.vue'
   export default {
     components:{
-        exchangePart
+        exchangePart,
+        activcePart,
+        actionPart
     },
     data() {
       return {

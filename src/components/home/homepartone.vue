@@ -66,7 +66,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="exchange-content">
+                        <div class="exchange-content" :class="{active:exchangeSideIndex==2}">
                             <div class="change-content-top">
                                 <img src="@/assets/animal.png" alt="">
                             </div>
@@ -82,7 +82,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="exchange-content">
+                        <div class="exchange-content" :class="{active:exchangeSideIndex==3}">
                             <div class="change-content-top">
                                 <img src="@/assets/animal.png" alt="">
                             </div>
@@ -98,7 +98,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="exchange-content">
+                        <div class="exchange-content" :class="{active:exchangeSideIndex==4}">
                             <div class="change-content-top">
                                 <img src="@/assets/animal.png" alt="">
                             </div>
@@ -134,8 +134,8 @@ import $ from 'jquery'
 export default {
     data(){
         return{
-            exchangeSideCount:'5',
-            exchangeSideIndex:'0',
+            exchangeSideCount:4,
+            exchangeSideIndex:0,
         }
     },
     mounted(){
@@ -143,16 +143,20 @@ export default {
     },
     methods:{
         exchangeNext(){
-            console.log( $(this.$refs.exchangeInside))  
-            if(this.exchangeSideCount==5){
+            if(this.exchangeSideIndex>(this.exchangeSideCount-2)){
                 return;
             }else {
-                
+                this.exchangeSideIndex+=1;
+                $('.exchange-content').css('transform','translateX(-'+(379*this.exchangeSideIndex)+'px)');
             }
-            
         },
         exchangeLast(){
-             $(this.$refs.exchangeInside).css('transform','translateX(900px)')
+             if(this.exchangeSideIndex<1){
+                return;
+            }else {
+                this.exchangeSideIndex-=1;
+                $('.exchange-content').css('transform','translateX(-'+(379*this.exchangeSideIndex)+'px)'); 
+            }
         }
 
     }
