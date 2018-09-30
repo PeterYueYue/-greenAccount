@@ -4,28 +4,28 @@
     <div class="apply_head">请如实填写相关资料，以便我们及时处理您的申请</div>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm app apply_form">
       <el-form-item label="公司名称" prop="name">
-        <el-input v-model="ruleForm.name" placeholder="请输入公司名称"></el-input>
+        <el-input v-model="ruleForm.name" placeholder="请输入公司名称" class="apply_input"></el-input>
       </el-form-item>
       <el-form-item label="公司地址" prop="address">
-        <el-input v-model="ruleForm.address" placeholder="请输入公司地址"></el-input>
+        <el-input v-model="ruleForm.address" placeholder="请输入公司地址" class="apply_input"></el-input>
       </el-form-item>
       <el-form-item label="联系人" prop="contacts">
-        <el-input v-model="ruleForm.contacts" placeholder="请输入联系人"></el-input>
+        <el-input v-model="ruleForm.contacts" placeholder="请输入联系人" class="apply_input"></el-input>
       </el-form-item>
       <el-form-item label="联系电话" prop="tel">
-        <el-input v-model="ruleForm.tel" placeholder="请输入联系电话"></el-input>
+        <el-input v-model="ruleForm.tel" placeholder="请输入联系电话" class="apply_input"></el-input>
       </el-form-item>
       <el-form-item label="E-mail" prop="email">
-        <el-input v-model="ruleForm.email" placeholder="请输入E-mail"></el-input>
+        <el-input v-model="ruleForm.email" placeholder="请输入E-mail" class="apply_input"></el-input>
       </el-form-item>
       <el-form-item label="公司简介" prop="desc">
-        <el-input type="textarea" v-model="ruleForm.desc" placeholder="请输入公司简介"></el-input>
+        <el-input type="textarea" v-model="ruleForm.desc" placeholder="请输入公司简介" class="apply_textarea"></el-input>
       </el-form-item>
       <el-form-item label="申请事由" prop="cause">
-        <el-input type="textarea" v-model="ruleForm.cause" placeholder="请输入申请事由"></el-input>
+        <el-input type="textarea" v-model="ruleForm.cause" placeholder="请输入申请事由" class="apply_textarea"></el-input>
       </el-form-item>
       <el-form-item label="验证码" prop="code">
-        <el-input v-model="ruleForm.code" placeholder="请输入验证码"></el-input>
+        <el-input v-model="ruleForm.code" placeholder="请输入验证码" class="apply_input"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="success" @click="submitForm('ruleForm')" class="apply_btn">立即申请</el-button>

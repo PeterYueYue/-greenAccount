@@ -22,12 +22,15 @@
   margin-top: 50px;
 }
 
-.el-input__inner {
+.apply_input {
   width: 360px!important;
 }
 
-.el-textarea__inner {
+.apply_textarea {
   width: 598px!important;
+}
+
+.apply_textarea .el-textarea__inner{
   padding: 25px 15px!important;
 }
 
