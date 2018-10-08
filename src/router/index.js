@@ -14,6 +14,8 @@ import lvbd from '@/components/pages/lvbd.vue'  //绿账宝典
 import lvxd from '@/components/pages/lvxd.vue'  //绿账行动
 import hzvs from '@/components/pages/hzvs.vue'  //惠众绿色
 import hzdw from '@/components/pages/hzdw.vue'  //合作单位
+import hdtd from '@/components/pages/hdtd.vue'  //活动天地
+import zhzq from '@/components/pages/zhzq.vue'  //中行专区
 import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
 
 export default new Router({
@@ -65,6 +67,14 @@ export default new Router({
       path: '/hzdw',
       name: '合作单位',
       component: hzdw,
+    },{
+      path: '/hdtd',
+      name: '活动天地',
+      component: hdtd,
+    },{
+      path: '/zhzq',
+      name: '中行专区',
+      component: zhzq,
     },{
       path: '/apply_company',
       name: '申请爱心单位',

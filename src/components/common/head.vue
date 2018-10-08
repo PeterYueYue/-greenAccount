@@ -72,8 +72,8 @@
                                     <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==5">
                                 </span>
                                 <div class="list-detail" v-show="navIndex==5">
-                                    <div>活动天地</div>
-                                    <div>中行专区</div>
+                                    <router-link to="/hdtd"><div>活动天地</div></router-link>
+                                    <router-link to="/zhzq"><div>中行专区</div></router-link>
                                     <div>志愿者申请</div>
                                     <div>周周秀</div>
                                     <div>趣味游戏</div>
