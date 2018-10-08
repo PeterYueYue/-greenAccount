@@ -125,3 +125,27 @@
   bottom: 62px;
   right: 0;
 }
+
+.lv_dw_text {
+  overflow: hidden;
+  width: 100%;
+}
+
+.lv_dw_title {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin: 80px 0 30px;
+}
+
+.lv_dw_name {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.lv_dw_name:hover {
+  font-size: 14px;
+  color: #20A345;
+}
