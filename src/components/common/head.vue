@@ -50,7 +50,7 @@
                                 </span>
                                 <div class="list-detail" v-show="navIndex==3">
                                     <router-link to="/lvzhanghu"><div>绿账积分</div></router-link>
-                                    <div>我的兑换</div>
+                                    <router-link to="/lvbd"><div>我的兑换</div></router-link>
                                     <div>我的积分</div>
                                 </div>                            
                             </el-menu-item>
