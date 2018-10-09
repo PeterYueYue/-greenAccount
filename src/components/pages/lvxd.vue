@@ -2,7 +2,7 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿环保 > <span>绿账行动</span></div>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
-         @mouseleave.stop="listHover(false,index)">
+         @mouseleave.stop="listHover(false,index)" @click="jumpDetails">
       <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
         .time}}</span><br/>{{items.year}}</span></div>
       <div class="lv_bd_notice_title" v-else>{{items.title}}<span class="date">{{items.date}}</span></div>
@@ -55,6 +55,11 @@
 		methods: {
       listHover(status, index) {
         this.listData[index].hoverShow = status
+      },
+      jumpDetails(){
+        this.$router.push({
+          path: '/lvzhanghu'
+        })
       },
     }
 	}

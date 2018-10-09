@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="lv_bd_bread">您的位置：绿账户 > <span>绿账行动</span></div>
     <div class="lv_wrap lv_title">了解什么是绿色账户</div>
     <div class="lv_wrap lv_head">2015-02-16 09:52:56 来源：上海绿色账户</div>
     <img src="@/assets/lzb_logo.png" alt="" class="lv_pic">

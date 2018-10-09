@@ -9,9 +9,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import Axios from 'axios';
-Vue.config.productionTip = false
+
+Vue.config.productionTip = false;
 Vue.use(ElementUI);
-Vue.use(VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper);
 /* eslint-disable no-new */
 
 Vue.prototype.$http = Axios;
@@ -39,6 +40,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
