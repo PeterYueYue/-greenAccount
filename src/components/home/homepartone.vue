@@ -34,88 +34,23 @@
                 </div>
                 <div class="exchange-content-right">
                     <div class="exchange-inside-contain" ref="exchangeInside">
-                        <div class="exchange-content" :class="{active:exchangeSideIndex==0}">
+                        <div class="exchange-content" v-for="(item,index) in product" :key="item.id" :class="{active:exchangeSideIndex==index}">
                             <div class="change-content-top">
-                                <img src="@/assets/animal.png" alt="">
+                                <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
                             </div>
                             <div class="exchange-content-bottom">
-                                <p class="exchange-detail-name">上海XXXXXXXX公园</p>
-                                <p class="exchange-detail-count">100分</p>
+                                <p class="exchange-detail-name">{{item.prodName}}</p>
+                                <p class="exchange-detail-count">{{item.prodPoints}}</p>
                                 <p class="exchange-detail-address">
                                     <img src="@/assets/icon/position.png" alt="">
-                                    XXXX街道小区垃圾分拣员
+                                   {{item.productInfo.prodReceiveAddress}}领取
                                 </p>
                                 <p class="exchange-detail-time">
-                                    活动时间：<span>2017-12-21</span>——<span>2018-01-20</span>
+                                   {{item.productInfo.prodProvider}}提供
                                 </p>
                             </div>
                         </div>
-                        <div class="exchange-content" :class="{active:exchangeSideIndex==1}">
-                            <div class="change-content-top">
-                                <img src="@/assets/animal.png" alt="">
-                            </div>
-                            <div class="exchange-content-bottom">
-                                <p class="exchange-detail-name">上海XXXXXXXX公园</p>
-                                <p class="exchange-detail-count">100分</p>
-                                <p class="exchange-detail-address">
-                                    <img src="@/assets/icon/position.png" alt="">
-                                    XXXX街道小区垃圾分拣员
-                                </p>
-                                <p class="exchange-detail-time">
-                                    活动时间：<span>2017-12-21</span>——<span>2018-01-20</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="exchange-content" :class="{active:exchangeSideIndex==2}">
-                            <div class="change-content-top">
-                                <img src="@/assets/animal.png" alt="">
-                            </div>
-                            <div class="exchange-content-bottom">
-                                <p class="exchange-detail-name">上海XXXXXXXX公园</p>
-                                <p class="exchange-detail-count">100分</p>
-                                <p class="exchange-detail-address">
-                                    <img src="@/assets/icon/position.png" alt="">
-                                    XXXX街道小区垃圾分拣员
-                                </p>
-                                <p class="exchange-detail-time">
-                                    活动时间：<span>2017-12-21</span>——<span>2018-01-20</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="exchange-content" :class="{active:exchangeSideIndex==3}">
-                            <div class="change-content-top">
-                                <img src="@/assets/animal.png" alt="">
-                            </div>
-                            <div class="exchange-content-bottom">
-                                <p class="exchange-detail-name">上海XXXXXXXX公园</p>
-                                <p class="exchange-detail-count">100分</p>
-                                <p class="exchange-detail-address">
-                                    <img src="@/assets/icon/position.png" alt="">
-                                    XXXX街道小区垃圾分拣员
-                                </p>
-                                <p class="exchange-detail-time">
-                                    活动时间：<span>2017-12-21</span>——<span>2018-01-20</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="exchange-content" :class="{active:exchangeSideIndex==4}">
-                            <div class="change-content-top">
-                                <img src="@/assets/animal.png" alt="">
-                            </div>
-                            <div class="exchange-content-bottom">
-                                <p class="exchange-detail-name">上海XXXXXXXX公园</p>
-                                <p class="exchange-detail-count">100分</p>
-                                <p class="exchange-detail-address">
-                                    <img src="@/assets/icon/position.png" alt="">
-                                    XXXX街道小区垃圾分拣员
-                                </p>
-                                <p class="exchange-detail-time">
-                                    活动时间：<span>2017-12-21</span>——<span>2018-01-20</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    </div>                 
                 </div>
                 <div class="exchange-content-right-btn">
                     <div class="exchange-left-btn">
@@ -130,16 +65,18 @@
     </div>
 </template>
 <script>
-import $ from 'jquery'
+import $ from 'jquery';
+import api from "@/api/api.js";
 export default {
     data(){
         return{
+            product:{},
             exchangeSideCount:4,
             exchangeSideIndex:0,
         }
     },
     mounted(){
-
+        this.getProductList()
     },
     methods:{
         exchangeNext(){
@@ -147,7 +84,8 @@ export default {
                 return;
             }else {
                 this.exchangeSideIndex+=1;
-                $('.exchange-content').css('transform','translateX(-'+(379*this.exchangeSideIndex)+'px)');
+                console.log(this.exchangeSideIndex);
+                $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)');
             }
         },
         exchangeLast(){
@@ -155,8 +93,18 @@ export default {
                 return;
             }else {
                 this.exchangeSideIndex-=1;
-                $('.exchange-content').css('transform','translateX(-'+(379*this.exchangeSideIndex)+'px)'); 
+                $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)'); 
             }
+        },
+        getProductList(){
+            api.getProductList({
+                data:{
+                "prodExchBrid":"310000000000",
+                },
+            }).then(res =>{
+                this.exchangeSideCount=res.data.length-1
+                this.product = res.data
+            })
         }
 
     }

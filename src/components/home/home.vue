@@ -20,6 +20,12 @@
             <exchange-part></exchange-part>
             <activce-part></activce-part>
             <action-part></action-part>
+            <other-part></other-part>
+            <rank-part></rank-part>
+            <video-part></video-part>    
+        </div>
+        <div class="map-contain">
+            <map-part></map-part>
         </div>
         
     </div>
@@ -30,11 +36,19 @@
   import exchangePart from '@/components/home/homepartone.vue'
   import activcePart from '@/components/home/homeparttwo.vue'
   import actionPart from '@/components/home/homepartthree.vue'
+  import rankPart from '@/components/home/homepartfour.vue'
+  import videoPart from '@/components/home/homepartfive.vue'
+  import mapPart from '@/components/home/homepartsix.vue'
+  import otherPart from '@/components/home/homepartseven.vue'
   export default {
     components:{
         exchangePart,
         activcePart,
-        actionPart
+        actionPart,
+        rankPart,
+        videoPart,
+        mapPart,
+        otherPart
     },
     data() {
       return {
@@ -50,8 +64,20 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           }
+        },
+        lazyload:{
+            one:false,
+            two:false,
+            three:false,
+            four:false,
+            five:false,
+            six:false,
+            seven:false
         }
       }
+    },
+    methods:{
+        
     }
   }
 </script>

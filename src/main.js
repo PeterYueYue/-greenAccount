@@ -18,23 +18,23 @@ Vue.use(VueAwesomeSwiper);
 Vue.prototype.$http = Axios;
 Vue.prototype.$host = '';
 
-Axios.interceptors.request.use((req) => {
-  if (req.data.name === 'business.login') {
-    return req;
-  }
-  const token = window.sessionStorage.getItem('token');
-  Object.assign(req.data, {token});
-  return req;
-}, function (error) {
-  return Promise.reject(error);
-});
+// Axios.interceptors.request.use((req) => {
+//   if (req.data.name === 'business.login') {
+//     return req;
+//   }
+//   const token = window.sessionStorage.getItem('token');
+//   Object.assign(req.data, {token});
+//   return req;
+// }, function (error) {
+//   return Promise.reject(error);
+// });
 
-//Axios全局接口返回数据拦截器
-Axios.interceptors.response.use((res) => {
-  return res;
-}, function (error) {
-  return Promise.reject(error);
-});
+// //Axios全局接口返回数据拦截器
+// Axios.interceptors.response.use((res) => {
+//   return res;
+// }, function (error) {
+//   return Promise.reject(error);
+// });
 
 new Vue({
   el: '#app',

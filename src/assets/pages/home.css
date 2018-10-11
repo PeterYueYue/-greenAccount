@@ -1,7 +1,16 @@
 .home-contain{
-    position: relative;
+    /* position: relative; */
+    /* box-sizing: border-box; */
 }
 /*----------------------- 轮播图------------------- */
+.banner-contain{
+  position: absolute;
+  top: 135px;
+  left: 0;
+  right: 0;
+  /* z-index: -99; */
+  /* float: left; */
+}
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
   background-image: url("../icon/bannerleft.png") !important;
@@ -48,16 +57,26 @@
     top: 605px !important;
     }
   /* ----------------------------轮播图结束----------------------------- */
-    .part-contain{
+    .home-contain>.part-contain{
       /* margin-top: -403px; */
       width: 90%;
       z-index: 999999;
-      margin: 0 auto;
-      position: relative;
-      top: -403px;
+      margin: 640px auto 0 auto;
+      /* margin: 0 auto; */
+      /* position: relative;
+      top: -403px; */
+      box-sizing: border-box;
       padding-top: 15px;
       background-color: white;
-      min-width: 1280px;
+      min-width: 1400px;
+    }
+    .map-contain{
+      width:100%;
+      z-index: 999999;
+      margin: 0 auto;
+      /* position: relative;
+      top: -483px; */
+      min-width: 1400px;
     }
     .part-content{
       margin-top: 35px; 
@@ -92,14 +111,19 @@
       margin-right: 18px;
     }
 
-  .home-exchange-contain,.home-active-contain,.home-action-contain{
+  .home-exchange-contain,.home-active-contain,.home-action-contain,.home-rank-contain,.home-video-containt,.home-other-contain,.home-map-contain{
     padding-top: 55px;
     min-width: 1280px;
-    margin-bottom:50px;
+    /* margin-bottom:50px; */
+    padding-bottom: 70px;
+    position: relative;
+    z-index: 9;
+    background-color: white;
   }
-  .home-exchange-content,.home-active-content,.home-action-content{
+  .home-exchange-content,.home-active-content,.home-action-content,.home-rank-content,.home-video-content,.home-other-content,.home-map-content{
     width: 1280px;
     margin: 0 auto;
+    
   }
     /*-----------------------------首页兑换板块---------------------------  */
   .change-content-top{
@@ -437,6 +461,7 @@
   .action-content-left{
     width: 475px;
     display: inline-block;
+    margin-right: 79px;
   }
   .action-content-left-top{
     width: 100%;
@@ -506,6 +531,7 @@
   .action-content-right{
     width: 705px;
     height: 406px;
+    padding-top: 20px;
     display: inline-block;
     vertical-align: top;
   }
@@ -515,5 +541,276 @@
     padding: 0 15px;
   }
   .action-content-right .action-content-right-top .action-right-content{
-    
+    padding-top: 38px;
+    color: #666666;
+    font-size: 14px;
   }
+  .right-notice-content{
+    display: inline-block;
+    padding-left: 1em;
+    width: 38.2em;
+    padding-top: 8px;
+  }
+  .right-notice-detail,.action-right-content{
+    display: inline-block;
+  }
+  .right-notice-detail{
+    margin-left: 110px;
+    position: relative;
+  }
+  .right-notive-btn:hover{
+    cursor: pointer;
+  }
+  .right-notice-time{
+    position: absolute;
+    width: 65px;
+    text-align: center;
+    bottom: 45px;
+    right: -25px
+  }
+  .right-notice-time .date-day{
+    font-size: 36px;
+    font-weight: bold;
+    color: #666666
+  }
+  .right-notice-time .date-year{
+    font-size: 14px;
+  }
+  .action-content-right .action-list{
+    padding: 20px 0;
+    font-size: 14px;
+    color: #666666;
+  }
+  .action-content-right .action-list:hover{
+    cursor: pointer;
+  }
+  .action-content-right .action-list .notice-time{
+    float: right;
+  }
+  .action-content-right-top{
+    /* margin-bottom:50px; */
+    width: 100%;
+    height:0px;
+    overflow: hidden;
+    transition: all .8s;
+    opacity: 0;
+    margin-top: -5px;
+  }
+  .action-content-right-top.active{
+    height:105px ;
+    opacity: 1;
+  }
+  .small-content{
+    height: 19px;
+    opacity:1;
+    transition: all .8s;
+  }
+  .small-content.active{
+    height:0;
+    /* display: none; */
+    opacity: 0;
+  }
+  .action-bottom{
+    padding-top: 51px;
+  }
+  .action-bottom .bottom-right{
+    float: right;
+    line-height: 59px; 
+  }
+  .action-bottom .bottom-right span, .title-right-icon{
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .action-bottom .bottom-right span:hover, .title-right-icon:hover{
+    cursor: pointer;
+  }
+  /* --------------------------绿账排行开始--------------------------- */
+    .org-rank,.user-rank,.donate-notice{
+      display: inline-block;
+      width: 33%;
+      vertical-align: top;
+    }
+    .home-rank-content table{
+      width: 100%;
+    }
+    .org-rank table{
+      width: 385px;
+    }
+    .user-rank table{
+      width: 310px;
+    }
+    .home-rank-content .title{
+      font-size: 16px;
+      color: #333333; 
+    }
+    .home-rank-content .table-title{
+      font-size: 14px;
+     line-height: 55px;
+      color: #666666;
+      text-align: center;
+    }
+    .home-rank-content .table-content{
+      font-size: 14px;
+      color: #333333;
+      text-align: center;
+      height: 36px;
+    }
+    .home-rank-content .table-content img{
+      margin-top: 4px;
+    }
+    .donate-notice .donate-detail{
+      font-size: 14px;
+      color: #666666;
+      margin-top: 18px;
+    }
+    .donate-notice .donate-more span{
+      float: right;
+      margin-top: 28px;
+      font-size: 14px;
+      color: #333333
+    }
+    .donate-notice .donate-more span:hover{
+      cursor: pointer;
+    }
+  /* --------------------------绿账排行结束--------------------------- */
+  /* --------------------------绿账另加版块--------------------------- */
+    .home-other-contain .other-part{
+      display: inline-block;
+      width: 31.7%
+    }
+    .home-other-contain .other-part:nth-of-type(2){
+      margin: 0 2%;
+    }
+    .home-other-contain .other-part-img{
+      margin-bottom: 43px;
+      height: 192.88px;
+      overflow: hidden;
+    }
+    .home-other-contain .other-part-img img{
+      width: 100%;
+      transition: .4s;
+      
+    }
+    .home-other-contain .other-part-img img:hover{
+      transform: scale(1.1,1.1);
+      cursor: pointer;
+    }
+    .home-other-contain .other-content-title{
+      font-size: 16px;
+    }
+    .home-other-contain .other-content-title:hover{
+      color: #20A345;
+      cursor: pointer;
+    }
+    .home-other-contain .other-content{
+      font-size: 14px;
+      color: #666666;
+      width: 95%;
+      margin-top: 25px;
+    }
+  /* --------------------------绿账另加结束--------------------------- */
+
+  /* --------------------------绿色时光开始---------------------------- */
+    .video-content{
+      width: 1200px;
+      height: 383px;
+      background-image: url('../../assets/videoback.png');
+      text-align: center;
+      margin: 0 auto;
+    }
+    .playbtn{
+      margin-top: 160px;
+    }
+    .playbtn:hover{
+      cursor: pointer;
+    }
+  /* --------------------------绿色时光结束---------------------------- */
+
+  /* --------------------------绿色账户地图---------------------------- */
+    .home-map-contain{
+      /* text-align: left; */
+      /* position: relative; */
+    }
+    .home-map-contain .part-contain{
+      /* position: absolute;
+      top: 40px; */
+      background-color: transparent;
+      /* z-index: -99; */
+      min-width: 1400px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .home-map-contain .home-map-content{
+      position: relative;
+      top: 90px;
+      width: 339px !important;
+      margin: 30px 0 0 calc((100% - 1280px) / 2);
+      z-index: 99;    
+    }
+    .home-map-contain .home-map-content .title-left,.home-map-contain .home-map-content .part-content{
+      background-color: white;
+      width: 339px;
+      margin-top: 0;
+      /* padding-top: 31px; */
+    }
+    .home-map-contain .home-map-content .part-content{
+      /* padding: 30px 20px; */
+      
+    }
+    .home-map-contain .map{
+      width: 100%;
+      height:625px;
+      opacity: .5;
+      z-index: -9999999;
+    }
+    
+    .home-map-contain .map-date{
+      background-color: #52B54B;
+      text-align: center;
+      padding: 80px 0;
+    }
+    .home-map-contain .map-date .map-date-item{
+      display: inline-block;
+      color: white;
+      width: 20%;
+    }
+    .home-map-contain .map-date .map-date-item p span{
+      vertical-align: top;
+    }
+    .home-map-contain .map-date .map-date-item .map-date-count{
+      font-size: 59px;
+      font-weight: bold;
+    }
+    .home-map-contain .map-date .map-date-item:nth-of-type(n+1){
+      border-left:1px solid white; 
+    }
+    .home-map-contain .map-choose{
+      display: inline-block;
+      background-color: #20A345;
+      color: white;
+      width: 120px;
+      font-size: 12px;
+      /* text-align: center; */
+      padding-left: 20px;
+      height: 32px;
+      line-height: 32px;
+      position: relative;
+    }
+    .home-map-contain .map-choose:hover{
+      cursor: pointer;
+    }
+    .home-map-contain .map-choose:after{
+      content: '';
+      display: inline-block;
+      width:7px;
+      height: 7px;
+      border-bottom: 1px solid white;
+      border-left: 1px solid white;
+      transform: rotate(-45deg);
+      position: absolute;
+      right: 18px;
+      bottom: 14px;
+    }
+
+  /* --------------------------地图结束-------------------------------- */

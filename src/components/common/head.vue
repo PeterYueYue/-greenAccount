@@ -21,16 +21,22 @@
                     <div class="head-bottom-left">
                         <span>所在区域 :</span>
                         <div class="select-city-contain"  @mouseenter="areahover=true" @mouseleave="areahover=false;">
-                            <span class="select-city" :class="{active:areahover}">&#x3000;全市</span>
+                            <span class="select-city" :class="{active:areahover}">&#x3000;{{isarea.areaname?isarea.areaname:'全市'}}</span>
                             <div class="area-contain" v-show="areahover" >
                                 <ul class="area-list">
-                                    <router-link to="/home_exchange"><li class="active">黄浦区</li></router-link>
+                                    <router-link to="/home_exchange" v-for="item in area" :key="item.id">
+                                        <li @click="chooseArea(item.brName,item.id)" :class="isarea.id==item.id?'active':''">{{item.brName}}</li>
+                                    </router-link>
+                                     <router-link to="/home_exchange" >
+                                        <li @click="chooseArea('全市','310000000000')" :class="isarea.id=='310000000000'?'active':''">全市</li>
+                                    </router-link>
+                                    <!-- <router-link to="/home_exchange"><li class="active">黄浦区</li></router-link>
                                     <li>徐汇区</li>
                                     <li>长宁区</li>
                                     <li>静安区</li>
                                     <li>徐汇区</li>
                                     <li>长宁区</li>
-                                    <li>静安区</li>
+                                    <li>静安区</li> -->
                                 </ul>
                             </div>
                         </div>  
@@ -89,6 +95,8 @@
     </div>
 </template>
 <script>
+import api from "@/api/api.js";
+import {mapGetters} from 'vuex';
 import './head.css'
 export default {
     data(){
@@ -96,13 +104,28 @@ export default {
             activeIndex: '1',
             areahover:false,
             navIndex:1,
-            searchContent:''
+            searchContent:'',
+            area:[]
         }
     },
+    mounted(){
+        this.getarea()
+    },
+    computed: mapGetters({
+      isarea:"area"
+    }),
     methods: {
+     getarea(){
+         api.getarea().then(res =>{
+            this.area=res.data
+        })
+     },
       handleSelect(key, keyPath) {
         console.log(this.navIndex)
         console.log(key, keyPath);
+      },
+      chooseArea(areaname,id){
+        this.$store.dispatch('chooseArea',{areaname,id});
       }
     }
 
