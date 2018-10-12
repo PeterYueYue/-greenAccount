@@ -10,7 +10,10 @@ export default new Vuex.Store({
     getters,
     actions,
     state:{
-        area:{}
+        area:{
+            brName:'全市',
+            id:'310000000000'
+        }
     },
     mutations:{
         GetArea(state,areadate){

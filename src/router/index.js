@@ -80,5 +80,9 @@ export default new Router({
       name: '申请爱心单位',
       component: applyCompany,
     },
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
+
 })

@@ -20,29 +20,17 @@
                             </tr>  
                         </thead>
                         <tbody>
-                            <tr class="table-content">
-                                <td style="width:1%"><img src="@/assets/orgfirst.png" alt=""></td>
-                                <td>上海市第二人民康复医院 </td>
-                                <td>32</td>
-                                <td>360</td>
-                            </tr>
-                            <tr class="table-content">
-                                <td style="width:1%"><img src="@/assets/orgsecond.png" alt=""></td>
-                                <td>上海市第二人民康复医院 </td>
-                                <td>32</td>
-                                <td>360</td>
-                            </tr>
-                            <tr class="table-content">
-                                <td style="width:1%">3</td>
-                                <td>上海市第二人民康复医院 </td>
-                                <td>32</td>
-                                <td>360</td>
-                            </tr>
-                            <tr class="table-content">
-                                <td style="width:1%">4</td>
-                                <td>上海市第二人民康复医院 </td>
-                                <td>32</td>
-                                <td>360</td>
+                            <tr class="table-content" v-for="(item,index) in orglist" :key="index">
+                                <td style="width:1%">
+                                    <img src="@/assets/orgfirst.png" alt="" v-if="index==0">
+                                    <img src="@/assets/orgsecond.png" alt="" v-if="index==1">
+                                    <span v-if="index!=0&&index!=1">
+                                        {{index+1}}
+                                    </span>
+                                </td>
+                                <td>{{item.orgNamge}}</td>
+                                <td>{{item.orgCount}}</td>
+                                <td>{{item.orgPraSum}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -58,25 +46,16 @@
                             </tr>  
                         </thead>
                         <tbody>
-                            <tr class="table-content">
-                                <td style="width:1%"><img src="@/assets/userfirst.png" alt=""></td>
-                                <td>张三 </td>
-                                <td>320</td>
-                            </tr>
-                            <tr class="table-content">
-                                <td style="width:1%"><img src="@/assets/usersecond.png" alt=""></td>
-                                <td>王五 </td>
-                                <td>320</td>
-                            </tr>
-                            <tr class="table-content">
-                                <td style="width:1%">3</td>
-                                <td>王五 </td>
-                                <td>320</td>
-                            </tr>
-                            <tr class="table-content">
-                                <td style="width:1%">4</td>
-                                <td>王五 </td>
-                                <td>320</td>
+                            <tr class="table-content" v-for="(item,index) in userlist" :key="index">
+                                <td style="width:1%">
+                                    <img src="@/assets/userfirst.png" alt="" v-if="item[0]==1">
+                                    <img src="@/assets/usersecond.png" alt="" v-if="item[0]==2">
+                                     <span v-if="item[0]!=1&&item[0]!=2">
+                                        {{item[0]}}
+                                    </span>
+                                </td>
+                                <td>{{item[1]}}</td>
+                                <td>{{item[2]}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -94,8 +73,31 @@
     </div>
 </template>
 <script>
+import api from "@/api/api.js";
 export default {
-    
+    data(){
+        return {
+            orglist:[],
+            userlist:[],
+        }
+    },
+    mounted(){
+        this.getActNotice();
+        this.getdoninteglist();
+    },
+    methods:{
+        getActNotice(){
+            api.getActNotice().then(res => {
+                this.orglist = res.data
+            })
+        },
+        getdoninteglist(){
+            api.getdoninteglist5().then(res =>{
+                this.userlist = res.data;
+            })
+        }
+        
+    }
 }
 </script>
 
