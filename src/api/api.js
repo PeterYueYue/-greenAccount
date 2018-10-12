@@ -1,16 +1,15 @@
 import axios from 'axios';
 // 测试
-let base='http://180.153.19.162:8081';
-// let base='http://192.168.1.121:8080';
+let base = 'http://180.153.19.162:8081';
 
 const configarea = {
-    "version":"1.0",
-	"name":"district",
-}
+  "version": "1.0",
+  "name": "district",
+};
 const configproductlist = {
-    "version":"1.0",
-	"name":"getProductList",
-}
+  "version": "1.0",
+  "name": "getProductList",
+};
 const configgetNewinfobyStyleforuser = {
     "version":"1.0",
 	"name":"getNewInfoByStyleForUser",

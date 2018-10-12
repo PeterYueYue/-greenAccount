@@ -70,6 +70,7 @@
   color: #333;
   margin-left: 10px;
   border: 1px #A2A2A2 solid;
+  outline: 0;
 }
 
 .ex_select_brand {

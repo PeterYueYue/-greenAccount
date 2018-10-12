@@ -63,6 +63,7 @@
 .lv_bd_tab li.active {
   background: rgba(32, 163, 69, 1);
   color: #fff;
+  border: 1px rgba(32, 163, 69, 1) solid;
 }
 
 .lv_bd_notice {
