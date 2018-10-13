@@ -184,6 +184,9 @@
   .exchange-detail.code div.paycode{
     margin-right: 20px;
   }
+  .exchange-detail.code div p{
+    font-size: 14px;
+  }
   .exchange-content-bottom{
     padding: 20px 20px 12px 20px;
   }
@@ -728,35 +731,29 @@
   /* --------------------------绿色时光结束---------------------------- */
 
   /* --------------------------绿色账户地图---------------------------- */
-    .home-map-contain{
-      /* text-align: left; */
-      /* position: relative; */
-    }
     .home-map-contain .part-contain{
-      /* position: absolute;
-      top: 40px; */
+      position: absolute;
       background-color: transparent;
-      /* z-index: -99; */
       min-width: 1400px;
       width: 90%;
       margin: 0 auto;
     }
     .home-map-contain .home-map-content{
       position: relative;
-      top: 90px;
+      /* top: 220px; */
       width: 339px !important;
-      margin: 30px 0 0 calc((100% - 1280px) / 2);
+      background-color: white;
+      padding-top: 15px;
+      margin: 0 0 30px calc((100% - 1280px) / 2);
       z-index: 99;    
     }
     .home-map-contain .home-map-content .title-left,.home-map-contain .home-map-content .part-content{
       background-color: white;
       width: 339px;
       margin-top: 0;
-      /* padding-top: 31px; */
     }
     .home-map-contain .home-map-content .part-content{
-      /* padding: 30px 20px; */
-      
+      padding: 30px 20px 25px 20px;
     }
     .home-map-contain .map{
       width: 100%;
@@ -782,7 +779,7 @@
       font-size: 59px;
       font-weight: bold;
     }
-    .home-map-contain .map-date .map-date-item:nth-of-type(n+1){
+    .home-map-contain .map-date .map-date-item:nth-of-type(n+2){
       border-left:1px solid white; 
     }
     .home-map-contain .map-choose{
@@ -812,5 +809,69 @@
       right: 18px;
       bottom: 14px;
     }
-
+    .home-map-contain table thead td{
+      font-size: 14px;
+      color: #666666;
+    }
+    .home-map-contain table td{
+      text-align: center;
+      height: 35px;
+      color: #333333
+      /* line-height: 30px */
+    }
+    .home-map-contain .list-name{
+      margin: 15px 0 5px 0;
+      font-size: #555555
+    }
+    .home-map-contain .list-table{
+      height: 353px;
+      overflow: hidden;
+    }
+    .home-map-contain .more-list{
+      text-align: right;
+      margin-top: 25px;
+    }
+    .home-map-contain .go-more-list{
+      color: #228A62;
+      font-size: 14px;
+      /* text-align: right; */
+    }
+    .home-map-contain .go-more-list span{
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    .home-map-contain .go-more-list span:hover{
+      cursor: pointer;
+    }
+    .home-map-contain .go-more-list img{
+      margin-right: 15px;
+      width: 5%;
+      vertical-align: middle;
+    }
+    .home-map-contain .more-list .list-hint{
+      font-size: 12px;
+      margin-right: 15px;
+      margin-top: 8px;
+    }
+    .home-map-contain .area-list{
+      width: 240px;
+      position: absolute;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(77, 76, 76, 0.35)
+    }
+    .home-map-contain .area-list .area-item{
+      display: inline-block;
+      width: 80px;
+      height: 32px;
+      line-height: 32px;
+      margin-left: 18px;
+      margin-bottom: 10px;
+      text-align: center;
+      float: left;
+    }
+    .home-map-contain .area-list .area-item.active, .home-map-contain .area-list .area-item:hover{
+      background-color: #20A345;
+      color: white;
+      cursor: pointer;
+    }
   /* --------------------------地图结束-------------------------------- */

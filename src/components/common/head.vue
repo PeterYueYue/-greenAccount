@@ -24,19 +24,13 @@
                             <span class="select-city" :class="{active:areahover}">&#x3000;{{isarea.areaname?isarea.areaname:'全市'}}</span>
                             <div class="area-contain" v-show="areahover" >
                                 <ul class="area-list">
+                                    <router-link to="/home_exchange" >
+                                        <li @click="chooseArea('全市','310000000000')" :class="isarea.id=='310000000000'?'active':''">全市</li>
+                                    </router-link>
                                     <router-link to="/home_exchange" v-for="item in area" :key="item.id">
                                         <li @click="chooseArea(item.brName,item.id)" :class="isarea.id==item.id?'active':''">{{item.brName}}</li>
                                     </router-link>
-                                     <router-link to="/home_exchange" >
-                                        <li @click="chooseArea('全市','310000000000')" :class="isarea.id=='310000000000'?'active':''">全市</li>
-                                    </router-link>
-                                    <!-- <router-link to="/home_exchange"><li class="active">黄浦区</li></router-link>
-                                    <li>徐汇区</li>
-                                    <li>长宁区</li>
-                                    <li>静安区</li>
-                                    <li>徐汇区</li>
-                                    <li>长宁区</li>
-                                    <li>静安区</li> -->
+                                     
                                 </ul>
                             </div>
                         </div>  
@@ -97,6 +91,7 @@
 <script>
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
+import $ from 'jquery';
 import './head.css'
 export default {
     data(){
@@ -109,7 +104,16 @@ export default {
         }
     },
     mounted(){
-        this.getarea()
+        this.getarea();
+        window.onscroll = function () {
+            const t = document.documentElement.scrollTop || document.body.scrollTop;
+            if(t!=0){
+                $('header').css('box-shadow','0 0 6px rgba(0,0,0,.5)')
+            }else {
+                $('header').css('box-shadow','none')
+            }
+           
+        };
     },
     computed: mapGetters({
       isarea:"area"

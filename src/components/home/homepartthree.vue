@@ -9,8 +9,11 @@
                 <div class="title-right">
                     <p class="action-choose">
                         <span class="active">全部</span>
-                        <span>申城动态</span>
-                        <span>行业新闻</span> 
+                        <span>绿账行动</span>
+                        <span>垃圾分类</span> 
+                        <span>惠众绿色</span>
+                        <span>中奖名单</span>
+                        <span>政策法规</span>
                     </p>
                 </div>
             </div>
@@ -21,8 +24,8 @@
                     </div>
                     <div class="action-content-left-bottom">
                         <div class="action-left-date">
-                            <div class="date-day">09</div>
-                            <div class="date-year">2018-04</div>
+                            <div class="date-day">{{noticefirst.day}}</div>
+                            <div class="date-year">{{noticefirst.littledate}}</div>
                         </div>
                         <div class="action-left-notice">
                             <div class="action-left-title">
@@ -40,8 +43,8 @@
                     </div>
                 </div>
                 <div class="action-content-right">
-                    <div class="action-list" v-for="(item,index) in notice" :key="item.id">
-                        <p class="small-content" :class="contentIndex!=index?'':'active'" @mouseenter="contentIndex=index">{{item.title}}...... <span class="notice-time">2018-02-24</span> </p>
+                    <div class="action-list" v-for="(item,index) in noticelist" :key="item.id">
+                        <p class="small-content" :class="contentIndex!=index?'':'active'" @mouseenter="contentIndex=index">{{item.title}} <span class="notice-time">{{item.date}}</span> </p>
                         <div class="action-content-right-top" :class="contentIndex==index?'active':''">
                             <div class="action-right-title">
                                 上海绿色账户平台维护公告
@@ -57,68 +60,13 @@
                                 <div class="right-notice-detail">
                                     <img src="@/assets/icon/activedoright.png" alt="" class="right-notive-btn">
                                     <div class="right-notice-time" >
-                                        <div class="date-day">09</div>
-                                        <div class="date-year">2018-04</div>
+                                        <div class="date-day">{{item.day}}</div>
+                                        <div class="date-year">{{item.littledate}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="action-list">
-                        <p class="small-content" :class="contentIndex!=0?'':'active'" @mouseenter="contentIndex=0"> 【行业要闻】2018年春节长假，原来他们竟是这么度过的原来他们竟是这么度过的...... <span class="notice-time">2018-02-24</span> </p>
-                        <div class="action-content-right-top" :class="contentIndex==0?'active':''">
-                            <div class="action-right-title">
-                                上海绿色账户平台维护公告
-                            </div>
-                            <div class="action-right-notice">
-                                <div class="action-right-content">
-                                    <p>亲爱的市民朋友：</p>
-                                    <div class="notice-contain">
-                                        <p class="right-notice-content">您好！为了提供更好的服务，上海绿色账户平台将4月3日晚原来他们竟是这么度过的</p>
-                                        <span @click="displayDetail" class="ellipsis">...</span>  
-                                    </div>    
-                                </div>
-                                <div class="right-notice-detail">
-                                    <img src="@/assets/icon/activedoright.png" alt="" class="right-notive-btn">
-                                    <div class="right-notice-time" >
-                                        <div class="date-day">09</div>
-                                        <div class="date-year">2018-04</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="action-list">
-                        <p class="small-content"  :class="contentIndex!=1?'':'active'" @mouseenter="contentIndex=1"> 【行业要闻】2018年春节长假，原来他们竟是这么度过的原来他们竟是这么度过的...... <span class="notice-time">2018-02-24</span> </p>
-                    </div>
-                    <div class="action-list">
-                        <p class="small-content"  :class="contentIndex!=2?'':'active'" @mouseenter="contentIndex=2"> 【行业要闻】2018年春节长假，原来他们竟是这么度过的原来他们竟是这么度过的...... <span class="notice-time">2018-02-24</span> </p>
-                    </div>
-                    <div class="action-list">【行业要闻】2018年春节长假，原来他们竟是这么度过的原来他们竟是这么度过的...... <span class="notice-time">2018-02-24</span></div>
-                    <div class="action-list">
-                        <p class="small-content"  :class="contentIndex!=3?'':'active'" @mouseenter="contentIndex=3">【行业要闻】2018年春节长假，原来他们竟是这么度过的原来他们竟是这么度过的...... <span class="notice-time">2018-02-24</span></p>
-                        <div class="action-content-right-top" :class="contentIndex==3?'active':''">
-                            <div class="action-right-title">
-                                上海绿色账户平台维护公告
-                            </div>
-                            <div class="action-right-notice">
-                                <div class="action-right-content">
-                                    <p>亲爱的市民朋友：</p>
-                                    <div class="notice-contain">
-                                        <p class="right-notice-content">您好！为了提供更好的服务，上海绿色账户平台将4月3日晚原来他们竟是这么度过的</p>
-                                        <span @click="displayDetail" class="ellipsis">...</span>  
-                                    </div>    
-                                </div>
-                                <div class="right-notice-detail">
-                                    <img src="@/assets/icon/activedoright.png" alt="" class="right-notive-btn">
-                                    <div class="right-notice-time" >
-                                        <div class="date-day">09</div>
-                                        <div class="date-year">2018-04</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="action-bottom">
                      <p class="bottom-right">
@@ -136,7 +84,9 @@ export default {
     data(){
         return {
             contentIndex:null,
-            notice:[],
+            noticelist:[],
+            noticefirst:{},
+            
         }
     },
     mounted(){
@@ -151,12 +101,25 @@ export default {
                 data:{
                     style:"13",
                     startPage:1,
-                    pageSize:5
+                    pageSize:6
                 },
               }  
             ).then(res => {
                 console.log(res)
-                this.notice = res.data.newsList.content
+                res.data.newsList.content.forEach((item,index) =>{
+                    var date = new Date(item.newsTime)
+                    var Y = date.getFullYear() + '-';
+                    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                    var D = date.getDate()>10?date.getDate():'0'+date.getDate();
+                    item.day= D;
+                    item.date=Y+M+D
+                    item.littledate=item.date.substring(0,7)
+                })
+                this.noticefirst=res.data.newsList.content[0];
+                this.noticelist = res.data.newsList.content.splice(0,5);
+                console.log(this.noticelist)
+                // var time = new Date(this.noticefirst.newsTime)
+                // this.noticefirst.newsTime=time;
             })
         }
     }
