@@ -17,6 +17,7 @@ import hzdw from '@/components/pages/hzdw.vue'  //合作单位
 import hdtd from '@/components/pages/hdtd.vue'  //活动天地
 import zhzq from '@/components/pages/zhzq.vue'  //中行专区
 import lv_volunteer from '@/components/pages/lv_volunteer.vue'  //志愿者活动
+import lv_volunteer_details from '@/components/pages/lv_volunteer_details.vue'  //志愿者活动详情
 import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
 
 export default new Router({
@@ -80,6 +81,10 @@ export default new Router({
       path: '/lv_volunteer',
       name: '志愿者活动',
       component: lv_volunteer,
+    },{
+      path: '/lv_volunteer_details',
+      name: '志愿者活动详情',
+      component: lv_volunteer_details
     },{
       path: '/apply_company',
       name: '申请爱心单位',
