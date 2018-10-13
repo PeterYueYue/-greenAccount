@@ -11,11 +11,16 @@
                 </div>
                 <div class="part-content">
                    <div>
-                       <span class="map-choose" @click="street(15,121.43,31.18,310104000000)">所在行政区</span>
-                       <span class="map-choose">发卡排行榜</span>
-                       <div class="area-list">
-                           <span class="area-item active">所有行政区</span>
-                           <span class="area-item" v-for="item in area" :key="item.id">{{item.brName}}</span>
+                       <span class="map-choose" @click.stop="maplist=!maplist">{{ismap}}</span>
+                       <span class="map-choose" @click.stop="ranklist=!ranklist">{{isrank}}</span>
+                       <div class="area-list" v-show="maplist">
+                           <span class="area-item active" @click="ismap='所有行政区';map(13.5,121.47, 31.23,areaposition,'所有行政区')">所有行政区</span>
+                           <span class="area-item" v-for="item in area" :key="item.id" @click="chooseRankArea(15,item.lng,item.lat,item.brID,item.brName)">{{item.brName}}</span>
+                       </div>
+                       <div class="rank-list" v-show="ranklist">
+                           <span class="rank-item active" @click="isrank='发卡排行榜';">发卡排行榜</span>
+                           <span class="rank-item" @click="isrank='积分排行榜';">积分排行榜</span>
+                           <span class="rank-item" @click="isrank='覆盖户数排行';">覆盖户数排行</span>
                        </div>
                    </div>
                    <div>
@@ -76,6 +81,10 @@ import api from "@/api/api.js";
 export default {
     data(){
         return {
+            maplist:false,
+            ranklist:false,
+            ismap:'所有行政区',
+            isrank:'发卡排行榜',
             arearescount:[],
             statedata:{},
             area:[],
@@ -177,8 +186,13 @@ export default {
     mounted(){
         this.getStatDate();
         this.getArearescount();
-        this.map(13.5,121.47, 31.23);
+        this.map(13.5,121.47, 31.23,this.areaposition);
         this.getarea();
+        document.body.addEventListener('click',()=>{
+            this.maplist=false;
+            this.ranklist=false;
+        })
+        
     },
     methods:{
          getarea(){
@@ -186,7 +200,6 @@ export default {
                 this.areaTem=res.data;
                 this.area=this.areaTem.map((item,index)=>{
                     var config;
-                    console.log(item)
                     this.areaposition.forEach((item2,index)=>{
                         if(item.brName==item2.brName){
                             config =  Object.assign(item,item2);                   
@@ -196,51 +209,64 @@ export default {
                 })
             })
         },
-        map(aa,lng,lat){  
-            let map =new BMap.Map(this.$refs.allmap); // 创建Map实例      
-            map.centerAndZoom(new BMap.Point(lng,lat), aa);// 初始化地图,设置中心点坐标和地图级别  
+        map(mul,lng,lat,points,Name){  
+            let map =new BMap.Map(this.$refs.allmap); // 创建Map实例    
+            map.clearOverlays();  
+            map.centerAndZoom(new BMap.Point(lng,lat), mul);// 初始化地图,设置中心点坐标和地图级别  
             map.addControl(new BMap.MapTypeControl({//添加地图类型控件        
                 mapTypes:[          
                     BMAP_NORMAL_MAP,          
                     BMAP_HYBRID_MAP,        
                 ],
             }));   
-            this.areaposition.forEach((item,index) =>{
-                var point = new BMap.Point(item.lng,item.lat);
+           
+            points.forEach((item,index) =>{
+                var point = new BMap.Point(item.lng||item.streetOngItude,item.lat||item.streetLatItude);
                 var marker = new BMap.Marker(point);
+                var content= ''
                 map.addOverlay(marker)
+                if(item.streetOngItude){
+                    this.addClickHandler(item.brName,marker,map)
+                } 
             })   
             map.setCurrentCity("上海");// 设置地图显示的城市 此项是必须设置的      
             map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放  
-
-            var opts = {
+        },
+        addClickHandler(content,marker,map){
+            marker.addEventListener("click",(e) =>{
+                this.openInfo(content,e,map)}
+            );
+	    },
+        openInfo(content,e,map){
+            var p = e.target;
+             var opts = {
 				width : 250,     // 信息窗口宽度
 				height: 80,     // 信息窗口高度
-				title : "信息窗口" , // 信息窗口标题
+				title : content , // 信息窗口标题
 				enableMessage:true//设置允许信息窗发送短息
 			   };
-        },
-        street(a,b,c,d){
-            api.getPositionInfo({
-                data:{
-                    districtId:d
-                }
-            }).then(res =>{
-                console.log(res)
-            })
+            var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+            var infoWindow = new BMap.InfoWindow(content+'已开通',opts);  // 创建信息窗口对象 
+            map.openInfoWindow(infoWindow,point); //开启信息窗口
         },
         getArearescount(){
-            api.getArearescount({
-                data:{
-                    // pageSize:'9'
-                }
-            }).then(res =>{
+            api.getArearescount().then(res =>{
                 this.arearescount=res.data
             })
         },
         getStatDate(){
             api.getStatDate().then(res => {
                 this.statedata=res.data;
+            })
+        },
+        chooseRankArea(mul,lng,lat,id,Name){
+            this.ismap=Name;
+            api.getPositionInfo({
+                data:{
+                    districtId:id
+                }
+            }).then(res =>{
+                this.map(mul,lng,lat,res.data)
             })
         }
     }
