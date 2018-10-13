@@ -80,7 +80,7 @@
                                 <div class="list-detail" v-show="navIndex==5">
                                     <router-link to="/hdtd"><div>活动天地</div></router-link>
                                     <router-link to="/zhzq"><div>中行专区</div></router-link>
-                                    <div>志愿者申请</div>
+                                    <router-link to="/lv_volunteer"><div>志愿者申请</div></router-link>
                                     <div>周周秀</div>
                                     <div>趣味游戏</div>
                                 </div>                                 
