@@ -50,6 +50,14 @@ const configgetProductDetail = {
   "version": "1.0",
   "name": "getProductDetail",
 };
+const configgetMallLogoList = {
+  "version": "1.0",
+  "name": "getMallLogoList",
+};
+const configgetMallProductList = {
+  "version": "1.0",
+  "name": "getMallProductList",
+};
 
 
 export default {
@@ -105,6 +113,14 @@ export default {
   },
   getProductDetail(params) {
     let config = Object.assign(configgetProductDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getProductDetail(params) {
+    let config = Object.assign(configgetProductDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getMallProductList(params) {
+    let config = Object.assign(configgetMallProductList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
 
