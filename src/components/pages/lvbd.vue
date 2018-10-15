@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+  import api from "@/api/api.js";
 	import '@/assets/pages/lvzhanghu.css';
 	import pagination from '@/components/common/pagination.vue';
 
@@ -59,7 +60,19 @@
 			}
 		},
 		components: {pagination},
+    mounted() {
+      this.getNewInfoByStyleForUser();
+    },
 		methods: {
+      getNewInfoByStyleForUser() {
+        api.getNewInfoByStyleForUser({
+          data: {
+            style:"13",
+          },
+        }).then(res => {
+          console.log(res);
+        })
+      },
       listHover(status, index) {
         this.listData[index].hoverShow = status
       },

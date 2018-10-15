@@ -60,6 +60,10 @@ const configgetMallProductList = {
   "version": "1.0",
   "name": "getMallProductList",
 };
+const configgetNewInfoByStyleForUser = {
+  "version": "1.0",
+  "name": "getNewInfoByStyleForUser",
+};
 
 
 export default {
@@ -123,6 +127,10 @@ export default {
   },
   getMallProductList(params) {
     let config = Object.assign(configgetMallProductList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getNewInfoByStyleForUser(params) {
+    let config = Object.assign(configgetNewInfoByStyleForUser, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
 
