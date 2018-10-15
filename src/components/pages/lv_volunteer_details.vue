@@ -1,9 +1,13 @@
 <template>
   <div class="lv_wrap">
     <div class="lv_volunteer_bread">您的位置：绿互动 > 志愿者活动 > <span>志愿者活动详情</span></div>
-    <div class="lv_volunteer_details_head">上海市第二康复医院志愿者活动<img src="@/assets/lv_icon_zan.png" alt=""
-                                                              class="lv_volunteer_details_zan">120
-      <img src="@/assets/lv_icon_zanhover.png" alt="" class="lv_volunteer_details_hover">120
+    <div class="lv_volunteer_details_head">
+      上海市第二康复医院志愿者活动
+      <img src="@/assets/lv_icon_zan.png" alt="" class="lv_volunteer_details_zan"
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-if="hoverShow">
+      <img src="@/assets/lv_icon_zanhover.png" alt="" class="lv_volunteer_details_zan"
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-else>
+      120
     </div>
 
     <div class="lv_volunteer_details_enlist">我要报名</div>
@@ -79,8 +83,14 @@
 
   export default {
     data() {
-      return {}
+      return {
+        hoverShow: true,
+      }
     },
-    methods: {}
+    methods: {
+      listHover(status) {
+        this.hoverShow = status;
+      },
+    }
   }
 </script>
