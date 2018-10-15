@@ -61,42 +61,42 @@
   </div>
 </template>
 <script>
-	import api from "@/api/api.js";
-	import '@/assets/pages/exchange.css';
-	import pagination from '@/components/common/pagination.vue';
+  import api from "@/api/api.js";
+  import '@/assets/pages/exchange.css';
+  import pagination from '@/components/common/pagination.vue';
 
-	export default {
-		name: 'exchangeList',
-		data() {
-			return {
-				listData: [],
-			}
-		},
-		components: {pagination},
-		mounted() {
-			this.getProductList()
-		},
-		methods: {
-			getProductList() {
-				api.getProductList({
-					data: {
-						"prodExchBrid": "310000000000",
-					},
-				}).then(res => {
-					res.data.map(items => {
-						items.hoverShow = true
-					});
-					this.listData = res.data;
-				})
-			},
-			listHover(status, index) {
-				this.listData[index].hoverShow = status
-			},
-			jumpBrand() {
-				this.$router.push({
-					path: '/exchange/brand'
-				})
-			},
-		}
-	}
+  export default {
+    name: 'exchangeList',
+    data() {
+      return {
+        listData: [],
+      }
+    },
+    components: {pagination},
+    mounted() {
+      this.getProductList();
+    },
+    methods: {
+      getProductList() {
+        api.getProductList({
+          data: {
+            "prodExchBrid": "310000000000",
+          },
+        }).then(res => {
+          res.data.map(items => {
+            items.hoverShow = true;
+          });
+          this.listData = res.data;
+        })
+      },
+      listHover(status, index) {
+        this.listData[index].hoverShow = status;
+      },
+      jumpBrand() {
+        this.$router.push({
+          path: '/exchange/brand'
+        })
+      },
+    }
+  }
 </script>
