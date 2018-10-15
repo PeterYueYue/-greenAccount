@@ -127,19 +127,7 @@
         })
       },
       getType() {
-        api.getMallProductList({
-          data: {
-            "mallCode": this.selectType.loveUnitCode,
-            "hotExchange": this.selectHot.id,
-            "productPoints": this.selectScore.id,
-            "createDate": this.selectDate.id,
-          },
-        }).then(res => {
-          res.data.content.map(items => {
-            items.hoverShow = true;
-          });
-          this.listData = res.data.content;
-        })
+        this.getMallProductList();
       },
       getMallProductList() {
         api.getMallProductList({

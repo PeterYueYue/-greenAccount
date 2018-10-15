@@ -24,18 +24,42 @@
       </ul>
     </div>
     <div class="ex_wrap ex_select">
-      <div class="ex_select_name">类型：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
-      <div class="ex_select_name">热度：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
-      <div class="ex_select_name">上架时间：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
-      <div class="ex_select_name">积分值：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
+      <div class="ex_select_name">类型：
+        <select name="" v-model="selectType" @change="getType">
+          <option value="">请选择类型</option>
+          <option :value="{id:items.id,name:items.mallInfo}" v-for="(items,index) in typeList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
+      <div class="ex_select_name">热度：
+        <select name="" v-model="selectHot" @change="getType">
+          <option value="">请选择热度</option>
+          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in hotList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
+      <div class="ex_select_name">上架时间：
+        <select name="" v-model="selectDate" @change="getType">
+          <option value="">请选择上架时间</option>
+          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in dateList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
+      <div class="ex_select_name">积分值：
+        <select name="" v-model="selectScore" @change="getType">
+          <option value="">请选择积分值</option>
+          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in scoreList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
       <div class="ex_select_brand" @click="jumpBrand">爱心品牌专区</div>
     </div>
     <div class="ex_wrap">
@@ -70,6 +94,77 @@
     data() {
       return {
         listData: [],
+        selectType: '',
+        selectHot: '',
+        selectDate: '',
+        selectScore: '',
+        typeList: [{
+          id: '',
+          name: '全部',
+        }, {
+          id: '01',
+          name: '服务类',
+        }, {
+          id: '02',
+          name: '实物类',
+        }, {
+          id: '03',
+          name: '抽奖类',
+        }, {
+          id: '04',
+          name: '荣誉类',
+        }, {
+          id: '05',
+          name: '公益类',
+        }, {
+          id: '06',
+          name: '权益类',
+        }, {
+          id: '08',
+          name: '购物节',
+        }, {
+          id: '09',
+          name: '门票类',
+        }],
+        hotList: [{
+          id: '-1',
+          name: '全部',
+        }, {
+          id: '1',
+          name: '升',
+        }, {
+          id: '2',
+          name: '降',
+        }],
+        dateList: [{
+          id: '-1',
+          name: '全部',
+        }, {
+          id: '1',
+          name: '上架时间升序',
+        }, {
+          id: '2',
+          name: '上架时间降序',
+        }],
+        scoreList: [{
+          id: '-1',
+          name: '全部',
+        }, {
+          id: '1',
+          name: '0-500',
+        }, {
+          id: '2',
+          name: '501-1000',
+        }, {
+          id: '3',
+          name: '1001-1500',
+        }, {
+          id: '4',
+          name: '1501-2000',
+        }, {
+          id: '5',
+          name: '2000以上',
+        }],
       }
     },
     components: {pagination},
@@ -77,10 +172,17 @@
       this.getProductList();
     },
     methods: {
+      getType() {
+        this.getProductList();
+      },
       getProductList() {
         api.getProductList({
           data: {
             "prodExchBrid": "310000000000",
+            "prodType": this.selectType ? this.selectType.id : '',
+            "hotExchange": this.selectHot ? this.selectHot.id : '',
+            "productPoints": this.selectScore ? this.selectScore.id : '',
+            "createDate": this.selectDate ? this.selectDate.id : '',
           },
         }).then(res => {
           res.data.map(items => {
