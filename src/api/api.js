@@ -115,8 +115,8 @@ export default {
     let config = Object.assign(configgetProductDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
-  getProductDetail(params) {
-    let config = Object.assign(configgetProductDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+  getMallLogoList(params) {
+    let config = Object.assign(configgetMallLogoList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
   getMallProductList(params) {
