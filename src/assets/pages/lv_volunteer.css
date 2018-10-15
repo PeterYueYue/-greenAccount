@@ -75,6 +75,19 @@
   padding: 2px 10px;
 }
 
+.lv_volunteer_icon {
+  position: relative;
+  top: 4px;
+  margin-right: 3px;
+}
+
+.lv_volunteer_icon_address {
+  position: relative;
+  top: 4px;
+  margin-left: 30px;
+  margin-right: 3px;
+}
+
 .lv_volunteer_details_enlist {
   position: absolute;
   top: 80px;
