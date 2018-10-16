@@ -18,15 +18,16 @@
                            <span class="area-item" v-for="item in area" :key="item.id" @click="chooseRankArea(15,item.lng,item.lat,item.brID,item.brName)">{{item.brName}}</span>
                        </div>
                        <div class="rank-list" v-show="ranklist">
-                           <span class="rank-item active" @click="isrank='发卡排行榜';">发卡排行榜</span>
-                           <span class="rank-item" @click="isrank='积分排行榜';">积分排行榜</span>
-                           <span class="rank-item" @click="isrank='覆盖户数排行';">覆盖户数排行</span>
+                           <span class="rank-item " :class="isrank=='发卡排行榜'?'active':''" @click="isrank='发卡排行榜';getArearescount()">发卡排行榜</span>
+                           <span class="rank-item" :class="isrank=='积分排行榜'?'active':''" @click="isrank='积分排行榜';getCounthouse()">积分排行榜</span>
+                           <span class="rank-item" :class="isrank=='覆盖户数排行'?'active':''" @click="isrank='覆盖户数排行';getAreavalidpoint()">覆盖户数排行</span>
+                           <span class="rank-item " :class="isrank=='所有排行榜'?'active':''" @click="isrank='所有排行榜';getArearescount()">所有排行榜</span>
                        </div>
                    </div>
-                   <div>
-                       <p class="list-name">发卡数排行榜</p>
-                   </div>
-                   <div class="list-table">
+                   <div class="list-table" v-if="false">
+                       <div>
+                            <p class="list-name">{{isrank}}</p>
+                        </div>
                        <table>
                             <thead>
                                 <tr class="table-title">
@@ -51,6 +52,34 @@
                             </tbody>
                        </table>
                     </div> 
+                    <div class="list-detail-table" v-for="(item,index) in detailrank" :key="index">
+                        <div>
+                            <p class="list-name">{{index=='areaAommRank'?'发卡排行榜':index=='areaAommRank'?'积分排行榜':'覆盖户数排行'}}</p>
+                        </div>
+                        <table >
+                            <thead>
+                                <tr class="table-title">
+                                    <td style="width:1%">排名</td>
+                                    <td style="width:13%">地区</td>
+                                    <td style="width:5%">总计</td>
+                                </tr>  
+                            </thead>
+                            <tbody>
+                                <tr class="table-content">
+                                    <td style="width:1%">
+                                        <img src="@/assets/userfirst.png" alt="" v-if="item[2]==1">
+                                        <img src="@/assets/usersecond.png" alt="" v-if="item[2]==2">
+                                        <img src="@/assets/userthird.png" alt="" v-if="item[2]==3">
+                                        <span v-if="item[2]!=1&&item[2]!=2&&item[2]!=3">
+                                            {{item[2]}}
+                                        </span>
+                                    </td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[0]}}</td>
+                                </tr>
+                            </tbody>
+                       </table>
+                    </div>
                     <div class="more-list">
                         <p class="go-more-list">
                             <span>查看更多统计数据</span>
@@ -85,6 +114,7 @@ export default {
             ranklist:false,
             ismap:'所有行政区',
             isrank:'发卡排行榜',
+            detailrank:{},
             arearescount:[],
             statedata:{},
             area:[],
@@ -251,7 +281,17 @@ export default {
         },
         getArearescount(){
             api.getArearescount().then(res =>{
-                this.arearescount=res.data
+                this.arearescount=res.data;
+            })
+        },
+        getCounthouse(){
+            api.getCounthouse().then(res =>{
+                this.arearescount=res.data;
+            })
+        },
+        getAreavalidpoint(){
+            api.getAreavalidpoint().then(res =>{
+                this.arearescount=res.data;
             })
         },
         getStatDate(){
@@ -267,6 +307,15 @@ export default {
                 }
             }).then(res =>{
                 this.map(mul,lng,lat,res.data)
+            });
+
+            api.getcountrank({
+                data:{
+                    "districtName":Name
+                }
+            }).then(res =>{
+                console.log(res.data)
+               this.detailrank=res.data;
             })
         }
     }

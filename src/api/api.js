@@ -42,6 +42,10 @@ const configPositionInfo = {
     "version":"1.0",
 	"name":"getPositionInfo",
 }
+const configcountrank ={
+    "version":"1.0",
+	"name":"3countrank",
+}
 export default{
     UUid(){},
     Uuid(){
@@ -88,6 +92,10 @@ export default{
     },
     getPositionInfo(params){
         let config = Object.assign(configPositionInfo,params,{"nonce":this.Uuid()},{"timestamp":this.timestamp()});
+        return axios.post(`${base}/api/web`, config).then(res => res.data);
+    },
+    getcountrank(params){
+        let config = Object.assign(configcountrank,params,{"nonce":this.Uuid()},{"timestamp":this.timestamp()});
         return axios.post(`${base}/api/web`, config).then(res => res.data);
     }
 
