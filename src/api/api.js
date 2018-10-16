@@ -1,6 +1,8 @@
 import axios from 'axios';
 // 测试
 let base = 'http://180.153.19.162:8081';
+// 张强
+// let base = 'http://192.168.1.121:8080';
 
 const configarea = {
   "version": "1.0",
@@ -15,25 +17,25 @@ const configgetNewinfobyStyleforuser = {
   "name": "getNewInfoByStyleForUser",
 };
 const configactnotice = {
-    "version":"1.0",
-	"name":"actnotice",
-}
-const configdoninteglist ={
-    "version":"1.0",
-	"name":"doninteglist5",
-}
-const configarearescount ={
-    "version":"1.0",
-	"name":"arearescount9",
-}
-const configcounthouse ={
-    "version":"1.0",
-	"name":"counthouse9",
-}
-const configareavalidpoint ={
-    "version":"1.0",
-	"name":"areavalidpoint9",
-}
+  "version": "1.0",
+  "name": "actnotice",
+};
+const configdoninteglist = {
+  "version": "1.0",
+  "name": "doninteglist5",
+};
+const configarearescount = {
+  "version": "1.0",
+  "name": "arearescount9",
+};
+const configcounthouse = {
+  "version": "1.0",
+  "name": "counthouse9",
+};
+const configareavalidpoint = {
+  "version": "1.0",
+  "name": "areavalidpoint9",
+};
 const configstatdate = {
   "version": "1.0",
   "name": "statdate",
@@ -46,6 +48,22 @@ const configcountrank ={
     "version":"1.0",
 	"name":"3countrank",
 }
+const configcaringUnitSubmit = {
+    "version": "1.0",
+    "name": "caringUnit.submit",
+};
+const configgetProductDetail = {
+    "version": "1.0",
+    "name": "getProductDetail",
+};
+const configgetMallLogoList = {
+    "version": "1.0",
+    "name": "getMallLogoList",
+};
+const configgetMallProductList = {
+    "version": "1.0",
+    "name": "getMallProductList",
+};
 export default{
     UUid(){},
     Uuid(){
@@ -97,6 +115,22 @@ export default{
     getcountrank(params){
         let config = Object.assign(configcountrank,params,{"nonce":this.Uuid()},{"timestamp":this.timestamp()});
         return axios.post(`${base}/api/web`, config).then(res => res.data);
-    }
+    },
+    caringUnitSubmit(params) {
+        let config = Object.assign(configcaringUnitSubmit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+        return axios.post(`${base}/api/web`, config).then(res => res.data);
+        },
+    getProductDetail(params) {
+        let config = Object.assign(configgetProductDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+        return axios.post(`${base}/api/web`, config).then(res => res.data);
+        },
+    getMallLogoList(params) {
+        let config = Object.assign(configgetMallLogoList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+        return axios.post(`${base}/api/web`, config).then(res => res.data);
+        },
+    getMallProductList(params) {
+        let config = Object.assign(configgetMallProductList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+        return axios.post(`${base}/api/web`, config).then(res => res.data);
+        },
 
 }

@@ -1,79 +1,149 @@
 <template>
   <div>
     <div class="ex_wrap ex_select">
-      <div class="ex_select_name">类型：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
-      <div class="ex_select_name">热度：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
-      <div class="ex_select_name">上架时间：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
-      <div class="ex_select_name">积分值：<select>
-        <option value="quanbu">全部</option>
-      </select></div>
+      <div class="ex_select_name">类型：
+        <select name="" v-model="selectType" @change="getType">
+          <option value="">请选择类型</option>
+          <option :value="{loveUnitCode:items.loveUnitCode,name:items.mallInfo}" v-for="(items,index) in typeList"
+                  :key="index">
+            {{items.mallInfo}}
+          </option>
+        </select>
+      </div>
+      <div class="ex_select_name">热度：
+        <select name="" v-model="selectHot" @change="getType">
+          <option value="">请选择热度</option>
+          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in hotList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
+      <div class="ex_select_name">上架时间：
+        <select name="" v-model="selectDate" @change="getType">
+          <option value="">请选择上架时间</option>
+          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in dateList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
+      <div class="ex_select_name">积分值：
+        <select name="" v-model="selectScore" @change="getType">
+          <option value="">请选择积分值</option>
+          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in scoreList"
+                  :key="index">
+            {{items.name}}
+          </option>
+        </select>
+      </div>
     </div>
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listData" @click="jumpDetails">
-        <img src="@/assets/ex_pic.png" alt="" class="ex_list_pic">
-        <div class="ex_list_name">{{items.name}}</div>
-        <div class="ex_list_score">{{items.score}}</div>
-        <div class="ex_list_address">
-          <img src="@/assets/ex_icon_address.png" alt="" v-if="items.hoverShow">
-          <img src="@/assets/ex_icon_address_select.png" alt="" v-else>
-          {{items.member}}
-        </div>
-        <div class="ex_list_time" v-if="items.hoverShow">{{items.tips}}</div>
-        <div class="ex_list_btn" v-else>立即兑换</div>
+           v-for="(items,index) in listData">
+        <router-link :to="{path: '/exchange/detail/', query: { id: items.id }}">
+          <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
+               v-if="items.prodPic">
+          <img src="@/assets/ex_pic.png" alt="" class="ex_list_pic" v-else>
+          <div class="ex_list_name">{{items.prodName}}</div>
+          <div class="ex_list_score">{{items.prodPoints}}</div>
+          <div class="ex_list_address">
+            <img src="@/assets/ex_icon_address.png" alt="" v-if="items.hoverShow">
+            <img src="@/assets/ex_icon_address_select.png" alt="" v-else>
+            {{items.prodName}}领取
+          </div>
+          <div class="ex_list_time" v-if="items.hoverShow">{{items.prodName}}提供</div>
+          <div class="ex_list_btn" v-else>立即兑换</div>
+        </router-link>
       </div>
     </div>
     <pagination></pagination>
   </div>
 </template>
 <script>
+  import api from "@/api/api.js";
   import '@/assets/pages/exchange.css';
   import pagination from '@/components/common/pagination.vue';
 
   export default {
     data() {
       return {
-        listData: [{
-          name: '上海xxxxx公园',
-          score: '100积分',
-          member: 'xxxx街道小区垃圾分拣员',
-          tips: '居委会领取 上海市绿化市容局提供',
-          hoverShow: true
+        listData: [],
+        selectType: '',
+        selectHot: '',
+        selectDate: '',
+        selectScore: '',
+        typeList: [],
+        hotList: [{
+          id: '-1',
+          name: '全部',
         }, {
-          name: '上海xxxxx公园',
-          score: '100积分',
-          member: 'xxxx街道小区垃圾分拣员',
-          tips: '居委会领取 上海市绿化市容局提供',
-          hoverShow: true
+          id: '1',
+          name: '升',
         }, {
-          name: '上海xxxxx公园',
-          score: '100积分',
-          member: 'xxxx街道小区垃圾分拣员',
-          tips: '居委会领取 上海市绿化市容局提供',
-          hoverShow: true
+          id: '2',
+          name: '降',
+        }],
+        dateList: [{
+          id: '-1',
+          name: '全部',
         }, {
-          name: '上海xxxxx公园',
-          score: '100积分',
-          member: 'xxxx街道小区垃圾分拣员',
-          tips: '居委会领取 上海市绿化市容局提供',
-          hoverShow: true
+          id: '1',
+          name: '上架时间升序',
         }, {
-          name: '上海xxxxx公园',
-          score: '100积分',
-          member: 'xxxx街道小区垃圾分拣员',
-          tips: '居委会领取 上海市绿化市容局提供',
-          hoverShow: true
-        }]
+          id: '2',
+          name: '上架时间降序',
+        }],
+        scoreList: [{
+          id: '-1',
+          name: '全部',
+        }, {
+          id: '1',
+          name: '0-500',
+        }, {
+          id: '2',
+          name: '501-1000',
+        }, {
+          id: '3',
+          name: '1001-1500',
+        }, {
+          id: '4',
+          name: '1501-2000',
+        }, {
+          id: '5',
+          name: '2000以上',
+        }],
       }
     },
     components: {pagination},
+    mounted() {
+      this.getMallProductList();
+      this.getMallLogoList();
+    },
     methods: {
+      getMallLogoList() {
+        api.getMallLogoList({}).then(res => {
+          this.typeList = res.data
+        })
+      },
+      getType() {
+        this.getMallProductList();
+      },
+      getMallProductList() {
+        api.getMallProductList({
+          data: {
+            "mallCode": this.selectType ? this.selectType.loveUnitCode : '',
+            "hotExchange": this.selectHot ? this.selectHot.id : '',
+            "productPoints": this.selectScore ? this.selectScore.id : '',
+            "createDate": this.selectDate ? this.selectDate.id : '',
+          },
+        }).then(res => {
+          res.data.content.map(items => {
+            items.hoverShow = true;
+          });
+          this.listData = res.data.content;
+        })
+      },
       listHover(status, index) {
         this.listData[index].hoverShow = status
       },

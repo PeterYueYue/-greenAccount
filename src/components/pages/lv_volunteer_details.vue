@@ -1,12 +1,16 @@
 <template>
   <div class="lv_wrap">
     <div class="lv_volunteer_bread">您的位置：绿互动 > 志愿者活动 > <span>志愿者活动详情</span></div>
-    <div class="lv_volunteer_details_head">上海市第二康复医院志愿者活动<img src="@/assets/lv_icon_zan.png" alt=""
-                                                              class="lv_volunteer_details_zan">120
-      <img src="@/assets/lv_icon_zanhover.png" alt="" class="lv_volunteer_details_hover">120
+    <div class="lv_volunteer_details_head">
+      上海市第二康复医院志愿者活动
+      <img src="@/assets/lv_icon_zan.png" alt="" class="lv_volunteer_details_zan"
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-if="hoverShow">
+      <img src="@/assets/lv_icon_zanhover.png" alt="" class="lv_volunteer_details_zan"
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-else>
+      120
     </div>
 
-    <div class="lv_volunteer_details_enlist">我要报名</div>
+    <div class="lv_volunteer_details_enlist" @click="openBox">我要报名</div>
     <!--<div class="lv_volunteer_details_enlist active">活动已结束</div>-->
 
     <div class="lv_volunteer_details_tab">
@@ -72,15 +76,88 @@
       </div>
     </div>
 
+    <!-- 弹窗 -->
+    <div class="lv_volunteer_shadow" v-if="showShadow"></div>
+    <!-- 取消理由弹窗 -->
+    <div class="lv_volunteer_shadow_box" v-if="showBox">
+      <img src="@/assets/lv_v_icon_close.png" alt="" class="lv_volunteer_icon_close" @click="closeBox">
+      <div class="title">请填写报名信息</div>
+      <div class="rules">
+        <div class="name">姓名:</div>
+        <input type="text" placeholder="请输入姓名" v-model="form.name">
+      </div>
+      <div class="rules">
+        <div class="name">手机号:</div>
+        <input type="text" placeholder="请输入手机号" v-model="form.tel">
+      </div>
+      <div class="rules_btn" @click="saveData">报名</div>
+    </div>
+
   </div>
 </template>
 <script>
   import '@/assets/pages/lv_volunteer.css';
+  import '@/assets/pages/apply.css';
 
   export default {
     data() {
-      return {}
+      return {
+        showShadow: false,
+        showBox: false,
+        hoverShow: true,
+        form: {
+          name: '',
+          tel: '',
+        },
+      }
     },
-    methods: {}
+    methods: {
+      listHover(status) {
+        this.hoverShow = status;
+      },
+      openBox() {
+        this.showShadow = true;
+        this.showBox = true;
+        document.querySelector('body').style.overflow = 'hidden';
+      },
+      closeBox() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
+      },
+      saveData() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
+        //联系人正则
+        let rn = /^[\u4E00-\u9FA5A-Za-z]+$/;
+        let resultName = rn.test(this.form.name);
+        if (!resultName) {
+          // this.showShadow = true;
+          // this.showBox = true;
+          // this.form.name = '';
+          return;
+        }
+        //手机正则
+        let rs = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57]|19[0-9]|16[0-9])[0-9]{8}$/;
+        let resultTel = rs.test(this.form.tel);
+        if (!resultTel) {
+          // this.showShadow = true;
+          // this.showBox = true;
+          // this.form.tel = '';
+          return;
+        }
+        api.SaveMemberAddress({
+          "data": {
+            "name": this.form.name,
+            "tel": this.form.tel,
+          },
+        }).then((res) => {
+          console.log(res);
+        }).catch((error) => {
+          console.log(error);
+        })
+      },
+    }
   }
 </script>
