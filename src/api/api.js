@@ -76,6 +76,18 @@ const configpubDetailById = {
   "version": "1.0",
   "name": "pubDetailById",
 };
+const configaddVolunteer = {
+  "version": "1.0",
+  "name": "addVolunteer",
+};
+const configallList4NewStyle = {
+  "version": "1.0",
+  "name": "allList4NewStyle",
+};
+const configlookNewsDetail = {
+  "version": "1.0",
+  "name": "lookNewsDetail",
+};
 export default {
   UUid() {
   },
@@ -155,6 +167,18 @@ export default {
   },
   pubDetailById(params) {
     let config = Object.assign(configpubDetailById, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  addVolunteer(params) {
+    let config = Object.assign(configaddVolunteer, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  allList4NewStyle(params) {
+    let config = Object.assign(configallList4NewStyle, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  lookNewsDetail(params) {
+    let config = Object.assign(configlookNewsDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
 
