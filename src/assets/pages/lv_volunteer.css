@@ -30,6 +30,14 @@
   cursor: pointer;
 }
 
+.lv_volunteer_list a {
+  display: block;
+  float: left;
+  width: 555px;
+  height: 197px;
+  text-decoration: none;
+}
+
 .lv_volunteer_list:hover {
   border: 1px #20A345 solid;
 }
