@@ -7,18 +7,38 @@
       <li @click="allList4NewStyleTwo">爱心单位</li>
       <li @click="allList4NewStyleThree">理事单位</li>
     </ul>
-    <div class="lv_dw_text">
-      <div class="lv_dw_title">绿色账户支持单位</div>
-      <div class="lv_dw_name" v-for="items in listDataOne">{{items.title}}</div>
-    </div>
-    <div class="lv_dw_text">
-      <div class="lv_dw_title">绿色账户爱心单位</div>
-      <div class="lv_dw_name" v-for="items in listDataTwo">{{items.title}}</div>
-    </div>
-    <div class="lv_dw_text">
-      <div class="lv_dw_title">绿色账户理事单位</div>
-      <div class="lv_dw_name" v-for="items in listDataThree">{{items.title}}</div>
-    </div>
+    <template v-show="showAll">
+      <div class="lv_dw_text">
+        <div class="lv_dw_title">绿色账户支持单位</div>
+        <div class="lv_dw_name" v-for="items in listDataOne">{{items.title}}</div>
+      </div>
+      <div class="lv_dw_text">
+        <div class="lv_dw_title">绿色账户爱心单位</div>
+        <div class="lv_dw_name" v-for="items in listDataTwo">{{items.title}}</div>
+      </div>
+      <div class="lv_dw_text">
+        <div class="lv_dw_title">绿色账户理事单位</div>
+        <div class="lv_dw_name" v-for="items in listDataThree">{{items.title}}</div>
+      </div>
+    </template>
+    <template v-show="showOne">
+      <div class="lv_dw_text">
+        <div class="lv_dw_title">绿色账户支持单位</div>
+        <div class="lv_dw_name" v-for="items in listDataOne">{{items.title}}</div>
+      </div>
+    </template>
+    <template v-show="showTwo">
+      <div class="lv_dw_text">
+        <div class="lv_dw_title">绿色账户爱心单位</div>
+        <div class="lv_dw_name" v-for="items in listDataTwo">{{items.title}}</div>
+      </div>
+    </template>
+    <template v-show="showThree">
+      <div class="lv_dw_text">
+        <div class="lv_dw_title">绿色账户理事单位</div>
+        <div class="lv_dw_name" v-for="items in listDataThree">{{items.title}}</div>
+      </div>
+    </template>
   </div>
 </template>
 <script>
@@ -31,6 +51,10 @@
         listDataOne: [],
         listDataTwo: [],
         listDataThree: [],
+        showAll: true,
+        showOne: false,
+        showTwo: false,
+        showThree: false,
       }
     },
     mounted() {
