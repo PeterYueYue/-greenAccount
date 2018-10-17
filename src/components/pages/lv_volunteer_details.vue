@@ -23,13 +23,15 @@
       <div class="content">
         <div class="left">报名时间：</div>
         <div class="right">
-          {{listData.pubAct ? listData.pubAct.registStartTime : '' | moment}} 至 {{listData.pubAct ? listData.pubAct.registEndTime : '' | moment}}
+          {{listData.pubAct ? listData.pubAct.registStartTime : '' | moment}} 至 {{listData.pubAct ?
+          listData.pubAct.registEndTime : '' | moment}}
         </div>
       </div>
       <div class="content">
         <div class="left">活动时间：</div>
         <div class="right">
-          {{listData.pubAct ? listData.pubAct.actStartTime : '' | moment}} 至 {{listData.pubAct ? listData.pubAct.actEndTime : '' | moment}}
+          {{listData.pubAct ? listData.pubAct.actStartTime : '' | moment}} 至 {{listData.pubAct ?
+          listData.pubAct.actEndTime : '' | moment}}
         </div>
       </div>
       <div class="content">
@@ -91,106 +93,98 @@
       </div>
       <div class="rules_btn" @click="saveData">报名</div>
     </div>
-    <div v-if="showErrorBox">123</div>
 
   </div>
 </template>
 <script>
-	import api from "@/api/api.js";
-	import '@/assets/pages/lv_volunteer.css';
-	import '@/assets/pages/apply.css';
+  import api from "@/api/api.js";
+  import '@/assets/pages/lv_volunteer.css';
+  import '@/assets/pages/apply.css';
 
-	export default {
-		data() {
-			return {
-				id: this.$route.query.id,
-				showShadow: false,
-				showBox: false,
-				hoverShow: true,
-				showErrorBox: false,
-				form: {
-					name: '',
-					tel: '',
-				},
-				listData: {},
-				listVolData: [],
-				adminreNum: '',
-				zanShow: false
-			}
-		},
-		mounted() {
-			this.pubDetailById();
-		},
-		methods: {
-			pubDetailById() {
-				api.pubDetailById({
-					data: {
-						id: this.id,
-					},
-				}).then(res => {
-					this.listData = res.data;
-					this.adminreNum = res.data.adminreNum;
-					this.listVolData = res.data.volPage.content;
-				})
-			},
-			addAdmire() {
-				api.addAdmire({
-					data: {
-						id: this.id,
-					},
-				}).then(res => {
-					this.zanShow = true
-					this.adminreNum = res.data.adminreNum;
-				})
-			},
-			listHover(status) {
-				this.hoverShow = status;
-			},
-			openBox() {
-				this.showShadow = true;
-				this.showBox = true;
-				document.querySelector('body').style.overflow = 'hidden';
-			},
-			closeBox() {
-				this.showShadow = false;
-				this.showBox = false;
-				document.querySelector('body').style.overflow = 'auto';
-			},
-			saveData() {
-				 //联系人正则
-				 let rn = /^[\u4E00-\u9FA5A-Za-z]+$/;
-				 let resultName = rn.test(this.form.name);
-				 if (!resultName) {
-					 console.log(1);
-					 this.showShadow = true;
-				   this.showErrorBox = true;
-				   return;
-				 }
-				 //手机正则
-				 let rs = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57]|19[0-9]|16[0-9])[0-9]{8}$/;
-				 let resultTel = rs.test(this.form.tel);
-				 if (!resultTel) {
-					 console.log(2);
-					 this.showShadow = true;
-				   this.showErrorBox = true;
-				   return;
-				 }
-				api.addVolunteer({
-					"data": {
-						id: this.id,
-						volunteerName: this.form.name,
-						volunteerTel: this.form.tel,
-					},
-				}).then((res) => {
-					if (res.code === "0") {
-						this.closeBox();
-					} else {
-						alert(res.msg);
-					}
-				}).catch((error) => {
-					console.log(error);
-				})
-			},
-		}
-	}
+  export default {
+    data() {
+      return {
+        id: this.$route.query.id,
+        showShadow: false,
+        showBox: false,
+        hoverShow: true,
+        form: {
+          name: '',
+          tel: '',
+        },
+        listData: {},
+        listVolData: [],
+        adminreNum: '',
+        zanShow: false
+      }
+    },
+    mounted() {
+      this.pubDetailById();
+    },
+    methods: {
+      pubDetailById() {
+        api.pubDetailById({
+          data: {
+            id: this.id,
+          },
+        }).then(res => {
+          this.listData = res.data;
+          this.adminreNum = res.data.adminreNum;
+          this.listVolData = res.data.volPage.content;
+        })
+      },
+      addAdmire() {
+        api.addAdmire({
+          data: {
+            id: this.id,
+          },
+        }).then(res => {
+          this.zanShow = true;
+          this.adminreNum = res.data.adminreNum;
+        })
+      },
+      listHover(status) {
+        this.hoverShow = status;
+      },
+      openBox() {
+        this.showShadow = true;
+        this.showBox = true;
+        document.querySelector('body').style.overflow = 'hidden';
+      },
+      closeBox() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
+      },
+      saveData() {
+        //为空验证
+        if (this.form.name == '' | this.form.tel == '') {
+          alert('联系人或手机号不能为空');
+          return;
+        }
+        //手机正则
+        let rs = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57]|19[0-9]|16[0-9])[0-9]{8}$/;
+        let resultTel = rs.test(this.form.tel);
+        if (!resultTel) {
+          alert('手机号格式不正确');
+          return;
+        }
+        api.addVolunteer({
+          "data": {
+            id: this.id,
+            volunteerName: this.form.name,
+            volunteerTel: this.form.tel,
+          },
+        }).then((res) => {
+          if (res.code === "0") {
+            this.closeBox();
+          } else {
+            alert(res.msg);
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
+      },
+    }
+  }
 </script>
