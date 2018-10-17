@@ -2,10 +2,10 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿环保 > <span>合作单位</span></div>
     <ul class="lv_bd_tab">
-      <li class="active">全部</li>
-      <li>支持单位</li>
-      <li>爱心单位</li>
-      <li>理事单位</li>
+      <li class="active" @click="allList4NewStyle">全部</li>
+      <li @click="allList4NewStyleOne">支持单位</li>
+      <li @click="allList4NewStyleTwo">爱心单位</li>
+      <li @click="allList4NewStyleThree">理事单位</li>
     </ul>
     <div class="lv_dw_text">
       <div class="lv_dw_title">绿色账户支持单位</div>
@@ -34,11 +34,21 @@
       }
     },
     mounted() {
+      this.allList4NewStyle();
       this.allList4NewStyleOne();
       this.allList4NewStyleTwo();
       this.allList4NewStyleThree();
     },
     methods: {
+      allList4NewStyle() {
+        api.allList4NewStyle({
+          data: {
+            category: "03,14,15",
+          },
+        }).then(res => {
+          console.log(res);
+        })
+      },
       allList4NewStyleOne() {
         api.allList4NewStyle({
           data: {

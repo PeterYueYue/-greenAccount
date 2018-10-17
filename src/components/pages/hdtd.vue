@@ -10,7 +10,7 @@
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
          @mouseleave.stop="listHover(false,index)">
-      <router-link :to="{path: '/lvzhanghu/', query: { id: items.id }}">
+      <router-link :to="{path: '/lvzhanghu/', query: { id: items.id, style: items.newsStyle }}">
         <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
 				.newsTime | momentTime}}</span><br/>{{items.newsTime | momentYear}}</span></div>
         <div class="lv_bd_notice_title" v-else>{{items.title}}<span class="date">{{items.newsTime | moment}}</span>
