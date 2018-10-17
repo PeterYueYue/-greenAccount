@@ -52,6 +52,10 @@ const configcaringUnitSubmit = {
   "version": "1.0",
   "name": "caringUnit.submit",
 };
+const configpcrimg = {
+  "version": "1.0",
+  "name": "pcrimg",
+};
 const configgetProductDetail = {
   "version": "1.0",
   "name": "getProductDetail",
@@ -143,6 +147,10 @@ export default {
   },
   caringUnitSubmit(params) {
     let config = Object.assign(configcaringUnitSubmit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  pcrimg(params) {
+    let config = Object.assign(configpcrimg, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
   getProductDetail(params) {

@@ -82,15 +82,16 @@
             id: this.id,
           },
         }).then(res => {
-          this.listData = res.data.info;
           res.data.sameTypeLi.map(items => {
-            items[7] = true;
+            items.push(true)
           });
+          this.listData = res.data.info;
           this.listSameData = res.data.sameTypeLi;
         })
       },
       listHover(status, index) {
-        this.listSameData[index][7] = status;
+        this.listSameData[index].splice(7, 1);
+        this.listSameData[index].push(status);
       },
     }
   }

@@ -2,11 +2,12 @@
   <div class="lv_wrap">
     <div class="lv_volunteer_bread">您的位置：绿互动 > 志愿者活动 > <span>志愿者活动详情</span></div>
     <div class="lv_volunteer_details_head">
-      {{listData.pubAct?listData.pubAct.actName:''}}
+      {{listData.pubAct ? listData.pubAct.actName : ''}}
       <img src="@/assets/lv_icon_zan.png" alt="" class="lv_volunteer_details_zan"
-           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-if="hoverShow">
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-show="hoverShow && !zanShow">
       <img src="@/assets/lv_icon_zanhover.png" alt="" class="lv_volunteer_details_zan"
-           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" @click="addAdmire" v-else>
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" @click.once="addAdmire"
+           v-show="!hoverShow || zanShow">
       {{adminreNum}}
     </div>
 
@@ -22,34 +23,34 @@
       <div class="content">
         <div class="left">报名时间：</div>
         <div class="right">
-          {{listData.pubAct?listData.pubAct.registStartTime:''}}至{{listData.pubAct?listData.pubAct.registEndTime:''}}
+          {{listData.pubAct ? listData.pubAct.registStartTime : '' | moment}} 至 {{listData.pubAct ? listData.pubAct.registEndTime : '' | moment}}
         </div>
       </div>
       <div class="content">
         <div class="left">活动时间：</div>
         <div class="right">
-          {{listData.pubAct?listData.pubAct.actStartTime:''}}至{{listData.pubAct?listData.pubAct.actEndTime:''}}
+          {{listData.pubAct ? listData.pubAct.actStartTime : '' | moment}} 至 {{listData.pubAct ? listData.pubAct.actEndTime : '' | moment}}
         </div>
       </div>
       <div class="content">
         <div class="left">服务时间：</div>
-        <div class="right">{{listData.pubAct?listData.pubAct.serviceTime:''}}</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.serviceTime : ''}}</div>
       </div>
       <div class="content">
         <div class="left">联系人姓名：</div>
-        <div class="right">{{listData.pubAct?listData.pubAct.actLinkName:''}}</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actLinkName : ''}}</div>
       </div>
       <div class="content">
         <div class="left">联系人电话：</div>
-        <div class="right">{{listData.pubAct?listData.pubAct.actLinkTel:''}}</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actLinkTel : ''}}</div>
       </div>
       <div class="content">
         <div class="left">招募人数：</div>
-        <div class="right">{{listData.pubAct?listData.pubAct.actRecruitment:''}}</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actRecruitment : ''}}</div>
       </div>
       <div class="content">
         <div class="left">活动详细地址：</div>
-        <div class="right">{{listData.pubAct?listData.pubAct.actFullAddress:''}}</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actFullAddress : ''}}</div>
       </div>
     </div>
 
@@ -68,8 +69,8 @@
         <div class="right">
           <div v-for="(items) in listVolData">
             <span class="name">{{items[0]}}</span>
-            <span>{{items[1]}}</span>
-            <span>{{items[2]}}</span>
+            <span class="tel">{{items[1]}}</span>
+            <span class="date">{{items[2]}}</span>
           </div>
         </div>
       </div>
@@ -95,98 +96,101 @@
   </div>
 </template>
 <script>
-  import api from "@/api/api.js";
-  import '@/assets/pages/lv_volunteer.css';
-  import '@/assets/pages/apply.css';
+	import api from "@/api/api.js";
+	import '@/assets/pages/lv_volunteer.css';
+	import '@/assets/pages/apply.css';
 
-  export default {
-    data() {
-      return {
-        id: this.$route.query.id,
-        showShadow: false,
-        showBox: false,
-        hoverShow: true,
-        showErrorBox: false,
-        form: {
-          name: '',
-          tel: '',
-        },
-        listData: {},
-        listVolData: [],
-        adminreNum: '',
-      }
-    },
-    mounted() {
-      this.pubDetailById();
-    },
-    methods: {
-      pubDetailById() {
-        api.pubDetailById({
-          data: {
-            id: this.id,
-          },
-        }).then(res => {
-          this.listData = res.data;
-          this.adminreNum = res.data.adminreNum;
-          this.listVolData = res.data.volPage.content;
-        })
-      },
-      addAdmire() {
-        api.addAdmire({
-          data: {
-            id: this.id,
-          },
-        }).then(res => {
-          this.hoverShow = false;
-          this.adminreNum = res.data.adminreNum;
-        })
-      },
-      listHover(status) {
-        this.hoverShow = status;
-      },
-      openBox() {
-        this.showShadow = true;
-        this.showBox = true;
-        document.querySelector('body').style.overflow = 'hidden';
-      },
-      closeBox() {
-        this.showShadow = false;
-        this.showBox = false;
-        document.querySelector('body').style.overflow = 'auto';
-      },
-      saveData() {
-        // //联系人正则
-        // let rn = /^[\u4E00-\u9FA5A-Za-z]+$/;
-        // let resultName = rn.test(this.form.name);
-        // if (!resultName) {
-        //   this.showShadow = true;
-        //   this.showErrorBox = true;
-        //   return;
-        // }
-        // //手机正则
-        // let rs = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57]|19[0-9]|16[0-9])[0-9]{8}$/;
-        // let resultTel = rs.test(this.form.tel);
-        // if (!resultTel) {
-        //   this.showShadow = true;
-        //   this.showErrorBox = true;
-        //   return;
-        // }
-        api.addVolunteer({
-          "data": {
-            id: this.id,
-            volunteerName: this.form.name,
-            volunteerTel: this.form.tel,
-          },
-        }).then((res) => {
-          if (res.data.msg === "报名成功") {
-            this.closeBox();
-          }else{
-            alert(res.msg);
-          }
-        }).catch((error) => {
-          console.log(error);
-        })
-      },
-    }
-  }
+	export default {
+		data() {
+			return {
+				id: this.$route.query.id,
+				showShadow: false,
+				showBox: false,
+				hoverShow: true,
+				showErrorBox: false,
+				form: {
+					name: '',
+					tel: '',
+				},
+				listData: {},
+				listVolData: [],
+				adminreNum: '',
+				zanShow: false
+			}
+		},
+		mounted() {
+			this.pubDetailById();
+		},
+		methods: {
+			pubDetailById() {
+				api.pubDetailById({
+					data: {
+						id: this.id,
+					},
+				}).then(res => {
+					this.listData = res.data;
+					this.adminreNum = res.data.adminreNum;
+					this.listVolData = res.data.volPage.content;
+				})
+			},
+			addAdmire() {
+				api.addAdmire({
+					data: {
+						id: this.id,
+					},
+				}).then(res => {
+					this.zanShow = true
+					this.adminreNum = res.data.adminreNum;
+				})
+			},
+			listHover(status) {
+				this.hoverShow = status;
+			},
+			openBox() {
+				this.showShadow = true;
+				this.showBox = true;
+				document.querySelector('body').style.overflow = 'hidden';
+			},
+			closeBox() {
+				this.showShadow = false;
+				this.showBox = false;
+				document.querySelector('body').style.overflow = 'auto';
+			},
+			saveData() {
+				 //联系人正则
+				 let rn = /^[\u4E00-\u9FA5A-Za-z]+$/;
+				 let resultName = rn.test(this.form.name);
+				 if (!resultName) {
+					 console.log(1);
+					 this.showShadow = true;
+				   this.showErrorBox = true;
+				   return;
+				 }
+				 //手机正则
+				 let rs = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57]|19[0-9]|16[0-9])[0-9]{8}$/;
+				 let resultTel = rs.test(this.form.tel);
+				 if (!resultTel) {
+					 console.log(2);
+					 this.showShadow = true;
+				   this.showErrorBox = true;
+				   return;
+				 }
+				api.addVolunteer({
+					"data": {
+						id: this.id,
+						volunteerName: this.form.name,
+						volunteerTel: this.form.tel,
+					},
+				}).then((res) => {
+					if (res.code === "0") {
+						this.closeBox();
+					} else {
+						alert(res.msg);
+					}
+				}).catch((error) => {
+					console.log(error);
+				})
+			},
+		}
+	}
 </script>

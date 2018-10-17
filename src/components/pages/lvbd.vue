@@ -11,76 +11,51 @@
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
          @mouseleave.stop="listHover(false,index)" @click="jumpDetails">
       <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
-        .time}}</span><br/>{{items.year}}</span></div>
-      <div class="lv_bd_notice_title" v-else>{{items.title}}<span class="date">{{items.date}}</span></div>
-      <div class="lv_bd_notice_text active" v-if="items.hoverShow">{{items.text}}</div>
-      <div class="lv_bd_notice_text" v-else>{{items.text}}</div>
+				.newsTime | momentTime}}</span><br/>{{items.newsTime | momentYear}}</span></div>
+      <div class="lv_bd_notice_title" v-else>{{items.title}}<span class="date">{{items.newsTime | moment}}</span></div>
+      <div class="lv_bd_notice_text active" v-if="items.hoverShow">{{items.newsContent}}</div>
+      <div class="lv_bd_notice_text" v-else>{{items.newsContent}}</div>
       <img src="@/assets/lvz_icon_arrow.png" alt="" class="lv_bd_arrow" v-if="items.hoverShow">
     </div>
     <pagination></pagination>
   </div>
 </template>
 <script>
-  import api from "@/api/api.js";
+	import api from "@/api/api.js";
 	import '@/assets/pages/lvzhanghu.css';
 	import pagination from '@/components/common/pagination.vue';
 
 	export default {
 		data() {
 			return {
-				listData: [{
-					title: '新闻标题新闻标题新闻标题',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '31',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        },{
-					title: '新闻标题新闻标题新闻标题',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '31',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        },{
-					title: '新闻标题新闻标题新闻标题',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '22',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        },{
-					title: '新闻标题新闻标题新闻标题',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '31',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        }]
+				listData: [],
 			}
 		},
 		components: {pagination},
-    mounted() {
-      this.getNewInfoByStyleForUser();
-    },
+		mounted() {
+			this.allList4NewStyle();
+		},
 		methods: {
-      getNewInfoByStyleForUser() {
-        api.getNewInfoByStyleForUser({
-          data: {
-            style:"13",
-          },
-        }).then(res => {
-          console.log(res);
-        })
-      },
-      listHover(status, index) {
-        this.listData[index].hoverShow = status
-      },
-      jumpDetails(){
-        this.$router.push({
-          path: '/lvzhanghu'
-        })
-      },
-    }
+			allList4NewStyle() {
+				api.allList4NewStyle({
+					data: {
+						category: "05,06,07,24",
+					},
+				}).then(res => {
+					res.data.newsList.content.map(items => {
+						items.hoverShow = false;
+					});
+					this.listData = res.data.newsList.content;
+				})
+			},
+			listHover(status, index) {
+				this.listData[index].hoverShow = status
+			},
+			jumpDetails(){
+				this.$router.push({
+					path: '/lvzhanghu'
+				})
+			},
+		}
 	}
 </script>

@@ -148,13 +148,20 @@
   line-height: 24px;
 }
 
-.lv_volunteer_details_tab .content .right span {
-  padding-right: 80px;
+.lv_volunteer_details_tab .content .right .name,.lv_volunteer_details_tab .content .right .tel {
+  display: inline-block;
+  width: 120px;
   line-height: normal !important;
 }
 
-.lv_volunteer_details_tab .content .right .name {
-  width: 60px;
+.lv_volunteer_details_tab .content .right .tel {
+  display: inline-block;
+  width: 160px;
+  line-height: normal !important;
+}
+
+.lv_volunteer_details_tab .content .right .date {
+  line-height: normal !important;
 }
 
 .lv_volunteer_shadow {
