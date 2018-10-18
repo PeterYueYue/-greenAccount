@@ -49,9 +49,9 @@
 					if (status) {
 						this.allList4NewStyleTwo(true);
 					}
-					this.showOne = true
-					this.showTwo = status
-					this.showThree = status
+					this.showOne = true;
+					this.showTwo = status;
+					this.showThree = status;
 					this.listDataOne = res.data ? res.data.newsList.content : '';
 				})
 			},
@@ -64,9 +64,9 @@
 					if (status) {
 						this.allList4NewStyleThree(true);
 					}
-					this.showOne = status
-					this.showTwo = true
-					this.showThree = status
+					this.showOne = status;
+					this.showTwo = true;
+					this.showThree = status;
 					this.listDataTwo = res.data ? res.data.newsList.content : '';
 				})
 			},
@@ -76,9 +76,9 @@
 						category: "15",
 					},
 				}).then(res => {
-					this.showOne = status
-					this.showTwo = status
-					this.showThree = true
+					this.showOne = status;
+					this.showTwo = status;
+					this.showThree = true;
 					this.listDataThree = res.data ? res.data.newsList.content : '';
 				})
 			},
