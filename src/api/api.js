@@ -2,7 +2,7 @@ import axios from 'axios';
 // 测试
 let base = 'http://180.153.19.162:8081';
 // 张强
-// let base = 'http://192.168.1.121:8080';
+// let base = 'http://192.168.1.122:8080';
 
 const configarea = {
   "version": "1.0",
@@ -91,6 +91,10 @@ const configallList4NewStyle = {
 const configlookNewsDetail = {
   "version": "1.0",
   "name": "lookNewsDetail",
+};
+const configajaxCheckCanSubmit = {
+  "version": "1.0",
+  "name": "ajaxCheckCanSubmit",
 };
 export default {
   UUid() {
@@ -187,6 +191,10 @@ export default {
   },
   lookNewsDetail(params) {
     let config = Object.assign(configlookNewsDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  ajaxCheckCanSubmit(params) {
+    let config = Object.assign(configajaxCheckCanSubmit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
 

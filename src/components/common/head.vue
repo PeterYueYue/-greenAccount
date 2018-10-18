@@ -49,7 +49,7 @@
                                     <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==3">
                                 </span>
                                 <div class="list-detail" v-show="navIndex==3">
-                                    <div>绿账积分</div>
+                                    <router-link to="/integral_list"><div>积分捐赠</div></router-link>
                                     <router-link to="/lvbd"><div>绿账宝典</div></router-link>
                                     <router-link to="/lvxd"><div>绿账行动</div></router-link>
                                     <router-link to="/hzvs"><div>惠众绿色</div></router-link>

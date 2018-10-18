@@ -20,14 +20,14 @@
           <li>
             <ul class="count">
               <li><span class="num-jian">-</span></li>
-              <li><input type="number" class="input-num" value="0"/></li>
+              <li><input type="number" class="input-num" v-model="productNum"/></li>
               <li><span class="num-jia">+</span></li>
             </ul>
           </li>
           <li><span class="kucun">剩余：{{listData.prodStockAmt}}</span></li>
           　　　
         </ul>
-        <div class="ex_shop_btn">立即兑换</div>
+        <div class="ex_shop_btn" @click="ajaxCheckCanSubmit">立即兑换</div>
         <router-link to="/exchange"><span class="ex_shop_more">查看更多兑换礼品</span></router-link>
       </div>
     </div>
@@ -68,7 +68,8 @@
       return {
         id: this.$route.query.id,
         listData: {},
-        listSameData: []
+        listSameData: [],
+        productNum: '1',
       }
     },
     // components: {bread},
@@ -92,6 +93,16 @@
       listHover(status, index) {
         this.listSameData[index].splice(7, 1);
         this.listSameData[index].push(status);
+      },
+      ajaxCheckCanSubmit() {
+        api.ajaxCheckCanSubmit({
+          data: {
+            id: this.id,
+            productNum: this.productNum,
+          },
+        }).then(res => {
+          console.log(res);
+        })
       },
     }
   }
