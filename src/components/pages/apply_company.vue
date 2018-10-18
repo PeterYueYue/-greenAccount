@@ -80,7 +80,8 @@
             {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur'}
           ],
         },
-        pcrImgSrc: ''
+        pcrImgSrc: '',
+        uuId: '',
       }
     },
     mounted() {
@@ -91,29 +92,36 @@
         api.caringUnitSubmit({
           data: {
             "id": "-1",
-            "cname": "1231212",
-            "address": "123123",
-            "contacts": "123123",
-            "contectsTel": "13999999999",
-            "email": "123@qq.com",
-            "scale": "fwfdsdf",
-            "content": "sdfsd",
-            "yzm": "r7p7",
+            "cname": this.ruleForm.name,
+            "address": this.ruleForm.address,
+            "contacts": this.ruleForm.contacts,
+            "contectsTel": this.ruleForm.tel,
+            "email": this.ruleForm.email,
+            "scale": this.ruleForm.desc,
+            "content": this.ruleForm.cause,
+            "yzm": this.ruleForm.code,
+            "uuId": this.uuId,
           },
         }).then(res => {
           this.$refs[formName].validate((valid) => {
-            if (valid) {
-              alert('submit!');
-            } else {
+            if (!valid) {
               console.log('error submit!!');
               return false;
             }
           });
+          if (res.data.success) {
+            this.$router.push({
+              path: '/'
+            })
+          } else {
+            alert(res.data.message);
+          }
         })
       },
       pcrImg() {
         api.pcrimg({}).then(res => {
-          this.pcrImgSrc = 'data:image/png;base64,' + res.data
+          this.pcrImgSrc = 'data:image/png;base64,' + res.data.pcrImg;
+          this.uuId = res.data.uuid;
         })
       },
 
