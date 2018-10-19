@@ -96,6 +96,19 @@ const configajaxCheckCanSubmit = {
   "version": "1.0",
   "name": "ajaxCheckCanSubmit",
 };
+const configdonateActivityPage = {
+  "version": "1.0",
+  "name": "donateActivityPage",
+};
+const configdonateActivityDetail = {
+  "version": "1.0",
+  "name": "donateActivityDetail",
+};
+const configdonatePoints = {
+  "version": "1.0",
+  "name": "donatePoints",
+};
+
 export default {
   UUid() {
   },
@@ -195,6 +208,18 @@ export default {
   },
   ajaxCheckCanSubmit(params) {
     let config = Object.assign(configajaxCheckCanSubmit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  donateActivityPage(params) {
+    let config = Object.assign(configdonateActivityPage, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  donateActivityDetail(params) {
+    let config = Object.assign(configdonateActivityDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  donatePoints(params) {
+    let config = Object.assign(configdonatePoints, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
 
