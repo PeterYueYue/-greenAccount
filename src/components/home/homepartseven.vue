@@ -59,7 +59,6 @@ export default {
             var top=$('.home-other-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
-            console.log(top-client+300<=scroll)
             if(top-client+10<=scroll){
                 this. other_scrolltitle=true
             }

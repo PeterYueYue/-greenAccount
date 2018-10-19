@@ -10,6 +10,7 @@ import 'swiper/dist/css/swiper.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import Axios from 'axios';
 import 'babel-polyfill'
+import moment from 'moment/moment'
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);

@@ -8,12 +8,12 @@
                 </div>
                 <div class="title-right">
                     <p class="action-choose">
-                        <span class="active">全部</span>
-                        <span>绿账行动</span>
-                        <span>垃圾分类</span> 
-                        <span>惠众绿色</span>
-                        <span>中奖名单</span>
-                        <span>政策法规</span>
+                        <span class="active" @click="allList4NewStyle('13,16,05,18,07')">全部</span>
+                        <span @click="allList4NewStyle('13')">绿账行动</span>
+                        <span @click="allList4NewStyle('07')">垃圾分类</span> 
+                        <span @click="allList4NewStyle('16')">惠众绿色</span>
+                        <span @click="allList4NewStyle('18')">中奖名单</span>
+                        <span @click="allList4NewStyle('05')">政策法规</span>
                     </p>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                             <div class="action-left-content">
                                 <p>亲爱的市民朋友：</p>
                                 <div class="notice-contain">
-                                    <p class="left-notice-content">您好！为了提供更好的服务，上海</p>
+                                    <p class="left-notice-content">{{noticefirst.newsContent}}</p>
                                     <span @click="displayDetail" class="ellipsis">...</span>  
                                 </div>    
                             </div>
@@ -46,27 +46,29 @@
                 <div class="action-content-right">                  
                     <div class="action-list"  v-for="(item,index) in noticelist" :key="item.id" :style="action_list?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
                         <p class="small-content" :class="contentIndex!=index?'':'active'" @mouseenter="contentIndex=index">{{item.title}} <span class="notice-time">{{item.date}}</span> </p>
-                        <div class="action-content-right-top" :class="contentIndex==index?'active':''">
-                            <div class="action-right-title">
-                                上海绿色账户平台维护公告
-                            </div>
-                            <div class="action-right-notice">
-                                <div class="action-right-content">
-                                    <p>亲爱的市民朋友：</p>
-                                    <div class="notice-contain">
-                                        <p class="right-notice-content">您好！为了提供更好的服务，上海绿色账户平台将4月3日晚原来他们竟是这么度过的</p>
-                                        <span @click="displayDetail" class="ellipsis">...</span>  
-                                    </div>    
+                        <router-link :to="'/lvzhanghu/'+item.id+'/'+item.newsStyle">
+                            <div class="action-content-right-top" :class="contentIndex==index?'active':''">
+                                <div class="action-right-title">
+                                    上海绿色账户平台维护公告
                                 </div>
-                                <div class="right-notice-detail">
-                                    <img src="@/assets/icon/activedoright.png" alt="" class="right-notive-btn">
-                                    <div class="right-notice-time" >
-                                        <div class="date-day">{{item.day}}</div>
-                                        <div class="date-year">{{item.littledate}}</div>
+                                <div class="action-right-notice">
+                                    <div class="action-right-content">
+                                        <p>亲爱的市民朋友：</p>
+                                        <div class="notice-contain">
+                                            <p class="right-notice-content">{{item.newsContent}}</p>
+                                            <span @click="displayDetail" class="ellipsis">...</span>  
+                                        </div>    
+                                    </div>
+                                    <div class="right-notice-detail">
+                                        <img src="@/assets/icon/activedoright.png" alt="" class="right-notive-btn">
+                                        <div class="right-notice-time" >
+                                            <div class="date-day">{{item.day}}</div>
+                                            <div class="date-year">{{item.littledate}}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </router-link>          
                     </div>
                 </div>
                 <div class="action-bottom partone" :style="action_scrollbottom?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
@@ -85,6 +87,7 @@ import $ from 'jquery'
 export default {
     data(){
         return {
+            
             contentIndex:null,
             noticelist:[],
             noticefirst:{},
@@ -96,7 +99,7 @@ export default {
         }
     },
     mounted(){
-        this.getNewInfoByStyleForUser();
+        this.allList4NewStyle("13,16,05,01,07");
         window.addEventListener('scroll',this.actionpage)
     },
     methods:{
@@ -118,15 +121,16 @@ export default {
         displayDetail(){
 
         },
-        getNewInfoByStyleForUser(){
-            api.getNewInfoByStyleForUser({
+        allList4NewStyle(cate){
+            api.allList4NewStyle({
                 data:{
-                    style:"13",
+                    category:cate,
                     startPage:1,
                     pageSize:6
                 },
               }  
             ).then(res => {
+
                 res.data.newsList.content.forEach((item,index) =>{
                     var date = new Date(item.newsTime)
                     var Y = date.getFullYear() + '-';
@@ -138,6 +142,7 @@ export default {
                 })
                 this.noticefirst=res.data.newsList.content[0];
                 this.noticelist = res.data.newsList.content.splice(0,5);
+                console.log(this.noticelist)
                 // var time = new Date(this.noticefirst.newsTime)
                 // this.noticefirst.newsTime=time;
             })

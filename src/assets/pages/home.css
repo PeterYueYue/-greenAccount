@@ -536,8 +536,10 @@
   .right-notice-content{
     display: inline-block;
     padding-left: 1em;
-    width: 38.2em;
+    width: 38em;
     padding-top: 8px;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .right-notice-detail,.action-right-content{
     display: inline-block;

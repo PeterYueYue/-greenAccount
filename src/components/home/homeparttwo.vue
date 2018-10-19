@@ -182,7 +182,6 @@ export default {
             var top=$('.home-active-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
-            console.log(top-client+300<=scroll)
             if(top-client+10<=scroll){
                 this.scrolltitle=true
             }
@@ -197,9 +196,7 @@ export default {
             if(top-client+400<=scroll){
                 this.scrollbtn=true;
                 this.scrollsmall=true;
-            }
-            // this.scrolltitle=$('home-active-contain .part-title').offset().top-document.documentElement.clientHeight<=document.documentElement.scrollTop || document.body.scrollTop;
-            
+            }            
         },
         activeChangelast(){
             if(this.activeIndex<=0){
