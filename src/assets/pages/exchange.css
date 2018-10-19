@@ -167,6 +167,13 @@
   color: #fff;
 }
 
+.ex_list_integral:hover {
+  box-shadow: 0 0 15px #e5e5e5;
+  border: 1px #52b54b solid;
+  cursor: pointer;
+  background: #fff;
+}
+
 .ex_list:hover div {
   color: #fff;
 }
@@ -191,10 +198,18 @@
   margin: 20px 0 0 20px;
 }
 
+.ex_list_integral:hover .ex_list_name {
+  color: #333;
+}
+
 .ex_list_score {
   font-size: 20px;
   color: #20a345;
   margin: 10px 0 0 20px;
+}
+
+.ex_list_integral:hover .ex_list_score {
+  color: #20a345;
 }
 
 .ex_list_address {
@@ -202,6 +217,11 @@
   color: #666;
   margin: 8px 0 0 20px;
 }
+
+.ex_list_integral:hover .ex_list_address {
+  color: #666;
+}
+
 
 .ex_list_address img {
   position: relative;
@@ -222,4 +242,14 @@
   color: #fff;
   border-top: 1px #fff solid;
   margin-top: 20px;
+}
+
+.ex_list_btn_integral {
+  line-height: 46px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border-top: 1px #57B751 solid;
+  margin-top: 23px;
+  background: #57B751;
 }

@@ -18,6 +18,18 @@ Vue.use(VueAwesomeSwiper);
 
 Vue.prototype.$http = Axios;
 Vue.prototype.$host = '';
+Vue.filter('moment', function (value, formatString) {
+	formatString = formatString || 'YYYY-MM-DD';
+	return moment(value).format(formatString);
+});
+Vue.filter('momentYear', function (value, formatString) {
+	formatString = formatString || 'YYYY-MM';
+	return moment(value).format(formatString);
+});
+Vue.filter('momentTime', function (value, formatString) {
+	formatString = formatString || 'DD';
+	return moment(value).format(formatString);
+});
 
 // Axios.interceptors.request.use((req) => {
 //   if (req.data.name === 'business.login') {

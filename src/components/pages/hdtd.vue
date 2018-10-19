@@ -2,72 +2,106 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿互动 > <span>活动天地</span></div>
     <ul class="lv_bd_tab">
-      <li class="active">全部</li>
-      <li>活动预告</li>
-      <li>活动成果</li>
-      <li>中奖名单</li>
-      <li>抽奖活动</li>
+      <li class="active" @click="allList4NewStyle">全部</li>
+      <li @click="allList4NewStyleOne">活动预告</li>
+      <li @click="allList4NewStyleTwo">活动成果</li>
+      <li @click="allList4NewStyleThree">中奖名单</li>
+      <li @click="allList4NewStyleFour">抽奖活动</li>
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
-         @mouseleave.stop="listHover(false,index)" @click="jumpDetails">
-      <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
-        .time}}</span><br/>{{items.year}}</span></div>
-      <div class="lv_bd_notice_title" v-else>{{items.title}}<span class="date">{{items.date}}</span></div>
-      <div class="lv_bd_notice_text active" v-if="items.hoverShow">{{items.text}}</div>
-      <div class="lv_bd_notice_text" v-else>{{items.text}}</div>
-      <img src="@/assets/lvz_icon_arrow.png" alt="" class="lv_bd_arrow" v-if="items.hoverShow">
+         @mouseleave.stop="listHover(false,index)">
+      <router-link :to="{path: '/lvzhanghu/', query: { id: items.id, style: items.newsStyle }}">
+        <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
+				.newsTime | momentTime}}</span><br/>{{items.newsTime | momentYear}}</span></div>
+        <div class="lv_bd_notice_title" v-else>{{items.title}}<span class="date">{{items.newsTime | moment}}</span>
+        </div>
+        <div class="lv_bd_notice_text active" v-if="items.hoverShow">{{items.newsContent}}</div>
+        <div class="lv_bd_notice_text" v-else>{{items.newsContent}}</div>
+        <img src="@/assets/lvz_icon_arrow.png" alt="" class="lv_bd_arrow" v-if="items.hoverShow">
+      </router-link>
     </div>
     <pagination></pagination>
   </div>
 </template>
 <script>
-	import '@/assets/pages/lvzhanghu.css';
-	import pagination from '@/components/common/pagination.vue';
+  import api from "@/api/api.js";
+  import '@/assets/pages/lvzhanghu.css';
+  import pagination from '@/components/common/pagination.vue';
 
-	export default {
-		data() {
-			return {
-				listData: [{
-					title: '2015年度最美绿色账户家庭评选活动',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '31',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        },{
-					title: '2015年度最美绿色账户家庭评选活动',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '31',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        },{
-					title: '2015年度最美绿色账户家庭评选活动',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '22',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        },{
-					title: '2015年度最美绿色账户家庭评选活动',
-					date: '2018-08-22',
-          year: '2018-08',
-          time: '31',
-					text: '新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻标题新闻标题新闻标题新闻内容新闻内容新闻内容新闻内容内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内内容新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内新闻内容新闻内容新闻内容新闻内容新闻新闻内容新闻内容新闻新闻内容新闻内容新闻内容新闻内',
-          hoverShow: false
-        }]
-			}
-		},
-		components: {pagination},
-		methods: {
-      listHover(status, index) {
-        this.listData[index].hoverShow = status
-      },
-      jumpDetails(){
-        this.$router.push({
-          path: '/lvzhanghu'
+  export default {
+    data() {
+      return {
+        listData: [],
+      }
+    },
+    components: {pagination},
+    mounted() {
+      this.allList4NewStyle();
+    },
+    methods: {
+      allList4NewStyle() {
+        api.allList4NewStyle({
+          data: {
+            category: "09,10,18,23",
+          },
+        }).then(res => {
+          res.data.newsList.content.map(items => {
+            items.hoverShow = false;
+          });
+          this.listData = res.data.newsList.content;
         })
       },
+      allList4NewStyleOne() {
+        api.allList4NewStyle({
+          data: {
+            category: "09",
+          },
+        }).then(res => {
+          res.data.newsList.content.map(items => {
+            items.hoverShow = false;
+          });
+          this.listData = res.data.newsList.content;
+        })
+      },
+      allList4NewStyleTwo() {
+        api.allList4NewStyle({
+          data: {
+            category: "10",
+          },
+        }).then(res => {
+          res.data.newsList.content.map(items => {
+            items.hoverShow = false;
+          });
+          this.listData = res.data.newsList.content;
+        })
+      },
+      allList4NewStyleThree() {
+        api.allList4NewStyle({
+          data: {
+            category: "18",
+          },
+        }).then(res => {
+          res.data.newsList.content.map(items => {
+            items.hoverShow = false;
+          });
+          this.listData = res.data.newsList.content;
+        })
+      },
+      allList4NewStyleFour() {
+        api.allList4NewStyle({
+          data: {
+            category: "23",
+          },
+        }).then(res => {
+          res.data.newsList.content.map(items => {
+            items.hoverShow = false;
+          });
+          this.listData = res.data.newsList.content;
+        })
+      },
+      listHover(status, index) {
+        this.listData[index].hoverShow = status;
+      },
     }
-	}
+  }
 </script>

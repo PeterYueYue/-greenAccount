@@ -2,12 +2,13 @@
   <div class="lv_wrap">
     <div class="lv_volunteer_bread">您的位置：绿互动 > 志愿者活动 > <span>志愿者活动详情</span></div>
     <div class="lv_volunteer_details_head">
-      上海市第二康复医院志愿者活动
+      {{listData.pubAct ? listData.pubAct.actName : ''}}
       <img src="@/assets/lv_icon_zan.png" alt="" class="lv_volunteer_details_zan"
-           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-if="hoverShow">
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-show="hoverShow && !zanShow">
       <img src="@/assets/lv_icon_zanhover.png" alt="" class="lv_volunteer_details_zan"
-           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" v-else>
-      120
+           @mouseenter.stop="listHover(false)" @mouseleave.stop="listHover(true)" @click.once="addAdmire"
+           v-show="!hoverShow || zanShow">
+      {{adminreNum}}
     </div>
 
     <div class="lv_volunteer_details_enlist" @click="openBox">我要报名</div>
@@ -17,35 +18,41 @@
       <div class="title">基本信息</div>
       <div class="content">
         <div class="left">活动组织方名称：</div>
-        <div class="right">上海市第二康复医院</div>
+        <div class="right">{{listData.pubWelOrgName}}</div>
       </div>
       <div class="content">
         <div class="left">报名时间：</div>
-        <div class="right">2018-08-27至2018-08-30</div>
+        <div class="right">
+          {{listData.pubAct ? listData.pubAct.registStartTime : '' | moment}} 至 {{listData.pubAct ?
+          listData.pubAct.registEndTime : '' | moment}}
+        </div>
       </div>
       <div class="content">
         <div class="left">活动时间：</div>
-        <div class="right">2018-09-02至2018-09-11</div>
+        <div class="right">
+          {{listData.pubAct ? listData.pubAct.actStartTime : '' | moment}} 至 {{listData.pubAct ?
+          listData.pubAct.actEndTime : '' | moment}}
+        </div>
       </div>
       <div class="content">
         <div class="left">服务时间：</div>
-        <div class="right">09:00-16:00</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.serviceTime : ''}}</div>
       </div>
       <div class="content">
         <div class="left">联系人姓名：</div>
-        <div class="right">陈妍</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actLinkName : ''}}</div>
       </div>
       <div class="content">
         <div class="left">联系人电话：</div>
-        <div class="right">18917650521</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actLinkTel : ''}}</div>
       </div>
       <div class="content">
         <div class="left">招募人数：</div>
-        <div class="right">10</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actRecruitment : ''}}</div>
       </div>
       <div class="content">
         <div class="left">活动详细地址：</div>
-        <div class="right">宝山区长江路860弄25号</div>
+        <div class="right">{{listData.pubAct ? listData.pubAct.actFullAddress : ''}}</div>
       </div>
     </div>
 
@@ -53,12 +60,7 @@
       <div class="title">详细信息</div>
       <div class="content">
         <div class="left">活动内容：</div>
-        <div class="right">
-          <div>1、用轮椅推送康复病人到康复区域进行康复治疗，期间需要协助康复治疗师做好各类安全保护工作</div>
-          <div>2、与康复病人愉快交流，注意不要过问患者私事</div>
-          <div>3、星期六上午9:00-11:00：参与言语小组康复治疗师与康复患者的互动活动，如唱歌、主持、猜谜、自我介绍、吹蜡烛等</div>
-          <div>4、所有活动欢迎企事业单位、中小学生志愿者参与，活动精彩哦</div>
-        </div>
+        <div class="right" v-html="listData.pubAct?listData.pubAct.actContent:''"></div>
       </div>
     </div>
 
@@ -67,15 +69,14 @@
       <div class="content">
         <div class="left">报名列表：</div>
         <div class="right">
-          <div><span class="name">程程程</span><span>15121063155</span><span>2018-08-30 11:53:43</span></div>
-          <div><span class="name">程程</span><span>15121063155</span><span>2018-08-30 11:53:43</span></div>
-          <div><span class="name">程程</span><span>15121063155</span><span>2018-08-30 11:53:43</span></div>
-          <div><span class="name">程程</span><span>15121063155</span><span>2018-08-30 11:53:43</span></div>
-          <div><span class="name">程程</span><span>15121063155</span><span>2018-08-30 11:53:43</span></div>
+          <div v-for="(items) in listVolData">
+            <span class="name">{{items[0]}}</span>
+            <span class="tel">{{items[1]}}</span>
+            <span class="date">{{items[2]}}</span>
+          </div>
         </div>
       </div>
     </div>
-
     <!-- 弹窗 -->
     <div class="lv_volunteer_shadow" v-if="showShadow"></div>
     <!-- 取消理由弹窗 -->
@@ -96,12 +97,14 @@
   </div>
 </template>
 <script>
+  import api from "@/api/api.js";
   import '@/assets/pages/lv_volunteer.css';
   import '@/assets/pages/apply.css';
 
   export default {
     data() {
       return {
+        id: this.$route.query.id,
         showShadow: false,
         showBox: false,
         hoverShow: true,
@@ -109,9 +112,37 @@
           name: '',
           tel: '',
         },
+        listData: {},
+        listVolData: [],
+        adminreNum: '',
+        zanShow: false
       }
     },
+    mounted() {
+      this.pubDetailById();
+    },
     methods: {
+      pubDetailById() {
+        api.pubDetailById({
+          data: {
+            id: this.id,
+          },
+        }).then(res => {
+          this.listData = res.data;
+          this.adminreNum = res.data.adminreNum;
+          this.listVolData = res.data.volPage.content;
+        })
+      },
+      addAdmire() {
+        api.addAdmire({
+          data: {
+            id: this.id,
+          },
+        }).then(res => {
+          this.zanShow = true;
+          this.adminreNum = res.data.adminreNum;
+        })
+      },
       listHover(status) {
         this.hoverShow = status;
       },
@@ -126,34 +157,30 @@
         document.querySelector('body').style.overflow = 'auto';
       },
       saveData() {
-        this.showShadow = false;
-        this.showBox = false;
-        document.querySelector('body').style.overflow = 'auto';
-        //联系人正则
-        let rn = /^[\u4E00-\u9FA5A-Za-z]+$/;
-        let resultName = rn.test(this.form.name);
-        if (!resultName) {
-          // this.showShadow = true;
-          // this.showBox = true;
-          // this.form.name = '';
+        //为空验证
+        if (this.form.name == '' | this.form.tel == '') {
+          alert('联系人或手机号不能为空');
           return;
         }
         //手机正则
         let rs = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57]|19[0-9]|16[0-9])[0-9]{8}$/;
         let resultTel = rs.test(this.form.tel);
         if (!resultTel) {
-          // this.showShadow = true;
-          // this.showBox = true;
-          // this.form.tel = '';
+          alert('手机号格式不正确');
           return;
         }
-        api.SaveMemberAddress({
+        api.addVolunteer({
           "data": {
-            "name": this.form.name,
-            "tel": this.form.tel,
+            id: this.id,
+            volunteerName: this.form.name,
+            volunteerTel: this.form.tel,
           },
         }).then((res) => {
-          console.log(res);
+          if (res.code === "0") {
+            this.closeBox();
+          } else {
+            alert(res.msg);
+          }
         }).catch((error) => {
           console.log(error);
         })

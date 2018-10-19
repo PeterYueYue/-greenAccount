@@ -30,6 +30,14 @@
   cursor: pointer;
 }
 
+.lv_volunteer_list a {
+  display: block;
+  float: left;
+  width: 555px;
+  height: 197px;
+  text-decoration: none;
+}
+
 .lv_volunteer_list:hover {
   border: 1px #20A345 solid;
 }
@@ -148,13 +156,20 @@
   line-height: 24px;
 }
 
-.lv_volunteer_details_tab .content .right span {
-  padding-right: 80px;
+.lv_volunteer_details_tab .content .right .name,.lv_volunteer_details_tab .content .right .tel {
+  display: inline-block;
+  width: 120px;
   line-height: normal !important;
 }
 
-.lv_volunteer_details_tab .content .right .name {
-  width: 60px;
+.lv_volunteer_details_tab .content .right .tel {
+  display: inline-block;
+  width: 160px;
+  line-height: normal !important;
+}
+
+.lv_volunteer_details_tab .content .right .date {
+  line-height: normal !important;
 }
 
 .lv_volunteer_shadow {
@@ -170,9 +185,9 @@
 .lv_volunteer_shadow_box {
   box-sizing: border-box;
   position: absolute;
-  top: 40%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: 800px;
   height: 393px;
   background: #fff;

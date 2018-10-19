@@ -2,49 +2,86 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿环保 > <span>合作单位</span></div>
     <ul class="lv_bd_tab">
-      <li class="active">全部</li>
-      <li>支持单位</li>
-      <li>爱心单位</li>
-      <li>理事单位</li>
-      <li>公益机构单位</li>
+      <li :class="showOne&&showTwo?'active':''" @click="allList4NewStyleOne(true);">全部</li>
+      <li :class="showOne&&!showTwo?'active':''" @click="allList4NewStyleOne(false)">支持单位</li>
+      <li :class="showTwo&&!showOne?'active':''" @click="allList4NewStyleTwo(false)">爱心单位</li>
+      <li :class="showThree&&!showTwo?'active':''" @click="allList4NewStyleThree(false)">理事单位</li>
     </ul>
-    <div class="lv_dw_text">
+    <div class="lv_dw_text" v-show="showOne">
       <div class="lv_dw_title">绿色账户支持单位</div>
-      <div class="lv_dw_name">中国银行上海市分行</div>
-      <div class="lv_dw_name">上海城投（集团）有限公司</div>
+      <div class="lv_dw_name" v-for="items in listDataOne">{{items.title}}</div>
     </div>
-    <div class="lv_dw_text">
+    <div class="lv_dw_text" v-show="showTwo">
       <div class="lv_dw_title">绿色账户爱心单位</div>
-      <div class="lv_dw_name">光明乳业股份有限公司</div>
-      <div class="lv_dw_name">上海东方希杰商务有限公司</div>
-      <div class="lv_dw_name">上海聚力传媒技术有限公司</div>
+      <div class="lv_dw_name" v-for="items in listDataTwo">{{items.title}}</div>
     </div>
-    <div class="lv_dw_text">
-      <div class="lv_dw_title">上海程胜环保科技有限公司</div>
-      <div class="lv_dw_name">上海森蓝环境资源有限公司</div>
-      <div class="lv_dw_name">上海环境实业有限公司</div>
-      <div class="lv_dw_name">中国银行上海分行</div>
-      <div class="lv_dw_name">上海老港固废综合开发有限公司</div>
-      <div class="lv_dw_name">上海市废弃物管理处</div>
-    </div>
-    <div class="lv_dw_text">
-      <div class="lv_dw_title">绿色账户支持单位</div>
-      <div class="lv_dw_name">中国银行上海市分行</div>
-      <div class="lv_dw_name">上海城投（集团）有限公司</div>
+    <div class="lv_dw_text" v-show="showThree">
+      <div class="lv_dw_title">绿色账户理事单位</div>
+      <div class="lv_dw_name" v-for="items in listDataThree">{{items.title}}</div>
     </div>
   </div>
 </template>
 <script>
+	import api from "@/api/api.js";
 	import '@/assets/pages/lvzhanghu.css';
 
 	export default {
 		data() {
 			return {
-
+				listDataOne: [],
+				listDataTwo: [],
+				listDataThree: [],
+				showOne: true,
+				showTwo: true,
+				showThree: true,
 			}
 		},
+		mounted() {
+			this.allList4NewStyleOne(true);
+		},
 		methods: {
-
-    }
+			allList4NewStyleOne(status) {
+				api.allList4NewStyle({
+					data: {
+						category: "03",
+					},
+				}).then(res => {
+					if (status) {
+						this.allList4NewStyleTwo(true);
+					}
+					this.showOne = true;
+					this.showTwo = status;
+					this.showThree = status;
+					this.listDataOne = res.data ? res.data.newsList.content : '';
+				})
+			},
+			allList4NewStyleTwo(status) {
+				api.allList4NewStyle({
+					data: {
+						category: "14",
+					},
+				}).then(res => {
+					if (status) {
+						this.allList4NewStyleThree(true);
+					}
+					this.showOne = status;
+					this.showTwo = true;
+					this.showThree = status;
+					this.listDataTwo = res.data ? res.data.newsList.content : '';
+				})
+			},
+			allList4NewStyleThree(status) {
+				api.allList4NewStyle({
+					data: {
+						category: "15",
+					},
+				}).then(res => {
+					this.showOne = status;
+					this.showTwo = status;
+					this.showThree = true;
+					this.listDataThree = res.data ? res.data.newsList.content : '';
+				})
+			},
+		}
 	}
 </script>

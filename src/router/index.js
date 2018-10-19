@@ -8,6 +8,8 @@ import exchange from '@/components/pages/exchange.vue'  //礼品兑换
 import exchangeList from '@/components/pages/exchange_list.vue'  //礼品兑换 列表
 import exchangeDetail from '@/components/pages/exchange_detail.vue'  //礼品兑换 详情
 import homeExchange from '@/components/pages/home_exchange.vue'  //首页兑换
+// import integralList from '@/components/pages/integral_list.vue'  //积分捐赠
+// import integralDetail from '@/components/pages/integral_detail.vue'  //积分捐赠 详情
 import exchangeBrand from '@/components/pages/exchange_brand.vue'  //爱心品牌专区
 import lvzhanghu from '@/components/pages/lvzhanghu.vue'  //绿账户
 import lvbd from '@/components/pages/lvbd.vue'  //绿账宝典
@@ -49,7 +51,17 @@ export default new Router({
           component: exchangeBrand,
         }
       ]
-    },{
+    },
+    // {
+    //   path: '/integral_list',
+    //   name: '积分捐赠',
+    //   component: integralList,
+    // },{
+    //   path: '/integral_detail',
+    //   name: '积分捐赠详情',
+    //   component: integralDetail
+    // },
+    {
       path: '/lvzhanghu',
       name: '绿账宝',
       component: lvzhanghu,
