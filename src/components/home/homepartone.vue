@@ -1,7 +1,7 @@
 <template>
     <div class="home-exchange-contain">
         <div class="home-exchange-content">
-            <div class="part-title">
+            <div class="part-title" :style="exchange_scrolltitle?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(100px)'" ref="exchangetitle">
                 <div class="title-left">
                     <p class="title-name">礼品兑换</p>
                     <p class="en-title-name">REDEEM GIFT</p>
@@ -12,9 +12,9 @@
                         <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
                     </p>
                 </div>
-            </div>
+            </div>     
             <div class="part-content">
-                <div class="exchange-content-left">
+                <div class="exchange-content-left partone" :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
                     <div class="exchange-detail">
                         <p class="green-line"></p>
                     </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="exchange-content-right">
                     <div class="exchange-inside-contain" ref="exchangeInside">
-                        <div class="exchange-content" v-for="(item,index) in product" :key="item.id" :class="{active:exchangeSideIndex==index}">
+                        <div class="exchange-content" v-for="(item,index) in product" :key="item.id" :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
                             <div class="change-content-top">
                                 <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
                             </div>
@@ -71,14 +71,33 @@ export default {
     data(){
         return{
             product:{},
-            exchangeSideCount:4,
+            exchangeSideCount:0,
             exchangeSideIndex:0,
+            exchange_scrolltitle:false,
+            exchange_scrollleft:false,
+            exchange_scrollitem:false,
         }
     },
     mounted(){
-        this.getProductList()
+        this.getProductList();
+       
+    },
+    updated(){
+         window.addEventListener('scroll',this.exchangepage)
     },
     methods:{
+        exchangepage(){
+            var top=$('.home-exchange-content .part-title').offset().top;
+            var client=document.documentElement.clientHeight;
+            var scroll=document.documentElement.scrollTop || document.body.scrollTop;
+            if(top-client<=scroll){
+                this.exchange_scrolltitle=true
+            }
+            if(top-client+50<=scroll){
+                this.exchange_scrollleft=true;
+                this.exchange_scrollitem=true
+            }
+        },
         exchangeNext(){
             if(this.exchangeSideIndex>(this.exchangeSideCount-2)){
                 return;

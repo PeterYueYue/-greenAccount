@@ -1,15 +1,10 @@
 .home-contain{
-    /* position: relative; */
-    /* box-sizing: border-box; */
+    position: relative;
 }
 /*----------------------- 轮播图------------------- */
 .banner-contain{
-  position: absolute;
-  top: 135px;
-  left: 0;
-  right: 0;
-  /* z-index: -99; */
-  /* float: left; */
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
 }
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
@@ -58,24 +53,19 @@
     }
   /* ----------------------------轮播图结束----------------------------- */
     .home-contain>.part-contain{
-      /* margin-top: -403px; */
       width: 90%;
-      z-index: 999999;
-      margin: 640px auto 0 auto;
-      /* margin: 0 auto; */
-      /* position: relative;
-      top: -403px; */
+      z-index: 97;
+      margin: -390px auto 0 auto ;
       box-sizing: border-box;
-      padding-top: 15px;
       background-color: white;
       min-width: 1400px;
+      transform: translate3d(0px, 0px, 1px);
+      -webkit-transform: translate3d(0px, 0px, 1px);
     }
     .map-contain{
       width:100%;
-      z-index: 999999;
+      z-index: 97;
       margin: 0 auto;
-      /* position: relative;
-      top: -483px; */
       min-width: 1400px;
     }
     .part-content{
@@ -114,11 +104,12 @@
   .home-exchange-contain,.home-active-contain,.home-action-contain,.home-rank-contain,.home-video-containt,.home-other-contain,.home-map-contain{
     padding-top: 55px;
     min-width: 1280px;
-    /* margin-bottom:50px; */
     padding-bottom: 70px;
-    position: relative;
-    z-index: 9;
+    z-index: 98;
     background-color: white;
+  }
+  .home-active-contain,.home-action-contain,.home-rank-contain,.home-video-containt,.home-other-contain,.home-map-contain{
+    /* opacity: 0; */
   }
   .home-exchange-content,.home-active-content,.home-action-content,.home-rank-content,.home-video-content,.home-other-content,.home-map-content{
     width: 1280px;
@@ -154,7 +145,6 @@
   .exchange-inside-contain{
     white-space: nowrap;
     transition: all .3s;
-    /* overflow: hidden; */
   }
   .exchange-content-left .green-line{
     border-top: 3px solid #20a345;
@@ -244,7 +234,6 @@
   }
   .active-content-title.active{
     color: #20a345;
-    /* border-left: 2px solid #20a345; */
   }
   .active-content-title .active-line{
     display: inline-block;
@@ -313,7 +302,6 @@
     width: 12px;
     vertical-align: middle;
     margin-left: 8px;
-    /* height: 10px; */
   }
   .active-content-des .active-content-more span:hover,.active-content-des .active-content-more .more-right-icon:hover{
     cursor: pointer;
@@ -348,7 +336,6 @@
     -webkit-text-fill-color: transparent;
     height: 100%;
     writing-mode: vertical-lr;
-    /* writing-mode: tb-lr */
   }
   .white-back,.white-back::before{
     background-image: url('../../assets/heart.png');
@@ -428,7 +415,6 @@
   }
   .active-btn div{
     display: inline-block;
-    /* padding: 30px 20px */
     width: 45%;
     height: 100%;
     line-height: 82px;
@@ -510,7 +496,6 @@
   }
   .action-left-content{
     font-size: 14px;
-    /* width: 223px; */
     overflow: hidden;
     padding: 17px 0;
   }
@@ -591,7 +576,6 @@
     float: right;
   }
   .action-content-right-top{
-    /* margin-bottom:50px; */
     width: 100%;
     height:0px;
     overflow: hidden;
@@ -610,7 +594,6 @@
   }
   .small-content.active{
     height:0;
-    /* display: none; */
     opacity: 0;
   }
   .action-bottom{
@@ -680,7 +663,8 @@
   /* --------------------------绿账另加版块--------------------------- */
     .home-other-contain .other-part{
       display: inline-block;
-      width: 31.7%
+      width: 31.7%;
+      vertical-align: top;
     }
     .home-other-contain .other-part:nth-of-type(2){
       margin: 0 2%;
@@ -721,9 +705,18 @@
       background-image: url('../../assets/videoback.png');
       text-align: center;
       margin: 0 auto;
+      padding: 3.13%;
+      position: relative;
+    }
+    .home-video{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%
     }
     .playbtn{
-      margin-top: 160px;
+      margin-top: 140px;
     }
     .playbtn:hover{
       cursor: pointer;
@@ -732,20 +725,19 @@
 
   /* --------------------------绿色账户地图---------------------------- */
     .home-map-contain .part-contain{
-      position: absolute;
       background-color: transparent;
       min-width: 1400px;
       width: 90%;
-      margin: 0 auto;
+      margin: 0 auto -655px auto;
     }
     .home-map-contain .home-map-content{
       position: relative;
-      /* top: 220px; */
+      height: 625px;
       width: 339px !important;
       background-color: white;
       padding-top: 15px;
       margin: 0 0 30px calc((100% - 1280px) / 2);
-      z-index: 99;    
+      z-index: 98;    
     }
     .home-map-contain .home-map-content .title-left,.home-map-contain .home-map-content .part-content{
       background-color: white;
@@ -809,6 +801,9 @@
       right: 18px;
       bottom: 14px;
     }
+    .home-map-contain table{
+      width: 100%;
+    }
     .home-map-contain table thead td{
       font-size: 14px;
       color: #666666;
@@ -823,8 +818,8 @@
       margin: 15px 0 5px 0;
       font-size: #555555
     }
-    .home-map-contain .list-table{
-      height: 353px;
+    .home-map-contain .list-table,.list-detail-table{
+      height: 390px;
       overflow: hidden;
     }
     .home-map-contain .more-list{
@@ -887,4 +882,99 @@
       color: white;
       cursor: pointer;
     }
+    .allrank-mask{
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, .5);
+      z-index: 999;
+    }
+    .allrank-mask .allrank-content{
+      background-color: white;
+      width: 800px;
+      margin: 67px auto;
+      padding: 28px 0;
+    }
+    .allrank-mask .allrank-content .allrank-title{
+      padding: 10px 42px;
+    }
+    .allrank-mask .allrank-content .allrank{
+      padding: 0 104px;
+      margin-top: 25px;
+    }
+    .allrank-mask .allrank-content .allrank table{
+      font-size: 12px;
+    }
+    .allrank-mask .allrank-content .allrank .allrank-name{
+      margin: 10px 0;
+      color: #20A345;
+    }
+    .allrank-mask .allrank-content .close-btn{
+      float: right;
+    }
+    .allrank-mask .allrank-content .close-btn:hover{
+      cursor: pointer;
+    }
   /* --------------------------地图结束-------------------------------- */
+
+
+/* -----------------------------动画----------------------------------- */
+    /*------------第二个版块动画---------------- */
+    /* .exchangetitle-enter-active,.exchangetitle-leave-active,.activetitle-enter-active,.activetitle-leave-active,.activesmall-enter-active,.activesmall-leave-active,.activebtn-enter-active,.activebtn-leave-active
+    ,.actiontitle-enter-active,.actiontitle-leave-active,.othertitle-enter-active,.othertitle-leave-active{
+      transition: all .8s;
+    }
+    .titlelist-enter-active,.titlelist-leave-active,.actionleft-enter-active,.actionleft-leave-active,.actionlist-enter-active,.actionlist-leave-active,.actionbottom-enter-active,.actionbottom-leave-active
+    ,.otherpartone-enter-active,.otherpartone-leave-active
+    {
+      transition: all 1.5s;
+    }
+    
+    .activebig-enter-active,.activebig-leave-active,.otherparttwo-enter-active,.otherparttwo-leave-active{
+      transition: all 1.5s .2s
+    }
+    .maintitle-enter-active,.maintitle-leave-active,.otherpartthree-enter-active,.otherpartthree-leave-active{
+      transition: all 1.5s .4s
+    }
+    .activecontent-enter-active,.activecontent-leave-active{
+      transition: all 1.5s .5s
+    }
+
+    .exchangetitle-enter,.exchangetitle-leave-to
+    ,.activetitle-enter,.activetitle-leave-to,.activebtn-enter,.activebtn-leave-to
+    ,.actiontitle-enter,.actiontitle-leave-to,.actionbottom-enter,.actionbottom-leave-to,
+    .othertitle-enter,.othertitle-leave-to{
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    .titlelist-enter,.titlelist-leave-to,.activebig-enter,.activebig-leave-to,.maintitle-enter,.activesmall-enter,.activesmall-leave-to,
+    .actionleft-enter,.actionleft-leave-to,.actionlist-enter,.actionlist-leave-to,.actionlist-enter,.actionlist-leave-to,
+    .otherpartone-enter,.otherpartone-leave-to,.otherparttwo-enter,.otherparttwo-leave-to,.otherpartthree-enter,.otherpartthree-leave-to
+    {
+      transform: translateY(200px);
+      opacity: 0;
+    }
+    .maintitle-leave-to,.activecontent-enter,.activecontent-leave-to{
+      transform: translateY(300px);
+      opacity: 0;
+    } */
+    
+    /* -----------第二个版块结束---------------- */
+
+    /* -----------通用动画--------------------- */
+    .part-title{
+      transition: all .8s;
+    }
+    .partone{
+      transition: all 1.5s;
+    }
+    .parttwo{
+      transition: all 2.5s;
+    }
+
+
+    /* -----------第一个版块动画---------------- */
+/* ---------------------------动画结束---------------------------------- */
+

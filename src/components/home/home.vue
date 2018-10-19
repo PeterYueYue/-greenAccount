@@ -18,21 +18,21 @@
         </div>
         <div class="part-contain">
             <exchange-part></exchange-part>
-            <activce-part></activce-part>
-            <action-part></action-part>
-            <other-part></other-part>
-            <rank-part></rank-part>
-            <video-part></video-part>    
-        </div>
+            <activce-part :scroll="scroll"></activce-part>
+            <action-part :scroll="scroll"></action-part>
+            <other-part :scroll="scroll"></other-part>
+            <rank-part :scroll="scroll"></rank-part>
+            <video-part :scroll="scroll"></video-part> 
+        </div> 
         <div class="map-contain">
-            <map-part></map-part>
+                <map-part :scroll="scroll"></map-part>
         </div>
-        
     </div>
 </template>
 
 <script>
   import '@/assets/pages/home.css'
+  import $ from 'jquery'
   import exchangePart from '@/components/home/homepartone.vue'
   import activcePart from '@/components/home/homeparttwo.vue'
   import actionPart from '@/components/home/homepartthree.vue'
@@ -52,6 +52,15 @@
     },
     data() {
       return {
+        scroll:'',
+        comlist:{
+            active:false,
+            action:false,
+            rank:false,
+            video:false,
+            map:false,
+            other:false
+        },
         swiperOption: {
           slidesPerView: 1,
           spaceBetween: 30,
@@ -76,8 +85,22 @@
         }
       }
     },
+    created(){
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        window.onbeforeunload = function(){
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }
+    },
+    mounted(){
+       
+        window.addEventListener('scroll',this.page)
+    },
     methods:{
-        
+        page(){
+            this.scroll=document.documentElement.scrollTop || document.body.scrollTop;
+        }
     }
   }
 </script>

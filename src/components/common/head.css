@@ -1,7 +1,7 @@
 .head-contain{
     padding:20px 60px;
     margin: 0 auto;
-    z-index: 9999999999;
+    z-index: 999;
     width: 1400px
 }
 .nav-contain{
@@ -15,7 +15,7 @@
 }
 .select-city-contain{
     display: inline-block;
-    z-index: 999999999;
+    z-index: 99999;
 }
 .area-contain{
     background-color: white;
@@ -27,7 +27,7 @@
     width: 182px;
     border: 1px solid #e2e2e2;
     padding: 12px 13px;
-    z-index: 999;
+    z-index: 9999;
     font-size: 14px;
 }
 .area-list a{

@@ -1,15 +1,21 @@
 <template>
-    <div class="home-active-contain">
+    <div class="home-active-contain" ref="activeContain">
         <div class="home-active-puben"></div>
         <div class="home-active-content">
-            <div class="part-title">
+            <div class="part-title" :style="scrolltitle?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(100px)'">
                 <div class="title-left">
                     <p class="title-name">绿账活动</p>
                     <p class="en-title-name">EVENTS GALLERY</p>
                 </div>
+                <div class="title-right">
+                    <p>
+                        <span>点击查看全部</span> 
+                        <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
+                    </p>
+                </div>
             </div>
             <div class="part-content">
-                <div class="active-content-left">
+                <div class="active-content-left partone" :style="scrolllist?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
                     <p class="active-content-title active">
                         <span class="active-line"></span> 积分捐赠
                     </p>
@@ -18,12 +24,12 @@
                     </p>
                 </div>
                 <div class="active-content-right">
-                    <div class="active-content-big-img">
+                    <div class="active-content-big-img" :style="scrollbig?' opacity: 1;transform: translateY(0);transition:all 1.5s .2s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .2s'">
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==0}">
                         <img src="@/assets/activeone.png" alt="" class="img-items" :class="{active:activeIndex==1}">
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==2}">
                     </div>
-                    <div class="active-content-des">
+                    <div class="active-content-des" :style="scrollcontent?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(300px);transition:all 1.5s .3s'">
                         <div class="active-content-item" :class="{active:activeIndex==0}">
                             <div class="active-content-des-title">
                                 <p>为垃圾分拣员献上爱心</p>
@@ -116,7 +122,7 @@
                         </div>
                         
                     </div>
-                    <div class="active-maintitle">
+                    <div class="active-maintitle" :style="scrollmaintitle?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .3s'">
                         <div class="white-back">
                             <div>01</div>
                             <div>
@@ -125,14 +131,14 @@
                         </div>
                         <div class="tip-icon">新活动</div>
                     </div>
-                    <div class="active-content-small-img">
+                    <div class="active-content-small-img" :style="scrollsmall?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .3s'">
                         <div class="active-content-small-inside">
                             <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==0}">
                             <img src="@/assets/activeone.png" alt="" class="small-img-items" :class="{active:activeIndex==1}">
                             <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==2}">
                         </div>
                     </div>
-                    <div class="active-btn">
+                    <div class="active-btn partone" :style="scrollbtn?' opacity: 1;transform: translateY(0);':' opacity: 0;transform: translateY(200px);'">
                         <div class="active-btn-left" @click="activeChangelast" @mouseenter="leftbtnHover" @mouseleave="activebtnleft=0">
                             <img src="@/assets/icon/doleft.png" alt="" v-show="activeIndex==0||!activebtnleft">
                             <img src="@/assets/icon/activedoleft.png" alt="" v-show="activeIndex!=0&&activebtnleft">
@@ -142,7 +148,7 @@
                             <img src="@/assets/icon/doright.png" alt="" v-show="activeIndex==activeCount||!activebtnright">
                             <img src="@/assets/icon/activedoright.png" alt="" v-show="activeIndex!=activeCount&&activebtnright">
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -153,6 +159,14 @@ import $ from 'jquery'
 export default {
     data(){
         return {
+            scroll:'',
+            scrolltitle:false,
+            scrolllist:false,
+            scrollbig:false,
+            scrollmaintitle:false,
+            scrollcontent:false,
+            scrollsmall:false,
+            scrollbtn:false,
             activeIndex:0,
             activeCount:2,
             activebtnleft:0,
@@ -160,7 +174,33 @@ export default {
             smallactiveIndex:0
         }
     },
+    mounted(){
+       window.addEventListener('scroll',this.page)
+    },
     methods:{
+        page(){
+            var top=$('.home-active-contain .part-title').offset().top;
+            var client=document.documentElement.clientHeight;
+            var scroll=document.documentElement.scrollTop || document.body.scrollTop;
+            console.log(top-client+300<=scroll)
+            if(top-client+10<=scroll){
+                this.scrolltitle=true
+            }
+            if(top-client+50<=scroll){
+                this.scrolllist=true;
+                this.scrollbig=true;
+                this.scrollmaintitle=true;
+            }
+            if(top-client+150<=scroll){
+                this.scrollcontent=true
+            }
+            if(top-client+400<=scroll){
+                this.scrollbtn=true;
+                this.scrollsmall=true;
+            }
+            // this.scrolltitle=$('home-active-contain .part-title').offset().top-document.documentElement.clientHeight<=document.documentElement.scrollTop || document.body.scrollTop;
+            
+        },
         activeChangelast(){
             if(this.activeIndex<=0){
                 return 
