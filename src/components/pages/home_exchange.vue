@@ -3,10 +3,7 @@
     <img src="@/assets/ex_banner.png" alt="" class="ex_banner">
     <div class="ex_remind">
       <div class="ex_wrap marquee">
-        <div><img src="@/assets/ex_icon_remind.png" alt="">
-          上海绿色账户平台维护公告 亲爱的市民朋友：上海绿色账户平台维护公告 亲爱的市民朋友：上海绿色账户平台维护公告 亲爱的市民朋友：上海绿色账户平台维护公告 亲爱的市民朋友：上海绿色账户平台维护公告
-          亲爱的市民朋友：上海绿色账户平台维护公告 亲爱的市民朋友：上海绿色账户平台维护公告 亲爱的市民朋友：
-        </div>
+        <div><img src="@/assets/ex_icon_remind.png" alt="">{{message}}</div>
       </div>
     </div>
     <div class="ex_wrap">
@@ -49,6 +46,7 @@
 		data() {
 			return {
 				listData: [],
+        message: '',
 				pageCount: 0,
 				pageSize: 10,
 				pageNow: 1,
@@ -56,6 +54,7 @@
 		},
 		components: {pagination},
 		mounted() {
+      this.allList4NewStyle();
 			this.getProductList();
 		},
 		watch: {
@@ -67,6 +66,15 @@
 			area: "area"
 		}),
 		methods: {
+      allList4NewStyle() {
+        api.allList4NewStyle({
+          data: {
+            category: "13",
+          },
+        }).then(res => {
+          this.message = res.data.newsList.content[0].newsContent;
+        })
+      },
 			getProductList() {
 				api.getProductList({
 					data: {
