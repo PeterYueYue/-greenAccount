@@ -8,7 +8,7 @@
       <li :class="activeIndex===3?'active':''" @click="allList4NewStyle(3)">线下活动</li>
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
-         @mouseleave.stop="listHover(false,index)">
+         @mouseleave.stop="listHover(false,index)" v-show="listData.length !== 0">
       <router-link :to="{path: '/lvzhanghu/', query: { id: items.id, style: items.newsStyle }}">
         <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
 				.newsTime | momentTime}}</span><br/>{{items.newsTime | momentYear}}</span></div>
@@ -19,7 +19,8 @@
         <img src="@/assets/lvz_icon_arrow.png" alt="" class="lv_bd_arrow" v-if="items.hoverShow">
       </router-link>
     </div>
-    <pagination></pagination>
+    <div class="lv_nodata" v-show="listData.length == 0">暂无数据</div>
+    <pagination v-show="listData.length !== 0"></pagination>
   </div>
 </template>
 <script>

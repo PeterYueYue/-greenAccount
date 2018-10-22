@@ -161,3 +161,10 @@
   font-size: 14px;
   color: #20A345;
 }
+
+.lv_nodata {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  margin: 150px 0px 100px;
+}
