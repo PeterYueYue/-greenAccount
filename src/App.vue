@@ -3,7 +3,7 @@
     <div>111111</div>
     <el-container>
       <el-header>
-        <head-content></head-content>
+        <head-content :username="userName"></head-content>
       </el-header>
       <el-main>
         <router-view/>
@@ -29,12 +29,34 @@
   import '@/components/common/tool.css';
   import headContent from '@/components/common/head.vue'
   import footerContent from '@/components/common/footer.vue'
-
+  import {mapGetters} from 'vuex';
   export default {
     name: 'App',
     components: {
       headContent,
       footerContent
+    },
+    data(){
+      return {
+         userName:'',
+         login:false,
+      }
+    },
+    beforeCreate(){
+      if(this.$cookies.get("username")){
+        this.login=true
+      }else this.login=false
+      this.userName=this.$cookies.get("username")
+      this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login});
+    },
+    mounted(){
+      
+      
+    },
+    methods:{
+      checkExpired(){
+
+      }
     }
   }
 </script>

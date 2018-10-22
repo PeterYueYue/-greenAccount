@@ -70,7 +70,7 @@
     cursor: pointer;
 }
 .login-area{
-    margin-left:71px;
+    margin-left:65px;
     /* float: right; */
 }
 .login-area .login-btn{
@@ -83,8 +83,16 @@
     border-radius: 8px;
     margin-right:3px
 }
-.login-area .login-btn:hover{
+.login-area .login-btn:hover,.login-area.islogin div.quit-btn:hover{
     cursor: pointer;
+}
+.login-area.islogin div{
+    display: inline-block;
+    vertical-align: middle;
+}
+.login-area.islogin div.quit-btn{
+    color: #20a345;
+    margin-left: 10px;
 }
 .head-bottom-left,.head-bottom-right{
     display: inline-block;

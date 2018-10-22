@@ -11,12 +11,16 @@
                             <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"></el-input>
                             <div class="search-btn"></div>
                         </div>
-                        <div  class="login-area">
+                        <div  class="login-area" v-if="!isusername">
                             <router-link to="/login">
                                 <div class="login-btn">登录</div>
                             </router-link>
                             
                             <div class="login-btn">管理员登录</div>
+                        </div>
+                        <div class="login-area islogin" v-if="isusername">
+                            <div class="username-area">Hi.{{isusername}}</div>
+                            <div class="quit-btn" @click="quitHandle()">退出</div>
                         </div>
                     </el-col>
                 </el-row>
@@ -100,11 +104,13 @@ export default {
             areahover:false,
             navIndex:1,
             searchContent:'',
-            area:[]
+            area:[],
         }
     },
+    props:['username'],
     mounted(){
         this.getarea();
+        console.log(this.isusername)
         window.onscroll = function () {
             const t = document.documentElement.scrollTop || document.body.scrollTop;
             if(t!=0){
@@ -116,7 +122,9 @@ export default {
         };
     },
     computed: mapGetters({
-      isarea:"area"
+      isarea:"area",
+      isusername:"username",
+      islogin:"user_islogin"
     }),
     methods: {
      getarea(){
@@ -130,6 +138,11 @@ export default {
       },
       chooseArea(areaname,id){
         this.$store.dispatch('chooseArea',{areaname,id});
+      },
+      quitHandle(){
+          this.$cookies.remove("token");
+          this.$cookies.remove("username");
+           this.$store.dispatch('getToken', {token:'',userName:'',islogin:false});
       }
     }
 

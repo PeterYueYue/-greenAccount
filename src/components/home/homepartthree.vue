@@ -3,17 +3,17 @@
         <div class="home-action-content">
             <div class="part-title" :style="action_scrolltitle?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(100px)'">
                 <div class="title-left">
-                    <p class="title-name">绿账行动</p>
+                    <p class="title-name">绿色专题</p>
                     <p class="en-title-name">GREEN TOPICS</p>
                 </div>
                 <div class="title-right">
                     <p class="action-choose">
-                        <span class="active" @click="allList4NewStyle('13,16,05,18,07')">全部</span>
-                        <span @click="allList4NewStyle('13')">绿账行动</span>
-                        <span @click="allList4NewStyle('07')">垃圾分类</span> 
-                        <span @click="allList4NewStyle('16')">惠众绿色</span>
-                        <span @click="allList4NewStyle('18')">中奖名单</span>
-                        <span @click="allList4NewStyle('05')">政策法规</span>
+                        <span class="item-title active" @click="allList4NewStyle('13,16,05,18,07')">全部</span>
+                        <span class="item-title" @click="allList4NewStyle('13')">绿账行动</span>
+                        <span class="item-title" @click="allList4NewStyle('07')">垃圾分类</span> 
+                        <span class="item-title" @click="allList4NewStyle('16')">惠众绿色</span>
+                        <span class="item-title" @click="allList4NewStyle('18')">中奖名单</span>
+                        <span class="item-title" @click="allList4NewStyle('05')">政策法规</span>
                     </p>
                 </div>
             </div>

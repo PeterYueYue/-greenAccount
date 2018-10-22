@@ -10,12 +10,12 @@
             </div>
              <div class="form-item">
                 <span class="form-item-name">密码：</span>
-                <el-input v-model="pwd" placeholder="请输入密码"></el-input>
+                <el-input v-model="pwd" placeholder="请输入密码" type="password"></el-input>
             </div>
             <div class="form-item">
                 <span class="form-item-name">验证码：</span>
                 <el-input v-model="yzm" placeholder="请输入验证码" class="yanzhengma"></el-input>
-                <img src="" alt="" ref="yanzhengma" style="width:117px;height:44px;" class="yzm-img">
+                <img src="" alt="" ref="yanzhengma" style="width:117px;height:44px;" class="yzm-img" @click="getpcrimg">
             </div>
             <div class="form-item login">
                 <button @click.prevent="login" class="submit-btn">登录</button>
@@ -53,14 +53,26 @@ export default {
                     uuId:this.uuId,
                 }
             }).then(res =>{
-                console.log(res)
+                console.log(res.data)
+                if(res.data.msg){
+                    alert(res.data.msg);
+                    this.getpcrimg();
+                    
+                }else {
+                     res.data.islogin=true
+                     this.$store.dispatch('getToken', res.data);
+                     
+                     this.$cookies.set("token",res.data.token,res.data.expire);
+                     this.$cookies.set("username",res.data.userName,res.data.expire);
+                     
+                }
             })
         },
         getpcrimg(){
-            console.log('22')
             api.pcrimg().then(res=>{
                 this.$refs.yanzhengma.setAttribute('src','data:image/png;base64,'+res.data.pcrImg);
                 this.uuId=res.data.uuid;
+                this.yzm=''
             })
         }
     }
