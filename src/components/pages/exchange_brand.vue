@@ -40,7 +40,7 @@
     </div>
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listData">
+           v-for="(items,index) in listData" v-show="listData.length !== 0">
         <router-link :to="{path: '/exchange/detail/', query: { id: items.id }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
                v-if="items.prodPic">
@@ -56,8 +56,9 @@
           <div class="ex_list_btn" v-else>立即兑换</div>
         </router-link>
       </div>
+      <div class="ex_nodata" v-show="listData.length == 0">暂无数据</div>
     </div>
-    <pagination></pagination>
+    <pagination v-show="listData.length !== 0"></pagination>
   </div>
 </template>
 <script>
