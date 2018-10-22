@@ -2,10 +2,10 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿互动 > <span>中行专区</span></div>
     <ul class="lv_bd_tab">
-      <li class="active" @click="allList4NewStyle">全部</li>
-      <li @click="allList4NewStyleOne">套卡升级(申请）</li>
-      <li @click="allList4NewStyleTwo">绿色72色</li>
-      <li @click="allList4NewStyleThree">线下活动</li>
+      <li :class="activeIndex===0?'active':''" @click="allList4NewStyle(0)">全部</li>
+      <li :class="activeIndex===1?'active':''" @click="allList4NewStyle(1)">套卡升级(申请）</li>
+      <li :class="activeIndex===2?'active':''" @click="allList4NewStyle(2)">绿色72色</li>
+      <li :class="activeIndex===3?'active':''" @click="allList4NewStyle(3)">线下活动</li>
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
          @mouseleave.stop="listHover(false,index)">
@@ -30,60 +30,44 @@
   export default {
     data() {
       return {
-        listData: []
+        listData: [],
+        activeIndex: 0
       }
     },
     components: {pagination},
     mounted() {
-      this.allList4NewStyle();
+      this.allList4NewStyle(0);
     },
     methods: {
-      allList4NewStyle() {
+      allList4NewStyle(status) {
+        let category = '';
+        switch (status) {
+          case 0:
+            category = '22,25,26';
+            break;
+          case 1:
+            category = '22';
+            break;
+          case 2:
+            category = '25';
+            break;
+          case 3:
+            category = '26';
+            break;
+          default:
+            category = '22,25,26';
+            break;
+        }
         api.allList4NewStyle({
           data: {
-            category: "22,25,26",
+            category: category,
           },
         }).then(res => {
           res.data.newsList.content.map(items => {
             items.hoverShow = false;
           });
           this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleOne() {
-        api.allList4NewStyle({
-          data: {
-            category: "22",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleTwo() {
-        api.allList4NewStyle({
-          data: {
-            category: "25",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleThree() {
-        api.allList4NewStyle({
-          data: {
-            category: "26",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
+          this.activeIndex = status
         })
       },
       listHover(status, index) {
