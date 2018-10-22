@@ -1,5 +1,4 @@
 import {stat} from "fs";
 
 
-
-export var area               = state => state.area;
+export const area = state => state.area;

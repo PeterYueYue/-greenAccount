@@ -1,1 +1,1 @@
-export var GetArea                 = 'GetArea';
+export const GetArea = 'GetArea';

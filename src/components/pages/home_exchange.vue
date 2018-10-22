@@ -28,40 +28,63 @@
         </router-link>
       </div>
     </div>
-    <pagination></pagination>
+    <pagination
+      :total="pageCount"
+      :page-size="pageSize"
+      @current-change="pageChange"
+      :current-page.sync="pageNow">
+    </pagination>
   </div>
 </template>
 <script>
-  import api from "@/api/api.js";
-  import '@/assets/pages/exchange.css';
-  import pagination from '@/components/common/pagination.vue';
+	import api from "@/api/api.js";
+	import {mapGetters} from 'vuex';
+	import '@/assets/pages/exchange.css';
+	import pagination from '@/components/common/pagination.vue';
 
-  export default {
-    data() {
-      return {
-        listData: []
-      }
-    },
-    components: {pagination},
-    mounted() {
-      this.getProductList();
-    },
-    methods: {
-      getProductList() {
-        api.getProductList({
-          data: {
-            "prodExchBrid": "310000000000",
-          },
-        }).then(res => {
-          res.data.map(items => {
-            items.hoverShow = true;
-          });
-          this.listData = res.data;
-        })
-      },
-      listHover(status, index) {
-        this.listData[index].hoverShow = status;
-      },
-    }
-  }
+	export default {
+		data() {
+			return {
+				listData: [],
+				pageCount: 0,
+				pageSize: 10,
+				pageNow: 1,
+			}
+		},
+		components: {pagination},
+		mounted() {
+			this.getProductList();
+		},
+		watch: {
+			area(){
+				this.getProductList()
+			}
+		},
+		computed: mapGetters({
+			area: "area"
+		}),
+		methods: {
+			getProductList() {
+				api.getProductList({
+					data: {
+						prodExchBrid: this.area.id,
+						// pageSize: 8,
+						// startPage: 5
+					},
+				}).then(res => {
+					res.data.map(items => {
+						items.hoverShow = true;
+					});
+					this.listData = res.data;
+				})
+			},
+			listHover(status, index) {
+				this.listData[index].hoverShow = status;
+			},
+			//分页
+			pageChange(pageNow) {
+				this.listData(pageNow, this.pageSize);
+			},
+		}
+	}
 </script>
