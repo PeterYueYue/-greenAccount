@@ -253,3 +253,10 @@
   margin-top: 23px;
   background: #57B751;
 }
+
+.ex_nodata {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  margin: 150px 0px 100px;
+}

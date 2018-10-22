@@ -2,14 +2,14 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿互动 > <span>活动天地</span></div>
     <ul class="lv_bd_tab">
-      <li class="active" @click="allList4NewStyle">全部</li>
-      <li @click="allList4NewStyleOne">活动预告</li>
-      <li @click="allList4NewStyleTwo">活动成果</li>
-      <li @click="allList4NewStyleThree">中奖名单</li>
-      <li @click="allList4NewStyleFour">抽奖活动</li>
+      <li :class="activeIndex===0?'active':''" @click="allList4NewStyle(0)">全部</li>
+      <li :class="activeIndex===1?'active':''" @click="allList4NewStyle(1)">活动预告</li>
+      <li :class="activeIndex===2?'active':''" @click="allList4NewStyle(2)">活动成果</li>
+      <li :class="activeIndex===3?'active':''" @click="allList4NewStyle(3)">中奖名单</li>
+      <li :class="activeIndex===4?'active':''" @click="allList4NewStyle(4)">抽奖活动</li>
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
-         @mouseleave.stop="listHover(false,index)">
+         @mouseleave.stop="listHover(false,index)" v-show="listData.length !== 0">
       <router-link :to="{path: '/lvzhanghu/', query: { id: items.id, style: items.newsStyle }}">
         <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
 				.newsTime | momentTime}}</span><br/>{{items.newsTime | momentYear}}</span></div>
@@ -20,7 +20,8 @@
         <img src="@/assets/lvz_icon_arrow.png" alt="" class="lv_bd_arrow" v-if="items.hoverShow">
       </router-link>
     </div>
-    <pagination></pagination>
+    <div class="lv_nodata" v-show="listData.length == 0">暂无数据</div>
+    <pagination v-show="listData.length !== 0"></pagination>
   </div>
 </template>
 <script>
@@ -32,71 +33,46 @@
     data() {
       return {
         listData: [],
+        activeIndex: 0
       }
     },
     components: {pagination},
     mounted() {
-      this.allList4NewStyle();
+      this.allList4NewStyle(0);
     },
     methods: {
-      allList4NewStyle() {
+      allList4NewStyle(status) {
+        let category = '';
+        switch (status) {
+          case 0:
+            category = '09,10,18,23';
+            break;
+          case 1:
+            category = '09';
+            break;
+          case 2:
+            category = '10';
+            break;
+          case 3:
+            category = '18';
+            break;
+          case 4:
+            category = '23';
+            break;
+          default:
+            category = '09,10,18,23';
+            break;
+        }
         api.allList4NewStyle({
           data: {
-            category: "09,10,18,23",
+            category: category,
           },
         }).then(res => {
           res.data.newsList.content.map(items => {
             items.hoverShow = false;
           });
           this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleOne() {
-        api.allList4NewStyle({
-          data: {
-            category: "09",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleTwo() {
-        api.allList4NewStyle({
-          data: {
-            category: "10",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleThree() {
-        api.allList4NewStyle({
-          data: {
-            category: "18",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
-        })
-      },
-      allList4NewStyleFour() {
-        api.allList4NewStyle({
-          data: {
-            category: "23",
-          },
-        }).then(res => {
-          res.data.newsList.content.map(items => {
-            items.hoverShow = false;
-          });
-          this.listData = res.data.newsList.content;
+          this.activeIndex = status
         })
       },
       listHover(status, index) {
