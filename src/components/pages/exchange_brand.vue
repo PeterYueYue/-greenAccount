@@ -46,7 +46,7 @@
                v-if="items.prodPic">
           <img src="@/assets/ex_pic.png" alt="" class="ex_list_pic" v-else>
           <div class="ex_list_name">{{items.prodName}}</div>
-          <div class="ex_list_score">{{items.prodPoints}}</div>
+          <div class="ex_list_score">{{items.prodPoints}}积分</div>
           <div class="ex_list_address">
             <img src="@/assets/ex_icon_address.png" alt="" v-if="items.hoverShow">
             <img src="@/assets/ex_icon_address_select.png" alt="" v-else>
