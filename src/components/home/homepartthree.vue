@@ -46,7 +46,7 @@
                 <div class="action-content-right">                  
                     <div class="action-list"  v-for="(item,index) in noticelist" :key="item.id" :style="action_list?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
                         <p class="small-content" :class="contentIndex!=index?'':'active'" @mouseenter="contentIndex=index">{{item.title}} <span class="notice-time">{{item.date}}</span> </p>
-                        <router-link :to="'/lvzhanghu/'+item.id+'/'+item.newsStyle">
+                        <router-link :to="'/lvzhanghu/?id='+item.id+'&style='+item.newsStyle">
                             <div class="action-content-right-top" :class="contentIndex==index?'active':''">
                                 <div class="action-right-title">
                                     上海绿色账户平台维护公告
@@ -101,6 +101,9 @@ export default {
     mounted(){
         this.allList4NewStyle("13,16,05,01,07");
         window.addEventListener('scroll',this.actionpage)
+    },
+    destroyed(){
+         window.removeEventListener('scroll',this.actionpage)
     },
     methods:{
         actionpage(){

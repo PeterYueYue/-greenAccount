@@ -177,6 +177,9 @@ export default {
     mounted(){
        window.addEventListener('scroll',this.page)
     },
+    destroyed(){
+         window.removeEventListener('scroll',this.page)
+    },
     methods:{
         page(){
             var top=$('.home-active-contain .part-title').offset().top;

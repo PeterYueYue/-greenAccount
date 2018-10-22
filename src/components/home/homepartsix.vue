@@ -266,7 +266,9 @@ export default {
             this.maplist=false;
             this.ranklist=false;
         })
-        
+    },
+    destroyed(){
+         window.removeEventListener('scroll',this.mappage)
     },
     methods:{
         mappage(){

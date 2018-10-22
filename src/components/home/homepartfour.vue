@@ -92,6 +92,9 @@ export default {
         this.getdoninteglist();
         window.addEventListener('scroll',this.rankpage)
     },
+    destroyed(){
+         window.removeEventListener('scroll',this.rankpage)
+    },
     methods:{
         rankpage(){
             var top=$('.home-rank-contain .part-title').offset().top;

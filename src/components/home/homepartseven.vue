@@ -54,6 +54,9 @@ export default {
     mounted(){
          window.addEventListener('scroll',this.otherpage)
     },
+    destroyed(){
+         window.removeEventListener('scroll',this.otherpage)
+    },
     methods:{
         otherpage(){
             var top=$('.home-other-contain .part-title').offset().top;

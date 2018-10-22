@@ -30,6 +30,9 @@ export default {
     mounted(){
          window.addEventListener('scroll',this.videopage)
     },
+    destroyed(){
+         window.removeEventListener('scroll',this.videopage)
+    },
     methods:{
         videopage(){
             var top=$('.home-video-content .part-title').offset().top;

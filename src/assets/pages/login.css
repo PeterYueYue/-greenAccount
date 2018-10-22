@@ -1,0 +1,40 @@
+.login-contain{
+    width: 500px;
+    margin: 0 auto;
+}
+.login-contain .el-input{
+    width: 410px;
+}
+.login-contain .yanzhengma.el-input{
+    width: 268px;
+}
+.login-contain .yzm-img{
+    vertical-align: middle;
+}
+.login-contain .form-item{
+    margin-top: 29px;
+    /* text-align: center; */
+}
+.login-contain .form-item.login{
+    text-align: center;
+}
+.login-contain .form-item-name{
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    color: #333333;
+}
+.login-contain .submit-btn{
+    width: 199px;
+    height: 47px;
+    background-color: #20A345;
+    border: none;
+    color: white;
+    margin: 25px auto;
+}
+.login-contain .tool{
+    font-size: 12px;
+    color:#FD4E4E;
+    margin-top: 55px;
+    text-align: center;
+}

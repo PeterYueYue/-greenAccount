@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Home from '@/components/home/home.vue'  //首页
+import Login from '@/components/login.vue'  //登录
 import exchange from '@/components/pages/exchange.vue'  //礼品兑换
 import exchangeList from '@/components/pages/exchange_list.vue'  //礼品兑换 列表
 import exchangeDetail from '@/components/pages/exchange_detail.vue'  //礼品兑换 详情
@@ -28,7 +29,12 @@ export default new Router({
       path: '/',
       name: '首页',
       component: Home,
-    }, {
+    }, 
+    {
+      path: '/login',
+      name: '登录',
+      component: Login,
+    },{
       path: '/home_exchange',
       name: '兑换',
       component: homeExchange,

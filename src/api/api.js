@@ -96,6 +96,11 @@ const configajaxCheckCanSubmit = {
   "version": "1.0",
   "name": "ajaxCheckCanSubmit",
 };
+const configuserlogin = {
+  "version": "1.0",
+  "name":"userlogin",
+	"app_key": "app_id_12",
+}
 export default {
   UUid() {
   },
@@ -197,5 +202,10 @@ export default {
     let config = Object.assign(configajaxCheckCanSubmit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
+  userlogin(params){
+    let config = Object.assign(configuserlogin, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+    
+  }
 
 }

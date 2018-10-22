@@ -7,10 +7,12 @@
                     <p class="en-title-name">REDEEM GIFT</p>
                 </div>
                 <div class="title-right">
-                    <p>
-                        <span>点击查看全部</span> 
-                        <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
-                    </p>
+                    <router-link to="/exchange">
+                        <p>
+                            <span>点击查看全部</span> 
+                            <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
+                        </p>
+                    </router-link>
                 </div>
             </div>     
             <div class="part-content">
@@ -34,22 +36,25 @@
                 </div>
                 <div class="exchange-content-right">
                     <div class="exchange-inside-contain" ref="exchangeInside">
-                        <div class="exchange-content" v-for="(item,index) in product" :key="item.id" :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
-                            <div class="change-content-top">
-                                <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
+                        <router-link :to="'/exchange/detail/?id='+item.id" v-for="(item,index) in product" :key="item.id">
+                            <div class="exchange-content"  :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
+                                <div class="change-content-top">
+                                    <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
+                                </div>
+                                <div class="exchange-content-bottom">
+                                    <p class="exchange-detail-name">{{item.prodName}}</p>
+                                    <p class="exchange-detail-count">{{item.prodPoints}}</p>
+                                    <p class="exchange-detail-address">
+                                        <img src="@/assets/icon/position.png" alt="">
+                                    {{item.productInfo.prodReceiveAddress}}领取
+                                    </p>
+                                    <p class="exchange-detail-time">
+                                    {{item.productInfo.prodProvider}}提供
+                                    </p>
+                                </div>
                             </div>
-                            <div class="exchange-content-bottom">
-                                <p class="exchange-detail-name">{{item.prodName}}</p>
-                                <p class="exchange-detail-count">{{item.prodPoints}}</p>
-                                <p class="exchange-detail-address">
-                                    <img src="@/assets/icon/position.png" alt="">
-                                   {{item.productInfo.prodReceiveAddress}}领取
-                                </p>
-                                <p class="exchange-detail-time">
-                                   {{item.productInfo.prodProvider}}提供
-                                </p>
-                            </div>
-                        </div>
+                        </router-link>
+                        
                     </div>                 
                 </div>
                 <div class="exchange-content-right-btn">
@@ -80,10 +85,10 @@ export default {
     },
     mounted(){
         this.getProductList();
-       
+        window.addEventListener('scroll',this.exchangepage)
     },
-    updated(){
-         window.addEventListener('scroll',this.exchangepage)
+    destroyed(){
+         window.removeEventListener('scroll',this.exchangepage)
     },
     methods:{
         exchangepage(){

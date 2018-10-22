@@ -13,7 +13,8 @@ export default new Vuex.Store({
         area:{
             brName:'全市',
             id:'310000000000'
-        }
+        },
+        user_islogin:false,
     },
     mutations:{
         GetArea(state,areadate){
