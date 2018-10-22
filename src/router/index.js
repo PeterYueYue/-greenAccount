@@ -22,6 +22,7 @@ import zhzq from '@/components/pages/zhzq.vue'  //中行专区
 import lv_volunteer from '@/components/pages/lv_volunteer.vue'  //志愿者活动
 import lv_volunteer_details from '@/components/pages/lv_volunteer_details.vue'  //志愿者活动详情
 import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
+import games from '@/components/pages/games.vue'  //趣味游戏
 
 export default new Router({
   routes: [
@@ -29,12 +30,11 @@ export default new Router({
       path: '/',
       name: '首页',
       component: Home,
-    }, 
-    {
+    }, {
       path: '/login',
       name: '登录',
       component: Login,
-    },{
+    }, {
       path: '/home_exchange',
       name: '兑换',
       component: homeExchange,
@@ -57,12 +57,11 @@ export default new Router({
           component: exchangeBrand,
         }
       ]
-    },
-    {
+    }, {
       path: '/integral_list',
       name: '积分捐赠',
       component: integralList,
-    },{
+    }, {
       path: '/integral_detail',
       name: '积分捐赠详情',
       component: integralDetail
@@ -71,46 +70,50 @@ export default new Router({
       path: '/lvzhanghu',
       name: '绿账宝',
       component: lvzhanghu,
-    },{
-		  path: '/lvbd',
-		  name: '绿账宝典',
-		  component: lvbd,
-	  },{
+    }, {
+      path: '/lvbd',
+      name: '绿账宝典',
+      component: lvbd,
+    }, {
       path: '/lvxd',
       name: '绿账行动',
       component: lvxd,
-    },{
+    }, {
       path: '/hzvs',
       name: '惠众绿色',
       component: hzvs,
-    },{
+    }, {
       path: '/hzdw',
       name: '合作单位',
       component: hzdw,
-    },{
+    }, {
       path: '/hdtd',
       name: '活动天地',
       component: hdtd,
-    },{
+    }, {
       path: '/zhzq',
       name: '中行专区',
       component: zhzq,
-    },{
+    }, {
       path: '/lv_volunteer',
       name: '志愿者活动',
       component: lv_volunteer,
-    },{
+    }, {
       path: '/lv_volunteer_details',
       name: '志愿者活动详情',
       component: lv_volunteer_details
-    },{
+    }, {
       path: '/apply_company',
       name: '申请爱心单位',
       component: applyCompany,
+    }, {
+      path: '/games',
+      name: '趣味游戏',
+      component: games,
     },
   ],
-  scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    return {x: 0, y: 0}
   }
 
 })
