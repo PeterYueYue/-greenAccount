@@ -181,10 +181,10 @@
             "createDate": this.selectDate ? this.selectDate.id : '',
           },
         }).then(res => {
-          res.data.map(items => {
+          res.data.content.map(items => {
             items.hoverShow = true;
           });
-          this.listData = res.data;
+          this.listData = res.data.content;
         })
       },
       listHover(status, index) {
