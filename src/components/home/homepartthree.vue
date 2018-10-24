@@ -8,41 +8,44 @@
                 </div>
                 <div class="title-right">
                     <p class="action-choose">
-                        <span class="item-title active" @click="allList4NewStyle('13,16,05,18,07')">全部</span>
-                        <span class="item-title" @click="allList4NewStyle('13')">绿账行动</span>
-                        <span class="item-title" @click="allList4NewStyle('07')">垃圾分类</span> 
-                        <span class="item-title" @click="allList4NewStyle('16')">惠众绿色</span>
-                        <span class="item-title" @click="allList4NewStyle('18')">中奖名单</span>
-                        <span class="item-title" @click="allList4NewStyle('05')">政策法规</span>
+                        <span class="item-title" :class="activeIndex==1?'active':''" @click="allList4NewStyle('13,16,05,18,07',1)">全部</span>
+                        <span class="item-title" :class="activeIndex==2?'active':''" @click="allList4NewStyle('13',2)">绿账行动</span>
+                        <span class="item-title" :class="activeIndex==3?'active':''" @click="allList4NewStyle('07',3)">垃圾分类</span> 
+                        <span class="item-title" :class="activeIndex==4?'active':''" @click="allList4NewStyle('16',4)">惠众绿色</span>
+                        <span class="item-title" :class="activeIndex==5?'active':''" @click="allList4NewStyle('18',5)">中奖名单</span>
+                        <span class="item-title" :class="activeIndex==6?'active':''" @click="allList4NewStyle('05',6)">政策法规</span>
                     </p>
                 </div>
             </div>
             
             <div class="part-content">
-                <div class="action-content-left partone" :style="action_left?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
-                    <div class="action-content-left-top">
-                        <img src="@/assets/action.png" alt="">
-                    </div>
-                    <div class="action-content-left-bottom">
-                        <div class="action-left-date">
-                            <div class="date-day">{{noticefirst.day}}</div>
-                            <div class="date-year">{{noticefirst.littledate}}</div>
+                <router-link :to="'/lvzhanghu/?id='+noticefirst.id+'&style='+noticefirst.newsStyle">
+                    <div class="action-content-left partone" :style="action_left?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
+                        <div class="action-content-left-top">
+                            <img src="@/assets/action.png" alt="">
                         </div>
-                        <div class="action-left-notice">
-                            <div class="action-left-title">
-                                上海绿色账户平台维护公告
+                        <div class="action-content-left-bottom">
+                            <div class="action-left-date">
+                                <div class="date-day">{{noticefirst.day}}</div>
+                                <div class="date-year">{{noticefirst.littledate}}</div>
                             </div>
-                            <div class="action-left-middle"></div>
-                            <div class="action-left-content">
-                                <p>亲爱的市民朋友：</p>
-                                <div class="notice-contain">
-                                    <p class="left-notice-content">{{noticefirst.newsContent}}</p>
-                                    <span @click="displayDetail" class="ellipsis">...</span>  
-                                </div>    
+                            <div class="action-left-notice">
+                                <div class="action-left-title">
+                                    上海绿色账户平台维护公告
+                                </div>
+                                <div class="action-left-middle"></div>
+                                <div class="action-left-content">
+                                    <p>亲爱的市民朋友：</p>
+                                    <div class="notice-contain">
+                                        <p class="left-notice-content">{{noticefirst.newsContent}}</p>
+                                        <span  class="ellipsis">...</span>  
+                                    </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </router-link>
+                
                 <div class="action-content-right">                  
                     <div class="action-list"  v-for="(item,index) in noticelist" :key="item.id" :style="action_list?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
                         <p class="small-content" :class="contentIndex!=index?'':'active'" @mouseenter="contentIndex=index">{{item.title}} <span class="notice-time">{{item.date}}</span> </p>
@@ -56,7 +59,7 @@
                                         <p>亲爱的市民朋友：</p>
                                         <div class="notice-contain">
                                             <p class="right-notice-content">{{item.newsContent}}</p>
-                                            <span @click="displayDetail" class="ellipsis">...</span>  
+                                            <span class="ellipsis">...</span>  
                                         </div>    
                                     </div>
                                     <div class="right-notice-detail">
@@ -72,7 +75,7 @@
                     </div>
                 </div>
                 <div class="action-bottom partone" :style="action_scrollbottom?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
-                    <p class="bottom-right">
+                    <p class="bottom-right" @click="lookmore">
                         <span>点击查看全部</span> 
                         <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
                     </p>
@@ -87,7 +90,7 @@ import $ from 'jquery'
 export default {
     data(){
         return {
-            
+            activeIndex:1,
             contentIndex:null,
             noticelist:[],
             noticefirst:{},
@@ -99,7 +102,7 @@ export default {
         }
     },
     mounted(){
-        this.allList4NewStyle("13,16,05,01,07");
+        this.allList4NewStyle("13,16,05,01,07",1);
         window.addEventListener('scroll',this.actionpage)
     },
     destroyed(){
@@ -121,10 +124,36 @@ export default {
                 this.action_scrollbottom=true;
             }
         },
-        displayDetail(){
+        lookmore(){
+            if(this.activeIndex==1||this.activeIndex==2){
+                this.$router.push({
+                    name: '绿账行动'
+                })
+            }else if(this.activeIndex==3){
+                this.$router.push({
+                    name:'绿账宝典',
+                    params: { index: 3 }
 
+                })
+            }else if(this.activeIndex==4){
+                this.$router.push({
+                    name:'惠中绿色',
+                })
+            }else if(this.activeIndex==5){
+                 this.$router.push({
+                    name:'活动天地',
+                    params: { index: 3 }
+                })
+            }else if(this.activeIndex==6){
+                this.$router.push({
+                    name:'绿账宝典',
+                    params: { index: 1 }
+
+                })
+            }
         },
-        allList4NewStyle(cate){
+        allList4NewStyle(cate,index){
+            this.activeIndex=index
             api.allList4NewStyle({
                 data:{
                     category:cate,
@@ -133,7 +162,6 @@ export default {
                 },
               }  
             ).then(res => {
-
                 res.data.newsList.content.forEach((item,index) =>{
                     var date = new Date(item.newsTime)
                     var Y = date.getFullYear() + '-';
@@ -144,10 +172,7 @@ export default {
                     item.littledate=item.date.substring(0,7)
                 })
                 this.noticefirst=res.data.newsList.content[0];
-                this.noticelist = res.data.newsList.content.splice(0,5);
-                console.log(this.noticelist)
-                // var time = new Date(this.noticefirst.newsTime)
-                // this.noticefirst.newsTime=time;
+                this.noticelist = res.data.newsList.content.splice(1,5);
             })
         }
     }

@@ -24,7 +24,6 @@ export default new Vuex.Store({
             this.state.area = areadate;
         },
         GetToken(state,data){
-            console.log(data)
             this.state.username=data.userName;
             this.state.user_islogin=data.islogin;
             this.state.token = data.token;

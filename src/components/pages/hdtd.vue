@@ -38,7 +38,8 @@
     },
     components: {pagination},
     mounted() {
-      this.allList4NewStyle(0);
+      this.activeIndex=this.$route.params.index||0
+      this.allList4NewStyle(this.$route.params.index||0);
     },
     methods: {
       allList4NewStyle(status) {

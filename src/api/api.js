@@ -113,6 +113,10 @@ const configdonatePoints = {
   "version": "1.0",
   "name": "donatePoints",
 };
+const configuserdetail ={
+  "version":"1.0",
+	"name":"user.detail",
+}
 
 export default {
   UUid() {
@@ -232,5 +236,9 @@ export default {
     let config = Object.assign(configdonatePoints, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
+  getuserdetail(params){
+    let config = Object.assign(configuserdetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  }
 
 }

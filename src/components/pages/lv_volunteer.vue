@@ -37,7 +37,12 @@
     },
     methods: {
       pubActList() {
-        api.pubActList({}).then(res => {
+        api.pubActList({
+          data:{
+            startPage:1,
+            pageSize:10
+          }
+        }).then(res => {
           this.listData = res.data.pubActList.content;
         })
       },

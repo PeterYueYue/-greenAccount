@@ -59,8 +59,6 @@
       box-sizing: border-box;
       background-color: white;
       min-width: 1400px;
-      transform: translate3d(0px, 0px, 1px);
-      -webkit-transform: translate3d(0px, 0px, 1px);
     }
     .map-contain{
       width:100%;
@@ -108,15 +106,16 @@
     z-index: 98;
     background-color: white;
   }
-  .home-active-contain,.home-action-contain,.home-rank-contain,.home-video-containt,.home-other-contain,.home-map-contain{
-    /* opacity: 0; */
-  }
   .home-exchange-content,.home-active-content,.home-action-content,.home-rank-content,.home-video-content,.home-other-content,.home-map-content{
     width: 1280px;
     margin: 0 auto;
     
   }
     /*-----------------------------首页兑换板块---------------------------  */
+  .home-exchange-contain{
+      transform: translate3d(0px, 0px, 1px);
+      -webkit-transform: translate3d(0px, 0px, 1px);
+  }
   .change-content-top{
     width: 346px;
     height: 264px;;
@@ -231,6 +230,8 @@
     line-height: 32px;
     margin-bottom: 15px;
     font-size: 14px;
+    cursor: pointer;
+    
   }
   .active-content-title.active{
     color: #20a345;
@@ -427,6 +428,13 @@
     display: inline-block;
     border-left: 1px solid #BFBFBF;
     height: 18px;
+  }
+  .home-active-contain .bottom-title-right{
+    float: right;
+    margin-top: 30px;
+  }
+  .home-active-contain .bottom-title-right span,.home-active-contain .bottom-title-right img{
+    vertical-align: middle;
   }
   
   /* -----------------------------首页活动结束-----------------------------*/
@@ -661,6 +669,15 @@
       color: #666666;
       margin-top: 18px;
     }
+    .donate-notice .donate-detail div.donate-time,.donate-notice .donate-detail div.donate-title{
+      margin-bottom: 10px;
+      color: #333333;
+    }
+    .donate-notice .donate-detail div.donate-content{
+      font-size: 12px;
+      margin-top: 20px;
+      line-height:2
+    }
     .donate-notice .donate-more span{
       float: right;
       margin-top: 28px;
@@ -719,18 +736,38 @@
       padding: 3.13%;
       position: relative;
     }
-    .home-video{
-      position: absolute;
-      top:0;
-      left: 0;
-      width: 100%;
-      height: 100%
+    .video-mask-contain{
+      width: 700px;
+      margin: 10% auto;
     }
     .playbtn{
       margin-top: 140px;
     }
     .playbtn:hover{
       cursor: pointer;
+    }
+    .video-mask{
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, .5);
+      z-index: 999;
+    }
+    .videomask-enter-active,.videomask-leave-active{
+      transition: all .5s;
+    }
+    .isvideo-enter-active,.isvideo-leave-active{
+      transition: all 1s;
+    }
+    .isvideo-enter,.isvideo-leave-to{
+      transform: translateY(-500px);
+      opacity: 0;
+    
+    }
+    .videomask-enter,.videomask-leave-to{
+      opacity: 0;
     }
   /* --------------------------绿色时光结束---------------------------- */
 

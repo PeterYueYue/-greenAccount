@@ -64,6 +64,9 @@ export default {
                      
                      this.$cookies.set("token",res.data.token,res.data.expire);
                      this.$cookies.set("username",res.data.userName,res.data.expire);
+                      this.$router.push({
+                            path:'/lvzx'
+                        })
                      
                 }
             })

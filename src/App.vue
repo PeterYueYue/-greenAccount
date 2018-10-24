@@ -42,19 +42,28 @@
       }
     },
     beforeCreate(){
-      if(this.$cookies.get("username")){
-        this.login=true
-      }else this.login=false
-      this.userName=this.$cookies.get("username")
-      this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login});
+       if(this.$cookies.get("username")){
+          this.login=true
+          }else this.login=false
+          this.userName=this.$cookies.get("username")
+          this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login})
     },
     mounted(){
-      
-      
+       window.setInterval(()=>{
+         if(this.$cookies.get("username")){
+            this.login=true
+          }else this.login=false
+          this.userName=this.$cookies.get("username")
+          this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login});
+      },18000)
+    },
+    destroyed(){
+
     },
     methods:{
       checkExpired(){
-
+         this.$cookies.remove("token");
+         this.$cookies.remove("username");
       }
     }
   }

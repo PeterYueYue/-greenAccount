@@ -402,7 +402,6 @@ export default {
                     "districtName":Name
                 }
             }).then(res =>{
-                console.log(res.data)
                this.detailrank=res.data;
             })
         }

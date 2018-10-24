@@ -59,15 +59,10 @@
                         <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==3">
                     </span>
                 <div class="list-detail" v-show="navIndex==3" @click="handleSelect('3')">
-                  <router-link to="/lvbd">
-                    <div>绿账宝典</div>
+                  <router-link to="/lvzx">
+                    <div>绿账中心</div>
                   </router-link>
-                  <router-link to="/lvxd">
-                    <div>绿账行动</div>
-                  </router-link>
-                  <router-link to="/hzvs">
-                    <div>惠众绿色</div>
-                  </router-link>
+                 
                 </div>
               </el-menu-item>
               <el-menu-item index="4" disabled @mouseover.native="navIndex=4" @mouseleave.native="navIndex=0">
@@ -77,8 +72,20 @@
                         <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==4">
                     </span>
                 <div class="list-detail" v-show="navIndex==4" @click="handleSelect('4')">
+                   <router-link to="/lvbd">
+                    <div>绿账宝典</div>
+                  </router-link>
+                  <router-link to="/lvxd">
+                    <div>绿账行动</div>
+                  </router-link>
                   <router-link to="/hzdw">
                     <div>合作单位</div>
+                  </router-link>
+                   <router-link to="/hzvs">
+                    <div>惠众绿色</div>
+                  </router-link>
+                  <router-link to="/zhzq">
+                    <div>中行专区</div>
                   </router-link>
                 </div>
               </el-menu-item>
@@ -89,17 +96,14 @@
                         <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==5">
                     </span>
                 <div class="list-detail" v-show="navIndex==5" @click="handleSelect('5')">
-                  <router-link to="/hdtd">
-                    <div>活动天地</div>
-                  </router-link>
-                  <router-link to="/zhzq">
-                    <div>中行专区</div>
-                  </router-link>
-                  <router-link to="/integral_list">
+                   <router-link to="/integral_list">
                     <div>积分捐赠</div>
                   </router-link>
-                  <router-link to="/lv_volunteer">
+                   <router-link to="/lv_volunteer">
                     <div>志愿者申请</div>
+                  </router-link>
+                  <router-link to="/hdtd">
+                    <div>活动天地</div>
                   </router-link>
                   <div>趣味游戏</div>
                 </div>
@@ -168,7 +172,10 @@ export default {
       quitHandle(){
           this.$cookies.remove("token");
           this.$cookies.remove("username");
-           this.$store.dispatch('getToken', {token:'',userName:'',islogin:false});
+          this.$store.dispatch('getToken', {token:'',userName:'',islogin:false});
+          this.$router.push({
+            path:'/'
+        })
       }
     }
 

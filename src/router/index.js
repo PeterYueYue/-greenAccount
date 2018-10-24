@@ -22,6 +22,8 @@ import zhzq from '@/components/pages/zhzq.vue'  //中行专区
 import lv_volunteer from '@/components/pages/lv_volunteer.vue'  //志愿者活动
 import lv_volunteer_details from '@/components/pages/lv_volunteer_details.vue'  //志愿者活动详情
 import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
+import userinfo from '@/components/userInfo/userinfo.vue'  //绿账中心
+import baseinfo from '@/components/userInfo/baseinfo.vue' //绿账中心基本资料
 
 export default new Router({
   routes: [
@@ -71,6 +73,18 @@ export default new Router({
       path: '/lvzhanghu',
       name: '绿账宝',
       component: lvzhanghu,
+    },
+    {
+      path: '/lvzx',
+      name: '绿账中心',
+      component: userinfo,
+      children:[
+        {
+          path:'',
+          name:'',
+          component:baseinfo
+        }
+      ]
     },{
 		  path: '/lvbd',
 		  name: '绿账宝典',

@@ -7,23 +7,18 @@
                     <p class="title-name">绿账活动</p>
                     <p class="en-title-name">EVENTS GALLERY</p>
                 </div>
-                <div class="title-right">
-                    <p>
-                        <span>点击查看全部</span> 
-                        <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
-                    </p>
-                </div>
+                
             </div>
             <div class="part-content">
                 <div class="active-content-left partone" :style="scrolllist?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
-                    <p class="active-content-title active">
+                    <p class="active-content-title" :class="whichpart?'active':''" @click="whichpart=true">
                         <span class="active-line"></span> 积分捐赠
                     </p>
-                    <p class="active-content-title">
+                    <p class="active-content-title"  :class="!whichpart?'active':''" @click="whichpart=false">
                         <span class="active-line"></span> 公益志愿    
                     </p>
                 </div>
-                <div class="active-content-right">
+                <div class="active-content-right" v-if="whichpart">
                     <div class="active-content-big-img" :style="scrollbig?' opacity: 1;transform: translateY(0);transition:all 1.5s .2s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .2s'">
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==0}">
                         <img src="@/assets/activeone.png" alt="" class="img-items" :class="{active:activeIndex==1}">
@@ -150,12 +145,35 @@
                         </div>
                     </div> 
                 </div>
+                <div class="active-content-right" v-if="!whichpart">
+                    <div class="lv_volunteer_list" v-for="(items) in activelistData">
+                        <router-link :to="{path: '/lv_volunteer_details/', query: { id: items[5] }}">
+                        <div class="title">{{items[1]}}</div>
+                        <div class="text"><img src="@/assets/lv_v_icon_heart.png" alt="" class="lv_volunteer_icon">{{items[6]}}<img
+                            src="@/assets/lv_v_icon_address.png" alt="" class="lv_volunteer_icon_address">{{items[2]}}
+                        </div>
+                        <div class="text">
+                            <img src="@/assets/lv_v_icon_date.png" alt="" class="lv_volunteer_icon">活动日期：{{items[3]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span><span class="finished" v-show="items[4]==='已结束'">已结束</span>
+                        </div>
+                        </router-link>
+                    </div>
+                </div>
+                <div class="bottom-title-right">
+                    <router-link :to="whichpart?'/integral_list':'/lv_volunteer'">
+                        <p>
+                            <span>点击查看全部</span> 
+                            <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
+                        </p>
+                    </router-link>
+                    
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script>
 import $ from 'jquery'
+import api from "@/api/api.js";
 export default {
     data(){
         return {
@@ -171,11 +189,14 @@ export default {
             activeCount:2,
             activebtnleft:0,
             activebtnright:0,
-            smallactiveIndex:0
+            smallactiveIndex:0,
+            activelistData:'',
+            whichpart:true
         }
     },
     mounted(){
-       window.addEventListener('scroll',this.page)
+       window.addEventListener('scroll',this.page);
+       this.homepubActList()
     },
     destroyed(){
          window.removeEventListener('scroll',this.page)
@@ -214,6 +235,16 @@ export default {
                 }
                 
             }
+        },
+         homepubActList() {
+            api.pubActList({
+                data:{
+                    startPage:1,
+                    pageSize:4
+                }
+            }).then(res => {
+            this.activelistData = res.data.pubActList.content;
+            })
         },
         activeChangenext(){
             if(this.activeIndex>=this.activeCount){

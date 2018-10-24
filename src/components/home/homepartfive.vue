@@ -12,10 +12,19 @@
                 <div class="video-content partone" :style="video_scrollcontent?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
                     <!-- <video src=""></video> -->
                     <!-- <video class="home-video" width="1200px" height="383px" controls="controls" src="https://www.greenfortune.sh.cn/images/20171222133126_848.mp4"></video> -->
-                    <img src="@/assets/playbtn.png" alt="" class="playbtn">
+                    <img src="@/assets/playbtn.png" alt="" class="playbtn" @click="maskdisplay">
                 </div>
             </div>
         </div>
+        <transition name="videomask">
+            <div class="video-mask" @click.prevent="videomask_display=false;video_display=false" v-if="videomask_display">
+                <transition name="isvideo">
+                    <div class="video-mask-contain" v-if="video_display">
+                        <video class="home-video" width="700px" controls="controls" src="https://www.greenfortune.sh.cn/images/20171222133126_848.mp4"></video>
+                    </div>
+                </transition> 
+            </div>
+        </transition>    
     </div>
 </template>
 <script>
@@ -24,7 +33,9 @@ export default {
     data(){
         return {
             video_scrolltitle:false,
-            video_scrollcontent:false
+            video_scrollcontent:false,
+            video_display:false,
+            videomask_display:false
         }
     },
     mounted(){
@@ -34,6 +45,12 @@ export default {
          window.removeEventListener('scroll',this.videopage)
     },
     methods:{
+        maskdisplay(){
+            this.videomask_display=true;
+            setTimeout(()=>{
+                this.video_display=true
+            },300)
+        },
         videopage(){
             var top=$('.home-video-content .part-title').offset().top;
             var client=document.documentElement.clientHeight;
