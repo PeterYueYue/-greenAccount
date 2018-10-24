@@ -54,18 +54,19 @@
         rules: {
           name: [
             {required: true, message: '请输入活动名称', trigger: 'blur'},
-            {min: 2, message: '大于2个中文字符', trigger: 'blur'}
+            {min: 2, message: '大于2个中文字符', trigger: 'blur', pattern: /^[\u4e00-\u9fa5]{2,100}$/},
           ],
           address: [
             {required: true, message: '请输入公司地址', trigger: 'blur'},
-            {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur'}
+            {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur', pattern: /^[\u4e00-\u9fa5|0-9]{5,100}$/}
           ],
           contacts: [
             {required: true, message: '请输入联系人', trigger: 'blur'},
-            {min: 2, message: '大于2个非特殊符号的字符', trigger: 'blur'}
+            {min: 2, message: '大于2个非特殊符号的字符', trigger: 'blur', pattern: /^[\u4e00-\u9fa5|0-9]{2,100}$/}
           ],
           tel: [
-            {required: true, message: '请输入联系电话', trigger: 'blur'},
+            {required: true, message: '请输入联系电话', trigger: 'blur',},
+            {message: '请输入正确的联系电话', trigger: 'blur', pattern: /^1[3|4|5|7|8][0-9]\d{8}$/}
           ],
           email: [
             {required: true, message: '请输入邮箱地址', trigger: 'blur'},
@@ -73,11 +74,11 @@
           ],
           desc: [
             {required: true, message: '请填写公司简介', trigger: 'blur'},
-            {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur'}
+            {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur', pattern: /^[\u4e00-\u9fa5|0-9]{5,100}$/}
           ],
           cause: [
             {required: true, message: '请填写申请事由', trigger: 'blur'},
-            {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur'}
+            {min: 5, message: '大于5个非特殊符号的字符', trigger: 'blur', pattern: /^[\u4e00-\u9fa5|0-9]{5,100}$/}
           ],
         },
         pcrImgSrc: '',
