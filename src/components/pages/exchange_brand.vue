@@ -58,13 +58,23 @@
       </div>
       <div class="ex_nodata" v-show="listData.length == 0">暂无数据</div>
     </div>
-    <pagination v-show="listData.length !== 0"></pagination>
+    <div class="pagination_wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="pageCount"
+        :page-size="pageSize"
+        @current-change="pageChange"
+        :current-page.sync="startPage"
+        v-show="listData.length !== 0">
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
   import api from "@/api/api.js";
   import '@/assets/pages/exchange.css';
-  import pagination from '@/components/common/pagination.vue';
+  import '@/components/common/pagination.css';
 
   export default {
     data() {
@@ -75,6 +85,9 @@
         selectDate: '',
         selectScore: '',
         typeList: [],
+        pageCount: 0,    //总条数
+        pageSize: 8,     //每页条数
+        startPage: 1,    //当前页
         hotList: [{
           id: '-1',
           name: '全部',
@@ -116,9 +129,8 @@
         }],
       }
     },
-    components: {pagination},
     mounted() {
-      this.getMallProductList();
+      this.getMallProductList(1, 8);
       this.getMallLogoList();
     },
     methods: {
@@ -128,22 +140,28 @@
         })
       },
       getType() {
-        this.getMallProductList();
+        this.getMallProductList(1, 8);
       },
-      getMallProductList() {
+      getMallProductList(startPage, pageSize) {
         api.getMallProductList({
           data: {
             "mallCode": this.selectType ? this.selectType.loveUnitCode : '',
             "hotExchange": this.selectHot ? this.selectHot.id : '',
             "productPoints": this.selectScore ? this.selectScore.id : '',
             "createDate": this.selectDate ? this.selectDate.id : '',
+            startPage: startPage,
+            pageSize: pageSize,
           },
         }).then(res => {
           res.data.content.map(items => {
             items.hoverShow = true;
           });
           this.listData = res.data.content;
+          this.pageCount = res.data.totalElements;
         })
+      },
+      pageChange(startPage) {
+        this.getMallProductList(startPage, this.pageSize);
       },
       listHover(status, index) {
         this.listData[index].hoverShow = status

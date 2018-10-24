@@ -12,35 +12,51 @@
         </router-link>
       </div>
     </div>
-    <pagination></pagination>
+    <div class="pagination_wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="pageCount"
+        :page-size="pageSize"
+        @current-change="pageChange"
+        :current-page.sync="startPage"
+        v-show="listData.length !== 0">
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
   import api from "@/api/api.js";
   import '@/assets/pages/exchange.css';
-  import pagination from '@/components/common/pagination.vue';
+  import '@/components/common/pagination.css';
 
   export default {
     name: 'integralList',
     data() {
       return {
         listData: [],
+        pageCount: 0,    //总条数
+        pageSize: 8,     //每页条数
+        startPage: 1,    //当前页
       }
     },
-    components: {pagination},
     mounted() {
-      this.donateActivityPage();
+      this.donateActivityPage(1, 8);
     },
     methods: {
-      donateActivityPage() {
+      donateActivityPage(startPage, pageSize) {
         api.donateActivityPage({
           data: {
-            "startPage": 1,
-            "pageSize": 6,
+            startPage: startPage,
+            pageSize: pageSize,
           },
         }).then(res => {
           this.listData = res.data.content;
+          this.pageCount = res.data.totalElements;
         })
+      },
+      pageChange(startPage) {
+        this.donateActivityPage(startPage, this.pageSize);
       },
     }
   }

@@ -26,40 +26,42 @@
       </div>
       <div class="ex_nodata" v-show="listData.length == 0">暂无数据</div>
     </div>
-    <pagination
-      :total="pageCount"
-      :page-size="pageSize"
-      @current-change="pageChange"
-      :current-page.sync="pageNow"
-      v-show="listData.length !== 0"
-    >
-    </pagination>
+    <div class="pagination_wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="pageCount"
+        :page-size="pageSize"
+        @current-change="pageChange"
+        :current-page.sync="startPage"
+        v-show="listData.length !== 0">
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
 	import api from "@/api/api.js";
 	import {mapGetters} from 'vuex';
 	import '@/assets/pages/exchange.css';
-	import pagination from '@/components/common/pagination.vue';
+	import '@/components/common/pagination.css';
 
 	export default {
 		data() {
 			return {
 				listData: [],
         message: '',
-				pageCount: 0,
-				pageSize: 10,
-				pageNow: 1,
+				pageCount: 0,    //总条数
+				pageSize: 8,     //每页条数
+        startPage: 1,    //当前页
 			}
 		},
-		components: {pagination},
 		mounted() {
       this.allList4NewStyle();
-			this.getProductList();
+			this.getProductList(1,8);
 		},
 		watch: {
 			area(){
-				this.getProductList()
+				this.getProductList(1,8)
 			}
 		},
 		computed: mapGetters({
@@ -75,27 +77,27 @@
           this.message = res.data.newsList.content[0].newsContent;
         })
       },
-			getProductList() {
+			getProductList(startPage, pageSize) {
 				api.getProductList({
 					data: {
 						prodExchBrid: this.area.id,
-						// pageSize: 8,
-						// startPage: 5
+						startPage: startPage,
+            pageSize: pageSize,
 					},
 				}).then(res => {
-          res.data.content.map(items => {
+					res.data.content.map(items => {
 						items.hoverShow = true;
 					});
 					this.listData = res.data.content;
-				})
+          this.pageCount = res.data.totalElements;
+        })
 			},
-			listHover(status, index) {
-				this.listData[index].hoverShow = status;
+			pageChange(startPage) {
+				this.getProductList(startPage, this.pageSize);
 			},
-			//分页
-			pageChange(pageNow) {
-				this.listData(pageNow, this.pageSize);
-			},
+      listHover(status, index) {
+        this.listData[index].hoverShow = status;
+      },
 		}
 	}
 </script>
