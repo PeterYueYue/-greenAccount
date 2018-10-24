@@ -62,7 +62,9 @@
                   <router-link to="/lvzx">
                     <div>绿账中心</div>
                   </router-link>
-                 
+                   <router-link to="/apply_company">
+                      <div>爱心单位</div>
+                  </router-link>
                 </div>
               </el-menu-item>
               <el-menu-item index="4" disabled @mouseover.native="navIndex=4" @mouseleave.native="navIndex=0">
@@ -105,7 +107,10 @@
                   <router-link to="/hdtd">
                     <div>活动天地</div>
                   </router-link>
-                  <div>趣味游戏</div>
+                  <router-link  to="/games">
+                    <div>趣味游戏</div>
+                  </router-link>
+                  
                 </div>
               </el-menu-item>
               <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item>

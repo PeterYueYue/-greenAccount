@@ -16,7 +16,7 @@
                 </div>
             </div>     
             <div class="part-content">
-                <div class="exchange-content-left partone" :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
+                <div class="exchange-content-left partone"  :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
                     <div class="exchange-detail">
                         <p class="green-line"></p>
                     </div>
@@ -108,7 +108,7 @@ export default {
                 return;
             }else {
                 this.exchangeSideIndex+=1;
-                console.log(this.exchangeSideIndex);
+                $('.exchange-content').css('transition','all .5s')
                 $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)');
             }
         },
@@ -117,6 +117,7 @@ export default {
                 return;
             }else {
                 this.exchangeSideIndex-=1;
+                $('.exchange-content').css('transition','all .5s')
                 $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)'); 
             }
         },
@@ -126,8 +127,8 @@ export default {
                 "prodExchBrid":"310000000000",
                 },
             }).then(res =>{
-                this.exchangeSideCount=res.data.length-1
-                this.product = res.data
+                this.exchangeSideCount=res.data.content.length-1
+                this.product = res.data.content
             })
         }
 
