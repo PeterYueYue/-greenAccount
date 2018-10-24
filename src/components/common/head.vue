@@ -105,7 +105,9 @@
                   <router-link to="/hdtd">
                     <div>活动天地</div>
                   </router-link>
-                  <div>趣味游戏</div>
+                  <router-link to="/games">
+                    <div>趣味游戏</div>
+                  </router-link>
                 </div>
               </el-menu-item>
               <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item>
