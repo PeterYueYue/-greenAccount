@@ -1,6 +1,6 @@
 <template>
     <div class="footer-contain">
-        <div class="footer-background"> 
+        <div class="footer-background" style="background-image: url('@/assets/bottomback.png');"> 
         </div>
         <div class="footer-top">
             <div class="footer-top-part">
