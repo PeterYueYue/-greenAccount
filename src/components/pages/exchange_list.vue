@@ -1,11 +1,11 @@
 <template>
   <div>
     <!--<div class="ex_wrap ex_area">-->
-      <!--<div class="ex_area_name">所在区域：</div>-->
-      <!--<ul>-->
-        <!--<li class="active">全市</li>-->
-        <!--<li v-for="item in area">{{item.brName}}</li>-->
-      <!--</ul>-->
+    <!--<div class="ex_area_name">所在区域：</div>-->
+    <!--<ul>-->
+    <!--<li class="active">全市</li>-->
+    <!--<li v-for="item in area">{{item.brName}}</li>-->
+    <!--</ul>-->
     <!--</div>-->
     <div class="ex_wrap ex_select">
       <div class="ex_select_name">类型：
@@ -66,14 +66,24 @@
       </div>
       <div class="ex_nodata" v-show="listData.length == 0">暂无数据</div>
     </div>
-    <pagination v-show="listData.length !== 0"></pagination>
+    <div class="pagination_wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="pageCount"
+        :page-size="pageSize"
+        @current-change="pageChange"
+        :current-page.sync="startPage"
+        v-show="listData.length !== 0">
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
   import api from "@/api/api.js";
   import {mapGetters} from 'vuex';
   import '@/assets/pages/exchange.css';
-  import pagination from '@/components/common/pagination.vue';
+  import '@/components/common/pagination.css';
 
   export default {
     name: 'exchangeList',
@@ -85,6 +95,9 @@
         selectDate: '',
         selectScore: '',
         area: [],
+        pageCount: 0,    //总条数
+        pageSize: 8,     //每页条数
+        startPage: 1,    //当前页
         typeList: [{
           id: '',
           name: '全部',
@@ -154,24 +167,23 @@
         }],
       }
     },
-    components: {pagination},
     mounted() {
       // this.getarea();
-      this.getProductList();
+      this.getProductList(1, 8);
     },
     computed: mapGetters({
       isArea: "area"
     }),
     methods: {
-      getarea(){
+      getarea() {
         api.getarea().then(res => {
           this.area = res.data
         })
       },
       getType() {
-        this.getProductList();
+        this.getProductList(1, 8);
       },
-      getProductList() {
+      getProductList(startPage, pageSize) {
         api.getProductList({
           data: {
             "prodExchBrid": this.isArea.id,
@@ -179,13 +191,19 @@
             "hotExchange": this.selectHot ? this.selectHot.id : '',
             "productPoints": this.selectScore ? this.selectScore.id : '',
             "createDate": this.selectDate ? this.selectDate.id : '',
+            startPage: startPage,
+            pageSize: pageSize,
           },
         }).then(res => {
           res.data.content.map(items => {
             items.hoverShow = true;
           });
           this.listData = res.data.content;
+          this.pageCount = res.data.totalElements;
         })
+      },
+      pageChange(startPage) {
+        this.getProductList(startPage, this.pageSize);
       },
       listHover(status, index) {
         this.listData[index].hoverShow = status;
