@@ -24,6 +24,8 @@ import lv_volunteer_details from '@/components/pages/lv_volunteer_details.vue'  
 import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
 import userinfo from '@/components/userInfo/userinfo.vue'  //绿账中心
 import baseinfo from '@/components/userInfo/baseinfo.vue' //绿账中心基本资料
+import changewrap from '@/components/changeWrap/changewrap.vue'  //我的兑换
+import changelist from '@/components/changeWrap/changelist.vue' //我的兑换全部
 import games from '@/components/pages/games.vue'  //趣味游戏
 
 export default new Router({
@@ -77,18 +79,29 @@ export default new Router({
       path: '/lvzx',
       name: '绿账中心',
       component: userinfo,
-      children:[
+      children: [
         {
-          path:'',
-          name:'',
-          component:baseinfo
+          path: '',
+          name: '',
+          component: baseinfo
         }
       ]
-    },{
-		  path: '/lvbd',
-		  name: '绿账宝典',
-		  component: lvbd,
-	  },{
+    }, {
+      path: '/my_change',
+      name: '我的兑换',
+      component: changewrap,
+      children: [
+        {
+          path: '',
+          name: '',
+          component: changelist
+        }
+      ]
+    }, {
+      path: '/lvbd',
+      name: '绿账宝典',
+      component: lvbd,
+    }, {
       path: '/lvxd',
       name: '绿账行动',
       component: lvxd,

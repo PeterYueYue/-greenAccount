@@ -1,0 +1,17 @@
+.userinfo-contain {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.userinfo-content {
+  padding: 20px 0 20px 50px;
+}
+
+.el-menu-item.is-active {
+  color: #20A345 !important;
+}
+
+.el-submenu__icon-arrow {
+  font-size: 15px !important;
+  top: 53% !important;
+}

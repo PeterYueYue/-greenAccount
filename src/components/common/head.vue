@@ -62,6 +62,9 @@
                   <router-link to="/lvzx">
                     <div>绿账中心</div>
                   </router-link>
+                  <router-link to="/my_change">
+                    <div>我的兑换</div>
+                  </router-link>
                    <router-link to="/apply_company">
                       <div>爱心单位</div>
                   </router-link>
