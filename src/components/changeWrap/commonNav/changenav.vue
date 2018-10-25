@@ -1,7 +1,7 @@
 <template>
   <div class="info-sidemenu">
     <div class="sidemenu-content">
-      <el-menu default-active="2" style="background: #F4F4F4!important;border-right: 0!important;">
+      <el-menu default-active="1" style="background: #F4F4F4!important;border-right: 0!important;">
         <el-menu-item index="1">
           <span slot="title">全部</span>
           <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>

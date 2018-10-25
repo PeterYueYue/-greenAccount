@@ -1,15 +1,15 @@
 <template>
   <div>
     <img src="@/assets/ex_banner.png" alt="" class="ex_banner">
-    <div class="userinfo-contain">
+    <div class="change_contain">
       <el-row>
         <el-col :span="4">
-          <div class="userinfo-side">
+          <div>
             <changenav></changenav>
           </div>
         </el-col>
         <el-col :span="20">
-          <div class="userinfo-content">
+          <div class="change_content">
             <router-view></router-view>
           </div>
         </el-col>
