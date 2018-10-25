@@ -17,7 +17,8 @@ export default new Vuex.Store({
         user_islogin:false,
         token:'',
         username:'',
-        expire:''
+        expire:'',
+        userdetail:{}
     },
     mutations:{
         GetArea(state,areadate){
@@ -27,6 +28,9 @@ export default new Vuex.Store({
             this.state.username=data.userName;
             this.state.user_islogin=data.islogin;
             this.state.token = data.token;
+        },
+        GetUserdetail(state,data){
+            this.state.userdetail=data
         }
     },
     // plugins: [createPersistedState({storage: window.sessionStorage})]

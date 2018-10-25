@@ -8,3 +8,6 @@ export var chooseArea = ({commit}, data) => {
   export var getToken = ({commit}, data) => {
     commit(types.GetToken, data);
   }
+  export var getUserdetail = ({commit}, data) => {
+    commit(types.GetUserdetail, data);
+  }
