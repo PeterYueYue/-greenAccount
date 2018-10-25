@@ -17,34 +17,50 @@
     </div>
 
     <div class="lv_nodata" v-show="listData.length == 0">暂无数据</div>
-    <pagination v-show="listData.length !== 0"></pagination>
+    <div class="pagination_wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="pageCount"
+        :page-size="pageSize"
+        @current-change="pageChange"
+        :current-page.sync="startPage"
+        v-show="listData.length !== 0">
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
   import api from "@/api/api.js";
   import '@/assets/pages/lv_volunteer.css';
-  import pagination from '@/components/common/pagination.vue';
+  import '@/components/common/pagination.css';
 
   export default {
     data() {
       return {
         listData: [],
+        pageCount: 0,    //总条数
+        pageSize: 8,     //每页条数
+        startPage: 1,    //当前页
       }
     },
-    components: {pagination},
     mounted() {
-      this.pubActList();
+      this.pubActList(1,8);
     },
     methods: {
-      pubActList() {
+      pubActList(startPage, pageSize) {
         api.pubActList({
           data:{
-            startPage:1,
-            pageSize:10
+            startPage: startPage,
+            pageSize: pageSize,
           }
         }).then(res => {
           this.listData = res.data.pubActList.content;
+          this.pageCount = res.data.pubActList.totalElements;
         })
+      },
+      pageChange(startPage) {
+        this.pubActList(startPage, this.pageSize);
       },
     }
   }
