@@ -18,6 +18,7 @@
 import {mapGetters} from 'vuex';
 import infonav from './commonNav/infonav.vue'
 import '@/assets/pages/info.css'
+import api from "@/api/api.js";
 export default {
     data(){
         return {
@@ -29,13 +30,26 @@ export default {
     },
     computed: mapGetters({
       isusername:"username",
-      islogin:"user_islogin"
+      islogin:"user_islogin",
+      token:"token",
     }),
     created(){
-        console.log(this.islogin);
         if(!this.islogin){
             this.$router.push({
                 path:'/login'
+            })
+        }
+    },
+    mounted(){
+        this.getuserdetail();
+    },
+    methods:{
+        getuserdetail(){
+            api.getuserdetail({
+            "token":this.token
+            }).then(res =>{
+                console.log(res.data)
+                this.$store.dispatch('getUserdetail', res.data);
             })
         }
     }
