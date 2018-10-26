@@ -70,6 +70,16 @@
       </el-table-column>
     </el-table>
 
+    <div class="pagination_wrap">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="10"
+        :page-size="5">
+      </el-pagination>
+    </div>
+
+
     <!-- 弹窗 -->
     <div class="change_shadow" v-if="showShadow"></div>
     <!-- 取消理由弹窗 -->
@@ -108,7 +118,8 @@
 <script>
   import api from "@/api/api.js";
   import {mapGetters} from 'vuex';
-  import '@/components/changeWrap/commonNav/changenav.css'
+  import '@/components/changeWrap/commonNav/changenav.css';
+  import '@/components/common/pagination.css';
 
   export default {
     data() {
@@ -130,7 +141,10 @@
         }],
         showShadow: false,
         showBox: false,
-        feedData: '满意'
+        feedData: '满意',
+        pageCount: 0,    //总条数
+        pageSize: 8,     //每页条数
+        startPage: 1,    //当前页
       }
     },
     computed: mapGetters({
