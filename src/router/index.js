@@ -26,6 +26,8 @@ import userinfo from '@/components/userInfo/userinfo.vue'  //绿账中心
 import baseinfo from '@/components/userInfo/baseinfo.vue' //绿账中心基本资料
 import changewrap from '@/components/changeWrap/changewrap.vue'  //我的兑换
 import changelist from '@/components/changeWrap/changelist.vue' //我的兑换全部
+import scorewrap from '@/components/scoreWrap/scorewrap.vue'  //我的积分
+import scorelist from '@/components/scoreWrap/scorelist.vue' //我的积分全部
 import games from '@/components/pages/games.vue'  //趣味游戏
 
 export default new Router({
@@ -95,6 +97,17 @@ export default new Router({
           path: '',
           name: '',
           component: changelist
+        }
+      ]
+    }, {
+      path: '/my_score',
+      name: '我的积分',
+      component: scorewrap,
+      children: [
+        {
+          path: '',
+          name: '',
+          component: scorelist
         }
       ]
     }, {
