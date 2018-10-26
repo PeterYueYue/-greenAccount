@@ -2,26 +2,26 @@
   <div class="head-contain">
     <el-row :gutter="24">
       <div class="head-left">
-        <router-link to="/" ><img src="@/assets/logo.png" alt="" ></router-link>
+        <router-link to="/"><img src="@/assets/logo.png" alt=""></router-link>
       </div>
       <div class="head-right">
         <el-row :gutter="24">
           <el-col :span="24" :offset="0" class="head-right-top">
             <div class="search-area">
-              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"></el-input>
-              <div class="search-btn"></div>
+              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area" @keyup.enter.native="search"></el-input>
+              <div class="search-btn" @click="search"></div>
             </div>
 
-            <div  class="login-area" v-if="!isusername">
-                <router-link to="/login">
-                    <div class="login-btn">登录</div>
-                </router-link>
-                
-                <div class="login-btn">管理员登录</div>
+            <div class="login-area" v-if="!isusername">
+              <router-link to="/login">
+                <div class="login-btn">登录</div>
+              </router-link>
+
+              <div class="login-btn">管理员登录</div>
             </div>
             <div class="login-area islogin" v-if="isusername">
-                <div class="username-area">Hi.{{isusername}}</div>
-                <div class="quit-btn" @click="quitHandle()">退出</div>
+              <div class="username-area">Hi.{{isusername}}</div>
+              <div class="quit-btn" @click="quitHandle()">退出</div>
             </div>
           </el-col>
         </el-row>
@@ -38,7 +38,9 @@
                   </router-link>
                   <router-link :to="{path: '/home_exchange'}"
                                v-for="item in area" :key="item.id">
-                    <li @click="chooseArea(item.brName,item.brID)" :class="isArea.id==item.id?'active':''">{{item.brName}}</li>
+                    <li @click="chooseArea(item.brName,item.brID)" :class="isArea.id==item.id?'active':''">
+                      {{item.brName}}
+                    </li>
                   </router-link>
                 </ul>
               </div>
@@ -55,7 +57,7 @@
               <el-menu-item index="3" disabled @mouseover.native="navIndex=3" @mouseleave.native="navIndex=0">
                     <span class="nav-title">绿账宝
                         <img src="@/assets/icon/downangle.png" alt="" class="angle-icon"
-                                v-show="navIndex!=3">
+                             v-show="navIndex!=3">
                         <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==3">
                     </span>
                 <div class="list-detail" v-show="navIndex==3" @click="handleSelect('3')">
@@ -68,19 +70,19 @@
                   <router-link to="/my_score">
                     <div>我的积分</div>
                   </router-link>
-                   <router-link to="/apply_company">
-                      <div>爱心单位</div>
+                  <router-link to="/apply_company">
+                    <div>爱心单位</div>
                   </router-link>
                 </div>
               </el-menu-item>
               <el-menu-item index="4" disabled @mouseover.native="navIndex=4" @mouseleave.native="navIndex=0">
                     <span class="nav-title">绿环保 
                         <img src="@/assets/icon/downangle.png" alt="" class="angle-icon"
-                                v-show="navIndex!=4">
+                             v-show="navIndex!=4">
                         <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==4">
                     </span>
                 <div class="list-detail" v-show="navIndex==4" @click="handleSelect('4')">
-                   <router-link to="/lvbd">
+                  <router-link to="/lvbd">
                     <div>绿账宝典</div>
                   </router-link>
                   <router-link to="/lvxd">
@@ -89,7 +91,7 @@
                   <router-link to="/hzdw">
                     <div>合作单位</div>
                   </router-link>
-                   <router-link to="/hzvs">
+                  <router-link to="/hzvs">
                     <div>惠众绿色</div>
                   </router-link>
                   <router-link to="/zhzq">
@@ -100,14 +102,14 @@
               <el-menu-item index="5" disabled @mouseover.native="navIndex=5" @mouseleave.native="navIndex=0">
                     <span class="nav-title">绿互动
                         <img src="@/assets/icon/downangle.png" alt="" class="angle-icon"
-                                v-show="navIndex!=5">
+                             v-show="navIndex!=5">
                         <img src="@/assets/icon/upangle.png" alt="" class="angle-icon" v-show="navIndex==5">
                     </span>
                 <div class="list-detail" v-show="navIndex==5" @click="handleSelect('5')">
-                   <router-link to="/integral_list">
+                  <router-link to="/integral_list">
                     <div>积分捐赠</div>
                   </router-link>
-                   <router-link to="/lv_volunteer">
+                  <router-link to="/lv_volunteer">
                     <div>志愿者申请</div>
                   </router-link>
                   <router-link to="/hdtd">
@@ -128,67 +130,73 @@
   </div>
 </template>
 <script>
-import api from "@/api/api.js";
-import {mapGetters} from 'vuex';
-import $ from 'jquery';
-import './head.css'
-export default {
-    data(){
-        return {
-            activeIndex: window.sessionStorage.getItem('activeItemIndex') || '1',
-            areahover:false,
-            navIndex:1,
-            searchContent:'',
-            area:[],
-        }
+  import api from "@/api/api.js";
+  import {mapGetters} from 'vuex';
+  import $ from 'jquery';
+  import './head.css'
+
+  export default {
+    data() {
+      return {
+        activeIndex: window.sessionStorage.getItem('activeItemIndex') || '1',
+        areahover: false,
+        navIndex: 1,
+        searchContent: '',
+        area: [],
+      }
     },
-    props:['username'],
-    mounted(){
-        this.getarea();
-        window.onscroll = function () {
-            const t = document.documentElement.scrollTop || document.body.scrollTop;
-            if(t!=0){
-                $('header').css('box-shadow','0 0 6px rgba(0,0,0,.5)')
-            }else {
-                $('header').css('box-shadow','none')
-            }
-           
-        };
+    props: ['username'],
+    mounted() {
+      this.getarea();
+      window.onscroll = function () {
+        const t = document.documentElement.scrollTop || document.body.scrollTop;
+        if (t != 0) {
+          $('header').css('box-shadow', '0 0 6px rgba(0,0,0,.5)')
+        } else {
+          $('header').css('box-shadow', 'none')
+        }
+
+      };
     },
     computed: mapGetters({
-      isArea:"area",
-      isusername:"username",
-      islogin:"user_islogin"
+      isArea: "area",
+      isusername: "username",
+      islogin: "user_islogin"
     }),
     methods: {
-     getarea(){
-         api.getarea().then(res =>{
-            this.area=res.data
+      getarea() {
+        api.getarea().then(res => {
+          this.area = res.data
         })
-     },
+      },
       handleSelect(key, keyPath) {
         this.activeIndex = key;
         window.sessionStorage.setItem('activeItemIndex', key)
-    },
-    chooseArea(areaName, id){
+      },
+      chooseArea(areaName, id) {
         this.$store.dispatch('chooseArea', {areaName, id});
         window.sessionStorage.setItem('areaName', areaName);
         window.sessionStorage.setItem('areaId', id);
-    },
-    // goHome(){
-    //     console.log('222')
-    //     $(this.$refs.homebtn).click()
-    // },
-      quitHandle(){
-          this.$cookies.remove("token");
-          this.$cookies.remove("username");
-          this.$store.dispatch('getToken', {token:'',userName:'',islogin:false});
-          this.$router.push({
-            path:'/'
+      },
+      // goHome(){
+      //     console.log('222')
+      //     $(this.$refs.homebtn).click()
+      // },
+      quitHandle() {
+        this.$cookies.remove("token");
+        this.$cookies.remove("username");
+        this.$store.dispatch('getToken', {token: '', userName: '', islogin: false});
+        this.$router.push({
+          path: '/'
         })
-      }
+      },
+      search(){
+        this.$router.push({
+          path: '/intelligence_search'
+        })
+      },
     }
 
-	}
+  }
 </script>
 

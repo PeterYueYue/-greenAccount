@@ -29,6 +29,7 @@ import changelist from '@/components/changeWrap/changelist.vue' //我的兑换�
 import scorewrap from '@/components/scoreWrap/scorewrap.vue'  //我的积分
 import scorelist from '@/components/scoreWrap/scorelist.vue' //我的积分全部
 import games from '@/components/pages/games.vue'  //趣味游戏
+import intelligenceSearch from '@/components/pages/intelligence_search.vue'  //智能搜索
 
 export default new Router({
   routes: [
@@ -150,6 +151,10 @@ export default new Router({
       path: '/games',
       name: '趣味游戏',
       component: games,
+    }, {
+      path: '/intelligence_search',
+      name: '智能搜索',
+      component: intelligenceSearch,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

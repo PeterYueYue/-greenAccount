@@ -116,6 +116,10 @@ const configdonatePoints = {
 const configuserdetail ={
   "version":"1.0",
 	"name":"user.detail",
+};
+const configsearchLike ={
+  "version":"1.0",
+  "name":"searchLike",
 }
 
 export default {
@@ -238,6 +242,10 @@ export default {
   },
   getuserdetail(params){
     let config = Object.assign(configuserdetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  searchLike(params){
+    let config = Object.assign(configsearchLike, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 
