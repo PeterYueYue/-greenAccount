@@ -59,6 +59,7 @@
 </template>
 <script>
   // import bread from '@/components/common/bread.vue';
+  import {mapGetters} from 'vuex';
   import api from "@/api/api.js";
   import '@/assets/pages/exchange.css';
   import '@/assets/pages/ex_details.css';
@@ -76,6 +77,11 @@
     mounted() {
       this.getProductDetail()
     },
+    computed: mapGetters({
+      token: "token",
+      isusername: "username",
+      islogin: "user_islogin",
+    }),
     methods: {
       getProductDetail() {
         api.getProductDetail({
@@ -88,6 +94,18 @@
           });
           this.listData = res.data.info;
           this.listSameData = res.data.sameTypeLi;
+          if (res.data.info.prodStatus == '02') {
+            alert("该商品已全部兑换完，无法继续兑换。");
+            location.href = "/exchange#/exchange";
+          }
+          if (res.data.info.prodStatus == '03') {
+            alert("该商品已下架，无法继续兑换。");
+            location.href = "/exchange#/exchange";
+          }
+          if (res.data.info.prodStatus == '04') {
+            alert("该商品未上架，无法继续兑换。");
+            location.href = "/exchange#/exchange";
+          }
         })
       },
       listHover(status, index) {
@@ -95,13 +113,37 @@
         this.listSameData[index].push(status);
       },
       ajaxCheckCanSubmit() {
+        if (!this.islogin) {
+          this.$router.push({
+            path: '/login?backUrl=exchange_details'
+          })
+        }
         api.ajaxCheckCanSubmit({
           data: {
             id: this.id,
             productNum: this.productNum,
           },
+          token: this.token,
         }).then(res => {
-          console.log(res);
+          if (res.data.result == '1') {
+            alert("库存数不足！")
+          }
+          else if (res.data.result == '2') {
+            alert("可用积分不足！")
+          }
+          else if (res.data.result == '3') {
+            alert("兑换不存在！")
+          }
+          else if (res.data.result == '4') {
+            alert("兑换成功！")
+          }
+          else if (res.data.result == '5') {
+            alert("非本区礼品不能兑换，请确认后重新兑换！")
+          }
+          else {
+            alert("兑换失败！")
+          }
+          this.getProductDetail();
         })
       },
     }
