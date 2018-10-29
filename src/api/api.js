@@ -1,8 +1,8 @@
 import axios from 'axios';
 // 测试
-let base = 'http://180.153.19.162:8081';
+// let base = 'http://180.153.19.162:8081';
 // 张强
-// let base = 'http://192.168.1.122:8080';
+let base = 'http://192.168.1.126:8080';
 
 const configarea = {
   "version": "1.0",
@@ -120,7 +120,19 @@ const configuserdetail ={
 const configsearchLike ={
   "version":"1.0",
   "name":"searchLike",
-}
+};
+const configproductList ={
+  "version":"1.0",
+  "name":"product.list",
+};
+const configproductFeedbackInit ={
+  "version":"1.0",
+  "name":"product.feedbackInit",
+};
+const configproductFeedbackSave ={
+  "version":"1.0",
+  "name":"product.feedbackSave",
+};
 
 export default {
   UUid() {
@@ -246,6 +258,18 @@ export default {
   },
   searchLike(params){
     let config = Object.assign(configsearchLike, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productList(params){
+    let config = Object.assign(configproductList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productFeedbackInit(params){
+    let config = Object.assign(configproductFeedbackInit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productFeedbackSave(params){
+    let config = Object.assign(configproductFeedbackSave, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 
