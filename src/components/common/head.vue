@@ -8,8 +8,7 @@
         <el-row :gutter="24">
           <el-col :span="24" :offset="0" class="head-right-top">
             <div class="search-area">
-              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"
-                        @keyup.native.enter="search"></el-input>
+              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area" @keyup.native.enter="search"></el-input>
               <div class="search-btn" @click="search"></div>
             </div>
 
@@ -194,6 +193,10 @@
       },
       goToJump() {
         this.$router.push('/my_change')
+      },
+      search() {
+        this.$router.push('/intelligence_search?query=' + this.searchContent)
+        this.searchContent = ''
       },
     }
 
