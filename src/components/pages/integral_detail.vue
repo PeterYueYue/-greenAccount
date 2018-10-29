@@ -92,7 +92,7 @@
             donatePoints: this.productNum,
           },
         }).then(res => {
-          console.log(res);
+          alert(res.data.message);
         })
       },
       openUl(type) {
