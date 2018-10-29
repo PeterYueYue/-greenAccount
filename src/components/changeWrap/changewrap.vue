@@ -34,10 +34,9 @@
       islogin: "user_islogin"
     }),
     created() {
-      console.log(this.islogin);
       if (!this.islogin) {
         this.$router.push({
-          path: '/login'
+          path: '/login?backUrl=my_change'
         })
       }
     }

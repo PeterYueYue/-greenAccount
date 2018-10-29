@@ -36,7 +36,7 @@ export default {
     created(){
         if(!this.islogin){
             this.$router.push({
-                path:'/login'
+                path:'/login?backUrl=lvzx'
             })
         }
     },

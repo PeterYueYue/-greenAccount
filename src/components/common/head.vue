@@ -8,8 +8,8 @@
         <el-row :gutter="24">
           <el-col :span="24" :offset="0" class="head-right-top">
             <div class="search-area">
-              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area" @keyup.enter.native="search"></el-input>
-              <div class="search-btn" @click="search"></div>
+              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"></el-input>
+              <div class="search-btn"></div>
             </div>
 
             <div class="login-area" v-if="!isusername">
@@ -64,9 +64,7 @@
                   <router-link to="/lvzx">
                     <div>绿账中心</div>
                   </router-link>
-                  <router-link to="/my_change">
-                    <div>我的兑换</div>
-                  </router-link>
+                  <div @click="goToJump">我的兑换</div>
                   <router-link to="/my_score">
                     <div>我的积分</div>
                   </router-link>
@@ -178,10 +176,7 @@
         window.sessionStorage.setItem('areaName', areaName);
         window.sessionStorage.setItem('areaId', id);
       },
-      // goHome(){
-      //     console.log('222')
-      //     $(this.$refs.homebtn).click()
-      // },
+
       quitHandle() {
         this.$cookies.remove("token");
         this.$cookies.remove("username");
@@ -190,10 +185,8 @@
           path: '/'
         })
       },
-      search(){
-        this.$router.push({
-          path: '/intelligence_search'
-        })
+      goToJump() {
+        this.$router.push('/my_change')
       },
     }
 
