@@ -122,7 +122,7 @@
         <div class="content">
           <el-radio-group v-model="feedData">
             <el-radio-button :label="item.contents" class="change_table_radio"
-                             v-for="item in itemList"></el-radio-button>
+                             v-for="item in itemList" :key="index"></el-radio-button>
           </el-radio-group>
         </div>
       </div>
