@@ -8,8 +8,9 @@
         <el-row :gutter="24">
           <el-col :span="24" :offset="0" class="head-right-top">
             <div class="search-area">
-              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"></el-input>
-              <div class="search-btn"></div>
+              <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"
+                        @keyup.native.enter="search"></el-input>
+              <div class="search-btn" @click="search"></div>
             </div>
 
             <div class="login-area" v-if="!isusername">
@@ -26,7 +27,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="24">
-          <div class="head-bottom-left">
+          <div class="head-bottom-left" v-if="fullPath!=='/exchange'">
             <span>所在区域 :</span>
             <div class="select-city-contain" @mouseenter="areahover=true" @mouseleave="areahover=false;">
               <span class="select-city"
@@ -141,6 +142,7 @@
         navIndex: 1,
         searchContent: '',
         area: [],
+        fullPath: this.$route.fullPath
       }
     },
     props: ['username'],
@@ -161,6 +163,11 @@
       isusername: "username",
       islogin: "user_islogin"
     }),
+    watch: {
+      '$route'(data) {
+        this.fullPath = data.fullPath
+      }
+    },
     methods: {
       getarea() {
         api.getarea().then(res => {
