@@ -57,12 +57,13 @@
 						alert(res.data.msg);
 						this.getpcrimg();
 					} else {
+						res.data.islogin = true;
 						this.$store.dispatch('getToken', res.data);
 
 						this.$cookies.set("token", res.data.token, res.data.expire);
 						this.$cookies.set("username", res.data.userName, res.data.expire);
 
-						let backUrl = this.$route.query.backUrl
+						let backUrl = this.$route.query.backUrl;
 						if (backUrl) {
 							this.$router.push({
 								path: '/' + backUrl
