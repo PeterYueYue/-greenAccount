@@ -1,8 +1,8 @@
 <template>
   <div class="score_wrap">
-    <div class="score_wrap_head">累计积分：<span class="score_wrap_head_num">30000</span><span
-      class="score_wrap_head_fen">分</span>消纳积分：<span class="score_wrap_head_num">0</span><span
-      class="score_wrap_head_fen">分</span>可用积分：<span class="score_wrap_head_num">20</span><span
+    <div class="score_wrap_head">累计积分：<span class="score_wrap_head_num">{{pointData.totalPoint}}</span><span
+      class="score_wrap_head_fen">分</span>消纳积分：<span class="score_wrap_head_num">{{pointData.elimPoint}}</span><span
+      class="score_wrap_head_fen">分</span>可用积分：<span class="score_wrap_head_num">{{pointData.availPoint}}</span><span
       class="score_wrap_head_fen">分</span></div>
 
     <div class="score_search">
@@ -57,8 +57,11 @@
       <el-pagination
         background
         layout="prev, pager, next"
-        :total="10"
-        :page-size="5">
+        :total="pageCount"
+        :page-size="pageSize"
+        @current-change="pageChange"
+        :current-page.sync="startPage"
+        v-show="tableData.length !== 0">
       </el-pagination>
     </div>
 
@@ -68,6 +71,7 @@
   import api from "@/api/api.js";
   import {mapGetters} from 'vuex';
   import '@/components/scoreWrap/commonNav/scorenav.css';
+  import '@/components/common/pagination.css';
 
   export default {
     data() {
@@ -89,8 +93,9 @@
           score: '20',
           type: '扫描',
         }],
+        pointData: {},
         pageCount: 0,    //总条数
-        pageSize: 8,     //每页条数
+        pageSize: 5,     //每页条数
         startPage: 1,    //当前页
       }
     },
@@ -98,9 +103,53 @@
       token: "token"
     }),
     mounted() {
-
+      this.userGetInfo(1, 5);
+      this.getPointOutDetail(1, 5);
+      this.getPointInDetail(1, 5);
     },
     methods: {
+      userGetInfo(startPage, pageSize) {
+        api.userGetInfo({
+          data: {
+            startPage: startPage,
+            pageSize: pageSize,
+          },
+          token: this.token,
+        }).then(res => {
+          this.pointData = res.data;
+        })
+      },
+      getPointInDetail(startPage, pageSize) {
+        api.getPointInDetail({
+          data: {
+            startDate: this.formInline.start,
+            endDate: this.formInline.end,
+            startPage: startPage,
+            pageSize: pageSize,
+          },
+          token: this.token,
+        }).then(res => {
+          console.log(res);
+          this.pageCount = res.data.totalElements;
+        })
+      },
+      getPointOutDetail(startPage, pageSize) {
+        api.getPointOutDetail({
+          data: {
+            startDate: this.formInline.start,
+            endDate: this.formInline.end,
+            startPage: startPage,
+            pageSize: pageSize,
+          },
+          token: this.token,
+        }).then(res => {
+          res.data.content;
+          this.pageCount = res.data.totalElements;
+        })
+      },
+      pageChange(startPage) {
+        this.getPointOutDetail(startPage, this.pageSize);
+      },
       search() {
         const params = {
           start: this.formInline.start,
