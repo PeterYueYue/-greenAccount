@@ -192,7 +192,7 @@
         })
       },
       goToJump() {
-        this.$router.push('/my_change/a')
+        this.$router.push('/my_change/all')
       },
       search() {
         this.$router.push('/intelligence_search?query=' + this.searchContent)
