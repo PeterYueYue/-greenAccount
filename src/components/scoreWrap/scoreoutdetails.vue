@@ -43,6 +43,13 @@
         prop="score"
         label="交易分数">
         <template slot-scope="scope">
+          <span>{{ scope.row.operatePoint }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="type"
+        label="类型">
+        <template slot-scope="scope">
           <span v-show="scope.row.tranType === '01'">扫描</span>
           <span v-show="scope.row.tranType === '02'">兑换</span>
           <span v-show="scope.row.tranType === '03'">补卡</span>
@@ -50,13 +57,6 @@
           <span v-show="scope.row.tranType === '05'">积分转移</span>
           <span v-show="scope.row.tranType === '06'">积分失效</span>
           <span v-show="scope.row.tranType === '07'">积分调整</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="type"
-        label="类型">
-        <template slot-scope="scope">
-          <span>{{ scope.row.tranType }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -129,8 +129,9 @@
       search() {
         if (this.formInline.start == '' || this.formInline.end == '') {
           alert("请选择日期！")
+        } else {
+          this.getPointOutDetail(1, 5);
         }
-        this.getPointOutDetail(1, 5);
       },
     }
   }

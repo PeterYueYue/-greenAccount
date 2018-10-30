@@ -129,8 +129,9 @@
       search() {
         if (this.formInline.start == '' || this.formInline.end == '') {
           alert("请选择日期！")
+        } else {
+          this.getPointInDetail(1, 5);
         }
-        this.getPointInDetail(1, 5);
       },
     }
   }
