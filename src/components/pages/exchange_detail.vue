@@ -115,7 +115,7 @@
       ajaxCheckCanSubmit() {
         if (!this.islogin) {
           this.$router.push({
-            path: '/login?backUrl=exchange_details'
+            path: '/login?backUrl=exchange/detail'
           })
         }
         api.ajaxCheckCanSubmit({

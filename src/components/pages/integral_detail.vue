@@ -21,8 +21,7 @@
               <li><input type="number" class="input-num" v-model="productNum"/></li>
               <li><span class="num-jia">+</span></li>
             </ul>
-          </li>
-          <li><span class="kucun">我的积分：123</span></li>　　　
+          </li>　　
         </ul>
         <div class="ex_shop_btn" @click="donatePointsSubmit">我要捐赠</div>
         <router-link to="/integral_list"><span class="ex_shop_more">查看更多爱心捐赠</span></router-link>
@@ -55,6 +54,7 @@
 </template>
 <script>
   // import bread from '@/components/common/bread.vue';
+  import {mapGetters} from 'vuex';
   import api from "@/api/api.js";
   import '@/assets/pages/exchange.css';
   import '@/assets/pages/ex_details.css';
@@ -70,6 +70,11 @@
       }
     },
     // components: {bread},
+    computed: mapGetters({
+      token: "token",
+      isusername: "username",
+      islogin: "user_islogin",
+    }),
     mounted() {
       this.donateActivityDetail()
     },
@@ -86,13 +91,22 @@
         })
       },
       donatePointsSubmit() {
+        if (!this.islogin) {
+          this.$router.push({
+            path: '/login?backUrl=integral_detail'
+          })
+        }
         api.donatePoints({
           data: {
             donateActivityId: this.id,
             donatePoints: this.productNum,
           },
+          token: this.token,
         }).then(res => {
-          alert(res.data.message);
+          if(res.data.message !== '操作失败，用户未登录'){
+            alert(res.data.message)
+          }
+          this.donateActivityDetail();
         })
       },
       openUl(type) {

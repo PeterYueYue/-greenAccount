@@ -36,21 +36,27 @@
         prop="date"
         label="交易时间">
         <template slot-scope="scope">
-          <span>{{ scope.row.date }}</span>
+          <span>{{ scope.row.tranTime | moment }}</span>
         </template>
       </el-table-column>
       <el-table-column
         prop="score"
         label="交易分数">
         <template slot-scope="scope">
-          <span>{{ scope.row.score }}</span>
+          <span v-show="scope.row.tranType === '01'">扫描</span>
+          <span v-show="scope.row.tranType === '02'">兑换</span>
+          <span v-show="scope.row.tranType === '03'">补卡</span>
+          <span v-show="scope.row.tranType === '04'">POS机交易</span>
+          <span v-show="scope.row.tranType === '05'">积分转移</span>
+          <span v-show="scope.row.tranType === '06'">积分失效</span>
+          <span v-show="scope.row.tranType === '07'">积分调整</span>
         </template>
       </el-table-column>
       <el-table-column
         prop="type"
         label="类型">
         <template slot-scope="scope">
-          <span>{{ scope.row.type }}</span>
+          <span>{{ scope.row.tranType }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -113,7 +119,7 @@
           },
           token: this.token,
         }).then(res => {
-          console.log(res);
+          this.tableData = res.data.content;
           this.pageCount = res.data.totalElements;
         })
       },
@@ -121,6 +127,9 @@
         this.getPointOutDetail(startPage, this.pageSize);
       },
       search() {
+        if (this.formInline.start == '' || this.formInline.end == '') {
+          alert("请选择日期！")
+        }
         this.getPointOutDetail(1, 5);
       },
     }
