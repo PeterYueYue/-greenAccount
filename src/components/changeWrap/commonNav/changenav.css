@@ -134,3 +134,12 @@
 .change_wrap .el-radio-button__inner:hover {
   color: #20A345;
 }
+
+.erweima {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 120px;
+  left: 380px;
+  background: red;
+}
