@@ -1,6 +1,6 @@
 <template>
   <div class="change_wrap">
-    7
+    asdafas
   </div>
 </template>
 <script>
