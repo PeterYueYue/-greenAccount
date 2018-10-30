@@ -79,6 +79,7 @@
     },
     computed: mapGetters({
       token: "token",
+      resUuid: "resUuid",
       isusername: "username",
       islogin: "user_islogin",
     }),
@@ -122,28 +123,16 @@
           data: {
             id: this.id,
             productNum: this.productNum,
+            receiveAddressId: "1221",
+            resUuid: this.resUuid
           },
           token: this.token,
         }).then(res => {
-          if (res.data.result == '1') {
-            alert("库存数不足！")
-          }
-          else if (res.data.result == '2') {
-            alert("可用积分不足！")
-          }
-          else if (res.data.result == '3') {
-            alert("兑换不存在！")
-          }
-          else if (res.data.result == '4') {
-            alert("兑换成功！")
-          }
-          else if (res.data.result == '5') {
-            alert("非本区礼品不能兑换，请确认后重新兑换！")
-          }
-          else {
-            alert("兑换失败！")
-          }
-          this.getProductDetail();
+          alert(res.msg);
+          this.$router.push({
+            path: '/my_change/all',
+          })
+
         })
       },
     }

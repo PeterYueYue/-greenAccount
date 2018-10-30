@@ -59,6 +59,7 @@
 					} else {
 						res.data.islogin = true;
 						this.$store.dispatch('getToken', res.data);
+            this.$store.dispatch('getResUuid', res.data);
 
 						this.$cookies.set("token", res.data.token, res.data.expire);
 						this.$cookies.set("username", res.data.userName, res.data.expire);
