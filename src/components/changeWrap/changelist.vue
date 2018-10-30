@@ -174,7 +174,7 @@
         }).then(res => {
           this.tableData = res.data.productOrderVOs.content;
           this.pageCount = res.data.productOrderVOs.totalElements;
-          this.erweima = res.data.content[1].prodExchgeAddress;
+          // this.erweima = res.data.content.prodExchgeAddress;
         })
       },
       pageChange(startPage) {
