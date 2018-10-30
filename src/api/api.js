@@ -145,6 +145,11 @@ const configgetPointOutDetail = {
   "version": "1.0",
   "name": "user.getPointOutDetail",
 };
+const configProductActivityHistory = {
+  "version": "1.0",
+  "name": "product.activityHistory",
+};
+
 
 export default {
   UUid() {
@@ -294,6 +299,10 @@ export default {
   },
   getPointOutDetail(params) {
     let config = Object.assign(configgetPointOutDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productActivityHistory(params) {
+    let config = Object.assign(configProductActivityHistory, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }
