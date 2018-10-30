@@ -141,5 +141,5 @@
   position: absolute;
   top: 120px;
   left: 380px;
-  background: red;
+  border: 1px red solid;
 }
