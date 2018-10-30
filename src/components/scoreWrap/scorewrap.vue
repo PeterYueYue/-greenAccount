@@ -36,7 +36,7 @@
     created() {
       if (!this.islogin) {
         this.$router.push({
-          path: '/login?backUrl=my_score'
+          path: '/login?backUrl=my_score/all'
         })
       }
     }

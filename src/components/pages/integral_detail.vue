@@ -22,7 +22,7 @@
               <li><span class="num-jia">+</span></li>
             </ul>
           </li>
-          　　　
+          <li><span class="kucun">我的积分：123</span></li>　　　
         </ul>
         <div class="ex_shop_btn" @click="donatePointsSubmit">我要捐赠</div>
         <router-link to="/integral_list"><span class="ex_shop_more">查看更多爱心捐赠</span></router-link>

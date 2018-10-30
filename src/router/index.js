@@ -33,6 +33,8 @@ import changeOpen from '@/components/changeWrap/changeopen.vue' //已开奖
 import changeRecords from '@/components/changeWrap/changerecords.vue' //活动记录
 import scorewrap from '@/components/scoreWrap/scorewrap.vue'  //我的积分
 import scorelist from '@/components/scoreWrap/scorelist.vue' //我的积分全部
+import scoreInDetails from '@/components/scoreWrap/scoreindetails.vue' //累计记录
+import scoreOutDetails from '@/components/scoreWrap/scoreoutdetails.vue' //消费记录
 import games from '@/components/pages/games.vue'  //趣味游戏
 import intelligenceSearch from '@/components/pages/intelligence_search.vue'  //智能搜索
 
@@ -136,9 +138,19 @@ export default new Router({
       component: scorewrap,
       children: [
         {
-          path: '',
-          name: '',
+          path: 'all',
+          name: '全部',
           component: scorelist
+        },
+        {
+          path: 'point_in',
+          name: '累计记录',
+          component: scoreInDetails
+        },
+        {
+          path: 'point_out',
+          name: '消费记录',
+          component: scoreOutDetails
         }
       ]
     }, {

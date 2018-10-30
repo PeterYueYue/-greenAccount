@@ -24,7 +24,7 @@
               <li><span class="num-jia">+</span></li>
             </ul>
           </li>
-          <li><span class="kucun">剩余：{{listData.prodStockAmt}}</span></li>
+          <li><span class="kucun">礼品剩余数量：{{listData.prodStockAmt}}</span></li>
           　　　
         </ul>
         <div class="ex_shop_btn" @click="ajaxCheckCanSubmit">立即兑换</div>
