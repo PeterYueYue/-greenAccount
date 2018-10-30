@@ -25,8 +25,12 @@ import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心�
 import userinfo from '@/components/userInfo/userinfo.vue'  //绿账中心
 import baseinfo from '@/components/userInfo/baseinfo.vue' //绿账中心基本资料
 import changewrap from '@/components/changeWrap/changewrap.vue'  //我的兑换
-import changelist from '@/components/changeWrap/changelist.vue' //我的兑换全部
-import changewait from '@/components/changeWrap/changewait.vue' //待兑换
+import changeList from '@/components/changeWrap/changelist.vue' //我的兑换全部
+import changeWait from '@/components/changeWrap/changewait.vue' //待领取
+import changeAlready from '@/components/changeWrap/changealready.vue' //已领取
+import changeOpenNone from '@/components/changeWrap/changeopennone.vue' //未开奖
+import changeOpen from '@/components/changeWrap/changeopen.vue' //已开奖
+import changeRecords from '@/components/changeWrap/changerecords.vue' //活动记录
 import scorewrap from '@/components/scoreWrap/scorewrap.vue'  //我的积分
 import scorelist from '@/components/scoreWrap/scorelist.vue' //我的积分全部
 import games from '@/components/pages/games.vue'  //趣味游戏
@@ -98,13 +102,33 @@ export default new Router({
         {
           path: 'all',
           name: '全部',
-          component: changelist
+          component: changeList
         },
-	      {
-		      path: 'wait',
-		      name: '待领取',
-		      component: changewait
-	      },
+        {
+          path: 'wait',
+          name: '待领取',
+          component: changeWait
+        },
+        {
+          path: 'already',
+          name: '已领取',
+          component: changeAlready
+        },
+        {
+          path: 'open_none',
+          name: '未开奖',
+          component: changeOpenNone
+        },
+        {
+          path: 'open_prize',
+          name: '已开奖',
+          component: changeOpen
+        },
+        {
+          path: 'records',
+          name: '活动记录',
+          component: changeRecords
+        },
       ]
     }, {
       path: '/my_score',
