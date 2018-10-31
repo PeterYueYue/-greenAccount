@@ -16,6 +16,7 @@ export default new Vuex.Store({
         },
         user_islogin:false,
         token:'',
+        resUuid:'',
         username:'',
         expire:'',
         userdetail:{}
@@ -28,6 +29,9 @@ export default new Vuex.Store({
             this.state.username=data.userName;
             this.state.user_islogin=data.islogin;
             this.state.token = data.token;
+        },
+        GetResUuid(state,data){
+            this.state.resUuid=data.resUuid
         },
         GetUserdetail(state,data){
             this.state.userdetail=data

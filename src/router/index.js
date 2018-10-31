@@ -24,6 +24,17 @@ import lv_volunteer_details from '@/components/pages/lv_volunteer_details.vue'  
 import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心单位
 import userinfo from '@/components/userInfo/userinfo.vue'  //绿账中心
 import baseinfo from '@/components/userInfo/baseinfo.vue' //绿账中心基本资料
+import changewrap from '@/components/changeWrap/changewrap.vue'  //我的兑换
+import changeList from '@/components/changeWrap/changelist.vue' //我的兑换全部
+import changeWait from '@/components/changeWrap/changewait.vue' //待领取
+import changeAlready from '@/components/changeWrap/changealready.vue' //已领取
+import changeOpenNone from '@/components/changeWrap/changeopennone.vue' //未开奖
+import changeOpen from '@/components/changeWrap/changeopen.vue' //已开奖
+import changeRecords from '@/components/changeWrap/changerecords.vue' //活动记录
+import scorewrap from '@/components/scoreWrap/scorewrap.vue'  //我的积分
+import scorelist from '@/components/scoreWrap/scorelist.vue' //我的积分全部
+import scoreInDetails from '@/components/scoreWrap/scoreindetails.vue' //累计记录
+import scoreOutDetails from '@/components/scoreWrap/scoreoutdetails.vue' //消费记录
 import games from '@/components/pages/games.vue'  //趣味游戏
 import barcodematch from '@/components/userInfo/barcodematch.vue' //绿账中心匹配条码
 import barcodesearch from '@/components/userInfo/barcodesearch.vue' //绿账中心匹配条码查询
@@ -33,6 +44,7 @@ import changepassword from '@/components/userInfo/changepassword.vue' //绿账�
 import feedback from '@/components/userInfo/feedback.vue' //绿账中心意见反馈
 import message from '@/components/userInfo/message.vue' //绿账中心我的信息
 import address from '@/components/userInfo/address.vue' //绿账中心我的信息
+import intelligenceSearch from '@/components/pages/intelligence_search.vue'  //智能搜索
 
 export default new Router({
   routes: [
@@ -85,58 +97,115 @@ export default new Router({
       path: '/lvzx',
       name: '绿账中心',
       component: userinfo,
-      children:[
+      children: [
         {
-          path:'',
-          name:'',
-          component:baseinfo
+          path: '',
+          name: '',
+          component: baseinfo
+        },
+      {
+        path:'barcodematch',
+        name:'条码匹配',
+        component:barcodematch
+      },
+      {
+        path:'barcodesearch',
+        name:'匹配条码查询',
+        component:barcodesearch
+      },
+      {
+        path:'createcard',
+        name:'开卡补卡管理',
+        component:createcard
+      },
+      {
+        path:'inttran',
+        name:'积分转移',
+        component:inttran
+      },
+      {
+        path:'changepassword',
+        name:'密码更改',
+        component:changepassword
+      },
+      {
+        path:'feedback',
+        name:'意见反馈',
+        component:feedback
+      },
+      {
+        path:'message',
+        name:'我的信息',
+        component:message
+      },
+      {
+        path:'address',
+        name:'配送地址',
+        component:address
+      }
+      ]
+    }, {
+      path: '/my_change',
+      name: '我的兑换',
+      component: changewrap,
+      children: [
+        {
+          path: 'all',
+          name: '全部',
+          component: changeList
         },
         {
-          path:'barcodematch',
-          name:'条码匹配',
-          component:barcodematch
+          path: 'wait',
+          name: '待领取',
+          component: changeWait
         },
         {
-          path:'barcodesearch',
-          name:'匹配条码查询',
-          component:barcodesearch
+          path: 'already',
+          name: '已领取',
+          component: changeAlready
         },
         {
-          path:'createcard',
-          name:'开卡补卡管理',
-          component:createcard
+          path: 'open_none',
+          name: '未开奖',
+          component: changeOpenNone
         },
         {
-          path:'inttran',
-          name:'积分转移',
-          component:inttran
+          path: 'open_prize',
+          name: '已开奖',
+          component: changeOpen
         },
         {
-          path:'changepassword',
-          name:'密码更改',
-          component:changepassword
+          path: 'records',
+          name: '活动记录',
+          component: changeRecords
+        },
+      ]
+    }, {
+      path: '/my_score',
+      name: '我的积分',
+      component: scorewrap,
+      children: [
+        {
+          path: 'all',
+          name: '全部',
+          component: scorelist
         },
         {
-          path:'feedback',
-          name:'意见反馈',
-          component:feedback
+          path: 'point_in',
+          name: '累计记录',
+          component: scoreInDetails
         },
         {
-          path:'message',
-          name:'我的信息',
-          component:message
-        },
-        {
-          path:'address',
-          name:'配送地址',
-          component:address
+          path: 'point_out',
+          name: '消费记录',
+          component: scoreOutDetails
         }
       ]
-    },{
-		  path: '/lvbd',
-		  name: '绿账宝典',
-		  component: lvbd,
-	  },{
+    }, {
+      path: '/lvbd',
+      name: '绿账宝典',
+      component: lvbd,
+    }, {
       path: '/lvxd',
       name: '绿账行动',
       component: lvxd,
@@ -172,6 +241,10 @@ export default new Router({
       path: '/games',
       name: '趣味游戏',
       component: games,
+    }, {
+      path: '/intelligence_search',
+      name: '智能搜索',
+      component: intelligenceSearch,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

@@ -1,0 +1,64 @@
+.score_contain {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.score_content {
+  padding: 20px 0 20px 50px;
+}
+
+.el-menu-item.is-active {
+  color: #20A345 !important;
+}
+
+.el-submenu__icon-arrow {
+  font-size: 15px !important;
+  top: 53% !important;
+}
+
+.score_wrap_head {
+  font-size: 14px;
+  color: #333;
+}
+
+.score_wrap_head_num {
+  font-size: 32px;
+  color: #20A345;
+}
+
+.score_wrap_head_fen {
+  padding-right: 100px;
+}
+
+.score_search {
+  margin-top: 50px;
+}
+
+.score_search .el-button--success.searchBtn {
+  background-color: #20A345;
+  border-color: #20A345;
+}
+
+.score_search .el-button--success:focus, .score_search .el-button--success:hover, .score_search .el-button--success:hover {
+  background: #20A345 !important;
+  border-color: #20A345 !important;
+  color: #fff;
+}
+
+.score_search .el-input__inner:focus {
+  border-color: #20A345 !important;
+  outline: 0;
+}
+
+.score_wrap .el-table td {
+  padding: 20px 0;
+}
+
+.score_wrap .el-table .cell {
+  text-align: center;
+  color: #333;
+}
+
+.score_wrap .el-table th > .cell {
+  font-weight: bold;
+}

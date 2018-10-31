@@ -1,13 +1,6 @@
 <template>
   <div class="lv_wrap">
-    <div class="lv_bd_bread">您的位置：绿环保 > <span>绿账宝典</span></div>
-    <ul class="lv_bd_tab">
-      <li :class="activeIndex===0?'active':''" @click="allList4NewStyle(0,1,5)">全部</li>
-      <li :class="activeIndex===1?'active':''" @click="allList4NewStyle(1,1,5)">政策法规</li>
-      <li :class="activeIndex===2?'active':''" @click="allList4NewStyle(2,1,5)">标准规范</li>
-      <li :class="activeIndex===3?'active':''" @click="allList4NewStyle(3,1,5)">垃圾分类知识</li>
-      <li :class="activeIndex===4?'active':''" @click="allList4NewStyle(4,1,5)">操作指南</li>
-    </ul>
+    <div class="lv_bd_bread">您的位置：首页 > <span>智能搜索</span></div>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
          @mouseleave.stop="listHover(false,index)" v-show="listData.length !== 0">
       <router-link :to="{path: '/lvzhanghu/', query: { id: items.id, style: items.newsStyle }}">
@@ -42,63 +35,48 @@
   export default {
     data() {
       return {
+        query: this.$route.query.query,
         listData: [],
-        activeIndex: 0,
         pageCount: 0,    //总条数
-        pageSize: 5,     //每页条数
+        pageSize: 3,     //每页条数
         startPage: 1,    //当前页
       }
     },
     mounted() {
-      this.activeIndex = this.$route.params.index || 0;
-      this.allList4NewStyle((this.$route.params.index || 0), 1, 5);
+      this.searchLike(1, 3);
+    },
+    watch: {
+      '$route'(to, from) {
+        if (to.query.query !== from.query.query) {
+          this.query = to.query.query;
+          this.searchLike(1, 3);
+        }
+      }
     },
     methods: {
-      allList4NewStyle(status, startPage, pageSize, jumpPage) {
-        let category = '';
-        switch (status) {
-          case 0:
-            category = '05,06,07,24';
-            break;
-          case 1:
-            category = '05';
-            break;
-          case 2:
-            category = '06';
-            break;
-          case 3:
-            category = '07';
-            break;
-          case 4:
-            category = '24';
-            break;
-          default:
-            category = '05,06,07,24';
-            break;
-        }
-        api.allList4NewStyle({
+      searchLike(startPage, pageSize, jumpPage) {
+        api.searchLike({
           data: {
-            category: category,
-            startPage: startPage,
+            name: this.query,
             pageSize: pageSize,
+            startPage: startPage
           },
         }).then(res => {
           res.data.newsList.content.map(items => {
             items.hoverShow = false;
           });
           this.listData = res.data.newsList.content;
-          this.activeIndex = status;
           this.pageCount = res.data.newsList.totalElements;
           if (!jumpPage) {
             this.startPage = 1
           }
         })
       },
-      pageChange(startPage) {
-        this.allList4NewStyle(this.activeIndex, startPage, this.pageSize, true);
-      },
       listHover(status, index) {
         this.listData[index].hoverShow = status;
+      },
+      pageChange(startPage) {
+        this.searchLike(startPage, this.pageSize, true);
       },
     }
   }

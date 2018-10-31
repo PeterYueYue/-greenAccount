@@ -24,7 +24,7 @@
               <li><span class="num-jia">+</span></li>
             </ul>
           </li>
-          <li><span class="kucun">剩余：{{listData.prodStockAmt}}</span></li>
+          <li><span class="kucun">礼品剩余数量：{{listData.prodStockAmt}}</span></li>
           　　　
         </ul>
         <div class="ex_shop_btn" @click="ajaxCheckCanSubmit">立即兑换</div>
@@ -59,6 +59,7 @@
 </template>
 <script>
   // import bread from '@/components/common/bread.vue';
+  import {mapGetters} from 'vuex';
   import api from "@/api/api.js";
   import '@/assets/pages/exchange.css';
   import '@/assets/pages/ex_details.css';
@@ -76,6 +77,12 @@
     mounted() {
       this.getProductDetail()
     },
+    computed: mapGetters({
+      token: "token",
+      resUuid: "resUuid",
+      isusername: "username",
+      islogin: "user_islogin",
+    }),
     methods: {
       getProductDetail() {
         api.getProductDetail({
@@ -88,6 +95,18 @@
           });
           this.listData = res.data.info;
           this.listSameData = res.data.sameTypeLi;
+          if (res.data.info.prodStatus == '02') {
+            alert("该商品已全部兑换完，无法继续兑换。");
+            location.href = "/exchange#/exchange";
+          }
+          if (res.data.info.prodStatus == '03') {
+            alert("该商品已下架，无法继续兑换。");
+            location.href = "/exchange#/exchange";
+          }
+          if (res.data.info.prodStatus == '04') {
+            alert("该商品未上架，无法继续兑换。");
+            location.href = "/exchange#/exchange";
+          }
         })
       },
       listHover(status, index) {
@@ -95,13 +114,25 @@
         this.listSameData[index].push(status);
       },
       ajaxCheckCanSubmit() {
+        if (!this.islogin) {
+          this.$router.push({
+            path: '/login?backUrl=exchange/detail'
+          })
+        }
         api.ajaxCheckCanSubmit({
           data: {
             id: this.id,
             productNum: this.productNum,
+            receiveAddressId: "1221",
+            resUuid: this.resUuid
           },
+          token: this.token,
         }).then(res => {
-          console.log(res);
+          alert(res.msg);
+          this.$router.push({
+            path: '/my_change/all',
+          })
+
         })
       },
     }

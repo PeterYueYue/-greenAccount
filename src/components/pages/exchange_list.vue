@@ -1,12 +1,16 @@
 <template>
   <div>
-    <!--<div class="ex_wrap ex_area">-->
-    <!--<div class="ex_area_name">所在区域：</div>-->
-    <!--<ul>-->
-    <!--<li class="active">全市</li>-->
-    <!--<li v-for="item in area">{{item.brName}}</li>-->
-    <!--</ul>-->
-    <!--</div>-->
+    <div class="ex_wrap ex_area">
+      <div class="ex_area_name">所在区域：</div>
+      <ul>
+        <router-link :to="{path: '/exchange'}">
+          <li @click="chooseArea('全市','310000000000')" :class="isArea.id=='310000000000'?'active':''">全市</li>
+        </router-link>
+        <router-link :to="{path: '/exchange'}" v-for="item in area" :key="item.id">
+          <li @click="chooseArea(item.brName,item.brID)" :class="isArea.id==item.brID?'active':''">{{item.brName}}</li>
+        </router-link>
+      </ul>
+    </div>
     <div class="ex_wrap ex_select">
       <div class="ex_select_name">类型：
         <select name="" v-model="selectType" @change="getType">
@@ -165,20 +169,25 @@
           id: '5',
           name: '2000以上',
         }],
+        isArea: {
+          id: '310000000000',
+          name: '全市'
+        }
       }
     },
     mounted() {
-      // this.getarea();
+      this.getarea();
       this.getProductList(1, 8);
     },
-    computed: mapGetters({
-      isArea: "area"
-    }),
     methods: {
       getarea() {
         api.getarea().then(res => {
           this.area = res.data
         })
+      },
+      chooseArea(name, id) {
+        this.isArea.id = id;
+        this.getProductList(1, 8);
       },
       getType() {
         this.getProductList(1, 8);

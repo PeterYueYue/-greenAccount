@@ -98,8 +98,8 @@ const configajaxCheckCanSubmit = {
 };
 const configuserlogin = {
   "version": "1.0",
-  "name":"userlogin",
-	"app_key": "app_id_12",
+  "name": "userlogin",
+  "app_key": "app_id_12",
 }
 const configdonateActivityPage = {
   "version": "1.0",
@@ -160,7 +160,44 @@ const configaddressDetail = {
 const confgmodifyAddress = {
   "version": "1.0",
 	"name": "user.modifyAddress",
-}
+};
+// const configuserdetail = {
+//   "version": "1.0",
+//   "name": "user.detail",
+// };
+const configsearchLike = {
+  "version": "1.0",
+  "name": "searchLike",
+};
+const configproductList = {
+  "version": "1.0",
+  "name": "product.list",
+};
+const configproductFeedbackInit = {
+  "version": "1.0",
+  "name": "product.feedbackInit",
+};
+const configproductFeedbackSave = {
+  "version": "1.0",
+  "name": "product.feedbackSave",
+};
+const configuserGetInfo = {
+  "version": "1.0",
+  "name": "user.getInfo",
+};
+const configgetPointInDetail = {
+  "version": "1.0",
+  "name": "user.getPointInDetail",
+};
+const configgetPointOutDetail = {
+  "version": "1.0",
+  "name": "user.getPointOutDetail",
+};
+const configProductActivityHistory = {
+  "version": "1.0",
+  "name": "product.activityHistory",
+};
+
 
 export default {
   UUid() {
@@ -263,10 +300,10 @@ export default {
     let config = Object.assign(configajaxCheckCanSubmit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
-  userlogin(params){
+  userlogin(params) {
     let config = Object.assign(configuserlogin, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
-    
+
   },
   donateActivityPage(params) {
     let config = Object.assign(configdonateActivityPage, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
@@ -280,7 +317,7 @@ export default {
     let config = Object.assign(configdonatePoints, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
-  getuserdetail(params){
+  getuserdetail(params) {
     let config = Object.assign(configuserdetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   },
@@ -326,6 +363,38 @@ export default {
   },
   modifyAddress(params){
     let config = Object.assign(confgmodifyAddress, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  searchLike(params) {
+    let config = Object.assign(configsearchLike, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productList(params) {
+    let config = Object.assign(configproductList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productFeedbackInit(params) {
+    let config = Object.assign(configproductFeedbackInit, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productFeedbackSave(params) {
+    let config = Object.assign(configproductFeedbackSave, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  userGetInfo(params) {
+    let config = Object.assign(configuserGetInfo, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getPointInDetail(params) {
+    let config = Object.assign(configgetPointInDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getPointOutDetail(params) {
+    let config = Object.assign(configgetPointOutDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  productActivityHistory(params) {
+    let config = Object.assign(configProductActivityHistory, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }

@@ -1,0 +1,145 @@
+.change_contain {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.change_content {
+  padding: 20px 0 20px 50px;
+}
+
+.el-menu-item.is-active {
+  color: #20A345 !important;
+}
+
+.el-submenu__icon-arrow {
+  font-size: 15px !important;
+  top: 53% !important;
+}
+
+.change_wrap .el-table .cell {
+  text-align: center;
+  color: #333;
+}
+
+.change_wrap .el-table th > .cell {
+  font-weight: bold;
+}
+
+.change_wrap .el-button--text {
+  color: #F23A37;
+}
+
+.change_wrap .el-button--text:focus, .change_wrap .el-button--text:hover, .change_wrap .el-button--text:active {
+  color: #F23A37;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.change_wrap .el-table td {
+  padding: 20px 0;
+}
+
+.change_table_code {
+  width: 18px;
+  height: 18px;
+}
+
+.change_table_pic {
+  width: 48px;
+  height: 48px;
+}
+
+.change_shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.7);
+  z-index: 99;
+}
+
+.change_shadow_box {
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 520px;
+  background: #fff;
+  z-index: 100;
+}
+
+.lv_volunteer_icon_close {
+  position: absolute;
+  top: 37px;
+  right: 42px;
+  cursor: pointer;
+}
+
+.change_shadow_box .title {
+  font-size: 16px;
+  color: #20A345;
+  font-weight: bold;
+  margin: 70px 0 30px 105px;
+}
+
+.change_shadow_box .rules {
+  overflow: hidden;
+  margin: 20px 0 0 210px;
+  font-size: 14px;
+  color: #333;
+}
+
+.change_shadow_box .name {
+  float: left;
+  width: 80px;
+  text-align: right;
+}
+
+.change_shadow_box .content {
+  float: left;
+  margin-left: 10px;
+}
+
+.change_shadow_box .rules_btn {
+  width: 160px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  background: rgba(32, 163, 69, 1);
+  font-size: 18px;
+  color: #fff;
+  margin: 50px auto 0;
+  cursor: pointer;
+  border: 0;
+}
+
+.change_table_radio {
+  margin-right: 10px;
+}
+
+.change_wrap .el-radio-button .el-radio-button__inner {
+  border-radius: 0 !important;
+  border-left: 1px solid #dcdfe6;
+}
+
+.change_wrap .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+  color: #fff;
+  background: #20A345;
+  border: 1px #20A345 solid;
+}
+
+.change_wrap .el-radio-button__inner:hover {
+  color: #20A345;
+}
+
+.erweima {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 120px;
+  left: 380px;
+  border: 1px red solid;
+}
