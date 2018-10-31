@@ -25,6 +25,14 @@ import applyCompany from '@/components/pages/apply_company.vue'  //申请爱心�
 import userinfo from '@/components/userInfo/userinfo.vue'  //绿账中心
 import baseinfo from '@/components/userInfo/baseinfo.vue' //绿账中心基本资料
 import games from '@/components/pages/games.vue'  //趣味游戏
+import barcodematch from '@/components/userInfo/barcodematch.vue' //绿账中心匹配条码
+import barcodesearch from '@/components/userInfo/barcodesearch.vue' //绿账中心匹配条码查询
+import createcard from '@/components/userInfo/createcard.vue' //绿账中心开卡补卡
+import inttran from '@/components/userInfo/inttran.vue' //绿账中心积分转移
+import changepassword from '@/components/userInfo/changepassword.vue' //绿账中心更改密码
+import feedback from '@/components/userInfo/feedback.vue' //绿账中心意见反馈
+import message from '@/components/userInfo/message.vue' //绿账中心我的信息
+import address from '@/components/userInfo/address.vue' //绿账中心我的信息
 
 export default new Router({
   routes: [
@@ -82,6 +90,46 @@ export default new Router({
           path:'',
           name:'',
           component:baseinfo
+        },
+        {
+          path:'barcodematch',
+          name:'条码匹配',
+          component:barcodematch
+        },
+        {
+          path:'barcodesearch',
+          name:'匹配条码查询',
+          component:barcodesearch
+        },
+        {
+          path:'createcard',
+          name:'开卡补卡管理',
+          component:createcard
+        },
+        {
+          path:'inttran',
+          name:'积分转移',
+          component:inttran
+        },
+        {
+          path:'changepassword',
+          name:'密码更改',
+          component:changepassword
+        },
+        {
+          path:'feedback',
+          name:'意见反馈',
+          component:feedback
+        },
+        {
+          path:'message',
+          name:'我的信息',
+          component:message
+        },
+        {
+          path:'address',
+          name:'配送地址',
+          component:address
         }
       ]
     },{

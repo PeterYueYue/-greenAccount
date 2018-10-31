@@ -1,18 +1,24 @@
 <template>
-    <div class="userinfo-contain">
-        <el-row>
-            <el-col :span="4">
-                <div class="userinfo-side">
-                    <infonav></infonav>
-                </div>
-            </el-col>
-            <el-col :span="20">
-                <div class="userinfo-content">
-                    <router-view></router-view>
-                </div>
-            </el-col>
-        </el-row>
+    <div class="lvzx-contain">
+        <div class="lvzx-banner">
+            <img src="@/assets/ex_banner.png" alt="">
+        </div>
+        <div class="userinfo-contain">
+            <el-row>
+                <el-col :span="4">
+                    <div class="userinfo-side">
+                        <infonav></infonav>
+                    </div>
+                </el-col>
+                <el-col :span="20">
+                    <div class="userinfo-content">
+                        <router-view></router-view>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
     </div>
+    
 </template>
 <script>
 import {mapGetters} from 'vuex';
@@ -48,7 +54,6 @@ export default {
             api.getuserdetail({
             "token":this.token
             }).then(res =>{
-                console.log(res.data)
                 this.$store.dispatch('getUserdetail', res.data);
             })
         }

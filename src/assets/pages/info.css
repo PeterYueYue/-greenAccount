@@ -1,9 +1,20 @@
+.lvzx-banner{
+    width: 100%;
+    height: 303px;
+    overflow: hidden;
+}
+.lvzx-banner img{
+    width: 100%
+}
 .userinfo-contain{
     width: 1280px;
     margin: 0 auto;
 }
 .userinfo-content{
-    padding:20px 0 20px 50px;
+    padding:5px 0 20px 50px;
+}
+.userinfo-side{
+    background-color: red;
 }
 /* ----------------------基本资料------------------- */
 .info-base .base-title{
@@ -12,8 +23,14 @@
     color:rgba(51,51,51,1);
     line-height:52px;
 }
-.info-base .base-content{
-    margin-bottom: 100px;
+.info-base>div:nth-of-type(1){
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
+.info-base>div:nth-of-type(n+2){
+    /* margin-top: 20px; */
+    border-top: 1px solid #EBEBEB;
+    padding: 30px 0;
 }
 .info-base .base-item{
     display: inline-block;
@@ -33,4 +50,205 @@
     background-image: url('../../assets/cardbackground.png');
     background-size: contain;
     background-repeat: no-repeat;
+    padding-top: 87px
+}
+
+.info-base .base-item .green-card p{
+    text-align: center;
+    color: #FEFEFE;
+}
+.info-base .base-item .green-card p.card-name{
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.info-base .base-item .green-card p.card-date{
+    font-size: 12px;
+}
+/* ------------------条码匹配/开卡补卡/积分转移/密码更改------------------------ */
+.barcode-contain,.createcard-contain,.inttran-contain,.changepassword-contain,.feedback-contain{
+    padding-top: 40px;
+}
+.userInfo-item{
+    margin-bottom: 30px;
+}
+.barcode-contain .barcode-item{
+    margin-bottom: 50px
+}
+.userInfo-item .userInfo-iteminput{
+    width:360px; 
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+.userInfo-includetools{
+    margin-bottom: 50px;
+}
+.userInfo-item .userInfo-textarea{
+    vertical-align: top;
+}
+.userInfo-item .userInfo-textarea .el-textarea__inner{
+    height: 114px;
+    resize: none;
+}
+.userInfo-item .yzminput{
+    width: 220px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.userInfo-item .userInfo-itemyzm{
+    display: inline-block;
+    width: 114px;
+    height: 44px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.userInfo-item .userInfo-itemyzm img{
+    width: 100%;
+    height: 100%;
+}
+.userInfo-item .userInfo-iteminput .input-tool{
+    position: absolute;
+    font-size: 12px;
+    color: #666666;
+    left: 15px;
+    top: 50px
+}
+.userInfo-item .userInfo-itemname{
+    display: inline-block;
+    width: 90px;
+    font-size: 14px;
+    color: #333333;
+    text-align: right;
+    margin-right: 10px;
+}
+.userInfo-item .userInfo-itemname .musticon{
+    color: red;
+}
+.userInfo-item .userInfo-btn{
+    width: 200px;
+    height: 47px;
+    border: none;
+    background-color: #20A345;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-left: 105px;
+}
+
+.createcard-contain .createcard-item .createcard-int{
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.createcard-contain .createcard-item .createcard-tools{
+    display: inline-block;
+    color: #F23A37;
+    font-size: 12px;
+    /* vertical-align: middle; */
+}
+/* ---------------------------匹配条码查询/配送地址-------------------------------- */
+.barcodesearch-contain .barcodesearch-table,.address-contain .address-table{
+    width: 1060px;
+    text-align: center;
+}
+.barcodesearch-contain .barcodesearch-table tr,.address-contain .address-table tr{
+    height: 80px;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: 1px solid #EBEBEB;
+}
+.barcodesearch-contain .barcodesearch-table tr.table-title .address-contain .address-table tr.tabletitle{
+    font-weight: bold;
+}
+/* ----------------------------我的信息------------------------------------- */
+.message-contain .message-item{
+    border-bottom: 1px solid #EBEBEB;
+    padding: 30px 0
+}
+.message-contain .message-item .message-time{
+    color: #666666;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.message-contain .message-item .message-content{
+    color: #333333;
+    font-size: 14px;
+}
+/* -----------------------------配送地址-------------------------------------- */
+.address-contain .address-table .updata-btn{
+    color: #20A345;
+    padding: 0 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.address-contain .address-table .delate-btn{
+    color: #F23A37;
+    padding: 0 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.address-contain .address-table .middle-line{
+    display: inline-block;
+    height: 13px;
+    border-left: 1px solid #E4E4E4;
+    vertical-align: middle;
+}
+.address-contain .add-btn{
+    margin: 80px 45%;
+}
+.address-mask{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .5)
+}
+.address-mask .address-content{
+    background-color: white;
+    width: 800px;
+    height: 548px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* margin: 0 auto; */
+    transform: translate(-50%,-50%);
+    padding: 20px;
+}
+.address-mask .address-close-btn{
+    float: right;
+    cursor: pointer;
+}
+.address-mask .address-title{
+    color: #20A345;
+    padding: 40px 70px;
+}
+.address-mask .addaddress{
+    margin: 10px auto;
+    width: 500px;
+}
+.address-mask .userInfo-item{
+    margin-bottom: 20px;
+}
+.address-mask .userInfo-item .userInfo-itemname{
+    width: 100px;
+}
+.address-mask .userInfo-item .userInfo-select{
+    /* box-sizing: border-box; */
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.address-mask .defaultbtn{
+    width: 17px;
+    height: 17px; 
+    border-radius: 2px;
+    width: 17px;
+    height: 17px;
+    border: 1px solid #C1C1C1;
+}
+.address-mask .defaultbtn.default{
+    background-color: #20A345;
+    border: none;
 }

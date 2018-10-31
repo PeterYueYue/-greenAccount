@@ -2,7 +2,7 @@ import axios from 'axios';
 // 测试
 let base = 'http://180.153.19.162:8081';
 // 张强
-// let base = 'http://192.168.1.122:8080';
+// let base = 'http://192.168.1.126:8080';
 
 const configarea = {
   "version": "1.0",
@@ -116,6 +116,50 @@ const configdonatePoints = {
 const configuserdetail ={
   "version":"1.0",
 	"name":"user.detail",
+}
+const configbarCodeMatch = {
+  "version":"1.0",
+	"name":"user.barCodeMatch",
+}
+const configpasteCodeList = {
+  "version":"1.0",
+	"name":"user.pasteCodeList",
+}
+const configfillCard ={
+  "version":"1.0",
+	"name":"user.fillCard",
+}
+const configeditPwd ={
+  "version":"1.0",
+	"name":"user.editPwd",
+}
+const configideacreate ={
+  "version": "1.0",
+	"name": "user.ideacreate",
+}
+const configmyMessage ={
+  "version": "1.0",
+	"name": "user.myMessage",
+}
+const configuserAddress = {
+  "version": "1.0",
+	"name": "user.userAddress",
+}
+const configaddAddress = {
+  "version": "1.0",
+	"name": "user.addAddress",
+}
+const configdeleteAddress = {
+  "version": "1.0",
+	"name": "user.deleteAddress",
+}
+const configaddressDetail = {
+  "version": "1.0",
+	"name": "user.addressDetail",
+}
+const confgmodifyAddress = {
+  "version": "1.0",
+	"name": "user.modifyAddress",
 }
 
 export default {
@@ -239,6 +283,49 @@ export default {
   getuserdetail(params){
     let config = Object.assign(configuserdetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getbarCodeMatch(params){
+    let config = Object.assign(configbarCodeMatch, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getpasteCodeList(params){
+    let config = Object.assign(configpasteCodeList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getfillCard(params){
+    let config = Object.assign(configfillCard, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  editPwd(params){
+    let config = Object.assign(configeditPwd, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  ideacreate(params){
+    let config = Object.assign(configideacreate, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getmyMessage(params){
+    let config = Object.assign(configmyMessage, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getuserAddress(params){
+    let config = Object.assign(configuserAddress, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  addAddress(params){
+    let config = Object.assign(configaddAddress, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  deleteAddress(params){
+    let config = Object.assign(configdeleteAddress, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getaddressDetail(params){
+    let config = Object.assign(configaddressDetail, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  modifyAddress(params){
+    let config = Object.assign(confgmodifyAddress, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
-
 }

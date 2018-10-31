@@ -50,20 +50,21 @@
     },
     mounted(){
        window.setInterval(()=>{
+         console.log('222')
          if(this.$cookies.get("username")){
             this.login=true
           }else this.login=false
           this.userName=this.$cookies.get("username")
           this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login});
-      },18000)
+      },1800000)
     },
     destroyed(){
-
+        this.$cookies.remove("token");
+        this.$cookies.remove("username");
     },
     methods:{
       checkExpired(){
-         this.$cookies.remove("token");
-         this.$cookies.remove("username");
+       
       }
     }
   }

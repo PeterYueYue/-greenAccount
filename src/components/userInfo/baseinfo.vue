@@ -72,8 +72,8 @@
             <div class="base-content">
                 <div class="base-item">
                    <div class="green-card">
-                       <p>卡名：{{userdetail.residentVO.resName}}</p>
-                       <p>注册日期：{{userdetail.residentVO.createDate}}</p>
+                       <p class="card-name">卡名：{{userdetail.residentVO.resName}}</p>
+                       <p class="card-date">注册日期：{{userdetail.residentVO.createDate | momentDate}}</p>
                    </div>
                 </div>
                
