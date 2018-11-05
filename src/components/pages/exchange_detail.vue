@@ -70,7 +70,9 @@
         id: this.$route.query.id,
         listData: {},
         listSameData: [],
+        address: [],
         productNum: '1',
+        receiveAddressId: ''
       }
     },
     // components: {bread},
@@ -107,6 +109,16 @@
             alert("该商品未上架，无法继续兑换。");
             location.href = "/exchange#/exchange";
           }
+          if (res.data.info.prodReceiveWay == '02') {
+            api.getuserAddress({
+              token: this.token,
+            }).then(res => {
+              this.address= res.data.address;
+              if (res.data.address.length !== 0 && res.data.address[0].addressStatus == '1') {
+                this.receiveAddressId = res.data.address[0].id
+              }
+            })
+          }
         })
       },
       listHover(status, index) {
@@ -119,20 +131,31 @@
             path: '/login?backUrl=exchange/detail'
           })
         }
+        // if(this.address.length == 0){
+        //   this.$router.push({
+        //     path: '/lvzx/address',
+        //   })
+        // }
         api.ajaxCheckCanSubmit({
           data: {
             id: this.id,
             productNum: this.productNum,
-            receiveAddressId: "1221",
+            receiveAddressId: this.receiveAddressId ? this.receiveAddressId : '',
             resUuid: this.resUuid
           },
           token: this.token,
         }).then(res => {
           alert(res.msg);
-          this.$router.push({
-            path: '/my_change/all',
-          })
-
+          if (res.msg == '操作成功！') {
+            this.$router.push({
+              path: '/my_change/all',
+            })
+          }
+          if (res.msg == '请重新登录') {
+            this.$router.push({
+              path: '/login?backUrl=exchange/detail',
+            })
+          }
         })
       },
     }
