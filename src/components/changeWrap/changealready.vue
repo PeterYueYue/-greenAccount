@@ -15,8 +15,11 @@
         prop="code"
         label="二维码">
         <template slot-scope="scope">
-          <span style="cursor: pointer" @mouseenter.stop="codeHover(true)" @mouseleave.stop="codeHover(false)"
+          <span style="cursor: pointer" @mouseenter.stop="codeHover(true,scope.$index)"
+                @mouseleave.stop="codeHover(false,scope.$index)"
                 v-show="scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null' ">[▨]</span>
+          <qrcode :value="scope.row.prodExchgeAddress" :options="{ size: 85 }" class="erweima"
+                  v-show="(scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null') && showErweima"></qrcode>
         </template>
       </el-table-column>
       <el-table-column
@@ -94,9 +97,6 @@
       </el-pagination>
     </div>
 
-    <!-- 二维码 -->
-    <qrcode :value="erweima" :options="{ size: 120 }" v-show="showErweima" style="position:absolute;top:105px;left:340px;"></qrcode>
-
     <!-- 弹窗 -->
     <div class="change_shadow" v-if="showShadow"></div>
     <!-- 取消理由弹窗 -->
@@ -150,7 +150,6 @@
         showErweima: false,
         items: '',
         orderCode: '',
-        erweima: '',
         feedData: '满意',
         pageCount: 0,    //总条数
         pageSize: 5,     //每页条数
@@ -175,7 +174,6 @@
         }).then(res => {
           this.tableData = res.data.productOrderVOs.content;
           this.pageCount = res.data.productOrderVOs.totalElements;
-          this.erweima = res.data.productOrderVOs.content[0].prodExchgeAddress;
         })
       },
       pageChange(startPage) {
@@ -217,10 +215,11 @@
         this.showBox = false;
         document.querySelector('body').style.overflow = 'auto';
       },
-      codeHover(status) {
-        this.showErweima = status;
+      codeHover(status, index) {
+        // alert(index);
+        this.tableData[index].showErweima = status;
       },
-  }
+    }
   }
 </script>
 
