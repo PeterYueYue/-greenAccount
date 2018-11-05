@@ -1,6 +1,13 @@
 <template>
   <div>
-    <img src="@/assets/ex_banner.png" alt="" class="ex_banner">
+    <div class="ex_banner">
+      <div class="banner" v-if="listImg.length > 0">
+        <div class="banner_pic" v-for="item in listImg">
+          <img :src="'https://www.greenfortune.sh.cn/banner/' + item.bname" alt="">
+        </div>
+      </div>
+      <img src="@/assets/ex_banner.png" alt="" style="width:100%;" v-else>
+    </div>
     <div class="ex_remind">
       <div class="ex_wrap marquee">
         <div><img src="@/assets/ex_icon_remind.png" alt="">{{message}}</div>
@@ -40,34 +47,37 @@
   </div>
 </template>
 <script>
-	import api from "@/api/api.js";
-	import {mapGetters} from 'vuex';
-	import '@/assets/pages/exchange.css';
-	import '@/components/common/pagination.css';
+  import api from "@/api/api.js";
+  import {mapGetters} from 'vuex';
+  import '@/assets/pages/exchange.css';
+  import '@/components/common/pagination.css';
 
-	export default {
-		data() {
-			return {
-				listData: [],
+  export default {
+    data() {
+      return {
+        listData: [],
+        listImg: [],
         message: '',
-				pageCount: 0,    //总条数
-				pageSize: 8,     //每页条数
+        pageCount: 0,    //总条数
+        pageSize: 8,     //每页条数
         startPage: 1,    //当前页
-			}
-		},
-		mounted() {
+      }
+    },
+    mounted() {
       this.allList4NewStyle();
-			this.getProductList(1,8);
-		},
-		watch: {
-			area(){
-				this.getProductList(1,8)
-			}
-		},
-		computed: mapGetters({
-			area: "area"
-		}),
-		methods: {
+      this.getProductList(1, 8);
+      this.bannerList();
+    },
+    watch: {
+      area() {
+        this.getProductList(1, 8);
+        this.bannerList();
+      }
+    },
+    computed: mapGetters({
+      area: "area"
+    }),
+    methods: {
       allList4NewStyle() {
         api.allList4NewStyle({
           data: {
@@ -77,37 +87,37 @@
           this.message = res.data.newsList.content[0].newsContent;
         })
       },
-			getProductList(startPage, pageSize) {
-				api.getProductList({
-					data: {
-						prodExchBrid: this.area.id,
-						startPage: startPage,
+      getProductList(startPage, pageSize) {
+        api.getProductList({
+          data: {
+            prodExchBrid: this.area.id,
+            startPage: startPage,
             pageSize: pageSize,
-					},
-				}).then(res => {
-					res.data.content.map(items => {
-						items.hoverShow = true;
-					});
-					this.listData = res.data.content;
+          },
+        }).then(res => {
+          res.data.content.map(items => {
+            items.hoverShow = true;
+          });
+          this.listData = res.data.content;
           this.pageCount = res.data.totalElements;
         })
-			},
-			pageChange(startPage) {
-				this.getProductList(startPage, this.pageSize);
-			},
+      },
+      pageChange(startPage) {
+        this.getProductList(startPage, this.pageSize);
+      },
       listHover(status, index) {
         this.listData[index].hoverShow = status;
       },
-      bannerList(){
-            api.getbannerList({
-                "data": {
-                    prodExchBrid:this.isArea.id
-                
-                },
-            }).then(res =>{
-                console.log(res)
-            })
-        }
-		}
-	}
+      bannerList() {
+        api.getbannerList({
+          "data": {
+            prodExchBrid: this.area.id
+
+          },
+        }).then(res => {
+          this.listImg = res.data
+        })
+      }
+    }
+  }
 </script>
