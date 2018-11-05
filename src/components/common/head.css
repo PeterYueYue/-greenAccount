@@ -29,17 +29,28 @@
     padding: 12px 13px;
     z-index: 9999;
     font-size: 14px;
+    zoom:1
+}
+.area-list::after{
+    display:block;
+    clear:both;
+    content:"";
+    visibility:hidden;
+    height:0
 }
 .area-list a{
     display: inline-block;
     width: 75px;
     padding-left:5px;
     margin: 5px 0;
+    /* background-color: #20a345; */
+    float: left;
 }
 .area-list li{
     display: inline-block;
     padding: 5px 7px;
     /* margin: 5px 6px; */
+    
 }
 .area-list li.active,.area-list li:hover{
     cursor: pointer;

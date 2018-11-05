@@ -33,6 +33,8 @@
 <script>
   import '@/assets/pages/home.css'
   import $ from 'jquery'
+  import api from "@/api/api.js";
+  import {mapGetters} from 'vuex'
   import exchangePart from '@/components/home/homepartone.vue'
   import activcePart from '@/components/home/homeparttwo.vue'
   import actionPart from '@/components/home/homepartthree.vue'
@@ -93,13 +95,28 @@
             document.body.scrollTop = 0;
         }
     },
+    computed: mapGetters({
+      isArea: "area",
+      isusername: "username",
+      islogin: "user_islogin"
+    }),
     mounted(){
-       
-        window.addEventListener('scroll',this.page)
+        window.addEventListener('scroll',this.page);
+        this.bannerList();
     },
     methods:{
         page(){
             this.scroll=document.documentElement.scrollTop || document.body.scrollTop;
+        },
+        bannerList(){
+            api.getbannerList({
+                "data": {
+                    prodExchBrid:this.isArea.id
+                
+                },
+            }).then(res =>{
+                console.log(res)
+            })
         }
     }
   }

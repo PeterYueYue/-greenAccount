@@ -98,6 +98,16 @@
       listHover(status, index) {
         this.listData[index].hoverShow = status;
       },
+      bannerList(){
+            api.getbannerList({
+                "data": {
+                    prodExchBrid:this.isArea.id
+                
+                },
+            }).then(res =>{
+                console.log(res)
+            })
+        }
 		}
 	}
 </script>

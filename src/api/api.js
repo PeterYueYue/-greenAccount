@@ -161,10 +161,6 @@ const confgmodifyAddress = {
   "version": "1.0",
 	"name": "user.modifyAddress",
 };
-// const configuserdetail = {
-//   "version": "1.0",
-//   "name": "user.detail",
-// };
 const configsearchLike = {
   "version": "1.0",
   "name": "searchLike",
@@ -197,6 +193,10 @@ const configProductActivityHistory = {
   "version": "1.0",
   "name": "product.activityHistory",
 };
+const configbannerList ={
+  "version": "1.0",
+	"name": "bannerList",
+}
 
 
 export default {
@@ -395,6 +395,10 @@ export default {
   },
   productActivityHistory(params) {
     let config = Object.assign(configProductActivityHistory, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getbannerList(params){
+    let config = Object.assign(configbannerList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }
