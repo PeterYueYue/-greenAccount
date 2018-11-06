@@ -39,7 +39,7 @@
       <div class="de_title">同类兑换</div>
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
            v-for="(items,index) in listSameData">
-        <router-link :to="{path: '/exchange/detail/', query: { id: items[5] }}">
+        <router-link :to="{path: '/exchange/detail/', query: { Did: items[5] }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items[3]" alt="" class="ex_list_pic"
                v-if="items[3]">
           <img src="@/assets/ex_pic.png" alt="" class="ex_list_pic" v-else>
@@ -67,7 +67,7 @@
   export default {
     data() {
       return {
-        id: this.$route.query.id,
+        Did: this.$route.query.Did,
         listData: {},
         listSameData: [],
         address: [],
@@ -84,18 +84,20 @@
       resUuid: "resUuid",
       isusername: "username",
       islogin: "user_islogin",
+      id: "id",
     }),
     methods: {
       getProductDetail() {
         api.getProductDetail({
           data: {
-            id: this.id,
+            id: this.Did,
           },
         }).then(res => {
           res.data.sameTypeLi.map(items => {
             items.push(true)
           });
           this.listData = res.data.info;
+          this.$store.dispatch('getDetailsid', res.data.info);
           this.listSameData = res.data.sameTypeLi;
           if (res.data.info.prodStatus == '02') {
             alert("该商品已全部兑换完，无法继续兑换。");
@@ -127,9 +129,7 @@
       },
       ajaxCheckCanSubmit() {
         if (!this.islogin) {
-          this.$router.push({
-            path: '/login?backUrl=exchange/detail'
-          })
+          this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
         }
         // if(this.address.length == 0){
         //   this.$router.push({
@@ -138,7 +138,7 @@
         // }
         api.ajaxCheckCanSubmit({
           data: {
-            id: this.id,
+            id: this.Did,
             productNum: this.productNum,
             receiveAddressId: this.receiveAddressId ? this.receiveAddressId : '',
             resUuid: this.resUuid
@@ -152,9 +152,7 @@
             })
           }
           if (res.msg == '请重新登录') {
-            this.$router.push({
-              path: '/login?backUrl=exchange/detail',
-            })
+            this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
           }
         })
       },
