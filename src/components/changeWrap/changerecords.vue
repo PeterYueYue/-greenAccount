@@ -8,7 +8,7 @@
         prop="number"
         label="序号">
         <template slot-scope="scope">
-          <span>{{ scope.row.orderCode }}</span>
+          <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -16,28 +16,28 @@
         prop="name"
         label="活动名称">
         <template slot-scope="scope">
-          <span>{{ scope.row.orderCode }}</span>
+          <span>{{ scope.row.activityName }}</span>
         </template>
       </el-table-column>
       <el-table-column
         prop="score"
         label="消纳物品">
         <template slot-scope="scope">
-          <span>{{ scope.row.orderCode }}</span>
+          <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
       <el-table-column
         prop="score"
         label="消纳数量">
         <template slot-scope="scope">
-          <span>{{ scope.row.orderCode }}</span>
+          <span>{{ scope.row.count }}</span>
         </template>
       </el-table-column>
       <el-table-column
         prop="score"
         label="消纳积分">
         <template slot-scope="scope">
-          <span>{{ scope.row.orderCode }}</span>
+          <span>{{ scope.row.point }}</span>
         </template>
       </el-table-column>
       <el-table-column

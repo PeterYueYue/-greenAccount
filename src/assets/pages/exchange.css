@@ -1,6 +1,51 @@
 .ex_banner {
   width: 100%;
-  display: block;
+  overflow: hidden;
+}
+
+.ex_banner .banner {
+  width: 400%;
+  animation: banner 10s ease infinite;
+}
+
+.ex_banner .banner .banner_pic {
+  width: 25%;
+  overflow: hidden;
+  float: left;
+}
+
+.ex_banner .banner .banner_pic img {
+  width: 1920px;
+  position: relative;
+  left: 50%;
+  margin-left: -960px;
+}
+
+@keyframes banner {
+  0% {
+    margin-left: 0px;
+  }
+  34% {
+    margin-left: 0px;
+  }
+  39% {
+    margin-left: -100%;
+  }
+  64% {
+    margin-left: -100%;
+  }
+  69% {
+    margin-left: -200%;
+  }
+  94% {
+    margin-left: -200%;
+  }
+  99% {
+    margin-left: -300%;
+  }
+  100% {
+    margin-left: -300%;
+  }
 }
 
 .ex_wrap {
@@ -221,7 +266,6 @@
 .ex_list_integral:hover .ex_list_address {
   color: #666;
 }
-
 
 .ex_list_address img {
   position: relative;

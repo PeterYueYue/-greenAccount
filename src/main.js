@@ -13,8 +13,10 @@ import moment from 'moment/moment';
 import 'babel-polyfill';
 import Es6Promise from 'es6-promise'
 import VueCookies from 'vue-cookies';
+import VueQrcode from '@xkeshi/vue-qrcode';
 
 Vue.use(VueCookies);
+Vue.component(VueQrcode.name, VueQrcode);
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);

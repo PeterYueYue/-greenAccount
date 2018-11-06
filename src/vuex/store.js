@@ -35,7 +35,10 @@ export default new Vuex.Store({
         },
         GetUserdetail(state,data){
             this.state.userdetail=data
-        }
+        },
+        GetDetailsid(state,data){
+            this.state.id=data.id
+        },
     },
     // plugins: [createPersistedState({storage: window.sessionStorage})]
 })

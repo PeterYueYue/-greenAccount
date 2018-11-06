@@ -19,9 +19,9 @@
           <li><span class="number">数量：</span></li>
           <li>
             <ul class="count">
-              <li><span class="num-jian">-</span></li>
+              <li><span class="num-jian" @click="count(false)">-</span></li>
               <li><input type="number" class="input-num" v-model="productNum"/></li>
-              <li><span class="num-jia">+</span></li>
+              <li><span class="num-jia" @click="count(true)">+</span></li>
             </ul>
           </li>
           <li><span class="kucun">礼品剩余数量：{{listData.prodStockAmt}}</span></li>
@@ -39,7 +39,7 @@
       <div class="de_title">同类兑换</div>
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
            v-for="(items,index) in listSameData">
-        <router-link :to="{path: '/exchange/detail/', query: { id: items[5] }}">
+        <router-link :to="{path: '/exchange/detail/', query: { Did: items[5] }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items[3]" alt="" class="ex_list_pic"
                v-if="items[3]">
           <img src="@/assets/ex_pic.png" alt="" class="ex_list_pic" v-else>
@@ -67,10 +67,12 @@
   export default {
     data() {
       return {
-        id: this.$route.query.id,
+        Did: this.$route.query.Did,
         listData: {},
         listSameData: [],
-        productNum: '1',
+        address: [],
+        productNum: 1,
+        receiveAddressId: ''
       }
     },
     // components: {bread},
@@ -82,18 +84,20 @@
       resUuid: "resUuid",
       isusername: "username",
       islogin: "user_islogin",
+      id: "id",
     }),
     methods: {
       getProductDetail() {
         api.getProductDetail({
           data: {
-            id: this.id,
+            id: this.Did,
           },
         }).then(res => {
           res.data.sameTypeLi.map(items => {
             items.push(true)
           });
           this.listData = res.data.info;
+          this.$store.dispatch('getDetailsid', res.data.info);
           this.listSameData = res.data.sameTypeLi;
           if (res.data.info.prodStatus == '02') {
             alert("该商品已全部兑换完，无法继续兑换。");
@@ -107,6 +111,16 @@
             alert("该商品未上架，无法继续兑换。");
             location.href = "/exchange#/exchange";
           }
+          if (res.data.info.prodReceiveWay == '02') {
+            api.getuserAddress({
+              token: this.token,
+            }).then(res => {
+              this.address = res.data.address;
+              if (res.data.address.length !== 0 && res.data.address[0].addressStatus == '1') {
+                this.receiveAddressId = res.data.address[0].id
+              }
+            })
+          }
         })
       },
       listHover(status, index) {
@@ -115,26 +129,38 @@
       },
       ajaxCheckCanSubmit() {
         if (!this.islogin) {
-          this.$router.push({
-            path: '/login?backUrl=exchange/detail'
-          })
+          this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
         }
+        // if(this.address.length == 0){
+        //   this.$router.push({
+        //     path: '/lvzx/address',
+        //   })
+        // }
         api.ajaxCheckCanSubmit({
           data: {
-            id: this.id,
+            id: this.Did,
             productNum: this.productNum,
-            receiveAddressId: "1221",
+            receiveAddressId: this.receiveAddressId ? this.receiveAddressId : '',
             resUuid: this.resUuid
           },
           token: this.token,
         }).then(res => {
           alert(res.msg);
-          this.$router.push({
-            path: '/my_change/all',
-          })
-
+          if (res.msg == '操作成功！') {
+            this.$router.push({
+              path: '/my_change/all',
+            })
+          }
+          if (res.msg == '请重新登录') {
+            this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
+          }
         })
       },
+      count(status) {
+        if (!status && this.productNum === 0) return
+        this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
+        status ? this.productNum += 1 : this.productNum -= 1
+      }
     }
   }
 </script>

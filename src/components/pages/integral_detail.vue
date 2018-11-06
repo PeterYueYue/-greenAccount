@@ -17,9 +17,9 @@
           <li><span class="number">积分：</span></li>
           <li>
             <ul class="count">
-              <li><span class="num-jian">-</span></li>
+              <li><span class="num-jian" @click="count(false)">-</span></li>
               <li><input type="number" class="input-num" v-model="productNum"/></li>
-              <li><span class="num-jia">+</span></li>
+              <li><span class="num-jia" @click="count(true)">+</span></li>
             </ul>
           </li>　　
         </ul>
@@ -65,7 +65,7 @@
         id: this.$route.query.id,
         listData: {},
         pointsDirectionData: [],
-        productNum: '',
+        productNum: 1,
         showUl: true,
       }
     },
@@ -112,6 +112,11 @@
       openUl(type) {
         this.showUl = type;
       },
+      count(status) {
+        if (!status && this.productNum === 0) return
+        this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
+        status ? this.productNum += this.productNum : this.productNum -= this.productNum
+      }
     }
   }
 </script>
