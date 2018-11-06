@@ -45,9 +45,10 @@ export default {
                 path:'/login?backUrl=lvzx'
             })
         }
+        this.getuserdetail();
     },
     mounted(){
-        this.getuserdetail();
+        
     },
     methods:{
         getuserdetail(){

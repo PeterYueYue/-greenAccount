@@ -23,7 +23,7 @@
                         <img src="@/assets/lvzhangxx2.png" alt="">
                     </div>
                     <div class="other-part-content">
-                        <p class="other-content-title" @click="see('https://www.guokr.com/zone/wastesorting/article/162153/')">分垃圾从“桶”开始</p>
+                        <p class="other-content-title" @click="see('https://www.guokr.com/zone/wastesorting/article/388775/')">分垃圾从“桶”开始</p>
                         <p class="other-content">街边的垃圾桶分“可回收”、“不可回收”；小区里多出一个“厨余”，有些地方还会多出一个“有害垃圾”；在日本有可燃、不可燃、资源类、粗大类等不同的垃圾桶；德国的垃圾桶会按不同材料来划分……那么之后，这些垃圾又去哪儿了？</p>
                     </div>
                 </div>

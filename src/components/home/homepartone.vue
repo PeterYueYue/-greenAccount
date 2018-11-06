@@ -21,7 +21,7 @@
                         <p class="green-line"></p>
                     </div>
                     <div  class="exchange-detail dec">
-                        绿色账户”携手蚂蚁金服，开通了绿色账户自主申领渠道和线上自由兑换通道。现在居民参与“绿色账户”活动就可以享受消费抵扣、礼品兑换、服务优惠和积分抽奖。
+                        "绿色账户"携手蚂蚁金服，开通了绿色账户自主申领渠道和线上自由兑换通道。现在居民参与"绿色账户"活动就可以享受消费抵扣、礼品兑换、服务优惠和积分抽奖。
                     </div>
                     <div  class="exchange-detail code">
                         <div class="paycode">
@@ -46,7 +46,10 @@
                                     <p class="exchange-detail-count">{{item.prodPoints}}</p>
                                     <p class="exchange-detail-address">
                                         <img src="@/assets/icon/position.png" alt="">
-                                    {{item.productInfo.prodReceiveAddress}}领取
+                                        <span>
+                                            {{item.productInfo.prodReceiveAddress}}领取
+                                        </span>
+                                    <!-- {{item.productInfo.prodReceiveAddress}}领取 -->
                                     </p>
                                     <p class="exchange-detail-time">
                                     {{item.productInfo.prodProvider}}提供

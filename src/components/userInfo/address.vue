@@ -60,7 +60,7 @@
                             <span>联系方式:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-iteminput">
-                            <el-input v-model="newaddress.phone"></el-input>
+                            <el-input v-model="newaddress.phone" @change="addphonetest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item">
@@ -122,7 +122,7 @@
                             <span>联系方式:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-iteminput">
-                            <el-input v-model="editaddress.phone"></el-input>
+                            <el-input v-model="editaddress.phone" @change="editphonetest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item">
@@ -200,7 +200,41 @@ export default {
                 this.addresslist=res.data.address
             })
         },
+        addphonetest(){
+             var tel = /^1[3456789]\d{9}$/;
+            if(!tel.test(this.newaddress.phone)&&this.newaddress.phone!=''){
+                alert('请输入设置正确的手机号格式')
+                this.newaddress.phone=''
+            }
+        },
+        editphonetest(){
+             var tel = /^1[3456789]\d{9}$/;
+            if(!tel.test(this.editaddress.phone)&&this.editaddress.phone!=''){
+                alert('请输入设置正确的手机号格式')
+                this.editaddress.phone=''
+            }
+        },
         addaddressHandle(){
+            if(this.newaddress.name==''){
+                alert('姓名不能为空');
+                return
+            }
+            if(this.newaddress.address==''){
+                alert('地址不能为空');
+                return
+            }
+            if(this.newaddress.phone==''){
+                alert('手机号不能为空');
+                return
+            }
+            if(this.newaddress.zipCode==''){
+                alert('邮编号不能为空');
+                return
+            }
+            if(this.newaddress.status==''){
+                alert('默认状态不能为空');
+                return
+            }
             api.addAddress({
                 data:this.newaddress,
                 "token":this.token
@@ -223,6 +257,26 @@ export default {
             }else this.editaddress.status=0
         },
         editaddressHandle(){
+            if(this.editaddress.name==''){
+                alert('姓名不能为空');
+                return
+            }
+            if(this.editaddress.phone==''){
+                alert('手机号不能为空');
+                return
+            }
+            if(this.editaddress.address==''){
+                alert('地址不能为空');
+                return
+            }
+            if(this.editaddress.zipCode==''){
+                alert('邮编号不能为空');
+                return
+            }
+            if(this.editaddress.status==''){
+                alert('默认状态不能为空');
+                return
+            }
             api.modifyAddress({
                data:{
                     id:this.editId,
@@ -240,7 +294,7 @@ export default {
                         path:'/login'
                     })
                 }
-                if(res.msg=='操作成功'){
+                if(res.msg=='操作成功！'){
                     if(res.data.msg){
                         this.getuserAddress();
                         this.isedit=false;

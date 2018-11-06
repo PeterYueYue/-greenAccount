@@ -57,7 +57,8 @@
 		},
 		mounted() {
       this.allList4NewStyle();
-			this.getProductList(1,8);
+      this.getProductList(1,8);
+      this.bannerList()
 		},
 		watch: {
 			area(){
@@ -99,9 +100,10 @@
         this.listData[index].hoverShow = status;
       },
       bannerList(){
+        console.log(this.area.id)
             api.getbannerList({
                 "data": {
-                    prodExchBrid:this.isArea.id
+                    prodExchBrid:this.area.id
                 
                 },
             }).then(res =>{

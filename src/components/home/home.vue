@@ -54,7 +54,7 @@
     },
     data() {
       return {
-        scroll:'',
+        scroll:0,
         comlist:{
             active:false,
             action:false,
@@ -106,7 +106,16 @@
     },
     methods:{
         page(){
-            this.scroll=document.documentElement.scrollTop || document.body.scrollTop;
+            this.scroll+=1;
+            console.log(this.scroll)
+            if(this.scroll==2){
+                // console.log(document.querySelector('.home-exchange-contain'))
+                // document.querySelector('.home-exchange-contain').scrollIntoView()
+                // document.documentElement.scrollTop=$('.home-exchange-content').offset().top;
+            }
+            // document.documentElement.scrollTop=500
+
+            // console.log(document.documentElement.scrollTop)
         },
         bannerList(){
             api.getbannerList({

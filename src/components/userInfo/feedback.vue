@@ -143,7 +143,7 @@ export default {
                         path:'/login'
                     })
                 }
-                if(res.msg=='操作成功! '){
+                if(res.msg=='操作成功！' ){
                     alert(res.data.message)
                 }
             })

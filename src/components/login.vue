@@ -1,7 +1,7 @@
 <template>
   <div class="login-contain">
-    <div>
-
+    <div class="loginlogo">
+			<img src="@/assets/loginlogo.png" alt="">
     </div>
     <form class="login-form">
       <div class="form-item">

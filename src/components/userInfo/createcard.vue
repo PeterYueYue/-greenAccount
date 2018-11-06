@@ -129,8 +129,8 @@ export default {
                         path:'/login'
                     })
                 }
-                if(res.msg=='操作成功! '){
-                    alert(res.data.message)
+                if(res.msg=='操作成功！'){
+                    alert(res.data.msg)
                 }
             })
         },

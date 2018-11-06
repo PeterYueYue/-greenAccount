@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Axios from 'axios';
 import moment from 'moment/moment';
 import 'babel-polyfill';
+import Es6Promise from 'es6-promise'
 import VueCookies from 'vue-cookies';
 
 Vue.use(VueCookies);

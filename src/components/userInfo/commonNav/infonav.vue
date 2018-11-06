@@ -14,7 +14,7 @@
                     <span slot="title">匹配条码查询</span>
                     <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
                 </el-menu-item>
-                <el-menu-item index="/lvzx/createcard" :route ="{path:'/lvzx/createcard'}">  
+                <el-menu-item index="/lvzx/createcard" :route ="{path:'/lvzx/createcard'}" v-if="userdetail.residentVO.accountType=='套卡'?true:false">  
                     <span slot="title">开卡补卡管理</span>
                     <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
                 </el-menu-item>
@@ -48,7 +48,8 @@ import './infonav.css'
 export default {
     data(){
         return {
-            navindex:`/lvzx`
+            navindex:`/lvzx`,
+            cardtype:false
         }
     },
     mounted(){
@@ -56,6 +57,7 @@ export default {
     },
     computed: mapGetters({
       islogin:"user_islogin",
+      userdetail:"userdetail"
     }),
     methods:{
         handleSelect(){

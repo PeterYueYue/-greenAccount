@@ -197,6 +197,10 @@ const configbannerList ={
   "version": "1.0",
 	"name": "bannerList",
 }
+const configpointTransInfo ={
+  "version": "1.0",
+	"name": "user.pointTransInfo",
+}
 
 
 export default {
@@ -399,6 +403,10 @@ export default {
   },
   getbannerList(params){
     let config = Object.assign(configbannerList, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  pointTransInfo(params){
+    let config = Object.assign(configpointTransInfo, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }

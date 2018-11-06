@@ -31,14 +31,14 @@
                             </div>
                             <div class="action-left-notice">
                                 <div class="action-left-title">
-                                    上海绿色账户平台维护公告
+                                    {{noticefirst.title}}
                                 </div>
                                 <div class="action-left-middle"></div>
                                 <div class="action-left-content">
-                                    <p>亲爱的市民朋友：</p>
+                                    <!-- <p>亲爱的市民朋友：</p> -->
                                     <div class="notice-contain">
                                         <p class="left-notice-content">{{noticefirst.newsContent}}</p>
-                                        <span  class="ellipsis">...</span>  
+                                        <!-- <span  class="ellipsis">...</span>   -->
                                     </div>    
                                 </div>
                             </div>
@@ -47,19 +47,19 @@
                 </router-link>
                 
                 <div class="action-content-right">                  
-                    <div class="action-list"  v-for="(item,index) in noticelist" :key="item.id" :style="action_list?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
+                    <div class="action-list"  v-for="(item,index) in noticelist" :class="contentIndex==index?'active':''" :key="item.id" :style="action_list?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
                         <p class="small-content" :class="contentIndex!=index?'':'active'" @mouseenter="contentIndex=index">{{item.title}} <span class="notice-time">{{item.date}}</span> </p>
                         <router-link :to="'/lvzhanghu/?id='+item.id+'&style='+item.newsStyle">
                             <div class="action-content-right-top" :class="contentIndex==index?'active':''">
                                 <div class="action-right-title">
-                                    上海绿色账户平台维护公告
+                                   {{item.title}}
                                 </div>
                                 <div class="action-right-notice">
                                     <div class="action-right-content">
-                                        <p>亲爱的市民朋友：</p>
+                                        <!-- <p>亲爱的市民朋友：</p> -->
                                         <div class="notice-contain">
                                             <p class="right-notice-content">{{item.newsContent}}</p>
-                                            <span class="ellipsis">...</span>  
+                                            <!-- <span class="ellipsis">...</span>   -->
                                         </div>    
                                     </div>
                                     <div class="right-notice-detail">
