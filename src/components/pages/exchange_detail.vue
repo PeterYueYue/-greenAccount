@@ -19,9 +19,9 @@
           <li><span class="number">数量：</span></li>
           <li>
             <ul class="count">
-              <li><span class="num-jian">-</span></li>
+              <li><span class="num-jian" @click="count(false)">-</span></li>
               <li><input type="number" class="input-num" v-model="productNum"/></li>
-              <li><span class="num-jia">+</span></li>
+              <li><span class="num-jia" @click="count(true)">+</span></li>
             </ul>
           </li>
           <li><span class="kucun">礼品剩余数量：{{listData.prodStockAmt}}</span></li>
@@ -71,7 +71,7 @@
         listData: {},
         listSameData: [],
         address: [],
-        productNum: '1',
+        productNum: 1,
         receiveAddressId: ''
       }
     },
@@ -113,7 +113,7 @@
             api.getuserAddress({
               token: this.token,
             }).then(res => {
-              this.address= res.data.address;
+              this.address = res.data.address;
               if (res.data.address.length !== 0 && res.data.address[0].addressStatus == '1') {
                 this.receiveAddressId = res.data.address[0].id
               }
@@ -158,6 +158,11 @@
           }
         })
       },
+      count(status) {
+        if (!status && this.productNum === 0) return
+        this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
+        status ? this.productNum += 1 : this.productNum -= 1
+      }
     }
   }
 </script>
