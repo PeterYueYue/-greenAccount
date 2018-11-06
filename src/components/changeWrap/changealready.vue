@@ -19,7 +19,7 @@
                 @mouseleave.stop="codeHover(false,scope.$index)"
                 v-show="scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null' ">[▨]</span>
           <qrcode :value="scope.row.prodExchgeAddress" :options="{ size: 85 }" class="erweima"
-                  v-show="(scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null') && showErweima"></qrcode>
+                  v-show="(scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null') && scope.row.showErweima"></qrcode>
         </template>
       </el-table-column>
       <el-table-column
@@ -124,8 +124,9 @@
         <div class="name">用户反馈:</div>
         <div class="content">
           <el-radio-group v-model="feedData">
-            <el-radio-button :label="item.contents" class="change_table_radio"
-                             v-for="item in itemList" :key="index"></el-radio-button>
+            <el-radio-button :label="item.sortNo" class="change_table_radio"
+                             v-for="(item,index) in itemList" :key="index">{{item.contents}}
+            </el-radio-button>
           </el-radio-group>
         </div>
       </div>
@@ -148,9 +149,8 @@
         showShadow: false,
         showBox: false,
         showErweima: false,
-        items: '',
         orderCode: '',
-        feedData: '满意',
+        feedData: '',
         pageCount: 0,    //总条数
         pageSize: 5,     //每页条数
         startPage: 1,    //当前页
@@ -172,7 +172,9 @@
           },
           token: this.token,
         }).then(res => {
-          this.tableData = res.data.productOrderVOs.content;
+          this.tableData = res.data.productOrderVOs.content.map(items => {
+            return Object.assign(items, {'showErweima': false})
+          });
           this.pageCount = res.data.productOrderVOs.totalElements;
         })
       },
@@ -180,11 +182,7 @@
         this.productList(startPage, this.pageSize);
       },
       getFeed(prodId, orderCode) {
-        this.items = prodId;
         this.orderCode = orderCode;
-        this.showShadow = true;
-        this.showBox = true;
-        document.querySelector('body').style.overflow = 'hidden';
         api.productFeedbackInit({
           data: {
             id: prodId,
@@ -192,14 +190,21 @@
           },
           token: this.token,
         }).then(res => {
+          let getFlag = res.data.itemList.filter(item => {
+            return item.flag > 0
+          });
+          this.feedData = getFlag.length > 0 ? getFlag[0].sortNo : '';
           this.shadowData = res.data;
           this.itemList = res.data.itemList;
+          this.showShadow = true;
+          this.showBox = true;
+          document.querySelector('body').style.overflow = 'hidden';
         })
       },
       saveData() {
         api.productFeedbackSave({
           data: {
-            items: this.items,
+            items: this.feedData,
             orderCode: this.orderCode
           },
           token: this.token,
@@ -216,7 +221,6 @@
         document.querySelector('body').style.overflow = 'auto';
       },
       codeHover(status, index) {
-        // alert(index);
         this.tableData[index].showErweima = status;
       },
     }
