@@ -32,7 +32,7 @@
         prop="name"
         label="商品名称">
         <template slot-scope="scope">
-          <router-link :to="{path: '/exchange/detail/', query: { id: scope.row.prodId }}"><span>{{ scope.row.prodInfo
+          <router-link :to="{path: '/exchange/detail/', query: { Did: scope.row.prodId }}"><span>{{ scope.row.prodInfo
             }}</span></router-link>
         </template>
       </el-table-column>

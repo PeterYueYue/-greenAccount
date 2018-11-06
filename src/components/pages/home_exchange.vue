@@ -16,7 +16,7 @@
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
            v-for="(items,index) in listData" v-show="listData.length !== 0">
-        <router-link :to="{path: '/exchange/detail/', query: { id: items.productInfo.id }}">
+        <router-link :to="{path: '/exchange/detail/', query: { Did: items.productInfo.id }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
                v-if="items.prodPic">
           <img src="@/assets/ex_pic.png" alt="" class="ex_list_pic" v-else>
