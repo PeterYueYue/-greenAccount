@@ -15,8 +15,9 @@
         prop="code"
         label="二维码">
         <template slot-scope="scope">
-          <span style="cursor: pointer"
-                v-show="scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null' ">[▨]</span>
+          <span style="cursor: pointer" @mouseenter.stop="codeHover(true,scope.$index)"
+                @mouseleave.stop="codeHover(false,scope.$index)"
+                v-show="(scope.row.companyCode == '0003' && scope.row.prodExchgeAddress!='null') && scope.row.showErweima">[▨]</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -144,6 +145,7 @@
         shadowData: {},
         showShadow: false,
         showBox: false,
+        showErweima: false,
         items: '',
         orderCode: '',
         feedData: '满意',
@@ -168,7 +170,9 @@
           },
           token: this.token,
         }).then(res => {
-          this.tableData = res.data.productOrderVOs.content;
+          this.tableData = res.data.productOrderVOs.content.map(items => {
+            return Object.assign(items, {'showErweima': false})
+          });
           this.pageCount = res.data.productOrderVOs.totalElements;
         })
       },
@@ -210,6 +214,9 @@
         this.showShadow = false;
         this.showBox = false;
         document.querySelector('body').style.overflow = 'auto';
+      },
+      codeHover(status, index) {
+        this.tableData[index].showErweima = status;
       },
     }
   }
