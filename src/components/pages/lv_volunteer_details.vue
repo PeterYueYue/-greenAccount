@@ -12,7 +12,9 @@
     </div>
 
     <div class="lv_volunteer_details_enlist" @click="openBox" v-show="listData.actStatus == '6'">我要报名</div>
-    <!--<div class="lv_volunteer_details_enlist active">活动已结束</div>-->
+    <div class="lv_volunteer_details_enlist active" v-show="listData.actStatus == '4'">活动已结束</div>
+    <div class="lv_volunteer_details_enlist active" v-show="listData.actStatus == '2'">活动进行中</div>
+    <div class="lv_volunteer_details_enlist active" v-show="listData.actStatus == '0'">活动未开始</div>
 
     <div class="lv_volunteer_details_tab">
       <div class="title">基本信息</div>

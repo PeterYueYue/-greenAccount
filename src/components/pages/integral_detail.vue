@@ -93,7 +93,7 @@
       donatePointsSubmit() {
         if (!this.islogin) {
           this.$router.push({
-            path: '/login?backUrl=integral_detail'
+            path: '/login?backUrl=integral_list'
           })
         }
         api.donatePoints({
