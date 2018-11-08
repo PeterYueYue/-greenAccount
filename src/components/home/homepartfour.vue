@@ -13,9 +13,9 @@
                     <table>
                         <thead>
                             <tr class="table-title">
-                                <td style="width:2%">排名</td>
+                                <td style="width:1%">排名</td>
                                 <td style="width:10%">组织名称</td>
-                                <td style="width:10%">组织活动次数</td>
+                                <td style="width:8%">组织活动次数</td>
                                 <td style="width:3%">荣誉</td>
                             </tr>  
                         </thead>
