@@ -262,3 +262,15 @@
   margin: 60px auto 0;
   cursor: pointer;
 }
+
+.lv_v_nodata {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  margin: 120px 0px 100px;
+}
+
+.lv_v_nodata .lv_v_blank {
+  font-size: 16px;
+  color: #888;
+}

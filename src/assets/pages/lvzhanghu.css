@@ -166,5 +166,10 @@
   width: 100%;
   overflow: hidden;
   text-align: center;
-  margin: 150px 0px 100px;
+  margin: 120px 0px 100px;
+}
+
+.lv_nodata .lv_blank {
+  font-size: 16px;
+  color: #888;
 }

@@ -19,7 +19,11 @@
       </div>
     </div>
 
-    <div class="lv_nodata" v-show="listData.length == 0">暂无数据</div>
+    <div class="lv_v_nodata" v-show="listData.length == 0">
+      <img src="@/assets/icon_404.png" alt="">
+      <div class="lv_v_blank">空空如也~</div>
+    </div>
+
     <div class="pagination_wrap">
       <el-pagination
         background
