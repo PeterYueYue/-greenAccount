@@ -107,7 +107,7 @@
                     <div>积分捐赠</div>
                   </router-link>
                   <router-link to="/lv_volunteer">
-                    <div>志愿者申请</div>
+                    <div>公益志愿</div>
                   </router-link>
                   <router-link to="/hdtd">
                     <div>活动天地</div>

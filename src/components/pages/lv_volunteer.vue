@@ -10,7 +10,10 @@
           </div>
           <div class="text">
             <img src="@/assets/lv_v_icon_date.png" alt="" class="lv_volunteer_icon">活动日期：{{items[3
-            ]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span><span class="finished" v-show="items[4]==='已结束'">已结束</span>
+            ]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span>
+            <span class="progress" v-show="items[4]==='未开始'">未开始</span>
+            <span class="enlist" v-show="items[4]==='报名中'">报名中</span>
+            <span class="finished" v-show="items[4]==='已结束'">已结束</span>
           </div>
         </router-link>
       </div>
