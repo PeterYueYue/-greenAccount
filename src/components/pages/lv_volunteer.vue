@@ -66,8 +66,12 @@
           this.pageCount = res.data.pubActList.totalElements;
         })
       },
+      scrollToTop:function() {
+        window.scrollTo(0,0);
+      },
       pageChange:function(startPage) {
         this.pubActList(startPage, this.pageSize);
+        this.scrollToTop();
       },
     }
   }

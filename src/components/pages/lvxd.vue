@@ -68,8 +68,12 @@
           }
         })
       },
+      scrollToTop:function() {
+        window.scrollTo(0,0);
+      },
       pageChange:function(startPage) {
         this.allList4NewStyle(startPage, this.pageSize, true);
+        this.scrollToTop();
       },
       listHover:function(status, index) {
         this.listData[index].hoverShow = status;

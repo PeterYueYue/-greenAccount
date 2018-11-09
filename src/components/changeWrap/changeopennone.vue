@@ -176,8 +176,12 @@
           this.pageCount = res.data.productOrderVOs.totalElements;
         })
       },
+      scrollToTop:function() {
+        window.scrollTo(0,0);
+      },
       pageChange:function(startPage) {
         this.productList(startPage, this.pageSize);
+        this.scrollToTop();
       },
       getFeed:function(prodId, orderCode) {
         this.orderCode = orderCode;

@@ -80,8 +80,12 @@
       listHover:function(status, index) {
         this.listData[index].hoverShow = status;
       },
+      scrollToTop:function() {
+        window.scrollTo(0,0);
+      },
       pageChange:function(startPage) {
         this.searchLike(startPage, this.pageSize, true);
+        this.scrollToTop();
       },
     }
   }
