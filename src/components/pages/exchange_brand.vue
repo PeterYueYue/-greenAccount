@@ -56,7 +56,10 @@
           <div class="ex_list_btn" v-else>立即兑换</div>
         </router-link>
       </div>
-      <div class="ex_nodata" v-show="listData.length == 0">暂无数据</div>
+      <div class="ex_nodata" v-show="listData.length == 0">
+        <img src="@/assets/icon_404.png" alt="">
+        <div class="ex_blank">空空如也~</div>
+      </div>
     </div>
     <div class="pagination_wrap">
       <el-pagination

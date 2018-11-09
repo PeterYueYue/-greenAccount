@@ -13,7 +13,12 @@
         <img src="@/assets/lvz_icon_arrow.png" alt="" class="lv_bd_arrow" v-if="items.hoverShow">
       </router-link>
     </div>
-    <div class="lv_nodata" v-show="listData.length == 0">暂无数据</div>
+
+    <div class="lv_nodata" v-show="listData.length == 0">
+      <img src="@/assets/icon_404.png" alt="">
+      <div class="lv_blank">空空如也~</div>
+    </div>
+
     <div class="pagination_wrap">
       <el-pagination
         background
