@@ -68,7 +68,7 @@
 
     <div class="lv_volunteer_details_tab">
       <div class="title">招募信息</div>
-      <div class="content">
+      <div class="content content_list">
         <div class="left">报名列表：</div>
         <div class="right">
           <div v-for="(items) in listVolData">

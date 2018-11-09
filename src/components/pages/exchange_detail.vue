@@ -116,8 +116,13 @@
               token: this.token,
             }).then(res => {
               this.address = res.data.address;
-              if (res.data.address.length !== 0 && res.data.address[0].addressStatus == '1') {
+              if (res.data.address.length !== 0) {
                 this.receiveAddressId = res.data.address[0].id
+              }
+              if (res.data.address.length == 0) {
+                this.$router.push({
+                  path: '/lvzx/address',
+                })
               }
             })
           }
@@ -131,11 +136,6 @@
         if (!this.islogin) {
           this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
         }
-        // if(this.address.length == 0){
-        //   this.$router.push({
-        //     path: '/lvzx/address',
-        //   })
-        // }
         api.ajaxCheckCanSubmit({
           data: {
             id: this.Did,
