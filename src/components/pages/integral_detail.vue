@@ -60,7 +60,7 @@
   import '@/assets/pages/ex_details.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         id: this.$route.query.id,
         listData: {},
@@ -75,11 +75,11 @@
       isusername: "username",
       islogin: "user_islogin",
     }),
-    mounted() {
+    mounted:function() {
       this.donateActivityDetail()
     },
     methods: {
-      donateActivityDetail() {
+      donateActivityDetail:function() {
         api.donateActivityDetail({
           data: {
             donateActivityId: this.id,
@@ -90,7 +90,7 @@
           this.productNum = res.data.data.activityInfo.leastPoints;
         })
       },
-      donatePointsSubmit() {
+      donatePointsSubmit:function() {
         if (!this.islogin) {
           this.$router.push({
             path: '/login?backUrl=integral_detail'
@@ -109,10 +109,10 @@
           this.donateActivityDetail();
         })
       },
-      openUl(type) {
+      openUl:function(type) {
         this.showUl = type;
       },
-      count(status) {
+      count:function(status) {
         if (!status && this.productNum === 0) return
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
         status ? this.productNum += this.productNum : this.productNum -= this.productNum

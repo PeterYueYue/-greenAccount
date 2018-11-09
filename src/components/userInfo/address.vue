@@ -42,7 +42,7 @@
                             <span>姓名:</span>
                         </div>
                         <div class="changepassword-iteminput userInfo-iteminput">
-                            <el-input v-model="newaddress.name"></el-input>
+                            <el-input v-model="newaddress.name" @change="nametest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item ">
@@ -51,7 +51,7 @@
                             <span>地址:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-iteminput">
-                            <el-input v-model="newaddress.address"></el-input>
+                            <el-input v-model="newaddress.address" @change="addresstest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item">
@@ -69,12 +69,11 @@
                             <span>邮编:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-iteminput">
-                            <el-input v-model="newaddress.zipCode"></el-input>
+                            <el-input v-model="newaddress.zipCode" @change="zipcodetest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item">
                             <div class="changepassword-itemname userInfo-itemname">
-                            <span class="musticon">*</span>
                             <span>设为默认地址:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-select" @click="setDefault">
@@ -104,7 +103,7 @@
                             <span>姓名:</span>
                         </div>
                         <div class="changepassword-iteminput userInfo-iteminput">
-                            <el-input v-model="editaddress.name"></el-input>
+                            <el-input v-model="editaddress.name" @change="nametest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item ">
@@ -113,7 +112,7 @@
                             <span>地址:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-iteminput">
-                            <el-input v-model="editaddress.address"></el-input>
+                            <el-input v-model="editaddress.address" @change="addresstest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item">
@@ -131,12 +130,11 @@
                             <span>邮编:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-iteminput">
-                            <el-input v-model="editaddress.zipCode"></el-input>
+                            <el-input v-model="editaddress.zipCode" @change="zipcodetest"></el-input>
                         </div>
                     </div>
                     <div class="changepassword-item userInfo-item">
                             <div class="changepassword-itemname userInfo-itemname">
-                            <span class="musticon">*</span>
                             <span>设为默认地址:</span>
                         </div>
                         <div class="barcode-iteminput userInfo-select" @click="editDefault">
@@ -157,7 +155,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             isdefault:false,
             isadd:false,
@@ -187,6 +185,30 @@ export default {
        this.getuserAddress();
     },
     methods:{
+        nametest(){
+            var nametest=/^[\u4e00-\u9fa5\w-]{2,20}$/
+            if((!nametest.test(this.newaddress.name)&&this.newaddress.name!='')||(!nametest.test(this.editaddress.name)&&this.editaddress.name!='')){
+                alert('请填写2-20字符的联系人姓名');
+                this.newaddress.name=''
+                this.editaddress.name=''
+            }
+        },
+        addresstest(){
+            var addresstest=/^[\u4e00-\u9fa5\w-]{10,120}$/
+             if((!addresstest.test(this.newaddress.address)&&this.newaddress.address!='')||(!addresstest.test(this.editaddress.address)&&this.editaddress.address!='')){
+                alert('请填写10-120字符的地址');
+                this.newaddress.address=''
+                this.editaddress.address=''
+            }
+        },
+        zipcodetest(){
+            var zipcodetest=/[1-9]d{5}(?!d)/
+             if((!zipcodetest.test(this.newaddress.zipCode)&&this.newaddress.zipCode!='')||(!zipcodetest.test(this.editaddress.zipCode)&&this.editaddress.zipCode!='')){
+                alert('请填写正确的邮编');
+                this.newaddress.zipCode=''
+                this.editaddress.zipCode=''
+            }
+        },
         setDefault(){
             this.newaddress.defaultAddress=!this.newaddress.defaultAddress;
             if(this.newaddress.defaultAddress){
@@ -334,9 +356,10 @@ export default {
                         path:'/login'
                     })
                 }
-                if(res.msg=='操作成功'){
+                if(res.msg=='操作成功！'){
                      if(res.data.msg){
                         this.isadd=false;
+                       alert(res.data.msg)
                         this.getuserAddress();              
                     }
                 }

@@ -39,7 +39,7 @@
   import '@/assets/pages/apply.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         ruleForm: {
           name: '',
@@ -85,11 +85,11 @@
         uuId: '',
       }
     },
-    mounted() {
+    mounted:function() {
       this.pcrImg();
     },
     methods: {
-      submitForm(formName) {
+      submitForm:function(formName) {
         api.caringUnitSubmit({
           data: {
             "id": "-1",
@@ -119,7 +119,7 @@
           }
         })
       },
-      pcrImg() {
+      pcrImg:function() {
         api.pcrimg({}).then(res => {
           this.pcrImgSrc = 'data:image/png;base64,' + res.data.pcrImg;
           this.uuId = res.data.uuid;

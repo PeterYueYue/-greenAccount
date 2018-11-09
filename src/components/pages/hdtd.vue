@@ -9,7 +9,7 @@
       <li :class="activeIndex===4?'active':''" @click="allList4NewStyle(4,1,5)">抽奖活动</li>
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
-         @mouseleave.stop="listHover(false,index)" v-show="listData.length !== 0">
+         @mouseleave.stop="listHover(false,index)" v-show="listData.length !== 0" :key="index">
       <router-link :to="{path: '/lvzhanghu/', query: { id: items.id, style: items.newsStyle }}">
         <div class="lv_bd_notice_title active" v-if="items.hoverShow">{{items.title}}<span class="date"><span>{{items
 					.newsTime | momentTime}}</span><br/>{{items.newsTime | momentYear}}</span></div>
@@ -40,7 +40,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         listData: [],
         activeIndex: 0,
@@ -49,12 +49,12 @@
         startPage: 1,    //当前页
       }
     },
-    mounted() {
+    mounted:function() {
       this.activeIndex = this.$route.params.index || 0;
       this.allList4NewStyle((this.$route.params.index || 0), 1, 5);
     },
     methods: {
-      allList4NewStyle(status, startPage, pageSize, jumpPage) {
+      allList4NewStyle:function(status, startPage, pageSize, jumpPage) {
         let category = '';
         switch (status) {
           case 0:
@@ -94,10 +94,10 @@
           }
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.allList4NewStyle(this.activeIndex, startPage, this.pageSize, true);
       },
-      listHover(status, index) {
+      listHover:function(status, index) {
         this.listData[index].hoverShow = status;
       },
     }

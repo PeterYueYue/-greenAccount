@@ -139,7 +139,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         tableData: [],
         itemList: [],
@@ -157,11 +157,11 @@
     computed: mapGetters({
       token: "token"
     }),
-    mounted() {
+    mounted:function() {
       this.productList(1, 5);
     },
     methods: {
-      productList(startPage, pageSize) {
+      productList:function(startPage, pageSize) {
         api.productList({
           data: {
             orderStatus: "01",
@@ -176,10 +176,10 @@
           this.pageCount = res.data.productOrderVOs.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.productList(startPage, this.pageSize);
       },
-      getFeed(prodId, orderCode) {
+      getFeed:function(prodId, orderCode) {
         this.orderCode = orderCode;
         api.productFeedbackInit({
           data: {
@@ -199,7 +199,7 @@
           document.querySelector('body').style.overflow = 'hidden';
         })
       },
-      saveData() {
+      saveData:function() {
         api.productFeedbackSave({
           data: {
             items: this.feedData,
@@ -213,12 +213,12 @@
           document.querySelector('body').style.overflow = 'auto';
         })
       },
-      closeBox() {
+      closeBox:function() {
         this.showShadow = false;
         this.showBox = false;
         document.querySelector('body').style.overflow = 'auto';
       },
-      codeHover(status, index) {
+      codeHover:function(status, index) {
         this.tableData[index].showErweima = status;
       },
     }

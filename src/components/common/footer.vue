@@ -17,13 +17,20 @@
                 </p>
                 <div>
                     <div class="company-icon">
-                        <img src="@/assets/shanghaitoucheng.png" alt="">
+                        <a href="http://www.smi-co.com/" target="view_window">
+                            <img src="@/assets/shanghaitoucheng.png" alt="">
+                        </a>
+                        
                     </div>
                     <div class="company-icon">
-                        <img src="@/assets/chinabank.png" alt="">
+                        <a href="http://www.bankofchina.com/sourcedb/operations/406/522/" target="view_window">
+                            <img src="@/assets/chinabank.png" alt="">
+                        </a>
                     </div>
                     <div class="company-icon">
-                        <img src="@/assets/zhifubao.png" alt="">
+                        <a href="https://www.alipay.com/" target="view_window">
+                            <img src="@/assets/zhifubao.png" alt="">    
+                        </a>
                     </div>
                 </div>
             </div>
@@ -59,9 +66,9 @@
                     绿色账户运营单位
                 </p>
                 <p><a href="">上海惠众绿色公益发展促进中心 </a></p>
-                <div class="footer-btn first">
+                <!-- <div class="footer-btn first">
                     帮助中心
-                </div>
+                </div> -->
             </div>
             <div class="footer-bottom-part middle">
                 <p class="part-title">
@@ -81,7 +88,7 @@
                     联系我们
                 </p>
                 <p><a>上海市普陀区宜昌路130号梦清园水天居</a></p>
-                <p><a>021-62126699</a> </p>
+                <p><a>021-62126699(周一到周五 9:00至11:30、13:00至16:30)</a> </p>
                 <p><a>service@greenfortune.sh.cn</a></p>
             </div>
         </div>

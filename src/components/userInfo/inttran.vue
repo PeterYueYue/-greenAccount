@@ -48,7 +48,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             newGreenCode:'',
             recardcode:'',
@@ -57,21 +57,21 @@ export default {
             uuId:''
         }
     },
-    mounted(){
+    mounted:function(){
         this.getpcrimg()
     },
     computed: mapGetters({
         token:"token",
     }),
     methods:{
-         getpcrimg(){
+         getpcrimg:function(){
             api.pcrimg().then(res=>{
                 this.$refs.inttranyzm.setAttribute('src','data:image/png;base64,'+res.data.pcrImg);
                 this.uuId=res.data.uuid;
                 this.yzm=''
             })
         },
-        pointTransInfo(){
+        pointTransInfo:function(){
             if(this.newGreenCode==''){
                 alert('新卡号不能为空');
                 return

@@ -40,7 +40,7 @@
     </div>
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listData" v-show="listData.length !== 0">
+           v-for="(items,index) in listData" v-show="listData.length !== 0" :key="index">
         <router-link :to="{path: '/exchange/detail/', query: { Did: items.id }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
                v-if="items.prodPic">
@@ -77,7 +77,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         listData: [],
         selectType: '',
@@ -129,17 +129,17 @@
         }],
       }
     },
-    mounted() {
+    mounted:function() {
       this.getMallProductList(1, 8);
       this.getMallLogoList();
     },
     methods: {
-      getMallLogoList() {
+      getMallLogoList:function() {
         api.getMallLogoList({}).then(res => {
           this.typeList = res.data
         })
       },
-      getType() {
+      getType:function() {
         this.getMallProductList(1, 8);
       },
       getMallProductList(startPage, pageSize) {
@@ -160,10 +160,10 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.getMallProductList(startPage, this.pageSize);
       },
-      listHover(status, index) {
+      listHover:function(status, index) {
         this.listData[index].hoverShow = status
       },
     }

@@ -45,6 +45,7 @@ import feedback from '@/components/userInfo/feedback.vue' //绿账中心意见�
 import message from '@/components/userInfo/message.vue' //绿账中心我的信息
 import address from '@/components/userInfo/address.vue' //绿账中心我的信息
 import intelligenceSearch from '@/components/pages/intelligence_search.vue'  //智能搜索
+import twonet from '@/components/userInfo/twonet.vue'
 
 export default new Router({
   routes: [
@@ -107,6 +108,11 @@ export default new Router({
         path:'barcodematch',
         name:'条码匹配',
         component:barcodematch
+      },
+      {
+        path:'twonet',
+        name:'二网合一',
+        component:twonet
       },
       {
         path:'barcodesearch',
@@ -247,7 +253,7 @@ export default new Router({
       component: intelligenceSearch,
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior:function(to, from, savedPosition) {
     return {x: 0, y: 0}
   }
 

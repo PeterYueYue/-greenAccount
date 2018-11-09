@@ -52,7 +52,7 @@
     </div>
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listData" v-show="listData.length !== 0">
+           v-for="(items,index) in listData" v-show="listData.length !== 0" :key="index">
         <router-link :to="{path: '/exchange/detail/', query: { Did: items.productInfo.id }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
                v-if="items.prodPic">
@@ -91,7 +91,7 @@
 
   export default {
     name: 'exchangeList',
-    data() {
+    data:function() {
       return {
         listData: [],
         selectType: '',
@@ -175,24 +175,24 @@
         }
       }
     },
-    mounted() {
+    mounted:function() {
       this.getarea();
       this.getProductList(1, 8);
     },
     methods: {
-      getarea() {
+      getarea:function() {
         api.getarea().then(res => {
           this.area = res.data
         })
       },
-      chooseArea(name, id) {
+      chooseArea:function(name, id) {
         this.isArea.id = id;
         this.getProductList(1, 8);
       },
-      getType() {
+      getType:function() {
         this.getProductList(1, 8);
       },
-      getProductList(startPage, pageSize) {
+      getProductList:function(startPage, pageSize) {
         api.getProductList({
           data: {
             "prodExchBrid": this.isArea.id,
@@ -211,13 +211,13 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.getProductList(startPage, this.pageSize);
       },
-      listHover(status, index) {
+      listHover:function(status, index) {
         this.listData[index].hoverShow = status;
       },
-      jumpBrand() {
+      jumpBrand:function() {
         this.$router.push({
           path: '/exchange/brand'
         })

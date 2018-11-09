@@ -18,6 +18,10 @@
                     <span slot="title">开卡补卡管理</span>
                     <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
                 </el-menu-item>
+                <el-menu-item index="/lvzx/twonet" :route ="{path:'/lvzx/twonet'}">  
+                    <span slot="title">二网合一</span>
+                    <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
+                </el-menu-item>
                 <el-menu-item index="/lvzx/inttran" :route ="{path:'/lvzx/inttran'}">
                     <span slot="title">积分转移</span>
                     <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
@@ -46,13 +50,13 @@
 import {mapGetters} from 'vuex';
 import './infonav.css'
 export default {
-    data(){
+    data:function(){
         return {
             navindex:`/lvzx`,
             cardtype:false
         }
     },
-    mounted(){
+    mounted:function(){
         this.navindex=this.$route.path;
     },
     computed: mapGetters({
@@ -60,10 +64,8 @@ export default {
       userdetail:"userdetail"
     }),
     methods:{
-        handleSelect(){
-            // console.log(this.islogin)
+        handleSelect:function(){
             if(!this.islogin){
-                console.log(this.islogin)
                 this.$router.push({
                     path:'/login'
                 })

@@ -1,7 +1,7 @@
 <template>
   <div class="head-contain">
     <el-row :gutter="24">
-      <div class="head-left">
+      <div class="head-left" @click="goHome">
         <router-link to="/"><img src="@/assets/logo.png" alt=""></router-link>
       </div>
       <div class="head-right">
@@ -50,10 +50,10 @@
           <div class="nav-contain head-bottom-right">
             <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
               <el-menu-item index="1" @mouseover.native="navIndex=1" @mouseleave.native="navIndex=0" ref="homebtn">
-                <router-link to="/"><span class="nav-title">首页</span></router-link>
+                <router-link to="/"><span class="nav-title homebtn">首页</span></router-link>
               </el-menu-item>
               <el-menu-item index="2" @mouseover.native="navIndex=2" @mouseleave.native="navIndex=activeIndex">
-                <router-link to="/exchange"><span class="nav-title">礼品兑换</span></router-link>
+                <router-link to="/exchange"><span class="nav-title exchangebtn">礼品兑换</span></router-link>
               </el-menu-item>
               <el-menu-item index="3" disabled @mouseover.native="navIndex=3" @mouseleave.native="navIndex=0">
                     <span class="nav-title">绿账宝
@@ -91,6 +91,9 @@
                   <router-link to="/hzvs">
                     <div>惠众绿色</div>
                   </router-link>
+                   <router-link to="/lvzhanghu">
+                    <div>绿色账户</div>
+                  </router-link>
                   <router-link to="/zhzq">
                     <div>中行专区</div>
                   </router-link>
@@ -107,7 +110,7 @@
                     <div>积分捐赠</div>
                   </router-link>
                   <router-link to="/lv_volunteer">
-                    <div>志愿者申请</div>
+                    <div>公益志愿</div>
                   </router-link>
                   <router-link to="/hdtd">
                     <div>活动天地</div>
@@ -167,6 +170,9 @@
       }
     },
     methods: {
+      goHome(){
+        $('.homebtn').click();
+      },
       getarea() {
         api.getarea().then(res => {
           this.area = res.data
@@ -183,9 +189,11 @@
       },
 
       quitHandle() {
-        this.$cookies.remove("token");
-        this.$cookies.remove("username");
-        this.$store.dispatch('getToken', {token: '', userName: '', islogin: false});
+      window.sessionStorage.removeItem("token");
+      window.sessionStorage.removeItem("username");
+      window.sessionStorage.removeItem('resUuid')
+      this.$store.dispatch('getToken', {token: '', userName: '', islogin: false});
+      this.$store.dispatch('getResUuid', {resUuid:''});
         this.$router.push({
           path: '/'
         })

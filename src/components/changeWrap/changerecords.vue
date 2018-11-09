@@ -69,7 +69,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         tableData: [],
         pageCount: 0,    //总条数
@@ -80,11 +80,11 @@
     computed: mapGetters({
       token: "token"
     }),
-    mounted() {
+    mounted:function() {
       this.productActivityHistory(1, 5);
     },
     methods: {
-      productActivityHistory(startPage, pageSize) {
+      productActivityHistory:function(startPage, pageSize) {
         api.productActivityHistory({
           data: {
             startPage: startPage,
@@ -96,7 +96,7 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.productActivityHistory(startPage, this.pageSize);
       },
     }

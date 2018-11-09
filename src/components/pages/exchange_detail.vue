@@ -38,7 +38,7 @@
     <div class="ex_wrap">
       <div class="de_title">同类兑换</div>
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listSameData">
+           v-for="(items,index) in listSameData" :key="index">
         <router-link :to="{path: '/exchange/detail/', query: { Did: items[5] }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items[3]" alt="" class="ex_list_pic"
                v-if="items[3]">
@@ -65,7 +65,7 @@
   import '@/assets/pages/ex_details.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         Did: this.$route.query.Did,
         listData: {},
@@ -76,7 +76,7 @@
       }
     },
     // components: {bread},
-    mounted() {
+    mounted:function() {
       this.getProductDetail()
     },
     computed: mapGetters({
@@ -87,7 +87,7 @@
       id: "id",
     }),
     methods: {
-      getProductDetail() {
+      getProductDetail:function() {
         api.getProductDetail({
           data: {
             id: this.Did,
@@ -123,11 +123,11 @@
           }
         })
       },
-      listHover(status, index) {
+      listHover:function(status, index) {
         this.listSameData[index].splice(7, 1);
         this.listSameData[index].push(status);
       },
-      ajaxCheckCanSubmit() {
+      ajaxCheckCanSubmit:function() {
         if (!this.islogin) {
           this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
         }
@@ -156,7 +156,7 @@
           }
         })
       },
-      count(status) {
+      count:function(status) {
         if (!status && this.productNum === 0) return
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
         status ? this.productNum += 1 : this.productNum -= 1

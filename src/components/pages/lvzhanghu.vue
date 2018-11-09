@@ -11,20 +11,18 @@
   import '@/assets/pages/lvzhanghu.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         id: this.$route.query.id,
         style: this.$route.query.style,
         listData: {},
       }
     },
-    mounted() {
+    mounted:function() {
       this.lookNewsDetail();
-      console.log(this.id);
-      console.log(this.style);
     },
     methods: {
-      lookNewsDetail() {
+      lookNewsDetail:function() {
         api.lookNewsDetail({
           data: {
             "newsId": this.id,

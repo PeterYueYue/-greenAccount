@@ -88,7 +88,7 @@
 import api from "@/api/api.js";
 import $ from 'jquery'
 export default {
-    data(){
+    data:function(){
         return {
             activeIndex:1,
             contentIndex:null,
@@ -101,15 +101,15 @@ export default {
             action_scrollbottom:false
         }
     },
-    mounted(){
+    mounted:function(){
         this.allList4NewStyle("13,16,05,01,07",1);
         window.addEventListener('scroll',this.actionpage)
     },
-    destroyed(){
+    destroyed:function(){
          window.removeEventListener('scroll',this.actionpage)
     },
     methods:{
-        actionpage(){
+        actionpage:function(){
             var top=$('.home-action-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -124,7 +124,7 @@ export default {
                 this.action_scrollbottom=true;
             }
         },
-        lookmore(){
+        lookmore:function(){
             if(this.activeIndex==1||this.activeIndex==2){
                 this.$router.push({
                     name: '绿账行动'
@@ -152,7 +152,7 @@ export default {
                 })
             }
         },
-        allList4NewStyle(cate,index){
+        allList4NewStyle:function(cate,index){
             this.activeIndex=index
             api.allList4NewStyle({
                 data:{

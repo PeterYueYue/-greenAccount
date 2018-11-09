@@ -65,7 +65,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             step:true,
             userIdcard:'',
@@ -79,21 +79,21 @@ export default {
         token:"token",
     }),
     methods:{
-        idCardtest(){
+        idCardtest:function(){
             var idtest=/^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
             if(!idtest.test(this.userIdcard)){
                 alert('请输入设置正确的身份证')
                 this.userIdcard=''
             }
         },
-        nextStep(){
+        nextStep:function(){
             if(this.userIdcard==''){
                 alert('身份证不能为空');
                 return
             }
             this.step=false
         },
-        submitHandle(){
+        submitHandle:function(){
             if(this.userIdcard==''){
                 alert('地址不能为空');
                 return
@@ -134,7 +134,7 @@ export default {
                 }
             })
         },
-        teltest(){
+        teltest:function(){
             var tel = /^1[3456789]\d{9}$/;
             if(!tel.test(this.telephone)&&this.telephone!=''){
                 alert('请输入设置正确的手机号格式')

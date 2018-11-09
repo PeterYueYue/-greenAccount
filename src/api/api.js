@@ -2,8 +2,8 @@ import axios from 'axios';
 // 测试
 let base = 'http://180.153.19.162:8081';
 // 张强
-// let base = 'http://192.168.1.126:8080';
-
+// let base = 'http://192.168.1.133:8080';
+// 
 const configarea = {
   "version": "1.0",
   "name": "district",
@@ -201,11 +201,13 @@ const configpointTransInfo ={
   "version": "1.0",
 	"name": "user.pointTransInfo",
 }
+const configblind = {
+  "version": "1.0",
+	"name": "account.blind",
+}
 
 
 export default {
-  UUid() {
-  },
   Uuid() {
     return new Date().valueOf() + Math.random()
   },
@@ -407,6 +409,10 @@ export default {
   },
   pointTransInfo(params){
     let config = Object.assign(configpointTransInfo, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  blind(params){
+    let config = Object.assign(configblind, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }

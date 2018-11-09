@@ -23,7 +23,7 @@
   import '@/components/changeWrap/commonNav/changenav.css'
 
   export default {
-    data() {
+    data:function() {
       return {}
     },
     components: {
@@ -33,7 +33,7 @@
       isusername: "username",
       islogin: "user_islogin"
     }),
-    created() {
+    created:function() {
       if (!this.islogin) {
         this.$router.push({
           path: '/login?backUrl=my_change/all'

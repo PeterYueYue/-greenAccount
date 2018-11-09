@@ -22,12 +22,12 @@
   import './scorenav.css'
 
   export default {
-    data() {
+    data:function() {
       return {
         navindex:'/my_score/all'
       }
     },
-    mounted(){
+    mounted:function(){
       this.navindex=this.$route.path;
     }
   }

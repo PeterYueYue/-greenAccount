@@ -33,7 +33,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         query: this.$route.query.query,
         listData: [],
@@ -42,7 +42,7 @@
         startPage: 1,    //当前页
       }
     },
-    mounted() {
+    mounted:function() {
       this.searchLike(1, 3);
     },
     watch: {
@@ -54,7 +54,7 @@
       }
     },
     methods: {
-      searchLike(startPage, pageSize, jumpPage) {
+      searchLike:function(startPage, pageSize, jumpPage) {
         api.searchLike({
           data: {
             name: this.query,
@@ -72,10 +72,10 @@
           }
         })
       },
-      listHover(status, index) {
+      listHover:function(status, index) {
         this.listData[index].hoverShow = status;
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.searchLike(startPage, this.pageSize, true);
       },
     }

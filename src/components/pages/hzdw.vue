@@ -26,7 +26,7 @@
 	import '@/assets/pages/lvzhanghu.css';
 
 	export default {
-		data() {
+		data:function() {
 			return {
 				listDataOne: [],
 				listDataTwo: [],
@@ -36,11 +36,11 @@
 				showThree: true,
 			}
 		},
-		mounted() {
+		mounted:function() {
 			this.allList4NewStyleOne(true);
 		},
 		methods: {
-			allList4NewStyleOne(status) {
+			allList4NewStyleOne:function(status) {
 				api.allList4NewStyle({
 					data: {
 						category: "03",
@@ -55,7 +55,7 @@
 					this.listDataOne = res.data ? res.data.newsList.content : '';
 				})
 			},
-			allList4NewStyleTwo(status) {
+			allList4NewStyleTwo:function(status) {
 				api.allList4NewStyle({
 					data: {
 						category: "14",
@@ -70,7 +70,7 @@
 					this.listDataTwo = res.data ? res.data.newsList.content : '';
 				})
 			},
-			allList4NewStyleThree(status) {
+			allList4NewStyleThree:function(status) {
 				api.allList4NewStyle({
 					data: {
 						category: "15",

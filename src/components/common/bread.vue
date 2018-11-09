@@ -6,12 +6,12 @@
 </template>
 <script>
 	export default{
-		data(){
+		data:function(){
 			return {
 				breadName: []
 			}
 		},
-		mounted(){
+		mounted:function(){
 			this.breadName = this.$route.matched
 		},
 		methods: {

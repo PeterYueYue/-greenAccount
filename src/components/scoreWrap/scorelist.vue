@@ -12,7 +12,7 @@
   import '@/components/scoreWrap/commonNav/scorenav.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         pointData: {},
       }
@@ -20,11 +20,11 @@
     computed: mapGetters({
       token: "token"
     }),
-    mounted() {
+    mounted:function() {
       this.userGetInfo();
     },
     methods: {
-      userGetInfo() {
+      userGetInfo:function() {
         api.userGetInfo({
           token: this.token,
         }).then(res => {

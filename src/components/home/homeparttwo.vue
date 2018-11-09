@@ -175,7 +175,7 @@
 import $ from 'jquery'
 import api from "@/api/api.js";
 export default {
-    data(){
+    data:function(){
         return {
             scroll:'',
             scrolltitle:false,
@@ -194,15 +194,15 @@ export default {
             whichpart:true
         }
     },
-    mounted(){
+    mounted:function(){
        window.addEventListener('scroll',this.page);
        this.homepubActList()
     },
-    destroyed(){
+    destroyed:function(){
          window.removeEventListener('scroll',this.page)
     },
     methods:{
-        page(){
+        page:function(){
             var top=$('.home-active-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -222,7 +222,7 @@ export default {
                 this.scrollsmall=true;
             }            
         },
-        activeChangelast(){
+        activeChangelast:function(){
             if(this.activeIndex<=0){
                 return 
             }else {
@@ -236,7 +236,7 @@ export default {
                 
             }
         },
-         homepubActList() {
+         homepubActList:function() {
             api.pubActList({
                 data:{
                     startPage:1,
@@ -246,7 +246,7 @@ export default {
             this.activelistData = res.data.pubActList.content;
             })
         },
-        activeChangenext(){
+        activeChangenext:function(){
             if(this.activeIndex>=this.activeCount){
                 return 
             }else {
@@ -259,7 +259,7 @@ export default {
                 }
             }
         },
-        leftbtnHover(){
+        leftbtnHover:function(){
             this.activebtnleft=1;
             if(this.activeIndex==0){
                 $('.small-img-items').css('transform','translateX(0px)')
@@ -269,7 +269,7 @@ export default {
                 $('.small-img-items').css('transform','translateX(-'+(207*this.smallactiveIndex)+'px)')
             }
         },
-        rightbtnHover(){
+        rightbtnHover:function(){
             this.activebtnright=1
             if(this.activeIndex==this.activeCount){
                 $('.small-img-items').css('transform','translateX(-'+(207*this.activeCount)+'px)')

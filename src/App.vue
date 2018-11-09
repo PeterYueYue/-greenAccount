@@ -23,7 +23,6 @@
     </el-container>
   </div>
 </template>
-
 <script>
   import '@/components/common/tool.css';
   import headContent from '@/components/common/head.vue'
@@ -42,31 +41,13 @@
       }
     },
     beforeCreate(){
-       if(this.$cookies.get("username")){
+       if(window.sessionStorage.getItem("username")){
           this.login=true
           }else this.login=false
-          this.userName=this.$cookies.get("username")
-          this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login})
+          this.userName=window.sessionStorage.getItem("username")
+          this.$store.dispatch('getToken', {token: window.sessionStorage.getItem("token"),userName: window.sessionStorage.getItem("username"),islogin:this.login})
+          this.$store.dispatch('getResUuid', {resUuid: window.sessionStorage.getItem("resUuid")});
     },
-    mounted(){
-       window.setInterval(()=>{
-         console.log('222')
-         if(this.$cookies.get("username")){
-            this.login=true
-          }else this.login=false
-          this.userName=this.$cookies.get("username")
-          this.$store.dispatch('getToken', {token:this.$cookies.get("token"),userName:this.$cookies.get("username"),islogin:this.login});
-      },1800000)
-    },
-    destroyed(){
-        this.$cookies.remove("token");
-        this.$cookies.remove("username");
-    },
-    methods:{
-      checkExpired(){
-       
-      }
-    }
   }
 </script>
 

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
-import createPersistedState from 'vuex-persistedstate'
+// import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex);
 
@@ -22,21 +22,21 @@ export default new Vuex.Store({
         userdetail:{}
     },
     mutations:{
-        GetArea(state,areadate){
+        GetArea:function(state,areadate){
             this.state.area = areadate;
         },
-        GetToken(state,data){
+        GetToken:function(state,data){
             this.state.username=data.userName;
             this.state.user_islogin=data.islogin;
             this.state.token = data.token;
         },
-        GetResUuid(state,data){
+        GetResUuid:function(state,data){
             this.state.resUuid=data.resUuid
         },
-        GetUserdetail(state,data){
+        GetUserdetail:function(state,data){
             this.state.userdetail=data
         },
-        GetDetailsid(state,data){
+        GetDetailsid:function(state,data){
             this.state.id=data.id
         },
     },

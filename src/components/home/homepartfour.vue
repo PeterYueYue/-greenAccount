@@ -79,7 +79,7 @@
 import api from "@/api/api.js";
 import $ from 'jquery';
 export default {
-    data(){
+    data:function(){
         return {
             orglist:[],
             userlist:[],
@@ -90,16 +90,16 @@ export default {
             rank_scrollitem:false,
         }
     },
-    mounted(){
+    mounted:function(){
         this.getActNotice();
         this.getdoninteglist();
         window.addEventListener('scroll',this.rankpage)
     },
-    destroyed(){
+    destroyed:function(){
          window.removeEventListener('scroll',this.rankpage)
     },
     methods:{
-        rankpage(){
+        rankpage:function(){
             var top=$('.home-rank-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -113,12 +113,12 @@ export default {
                 this.rank_scrollitem=true;
             }
         },
-        getActNotice(){
+        getActNotice:function(){
             api.getActNotice().then(res => {
                 this.orglist = res.data
             })
         },
-        getdoninteglist(){
+        getdoninteglist:function(){
             api.getdoninteglist5().then(res =>{
                 this.userlist = res.data;
             })

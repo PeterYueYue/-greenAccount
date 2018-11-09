@@ -10,7 +10,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             messagelist:[]
         }
@@ -18,7 +18,7 @@ export default {
     computed: mapGetters({
         token:"token",
     }),
-    mounted(){
+    mounted:function(){
        api.getmyMessage({
            data:{
                startPage:"1",
@@ -32,7 +32,7 @@ export default {
                         path:'/login'
                     })
                 }
-                 this.messagelist=res.data.adviceInfos.content
+            this.messagelist=res.data.adviceInfos.content
            
        })
     }

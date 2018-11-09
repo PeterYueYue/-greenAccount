@@ -32,7 +32,7 @@
 
   export default {
     name: 'integralList',
-    data() {
+    data:function() {
       return {
         listData: [],
         pageCount: 0,    //总条数
@@ -40,11 +40,11 @@
         startPage: 1,    //当前页
       }
     },
-    mounted() {
+    mounted:function() {
       this.donateActivityPage(1, 8);
     },
     methods: {
-      donateActivityPage(startPage, pageSize) {
+      donateActivityPage:function(startPage, pageSize) {
         api.donateActivityPage({
           data: {
             startPage: startPage,
@@ -55,7 +55,7 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.donateActivityPage(startPage, this.pageSize);
       },
     }

@@ -102,7 +102,7 @@
   import '@/assets/pages/apply.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         id: this.$route.query.id,
         showShadow: false,
@@ -118,11 +118,11 @@
         zanShow: false
       }
     },
-    mounted() {
+    mounted:function() {
       this.pubDetailById();
     },
     methods: {
-      pubDetailById() {
+      pubDetailById:function() {
         api.pubDetailById({
           data: {
             id: this.id,
@@ -133,7 +133,7 @@
           this.listVolData = res.data.volPage.content;
         })
       },
-      addAdmire() {
+      addAdmire:function() {
         api.addAdmire({
           data: {
             id: this.id,
@@ -143,20 +143,20 @@
           this.adminreNum = res.data.adminreNum;
         })
       },
-      listHover(status) {
+      listHover:function(status) {
         this.hoverShow = status;
       },
-      openBox() {
+      openBox:function() {
         this.showShadow = true;
         this.showBox = true;
         document.querySelector('body').style.overflow = 'hidden';
       },
-      closeBox() {
+      closeBox:function() {
         this.showShadow = false;
         this.showBox = false;
         document.querySelector('body').style.overflow = 'auto';
       },
-      saveData() {
+      saveData:function() {
         //为空验证
         if (this.form.name == '' | this.form.tel == '') {
           alert('联系人或手机号不能为空');

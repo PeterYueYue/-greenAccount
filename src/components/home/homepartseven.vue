@@ -44,26 +44,24 @@
 <script>
 import $ from 'jquery'
 export default {
-    data(){
+    data:function(){
         return {
             other_scroll:0,
             other_scrolltitle:false,
             other_scrollpart:false
         }
     },
-    mounted(){
+    mounted:function(){
          window.addEventListener('scroll',this.otherpage)
     },
-    destroyed(){
-        
+    destroyed:function(){
          window.removeEventListener('scroll',this.otherpage)
     },
     methods:{
-        see(e){
-            console.log(e)
+        see:function(e){
             window.location.href=e
         },
-        otherpage(){
+        otherpage:function(){
             var top=$('.home-other-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;

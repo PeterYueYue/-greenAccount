@@ -32,7 +32,7 @@
 	import api from "@/api/api.js";
 	import '@/assets/pages/login.css'
 	export default {
-		data(){
+		data:function(){
 			return {
 				account: '',
 				pwd: '',
@@ -40,11 +40,11 @@
 				uuId: ''
 			}
 		},
-		mounted(){
+		mounted:function(){
 			this.getpcrimg()
 		},
 		methods: {
-			login(){
+			login:function(){
 				api.userlogin({
 					data: {
 						account: this.account,
@@ -61,8 +61,9 @@
 						this.$store.dispatch('getToken', res.data);
             this.$store.dispatch('getResUuid', res.data);
 
-						this.$cookies.set("token", res.data.token, res.data.expire);
-						this.$cookies.set("username", res.data.userName, res.data.expire);
+						 window.sessionStorage.setItem("token", res.data.token);
+						 window.sessionStorage.setItem("username", res.data.userName);
+						 window.sessionStorage.setItem("resUuid", res.data.resUuid);
 
 						let backUrl = this.$route.query.backUrl;
 						if (backUrl) {
@@ -78,7 +79,7 @@
 					}
 				})
 			},
-			getpcrimg(){
+			getpcrimg:function(){
 				api.pcrimg().then(res => {
 					this.$refs.yanzhengma.setAttribute('src', 'data:image/png;base64,' + res.data.pcrImg);
 					this.uuId = res.data.uuid;

@@ -26,7 +26,7 @@ import infonav from './commonNav/infonav.vue'
 import '@/assets/pages/info.css'
 import api from "@/api/api.js";
 export default {
-    data(){
+    data:function(){
         return {
 
         }
@@ -39,7 +39,7 @@ export default {
       islogin:"user_islogin",
       token:"token",
     }),
-    created(){
+    created:function(){
         if(!this.islogin){
             this.$router.push({
                 path:'/login?backUrl=lvzx'
@@ -47,11 +47,8 @@ export default {
         }
         this.getuserdetail();
     },
-    mounted(){
-        
-    },
     methods:{
-        getuserdetail(){
+        getuserdetail:function(){
             api.getuserdetail({
             "token":this.token
             }).then(res =>{

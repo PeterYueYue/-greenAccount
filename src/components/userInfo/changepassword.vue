@@ -15,7 +15,7 @@
                 <span>新密码:</span>
             </div>
             <div class="barcode-iteminput userInfo-iteminput">
-                <el-input v-model="newPwd" @change="pwdtest"></el-input>
+                <el-input v-model="newPwd" @change="pwdtest" type="password"></el-input>
                 <p class="input-tool">8-20位,区分大小写，必须包含数字，大小写字母</p>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <span>重复新密码:</span>
             </div>
             <div class="barcode-iteminput userInfo-iteminput">
-                <el-input v-model="reNewPwd"></el-input>
+                <el-input v-model="reNewPwd" type="password"></el-input>
             </div>
         </div>
         <div class="changepassword-item userInfo-item">
@@ -49,7 +49,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             pwd:'',
 		    newPwd:'',
@@ -58,29 +58,28 @@ export default {
             uuId:'',   
         }
     },
-    mounted(){
+    mounted:function(){
         this.getpcrimg();
     },
     computed: mapGetters({
         token:"token",
     }),
     methods:{
-        getpcrimg(){
+        getpcrimg:function(){
             api.pcrimg().then(res=>{
                 this.$refs.changepasswordyzm.setAttribute('src','data:image/png;base64,'+res.data.pcrImg);
-                console.log(res.data.uuid)
                 this.uuId=res.data.uuid;
                 this.yzm=''
             })
         },
-        pwdtest(){
+        pwdtest:function(){
             var pwdtest = /(?![0-9A-Z]+$)(?![0-9a-z]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/
             if(!pwdtest.test(this.newPwd)){
                 alert('请输入设置正确的密码格式')
                 this.newPwd=''
             }
         },
-        submitHandle(){
+        submitHandle:function(){
              if(this.pwd==''){
                 alert('原密码不能为空');
                 return
@@ -117,10 +116,7 @@ export default {
                         path:'/login'
                     })
                 }
-                if(res.msg=='操作成功！'){
-                    console.log('22222')
-                    alert(res.data.message)
-                }
+               
             })
         }
     }

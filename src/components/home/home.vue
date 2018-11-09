@@ -25,7 +25,7 @@
             <video-part :scroll="scroll"></video-part> 
         </div> 
         <div class="map-contain">
-                <map-part :scroll="scroll"></map-part>
+            <map-part :scroll="scroll"></map-part>
         </div>
     </div>
 </template>
@@ -52,7 +52,7 @@
         mapPart,
         otherPart
     },
-    data() {
+    data:function() {
       return {
         scroll:0,
         comlist:{
@@ -87,7 +87,7 @@
         }
       }
     },
-    created(){
+    created:function(){
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
         window.onbeforeunload = function(){
@@ -100,14 +100,13 @@
       isusername: "username",
       islogin: "user_islogin"
     }),
-    mounted(){
+    mounted:function(){
         window.addEventListener('scroll',this.page);
         this.bannerList();
     },
     methods:{
-        page(){
+        page:function(){
             this.scroll+=1;
-            console.log(this.scroll)
             if(this.scroll==2){
                 // console.log(document.querySelector('.home-exchange-contain'))
                 // document.querySelector('.home-exchange-contain').scrollIntoView()
@@ -117,7 +116,7 @@
 
             // console.log(document.documentElement.scrollTop)
         },
-        bannerList(){
+        bannerList:function(){
             api.getbannerList({
                 "data": {
                     prodExchBrid:this.isArea.id

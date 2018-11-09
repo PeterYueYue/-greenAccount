@@ -15,7 +15,7 @@
     </div>
     <div class="ex_wrap">
       <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listData" v-show="listData.length !== 0">
+           v-for="(items,index) in listData" v-show="listData.length !== 0" :key="index">
         <router-link :to="{path: '/exchange/detail/', query: { Did: items.productInfo.id }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
                v-if="items.prodPic">
@@ -53,7 +53,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         listData: [],
         listImg: [],
@@ -63,13 +63,13 @@
         startPage: 1,    //当前页
       }
     },
-    mounted() {
+    mounted:function() {
       this.allList4NewStyle();
       this.getProductList(1, 8);
       this.bannerList();
     },
     watch: {
-      area() {
+      area:function() {
         this.getProductList(1, 8);
         this.bannerList();
       }
@@ -78,7 +78,7 @@
       area: "area"
     }),
     methods: {
-      allList4NewStyle() {
+      allList4NewStyle:function() {
         api.allList4NewStyle({
           data: {
             category: "13",
@@ -87,7 +87,7 @@
           this.message = res.data.newsList.content[0].newsContent;
         })
       },
-      getProductList(startPage, pageSize) {
+      getProductList:function(startPage, pageSize) {
         api.getProductList({
           data: {
             prodExchBrid: this.area.id,
@@ -102,13 +102,13 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.getProductList(startPage, this.pageSize);
       },
-      listHover(status, index) {
+      listHover:function(status, index) {
         this.listData[index].hoverShow = status;
       },
-      bannerList() {
+      bannerList:function() {
         api.getbannerList({
           "data": {
             prodExchBrid: this.area.id

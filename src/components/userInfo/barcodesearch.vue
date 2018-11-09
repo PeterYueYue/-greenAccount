@@ -20,7 +20,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             codelist:[]
         }
@@ -28,7 +28,7 @@ export default {
      computed: mapGetters({
         token:"token",
     }),
-    mounted(){
+    mounted:function(){
         api.getpasteCodeList({
             data:{
                 startPage:"1",

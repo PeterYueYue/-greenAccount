@@ -77,7 +77,7 @@
 import $ from 'jquery';
 import api from "@/api/api.js";
 export default {
-    data(){
+    data:function(){
         return{
             product:{},
             exchangeSideCount:0,
@@ -87,15 +87,15 @@ export default {
             exchange_scrollitem:false,
         }
     },
-    mounted(){
+    mounted:function(){
         this.getProductList();
         window.addEventListener('scroll',this.exchangepage)
     },
-    destroyed(){
+    destroyed:function(){
          window.removeEventListener('scroll',this.exchangepage)
     },
     methods:{
-        exchangepage(){
+        exchangepage:function(){
             var top=$('.home-exchange-content .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -107,7 +107,7 @@ export default {
                 this.exchange_scrollitem=true
             }
         },
-        exchangeNext(){
+        exchangeNext:function(){
             if(this.exchangeSideIndex>(this.exchangeSideCount-2)){
                 return;
             }else {
@@ -116,7 +116,7 @@ export default {
                 $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)');
             }
         },
-        exchangeLast(){
+        exchangeLast:function(){
              if(this.exchangeSideIndex<1){
                 return;
             }else {
@@ -125,7 +125,7 @@ export default {
                 $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)'); 
             }
         },
-        getProductList(){
+        getProductList:function(){
             api.getProductList({
                 data:{
                 "prodExchBrid":"310000000000",

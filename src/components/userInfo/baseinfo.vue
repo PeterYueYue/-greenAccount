@@ -85,7 +85,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             userInfo:''
         }
@@ -94,7 +94,7 @@ export default {
         token:"token",
         userdetail:"userdetail"
     }),
-    mounted(){
+    mounted:function(){
         // api.getuserdetail({
         //     "token":this.token
         // }).then(res =>{

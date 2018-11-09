@@ -30,7 +30,7 @@
 <script>
 import $ from 'jquery';
 export default {
-    data(){
+    data:function(){
         return {
             video_scrolltitle:false,
             video_scrollcontent:false,
@@ -38,20 +38,20 @@ export default {
             videomask_display:false
         }
     },
-    mounted(){
+    mounted:function(){
          window.addEventListener('scroll',this.videopage)
     },
-    destroyed(){
+    destroyed:function(){
          window.removeEventListener('scroll',this.videopage)
     },
     methods:{
-        maskdisplay(){
+        maskdisplay:function(){
             this.videomask_display=true;
             setTimeout(()=>{
                 this.video_display=true
             },300)
         },
-        videopage(){
+        videopage:function(){
             var top=$('.home-video-content .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;

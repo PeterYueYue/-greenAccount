@@ -28,7 +28,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data(){
+    data:function(){
         return {
             accountBarcode:'',
             rebarcode:''
@@ -38,14 +38,14 @@ export default {
         token:"token",
     }),
     methods:{
-        retest(){
+        retest:function(){
             var reg =/^3.{17}$/;
             if(!reg.test(this.accountBarcode)){
                 alert('粘贴条码格式不正确');
                 this.accountBarcode=''
             }
         },
-        submitHandle(){
+        submitHandle:function(){
             if(this.accountBarcode==''){
                 alert('粘贴条码不能为空');
                 return

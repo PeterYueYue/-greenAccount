@@ -1,10 +1,9 @@
 .lvzx-banner{
     width: 100%;
-    height: 303px;
     overflow: hidden;
 }
 .lvzx-banner img{
-    width: 100%
+    width: 100%;
 }
 .userinfo-contain{
     width: 1280px;
@@ -65,7 +64,7 @@
     font-size: 12px;
 }
 /* ------------------条码匹配/开卡补卡/积分转移/密码更改------------------------ */
-.barcode-contain,.createcard-contain,.inttran-contain,.changepassword-contain,.feedback-contain{
+.barcode-contain,.createcard-contain,.inttran-contain,.changepassword-contain,.feedback-contain,.twonet-contain{
     padding-top: 40px;
 }
 .userInfo-item{
@@ -251,4 +250,14 @@
 .address-mask .defaultbtn.default{
     background-color: #20A345;
     border: none;
+}
+/* ---------------------二网合一--------------------------- */
+.twonet-contain .twonet-itemname{
+    width: 100px;
+}
+.twonet-contain .twonet-subbtn{
+    margin-left: 115px;
+}
+.twonet-status{
+    color: #FD4E4E;
 }

@@ -26,7 +26,7 @@
           <span slot="title">活动记录</span>
           <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
         </el-menu-item>
-        <el-menu-item index="/exchange" :route="{path:'/exchange'}">
+        <el-menu-item index="/exchange" :route="{path:'/exchange'}" @click="goexchange">
           <span slot="title">立即兑换</span>
           <i class="el-submenu__icon-arrow el-icon-arrow-right"></i>
         </el-menu-item>
@@ -36,15 +36,20 @@
 </template>
 <script>
   import './changenav.css'
-
+  import $ from 'jquery';
   export default {
-    data() {
+    data:function() {
       return {
         navindex:'/my_change/all'
       }
     },
-    mounted(){
+    mounted:function(){
       this.navindex=this.$route.path;
+    },
+    methods:{
+      goexchange:function(){
+        $('.exchangebtn').click();
+      }
     }
   }
 </script>

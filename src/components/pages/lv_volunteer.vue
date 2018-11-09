@@ -36,7 +36,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         listData: [],
         pageCount: 0,    //总条数
@@ -44,11 +44,11 @@
         startPage: 1,    //当前页
       }
     },
-    mounted() {
+    mounted:function() {
       this.pubActList(1,8);
     },
     methods: {
-      pubActList(startPage, pageSize) {
+      pubActList:function(startPage, pageSize) {
         api.pubActList({
           data:{
             startPage: startPage,
@@ -59,7 +59,7 @@
           this.pageCount = res.data.pubActList.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.pubActList(startPage, this.pageSize);
       },
     }

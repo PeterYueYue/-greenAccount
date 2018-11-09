@@ -82,7 +82,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data() {
+    data:function() {
       return {
         formInline: {
           start: '',
@@ -98,18 +98,19 @@
     computed: mapGetters({
       token: "token"
     }),
-    mounted() {
+    mounted:function() {
       this.userGetInfo();
+      this.getPointOutDetail(1,5);
     },
     methods: {
-      userGetInfo() {
+      userGetInfo:function() {
         api.userGetInfo({
           token: this.token,
         }).then(res => {
           this.pointData = res.data;
         })
       },
-      getPointOutDetail(startPage, pageSize) {
+      getPointOutDetail:function(startPage, pageSize) {
         api.getPointOutDetail({
           data: {
             startDate: this.formInline.start,
@@ -123,10 +124,10 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange(startPage) {
+      pageChange:function(startPage) {
         this.getPointOutDetail(startPage, this.pageSize);
       },
-      search() {
+      search:function() {
         if (this.formInline.start == '' || this.formInline.end == '') {
           alert("请选择日期！")
         } else {
