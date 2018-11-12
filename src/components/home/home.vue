@@ -28,6 +28,20 @@
       <map-part :scroll="scroll"></map-part>
     </div>
 
+    <!-- 右侧边栏 -->
+    <div class="floating_ck">
+      <div class="quote quoteOne" @mouseenter.stop="codeZfbHover(true)" @mouseleave.stop="codeZfbHover(false)"></div>
+      <div class="quote quoteTwo" @mouseenter.stop="codeWxHover(true)" @mouseleave.stop="codeWxHover(false)"></div>
+      <div class="quote quoteThree" @click="scrollToTop"></div>
+      <div class="codezfb_box" v-show="showzfbma">
+        <img src="@/assets/home_zfb_code.png" alt="">
+        <div class="text">支付宝扫码领取<br>更多优惠权益</div>
+      </div>
+      <div class="codewx_box" v-show="showwxma">
+        <img src="@/assets/home_wx_code.png" alt="">
+        <div class="text">微信扫码关注<br>签到绿豆抽奖</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -57,6 +71,8 @@
     data: function () {
       return {
         scroll: 0,
+        showzfbma: false,
+        showwxma: false,
         comlist: {
           active: false,
           action: false,
@@ -127,7 +143,16 @@
         }).then(res => {
           console.log(res)
         })
-      }
+      },
+      scrollToTop: function () {
+        window.scrollTo(0, 0);
+      },
+      codeZfbHover:function(status) {
+        this.showzfbma = status;
+      },
+      codeWxHover:function(status) {
+        this.showwxma = status;
+      },
     }
   }
 </script>
