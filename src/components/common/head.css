@@ -4,6 +4,15 @@
     z-index: 999;
     width: 1400px
 }
+.head-contain.small{
+    padding: 0 60px;
+}
+.head-contain.small .head-left{
+    margin: 5px 0 ;
+}
+.el-row.small{
+    padding-top: 17px
+}
 .nav-contain{
     text-align: right;
 }
@@ -112,6 +121,9 @@
     padding: 32px 31px 0 35px;
     width: 91%;
     vertical-align: top;
+}
+.head-right.small{
+    padding:  0 31px 0 35px;
 }
 .head-left{
     width: 8%

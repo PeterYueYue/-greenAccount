@@ -1,11 +1,12 @@
 <template>
-  <div class="head-contain">
+  <div class="head-contain" :class="smallNav?'small':''">
     <el-row :gutter="24">
       <div class="head-left" @click="goHome">
-        <router-link to="/"><img src="@/assets/logo.png" alt=""></router-link>
+        <router-link to="/"><img src="@/assets/logo.png" alt="" v-show="!smallNav"></router-link>
+        <router-link to="/"><img src="@/assets/smalllogo.png" alt="" v-show="smallNav"></router-link>
       </div>
-      <div class="head-right">
-        <el-row :gutter="24">
+      <div class="head-right" :class="smallNav?'small':''">
+        <el-row :gutter="24" v-show="!smallNav">
           <el-col :span="24" :offset="0" class="head-right-top">
             <div class="search-area">
               <el-input v-model="searchContent" placeholder="请输入您要查找的文章关键字" class="input-area"
@@ -26,8 +27,8 @@
             </div>
           </el-col>
         </el-row>
-        <el-row :gutter="24">
-          <div class="head-bottom-left" v-if="fullPath!=='/exchange'">
+        <el-row :gutter="24" :class="smallNav?'small':''">
+          <div class="head-bottom-left" v-if="fullPath!=='/exchange'"  v-show="!smallNav">
             <span>所在区域 :</span>
             <div class="select-city-contain" @mouseenter="areahover=true" @mouseleave="areahover=false;">
               <span class="select-city"
@@ -143,18 +144,21 @@
         navIndex: 1,
         searchContent: '',
         area: [],
-        fullPath: this.$route.fullPath
+        fullPath: this.$route.fullPath,
+        smallNav:false
       }
     },
     props: ['username'],
     mounted() {
       this.getarea();
-      window.onscroll = function () {
+      window.onscroll = ()=>{
         const t = document.documentElement.scrollTop || document.body.scrollTop;
         if (t != 0) {
           $('header').css('box-shadow', '0 0 6px rgba(0,0,0,.5)')
+          this.smallNav=true
         } else {
           $('header').css('box-shadow', 'none')
+          this.smallNav=false
         }
 
       };
@@ -170,6 +174,9 @@
       }
     },
     methods: {
+      smalllogo(d){
+        this.smallNav=d
+      },
       goHome(){
         $('.homebtn').click();
       },
@@ -183,6 +190,7 @@
         window.sessionStorage.setItem('activeItemIndex', key)
       },
       chooseArea(areaName, id) {
+         this.smallNav =true;
         this.$store.dispatch('chooseArea', {areaName, id});
         window.sessionStorage.setItem('areaName', areaName);
         window.sessionStorage.setItem('areaId', id);
