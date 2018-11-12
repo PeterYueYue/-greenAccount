@@ -1297,7 +1297,7 @@
   position: absolute;
   top: 0px;
   right: 43px;
-  z-index: 4;
+  z-index: 99;
 }
 
 .codewx_box {
@@ -1308,7 +1308,7 @@
   position: absolute;
   top: 40px;
   right: 43px;
-  z-index: 4;
+  z-index: 99;
 }
 
 .codezfb_box img, .codewx_box img {
