@@ -100,7 +100,6 @@
     }),
     mounted:function() {
       this.userGetInfo();
-      this.getPointInDetail(1,5)
     },
     methods: {
       userGetInfo:function() {
@@ -124,8 +123,12 @@
           this.pageCount = res.data.totalElements;
         })
       },
+      scrollToTop:function() {
+        window.scrollTo(0,220);
+      },
       pageChange:function(startPage) {
         this.getPointInDetail(startPage, this.pageSize);
+        this.scrollToTop();
       },
       search:function() {
         if (this.formInline.start == '' || this.formInline.end == '') {

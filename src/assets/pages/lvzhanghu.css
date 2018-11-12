@@ -141,6 +141,7 @@
 .lv_dw_text {
   overflow: hidden;
   width: 100%;
+  text-align: center;
 }
 
 .lv_dw_title {

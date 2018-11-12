@@ -160,13 +160,13 @@
 }
 
 .lv_volunteer_details_tab .content.content_list {
-  max-height: 248px;
+  max-height: 246px;
   overflow-y: scroll;
 }
 
-.lv_volunteer_details_tab .content.content_list::-webkit-scrollbar {
-  display: none;
-}
+/*.lv_volunteer_details_tab .content.content_list::-webkit-scrollbar {*/
+  /*display: none;*/
+/*}*/
 
 .lv_volunteer_details_tab .content .left {
   width: 96px;

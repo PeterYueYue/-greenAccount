@@ -128,6 +128,7 @@
         api.pubDetailById({
           data: {
             id: this.id,
+            pageSize: 1000,
           },
         }).then(res => {
           this.listData = res.data;

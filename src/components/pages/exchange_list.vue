@@ -214,8 +214,12 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      pageChange:function(startPage) {
+      scrollToTop:function() {
+        window.scrollTo(0,0);
+      },
+      pageChange(startPage) {
         this.getProductList(startPage, this.pageSize);
+        this.scrollToTop();
       },
       listHover:function(status, index) {
         this.listData[index].hoverShow = status;

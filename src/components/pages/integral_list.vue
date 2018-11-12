@@ -55,8 +55,12 @@
           this.pageCount = res.data.totalElements;
         })
       },
+      scrollToTop:function() {
+        window.scrollTo(0,0);
+      },
       pageChange:function(startPage) {
         this.donateActivityPage(startPage, this.pageSize);
+        this.scrollToTop();
       },
     }
   }
