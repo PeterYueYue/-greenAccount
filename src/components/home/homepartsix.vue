@@ -145,7 +145,7 @@
 import $ from 'jquery';
 import api from "@/api/api.js";
 export default {
-    data:function(){
+    data(){
         return {
             maplist:false,
             ranklist:false,
@@ -256,7 +256,7 @@ export default {
             isnum:false
         }
     },
-    mounted:function(){
+    mounted(){
         this.getStatDate();
         this.getRank(1,'发卡排行榜','areaAommRank');
         this.map(13.5,121.47, 31.23,this.areaposition);
@@ -267,11 +267,11 @@ export default {
             this.ranklist=false;
         })
     },
-    destroyed:function(){
+    destroyed(){
          window.removeEventListener('scroll',this.mappage)
     },
     methods:{
-        mappage:function(){
+        mappage(){
             var top=$('.home-map-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -289,7 +289,7 @@ export default {
                 this.isnum=true
             }
         },
-        numberGrow:function(ele,number) {
+        numberGrow(ele,number) {
             if(this.isnum){
                 return
             }
@@ -311,7 +311,7 @@ export default {
                 $(ele).html(parseInt(current))
             }, 10)
         },
-        getarea:function(){
+        getarea(){
             api.getarea().then(res =>{
                 this.areaTem=res.data;
                 this.area=this.areaTem.map((item,index)=>{
@@ -325,7 +325,7 @@ export default {
                 })
             })
         },
-        map:function(mul,lng,lat,points,Name){  
+        map(mul,lng,lat,points,Name){  
             let map =new BMap.Map(this.$refs.allmap); // 创建Map实例    
             map.clearOverlays();  
             map.centerAndZoom(new BMap.Point(lng,lat), mul);// 初始化地图,设置中心点坐标和地图级别  
@@ -348,12 +348,13 @@ export default {
             map.setCurrentCity("上海");// 设置地图显示的城市 此项是必须设置的      
             map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放  
         },
-        addClickHandler:function(content,marker,map){
+        addClickHandler(content,marker,map){
             marker.addEventListener("click",(e) =>{
                 this.openInfo(content,e,map)}
             );
 	    },
-        openInfo:function(content,e,map){
+        openInfo(content,e,map){
+            console.log('222')
             var p = e.target;
              var opts = {
 				width : 250,     // 信息窗口宽度
@@ -365,7 +366,7 @@ export default {
             var infoWindow = new BMap.InfoWindow(content+'已开通',opts);  // 创建信息窗口对象 
             map.openInfoWindow(infoWindow,point); //开启信息窗口
         },
-        getRank:function(sort,rank,enrank){
+        getRank(sort,rank,enrank){
             this.isrank=rank;
             this.enrank=enrank;
             if(sort==1){
@@ -382,12 +383,12 @@ export default {
                 })
             }
         },
-        getStatDate:function(){
+        getStatDate(){
             api.getStatDate().then(res => {
                 this.statedata=res.data;
             })
         },
-        chooseRankArea:function(mul,lng,lat,id,Name){
+        chooseRankArea(mul,lng,lat,id,Name){
             this.ismap=Name;
             api.getPositionInfo({
                 data:{

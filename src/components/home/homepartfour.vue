@@ -63,12 +63,15 @@
                 <div class="donate-notice" style="width:23%" :style="rank_scrollnotice?'opacity: 1;transform: translateY(0);transition:all 1.5s .2s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .2s'">
                     <p class="title">捐赠公示</p>
                     <div class="donate-detail" :style="rank_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .1s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .1s'">
-                        <div class="donate-time">2018-11-02 07:28:07</div>
-                        <div class="donate-title">环卫工人爱心午饭，11月反馈</div>
-                        <div class="donate-content">2017年12月至2018年1月期间，上海依米服饰有限公司已为放松街道小区垃圾分拣员累计捐出330件爱心礼包2017年12月至2018年1月期间，上海依米服饰有限公司已为放松街道小区垃圾分拣员累计捐出330件爱心礼包...</div>
+                        <div class="donate-time">{{notice.createDate}}</div>
+                        <div class="donate-title">{{notice.activityName}}</div>
+                        <div class="donate-content">{{notice.content}}</div>
                         </div>
                     <div class="donate-more">
-                        <span>查看更多...</span>
+                        <router-link :to="'/integral_detail/?id='+notice.activityId">
+                            <span>查看更多...</span>
+                        </router-link>
+                        
                     </div>
                 </div>
             </div>
@@ -79,7 +82,7 @@
 import api from "@/api/api.js";
 import $ from 'jquery';
 export default {
-    data:function(){
+    data(){
         return {
             orglist:[],
             userlist:[],
@@ -88,18 +91,21 @@ export default {
             rank_scrollorg:false,
             rank_scrollnotice:false,
             rank_scrollitem:false,
+            notice:''
         }
     },
-    mounted:function(){
+    mounted(){
+        console.log('2222')
         this.getActNotice();
         this.getdoninteglist();
+        this.getActivityNotice();
         window.addEventListener('scroll',this.rankpage)
     },
-    destroyed:function(){
+    destroyed(){
          window.removeEventListener('scroll',this.rankpage)
     },
     methods:{
-        rankpage:function(){
+        rankpage(){
             var top=$('.home-rank-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -113,14 +119,21 @@ export default {
                 this.rank_scrollitem=true;
             }
         },
-        getActNotice:function(){
+        getActNotice(){
             api.getActNotice().then(res => {
                 this.orglist = res.data
             })
         },
-        getdoninteglist:function(){
+        getdoninteglist(){
+           
             api.getdoninteglist5().then(res =>{
                 this.userlist = res.data;
+            })
+        },
+        getActivityNotice(){
+            api.getActivityNotice().then(res =>{
+                this.notice=res.data[0]
+                this.notice.createDate=this.notice.createDate.substr(0,19)
             })
         }
         

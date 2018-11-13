@@ -60,6 +60,16 @@
 .swiper-container-horizontal > .swiper-pagination-bullets {
   top: 605px !important;
 }
+.swiper-slide{
+  /* margin-right: 0 !important; */
+  /* margin-left: 30px; */
+  /* padding-right: 30px */
+}
+.swiper-slide img{
+ 
+  /* width: 100% !important; */
+  /* float: left; */
+}
 
 /* ----------------------------轮播图结束----------------------------- */
 .home-contain > .part-contain {

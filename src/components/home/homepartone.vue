@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="exchange-content-bottom">
                                     <p class="exchange-detail-name">{{item.prodName}}</p>
-                                    <p class="exchange-detail-count">{{item.prodPoints}}</p>
+                                    <p class="exchange-detail-count">{{item.prodPoints}}积分</p>
                                     <p class="exchange-detail-address">
                                         <img src="@/assets/icon/position.png" alt="">
                                         <span>

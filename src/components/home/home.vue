@@ -68,7 +68,7 @@
       mapPart,
       otherPart
     },
-    data: function () {
+    data () {
       return {
         scroll: 0,
         showzfbma: false,
@@ -83,7 +83,7 @@
         },
         swiperOption: {
           slidesPerView: 1,
-          spaceBetween: 30,
+          spaceBetween: 0,
           loop: true,
           pagination: {
             el: '.swiper-pagination',
@@ -92,7 +92,15 @@
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
-          }
+          },
+           autoplay: {
+              delay: 8000, //自动切换的时间间隔，单位ms
+              stopOnLastSlide: false, //当切换到最后一个slide时停止自动切换
+              stopOnLastSlide: true, //如果设置为true，当切换到最后一个slide时停止自动切换。
+              disableOnInteraction: true, //用户操作swiper之后，是否禁止autoplay。
+              reverseDirection: false, //开启反向自动轮播。
+              waitForTransition: true, //等待过渡完毕。自动切换会在slide过渡完毕后才开始计时。
+            },
         },
         lazyload: {
           one: false,
@@ -105,7 +113,7 @@
         }
       }
     },
-    created: function () {
+    created () {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       window.onbeforeunload = function () {

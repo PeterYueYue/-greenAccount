@@ -205,6 +205,10 @@ const configblind = {
   "version": "1.0",
 	"name": "account.blind",
 }
+const configActivityNotice ={
+  "name":"donateActivityNotice",
+  "version":"1.0",
+}
 
 
 export default {
@@ -413,6 +417,10 @@ export default {
   },
   blind(params){
     let config = Object.assign(configblind, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getActivityNotice(params){
+    let config = Object.assign(configActivityNotice, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }
