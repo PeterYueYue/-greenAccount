@@ -146,14 +146,16 @@
                     </div> 
                 </div>
                 <div class="active-content-right" v-if="!whichpart">
-                    <div class="lv_volunteer_list" v-for="(items) in activelistData">
+                    <div class="lv_volunteer_list" v-for="(items,index) in activelistData" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)" :key="index">
                         <router-link :to="{path: '/lv_volunteer_details/', query: { id: items[5] }}">
                         <div class="title">{{items[1]}}</div>
-                        <div class="text"><img src="@/assets/lv_v_icon_heart.png" alt="" class="lv_volunteer_icon">{{items[6]}}<img
-                            src="@/assets/lv_v_icon_address.png" alt="" class="lv_volunteer_icon_address">{{items[2]}}
+                        <div class="text"><img src="@/assets/lv_v_icon_heart.png" alt="" class="lv_volunteer_icon" v-if="items[7]">
+                            <img src="@/assets/lv_v_icon_heart_select.png" alt="" class="lv_volunteer_icon" v-else>{{items[6]}}<img
+                              src="@/assets/lv_v_icon_address.png" alt="" class="lv_volunteer_icon_address" v-if="items[7]"><img
+                              src="@/assets/lv_v_icon_address_select.png" alt="" class="lv_volunteer_icon_address" v-else>{{items[2]}}
                         </div>
                         <div class="text">
-                            <img src="@/assets/lv_v_icon_date.png" alt="" class="lv_volunteer_icon">活动日期：{{items[3]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span><span class="finished" v-show="items[4]==='已结束'">已结束</span>
+                            <img src="@/assets/lv_v_icon_date.png" alt="" class="lv_volunteer_icon" v-if="items[7]"><img src="@/assets/lv_v_icon_date_select.png" alt="" class="lv_volunteer_icon" v-else>活动日期：{{items[3]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span><span class="finished" v-show="items[4]==='已结束'">已结束</span>
                         </div>
                         </router-link>
                     </div>
@@ -243,6 +245,9 @@ export default {
                     pageSize:4
                 }
             }).then(res => {
+	            res.data.pubActList.content.map(items => {
+		            items.push(true);
+	            });
             this.activelistData = res.data.pubActList.content;
             })
         },
@@ -279,7 +284,11 @@ export default {
                  this.smallactiveIndex=this.activeIndex+1;
                  $('.small-img-items').css('transform','translateX(-'+(207*this.smallactiveIndex)+'px)')
             }
-        }
+        },
+	      listHover:function(status, index) {
+		        this.activelistData[index].pop();
+		        this.activelistData[index].push(status)
+	    },
     },
         
 }
