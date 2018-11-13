@@ -77,6 +77,10 @@
 .footer-btn:hover{
     cursor: pointer
 }
+.footer-btn .green_login {
+    width: 140px;
+    height: 30px;
+}
 .footer-code{
     width: 100%;
     margin: 20px auto 0 auto;

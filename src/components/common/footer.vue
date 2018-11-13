@@ -77,10 +77,12 @@
                 <p><a href="">上海挺之军科技有限公司</a></p>
                 <p><a href="">上海铸乾信息科技有限公司</a></p>
                 <div class="footer-btn first">
-                    登录
+                    <a href="https://www.greenfortune.sh.cn/pubwelorg/tologin" target="view_window"
+                       class="green_login">登录</a>
                 </div>
                 <div class="footer-btn">
-                    申请加入
+                    <a href="https://www.greenfortune.sh.cn/pubwelorg/toregisfirst" target="view_window"
+                       class="green_login">申请加入</a>
                 </div>
             </div>
             <div class="footer-bottom-part right">
