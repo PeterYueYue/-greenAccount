@@ -18,7 +18,7 @@
               <router-link to="/login">
                 <div class="login-btn">登录</div>
               </router-link>
-
+             
               <div class="login-btn">管理员登录</div>
             </div>
             <div class="login-area islogin" v-if="isusername">
