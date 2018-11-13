@@ -163,8 +163,8 @@
                 <div class="bottom-title-right">
                     <router-link :to="whichpart?'/integral_list':'/lv_volunteer'">
                         <p>
-                            <span>点击查看全部</span> 
-                            <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
+                            <span class="lv_volunteer_hover">点击查看全部 ></span>
+                            <!--<img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  -->
                         </p>
                     </router-link>
                     

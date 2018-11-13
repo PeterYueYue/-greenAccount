@@ -532,6 +532,10 @@
   vertical-align: middle;
 }
 
+.home-active-contain .bottom-title-right span.lv_volunteer_hover:hover {
+  color: #20A345;
+}
+
 /* -----------------------------首页活动结束-----------------------------*/
 
 /* -----------------------------首页绿色行动----------------------------- */
