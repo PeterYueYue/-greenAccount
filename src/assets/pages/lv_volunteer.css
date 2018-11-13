@@ -47,6 +47,7 @@
 
 .lv_volunteer_list:hover {
   border: 1px #20A345 solid;
+  background: #20A345;
 }
 
 .lv_volunteer_list:nth-child(2n+1) {
@@ -61,13 +62,17 @@
 }
 
 .lv_volunteer_list:hover .title {
-  color: #20A345;
+  color: #fff;
 }
 
 .lv_volunteer_list .text {
   font-size: 14px;
   color: rgba(51, 51, 51, 1);
   margin-top: 20px;
+}
+
+.lv_volunteer_list:hover .text {
+  color: #fff;
 }
 
 .lv_volunteer_list .text .progress {
@@ -100,6 +105,11 @@
   padding: 2px 10px;
 }
 
+.lv_volunteer_list:hover .text .progress, .lv_volunteer_list:hover .text .finished, .lv_volunteer_list:hover .text .enlist {
+  color: #20A345;
+  background: #fff;
+}
+
 .lv_volunteer_icon {
   position: relative;
   top: 4px;
@@ -114,9 +124,6 @@
 }
 
 .lv_volunteer_details_enlist {
-  position: absolute;
-  top: 80px;
-  right: 20px;
   width: 160px;
   height: 48px;
   line-height: 48px;
@@ -125,6 +132,7 @@
   font-size: 18px;
   background: rgba(32, 163, 69, 1);
   cursor: pointer;
+  margin-top: 35px;
 }
 
 .lv_volunteer_details_enlist.active {
