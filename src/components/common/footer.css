@@ -80,6 +80,7 @@
 .footer-btn .green_login {
     width: 140px;
     height: 30px;
+    display: inline-block;
 }
 .footer-code{
     width: 100%;
