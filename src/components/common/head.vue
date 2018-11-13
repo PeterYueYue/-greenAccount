@@ -19,7 +19,10 @@
                 <div class="login-btn">登录</div>
               </router-link>
 
-              <div class="login-btn">管理员登录</div>
+              <!--<a href="https://www.greenfortune.sh.cn/company" target="view_window"><div class="login-btn">企业账户登录</div></a>-->
+              <a href="http://180.153.19.162:8081/company" target="view_window"><div class="login-btn">企业账户登录</div></a>
+              <!--<a href="https://www.greenfortune.sh.cn/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a>-->
+              <a href="http://180.153.19.162:8081/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a>
             </div>
             <div class="login-area islogin" v-if="isusername">
               <div class="username-area">Hi.{{isusername}}</div>
