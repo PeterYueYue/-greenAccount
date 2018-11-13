@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="changepassword-item userInfo-item">
-            <button class="changepassword-subbtn userInfo-btn" @click="submitHandle">确认绑定</button>
+            <button class="changepassword-subbtn userInfo-btn" @click="submitHandle">确认更改</button>
         </div>
     </div>
 </template>
