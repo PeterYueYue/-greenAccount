@@ -327,6 +327,9 @@ export default {
         },
         map(mul,lng,lat,points,Name){  
             let map =new BMap.Map(this.$refs.allmap); // 创建Map实例    
+            map.addEventListener("click",(e)=>{
+                map.enableScrollWheelZoom(true);
+            })
             map.clearOverlays();  
             map.centerAndZoom(new BMap.Point(lng,lat), mul);// 初始化地图,设置中心点坐标和地图级别  
             map.addControl(new BMap.MapTypeControl({//添加地图类型控件        
@@ -335,7 +338,6 @@ export default {
                     BMAP_HYBRID_MAP,        
                 ],
             }));   
-           
             points.forEach((item,index) =>{
                 var point = new BMap.Point(item.lng||item.streetOngItude,item.lat||item.streetLatItude);
                 var marker = new BMap.Marker(point);
@@ -346,7 +348,7 @@ export default {
                 } 
             })   
             map.setCurrentCity("上海");// 设置地图显示的城市 此项是必须设置的      
-            map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放  
+            
         },
         addClickHandler(content,marker,map){
             marker.addEventListener("click",(e) =>{
