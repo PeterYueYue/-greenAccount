@@ -154,12 +154,14 @@
     props: ['username'],
     mounted() {
       this.getarea();
-      window.onscroll = ()=>{
+      window.onscroll = ()=>{   
         const t = document.documentElement.scrollTop || document.body.scrollTop;
+        
         if (t != 0) {
           $('header').css('box-shadow', '0 0 6px rgba(0,0,0,.5)')
           this.smallNav=true
         } else {
+          
           $('header').css('box-shadow', 'none')
           this.smallNav=false
         }
@@ -177,9 +179,6 @@
       }
     },
     methods: {
-      smalllogo(d){
-        this.smallNav=d
-      },
       goHome(){
         $('.homebtn').click();
       },
@@ -193,7 +192,6 @@
         window.sessionStorage.setItem('activeItemIndex', key)
       },
       chooseArea(areaName, id) {
-         this.smallNav =true;
         this.$store.dispatch('chooseArea', {areaName, id});
         window.sessionStorage.setItem('areaName', areaName);
         window.sessionStorage.setItem('areaId', id);

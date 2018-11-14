@@ -56,7 +56,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data:function() {
+    data() {
       return {
         listData: [],
         listImg: [],
@@ -66,13 +66,13 @@
         startPage: 1,    //当前页
       }
     },
-    mounted:function() {
+    mounted() {
       this.allList4NewStyle();
       this.getProductList(1, 8);
       this.bannerList();
     },
     watch: {
-      area:function() {
+      area() {
         this.getProductList(1, 8);
         this.bannerList();
       }
@@ -81,7 +81,7 @@
       area: "area"
     }),
     methods: {
-      allList4NewStyle:function() {
+      allList4NewStyle() {
         api.allList4NewStyle({
           data: {
             category: "13",
@@ -90,7 +90,7 @@
           this.message = res.data.newsList.content[0].newsContent;
         })
       },
-      getProductList:function(startPage, pageSize) {
+      getProductList(startPage, pageSize) {
         api.getProductList({
           data: {
             prodExchBrid: this.area.id,
@@ -105,17 +105,17 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      scrollToTop:function()  {
+      scrollToTop()  {
         window.scrollTo(0,0);
       },
-      pageChange:function(startPage) {
+      pageChange(startPage) {
         this.getProductList(startPage, this.pageSize);
         this.scrollToTop();
       },
-      listHover:function(status, index) {
+      listHover(status, index) {
         this.listData[index].hoverShow = status;
       },
-      bannerList:function() {
+      bannerList() {
         api.getbannerList({
           "data": {
             prodExchBrid: this.area.id
