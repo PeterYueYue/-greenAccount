@@ -95,9 +95,9 @@
                   <router-link to="/hzvs">
                     <div>惠众绿色</div>
                   </router-link>
-                   <router-link to="/lvzhanghu">
-                    <div>绿色账户</div>
-                  </router-link>
+                   <!--<router-link to="/lvzhanghu">-->
+                    <!--<div>绿色账户</div>-->
+                  <!--</router-link>-->
                   <router-link to="/zhzq">
                     <div>中行专区</div>
                   </router-link>

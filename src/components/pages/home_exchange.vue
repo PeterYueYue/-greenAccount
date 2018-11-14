@@ -62,18 +62,18 @@
         listImg: [],
         message: '',
         pageCount: 0,    //总条数
-        pageSize: 8,     //每页条数
+        pageSize: 12,     //每页条数
         startPage: 1,    //当前页
       }
     },
     mounted() {
       this.allList4NewStyle();
-      this.getProductList(1, 8);
+      this.getProductList(1, 12);
       this.bannerList();
     },
     watch: {
       area() {
-        this.getProductList(1, 8);
+        this.getProductList(1, 12);
         this.bannerList();
       }
     },

@@ -103,7 +103,7 @@
         selectScore: '',
         area: [],
         pageCount: 0,    //总条数
-        pageSize: 8,     //每页条数
+        pageSize: 12,     //每页条数
         startPage: 1,    //当前页
         typeList: [{
           id: '',
@@ -180,7 +180,7 @@
     },
     mounted:function() {
       this.getarea();
-      this.getProductList(1, 8);
+      this.getProductList(1, 12);
     },
     methods: {
       getarea:function() {
@@ -190,10 +190,10 @@
       },
       chooseArea:function(name, id) {
         this.isArea.id = id;
-        this.getProductList(1, 8);
+        this.getProductList(1, 12);
       },
       getType:function() {
-        this.getProductList(1, 8);
+        this.getProductList(1, 12);
       },
       getProductList:function(startPage, pageSize) {
         api.getProductList({
