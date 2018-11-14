@@ -25,97 +25,38 @@
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==2}">
                     </div>
                     <div class="active-content-des" :style="scrollcontent?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(300px);transition:all 1.5s .3s'">
-                        <div class="active-content-item" :class="{active:activeIndex==0}">
+                        <div class="active-content-item" :class="{active:activeIndex==index}" v-for="(item,index) in activeList" :key="index">
                             <div class="active-content-des-title">
-                                <p>为垃圾分拣员献上爱心</p>
+                                <p>{{item.activityName}}</p>
                             </div>
                             <div class="active-content-detail">
-                                <p>松江区“垃圾分类唤积分，垃圾分类公益行”活动介绍</p>
+                                <!-- <p>{{item.activityInfo}}</p> -->
                                 <p>
                                     主办单位： 
-                                    <span>松江区绿化和市容管理局&#x3000;</span>
-                                    <span>松江区方松街道办事处&#x3000;</span>
-                                    <span>松江区益行企业家促进会</span>            
+                                    <span v-for="(items,index) in item.organizer" :key="index">{{items}}&#x3000;</span>
+                                    <!-- <span>松江区方松街道办事处&#x3000;</span>
+                                    <span>松江区益行企业家促进会</span>             -->
                                 </p>
                                 <p>
-                                    活动时间：2017年12月21日——2018年1月20日
+                                    活动时间：{{item.beginDateVo}}——{{item.endDateVo}}
                                 </p>
                                 <p>
-                                    捐分范围：全区各街道绿色账户小区居民家庭
+                                    捐分范围：{{item.donateFor}}
                                 </p>
                                 <p>
-                                    爱心企业：上海依米服饰有限公司
+                                    爱心企业：{{item.caringEnterprise}}
                                 </p>
                                 <p>
-                                    爱心礼包：棉衣330件
+                                    爱心礼包：{{item.donateGoods}}
                                 </p>
                             </div>
                             <div class="active-content-more">
-                                <span>点击查看全部</span> 
-                                <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon">           
+                                <router-link :to="'/integral_detail/?id='+item.id">
+                                    <span>点击查看全部</span> 
+                                    <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon">
+                                </router-link>        
                             </div>
                         </div> 
-                        <div class="active-content-item" :class="{active:activeIndex==1}">
-                            <div class="active-content-des-title">
-                                <p>哈哈哈哈哈哈哈</p>
-                            </div>
-                            <div class="active-content-detail">
-                                <p>松江区“垃圾分类唤积分，垃圾分类公益行”活动介绍</p>
-                                <p>
-                                    主办单位： 
-                                    <span>松江区绿化和市容管理局&#x3000;</span>
-                                    <span>松江区方松街道办事处&#x3000;</span>
-                                    <span>松江区益行企业家促进会</span>            
-                                </p>
-                                <p>
-                                    活动时间：2017年12月21日——2018年1月20日
-                                </p>
-                                <p>
-                                    捐分范围：全区各街道绿色账户小区居民家庭
-                                </p>
-                                <p>
-                                    爱心企业：上海依米服饰有限公司
-                                </p>
-                                <p>
-                                    爱心礼包：棉衣330件
-                                </p>
-                            </div>
-                            <div class="active-content-more">
-                                <span>点击查看全部</span> 
-                                <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon">           
-                            </div>
-                        </div>
-                        <div class="active-content-item" :class="{active:activeIndex==2}">
-                            <div class="active-content-des-title">
-                                <p>为垃圾分拣员献上爱心</p>
-                            </div>
-                            <div class="active-content-detail">
-                                <p>松江区“垃圾分类唤积分，垃圾分类公益行”活动介绍</p>
-                                <p>
-                                    主办单位： 
-                                    <span>松江区绿化和市容管理局&#x3000;</span>
-                                    <span>松江区方松街道办事处&#x3000;</span>
-                                    <span>松江区益行企业家促进会</span>            
-                                </p>
-                                <p>
-                                    活动时间：2017年12月21日——2018年1月20日
-                                </p>
-                                <p>
-                                    捐分范围：全区各街道绿色账户小区居民家庭
-                                </p>
-                                <p>
-                                    爱心企业：上海依米服饰有限公司
-                                </p>
-                                <p>
-                                    爱心礼包：棉衣330件
-                                </p>
-                            </div>
-                            <div class="active-content-more">
-                                <span>点击查看全部</span> 
-                                <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon">           
-                            </div>
-                        </div>
-                        
                     </div>
                     <div class="active-maintitle" :style="scrollmaintitle?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .3s'">
                         <div class="white-back">
@@ -130,7 +71,7 @@
                         <div class="active-content-small-inside">
                             <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==0}">
                             <img src="@/assets/activeone.png" alt="" class="small-img-items" :class="{active:activeIndex==1}">
-                            <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==2}">
+                            <!-- <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==2}"> -->
                         </div>
                     </div>
                     <div class="active-btn partone" :style="scrollbtn?' opacity: 1;transform: translateY(0);':' opacity: 0;transform: translateY(200px);'">
@@ -188,23 +129,25 @@ export default {
             scrollsmall:false,
             scrollbtn:false,
             activeIndex:0,
-            activeCount:2,
+            activeCount:0,
             activebtnleft:0,
             activebtnright:0,
             smallactiveIndex:0,
             activelistData:'',
-            whichpart:true
+            whichpart:true,
+            activeList:''
         }
     },
-    mounted:function(){
+    mounted(){
        window.addEventListener('scroll',this.page);
-       this.homepubActList()
+       this.homepubActList();
+       this.getDonateActivity();
     },
-    destroyed:function(){
+    destroyed(){
          window.removeEventListener('scroll',this.page)
     },
     methods:{
-        page:function(){
+        page(){
             var top=$('.home-active-contain .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -224,7 +167,7 @@ export default {
                 this.scrollsmall=true;
             }            
         },
-        activeChangelast:function(){
+        activeChangelast(){
             if(this.activeIndex<=0){
                 return 
             }else {
@@ -238,7 +181,17 @@ export default {
                 
             }
         },
-         homepubActList:function() {
+        getDonateActivity(){
+            api.getDonateActivity().then(res =>{
+                this.activeList=res.data;
+                // this.activeList.organizer=this.activeList.organizer.split(",");
+                this.activeList.forEach(item => {
+                    item.organizer=item.organizer.split(",")
+                });
+                this.activeCount=this.activeList.length-1
+            })
+        },
+         homepubActList() {
             api.pubActList({
                 data:{
                     startPage:1,
@@ -251,7 +204,7 @@ export default {
             this.activelistData = res.data.pubActList.content;
             })
         },
-        activeChangenext:function(){
+        activeChangenext(){
             if(this.activeIndex>=this.activeCount){
                 return 
             }else {
@@ -264,7 +217,7 @@ export default {
                 }
             }
         },
-        leftbtnHover:function(){
+        leftbtnHover(){
             this.activebtnleft=1;
             if(this.activeIndex==0){
                 $('.small-img-items').css('transform','translateX(0px)')
@@ -274,18 +227,17 @@ export default {
                 $('.small-img-items').css('transform','translateX(-'+(207*this.smallactiveIndex)+'px)')
             }
         },
-        rightbtnHover:function(){
+        rightbtnHover(){
             this.activebtnright=1
             if(this.activeIndex==this.activeCount){
                 $('.small-img-items').css('transform','translateX(-'+(207*this.activeCount)+'px)')
                 return 
             }else {
-                console.log('222')
                  this.smallactiveIndex=this.activeIndex+1;
                  $('.small-img-items').css('transform','translateX(-'+(207*this.smallactiveIndex)+'px)')
             }
         },
-	      listHover:function(status, index) {
+	      listHover(status, index) {
 		        this.activelistData[index].pop();
 		        this.activelistData[index].push(status)
 	    },

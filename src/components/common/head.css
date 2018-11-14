@@ -21,6 +21,7 @@
 }
 .search-area{
     width: 245px;
+    border-bottom: 1px solid #E8ECF3
 }
 .select-city-contain{
     display: inline-block;
@@ -76,6 +77,7 @@
     line-height: 30px;
     font-size: 14px;
     padding: 0 5px;
+    border: none !important;
 }
 .search-btn{
     background-image: url('../../assets/icon/search.png');
@@ -90,7 +92,7 @@
     cursor: pointer;
 }
 .login-area{
-    margin-left:65px;
+    margin-left:30px;
     /* float: right; */
 }
 .login-area .login-btn{

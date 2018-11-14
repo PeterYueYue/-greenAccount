@@ -6,7 +6,7 @@
           <img class="banner-img" src="@/assets/banner.png" alt="">
         </swiper-slide>
         <swiper-slide>
-          <img class="banner-img" src="@/assets/banner.png" alt="">
+          <img class="banner-img" src="@/assets/lvbanner2.jpg" alt="">
         </swiper-slide>
         <swiper-slide>
           <img class="banner-img" src="@/assets/banner.png" alt="">

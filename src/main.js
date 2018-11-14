@@ -39,6 +39,10 @@ Vue.filter('momentDate', function (value, formatString) {
   formatString = formatString || 'YYYY年MM月DD日';
   return moment(value).format(formatString);
 });
+Vue.filter('momentmessage', function (value, formatString) {
+  formatString = formatString || 'YYYY-MM-DD h:mm:ss';
+  return moment(value).format(formatString);
+});
 
 // Axios.interceptors.request.use((req) => {
 //   if (req.data.name === 'business.login') {

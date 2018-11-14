@@ -1,7 +1,7 @@
 <template>
     <div class="message-contain">
         <div class="message-item" v-for="item in messagelist" :key="item.id">
-            <p class="message-time">2018-09-18  13:33:00</p>
+            <p class="message-time">{{item.adviceCreateDate | momentmessage}}</p>
             <p class="message-content">{{item.replyContent}}</p>
         </div>
     </div>
@@ -10,7 +10,7 @@
 import api from "@/api/api.js";
 import {mapGetters} from 'vuex';
 export default {
-    data:function(){
+    data(){
         return {
             messagelist:[]
         }
@@ -18,7 +18,7 @@ export default {
     computed: mapGetters({
         token:"token",
     }),
-    mounted:function(){
+    mounted(){
        api.getmyMessage({
            data:{
                startPage:"1",
@@ -32,8 +32,7 @@ export default {
                         path:'/login'
                     })
                 }
-            this.messagelist=res.data.adviceInfos.content
-           
+            this.messagelist=res.data.adviceInfos.content;
        })
     }
 }

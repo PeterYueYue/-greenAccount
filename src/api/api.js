@@ -209,6 +209,10 @@ const configActivityNotice ={
   "name":"donateActivityNotice",
   "version":"1.0",
 }
+const configDonateActivity ={
+  "name":"latestDonateActivity",
+  "version":"1.0",
+}
 
 
 export default {
@@ -421,6 +425,10 @@ export default {
   },
   getActivityNotice(params){
     let config = Object.assign(configActivityNotice, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
+    return axios.post(`${base}/api/web`, config).then(res => res.data);
+  },
+  getDonateActivity(params){
+    let config = Object.assign(configDonateActivity, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
   }
 }
