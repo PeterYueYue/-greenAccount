@@ -38,7 +38,7 @@
                     <div class="exchange-inside-contain" ref="exchangeInside">
                         <router-link :to="'/exchange/detail/?Did='+item.id" v-for="(item,index) in product"
                                      :key="item.id">
-                            <div class="exchange-content"  :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
+                            <div class="exchange-content"  :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:transform 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:transform 1.5s .'+index+'s'">
                                 <div class="change-content-top">
                                     <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
                                 </div>

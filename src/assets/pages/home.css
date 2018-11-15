@@ -164,8 +164,9 @@
   width: 900px;
   display: inline-block;
   vertical-align: middle;
-  padding: 0 27px;
+  padding: 0px 27px;
   overflow: hidden;
+  /* overflow-y: visible; */
 }
 
 .exchange-inside-contain {
@@ -182,11 +183,15 @@
   display: inline-block;
   border: 1px solid rgba(159, 159, 159, 0.97);
   margin-right: 27px;
-  transition: all .5s;
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
+  transition: box-shadow .5s !important ;
 }
 
 .exchange-content:hover {
   cursor: pointer;
+  box-shadow: rgba(82, 181, 75, 0.555) 0px 0px 8px;;
+  border: 1px solid #52B54B;
 }
 
 .exchange-detail {
