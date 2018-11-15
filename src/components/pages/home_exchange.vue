@@ -73,6 +73,7 @@
     },
     watch: {
       area() {
+        this.allList4NewStyle();
         this.getProductList(1, 12);
         this.bannerList();
       }

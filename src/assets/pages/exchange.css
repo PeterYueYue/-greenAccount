@@ -17,6 +17,7 @@
 .ex_banner .banner .banner_pic img {
   display: block;
   width: 1920px;
+  height: 500px;
   position: relative;
   left: 50%;
   margin-left: -960px;
@@ -67,6 +68,7 @@
 .ex_remind img {
   position: relative;
   top: 6px;
+  right: 10px;
 }
 
 .ex_area_name {
