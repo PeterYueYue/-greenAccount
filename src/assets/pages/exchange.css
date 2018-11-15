@@ -15,6 +15,7 @@
 }
 
 .ex_banner .banner .banner_pic img {
+  display: block;
   width: 1920px;
   position: relative;
   left: 50%;

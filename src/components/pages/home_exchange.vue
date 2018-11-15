@@ -6,7 +6,7 @@
           <img :src="'https://www.greenfortune.sh.cn/banner/' + item.bname" alt="">
         </div>
       </div>
-      <img src="@/assets/ex_banner.png" alt="" style="width:100%;" v-else>
+      <img src="@/assets/ex_banner.png" alt="" style="width:100%;display:block" v-else>
     </div>
     <div class="ex_remind">
       <div class="ex_wrap marquee">
@@ -105,8 +105,8 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      scrollToTop()  {
-        window.scrollTo(0,0);
+      scrollToTop() {
+        window.scrollTo(0, 0);
       },
       pageChange(startPage) {
         this.getProductList(startPage, this.pageSize);
