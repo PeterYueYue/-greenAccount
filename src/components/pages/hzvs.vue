@@ -40,12 +40,12 @@
       return {
         listData: [],
         pageCount: 0,    //总条数
-        pageSize: 5,     //每页条数
+        pageSize: 8,     //每页条数
         startPage: 1,    //当前页
       }
     },
     mounted:function() {
-      this.allList4NewStyle(1, 5);
+      this.allList4NewStyle(1, 8);
     },
     methods: {
       allList4NewStyle:function(startPage, pageSize, jumpPage) {

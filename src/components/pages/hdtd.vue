@@ -2,11 +2,11 @@
   <div class="lv_wrap">
     <div class="lv_bd_bread">您的位置：绿互动 > <span>活动天地</span></div>
     <ul class="lv_bd_tab">
-      <li :class="activeIndex===0?'active':''" @click="allList4NewStyle(0,1,5)">全部</li>
-      <li :class="activeIndex===1?'active':''" @click="allList4NewStyle(1,1,5)">活动预告</li>
-      <li :class="activeIndex===2?'active':''" @click="allList4NewStyle(2,1,5)">活动成果</li>
-      <li :class="activeIndex===3?'active':''" @click="allList4NewStyle(3,1,5)">中奖名单</li>
-      <li :class="activeIndex===4?'active':''" @click="allList4NewStyle(4,1,5)">抽奖活动</li>
+      <li :class="activeIndex===0?'active':''" @click="allList4NewStyle(0,1,8)">全部</li>
+      <li :class="activeIndex===1?'active':''" @click="allList4NewStyle(1,1,8)">活动预告</li>
+      <li :class="activeIndex===2?'active':''" @click="allList4NewStyle(2,1,8)">活动成果</li>
+      <li :class="activeIndex===3?'active':''" @click="allList4NewStyle(3,1,8)">中奖名单</li>
+      <li :class="activeIndex===4?'active':''" @click="allList4NewStyle(4,1,8)">抽奖活动</li>
     </ul>
     <div class="lv_bd_notice" v-for="(items,index) in listData" @mouseenter.stop="listHover(true,index)"
          @mouseleave.stop="listHover(false,index)" v-show="listData.length !== 0" :key="index">
@@ -48,13 +48,13 @@
         listData: [],
         activeIndex: 0,
         pageCount: 0,    //总条数
-        pageSize: 5,     //每页条数
+        pageSize: 8,     //每页条数
         startPage: 1,    //当前页
       }
     },
     mounted:function() {
       this.activeIndex = this.$route.params.index || 0;
-      this.allList4NewStyle((this.$route.params.index || 0), 1, 5);
+      this.allList4NewStyle((this.$route.params.index || 0), 1, 8);
     },
     methods: {
       allList4NewStyle:function(status, startPage, pageSize, jumpPage) {

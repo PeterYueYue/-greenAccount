@@ -6,7 +6,7 @@
           <img :src="'https://www.greenfortune.sh.cn/banner/' + item.bname" alt="">
         </div>
       </div>
-      <img src="@/assets/ex_banner.png" alt="" style="width:100%;" v-else>
+      <img src="@/assets/ex_banner.png" alt="" style="width:100%;display:block" v-else>
     </div>
     <div class="ex_remind">
       <div class="ex_wrap marquee">
@@ -62,18 +62,19 @@
         listImg: [],
         message: '',
         pageCount: 0,    //总条数
-        pageSize: 8,     //每页条数
+        pageSize: 12,     //每页条数
         startPage: 1,    //当前页
       }
     },
     mounted() {
       this.allList4NewStyle();
-      this.getProductList(1, 8);
+      this.getProductList(1, 12);
       this.bannerList();
     },
     watch: {
       area() {
-        this.getProductList(1, 8);
+        this.allList4NewStyle();
+        this.getProductList(1, 12);
         this.bannerList();
       }
     },
@@ -105,8 +106,8 @@
           this.pageCount = res.data.totalElements;
         })
       },
-      scrollToTop()  {
-        window.scrollTo(0,0);
+      scrollToTop() {
+        window.scrollTo(0, 0);
       },
       pageChange(startPage) {
         this.getProductList(startPage, this.pageSize);

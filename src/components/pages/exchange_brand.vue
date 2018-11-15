@@ -89,7 +89,7 @@
         selectScore: '',
         typeList: [],
         pageCount: 0,    //总条数
-        pageSize: 8,     //每页条数
+        pageSize: 12,     //每页条数
         startPage: 1,    //当前页
         hotList: [{
           id: '-1',
@@ -133,7 +133,7 @@
       }
     },
     mounted:function() {
-      this.getMallProductList(1, 8);
+      this.getMallProductList(1, 12);
       this.getMallLogoList();
     },
     methods: {
@@ -143,7 +143,7 @@
         })
       },
       getType:function() {
-        this.getMallProductList(1, 8);
+        this.getMallProductList(1, 12);
       },
       getMallProductList(startPage, pageSize) {
         api.getMallProductList({

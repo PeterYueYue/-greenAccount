@@ -43,18 +43,18 @@
         query: this.$route.query.query,
         listData: [],
         pageCount: 0,    //总条数
-        pageSize: 3,     //每页条数
+        pageSize: 8,     //每页条数
         startPage: 1,    //当前页
       }
     },
     mounted:function() {
-      this.searchLike(1, 3);
+      this.searchLike(1, 8);
     },
     watch: {
       '$route'(to, from) {
         if (to.query.query !== from.query.query) {
           this.query = to.query.query;
-          this.searchLike(1, 3);
+          this.searchLike(1, 8);
         }
       }
     },
