@@ -37,8 +37,7 @@
     </div>
     <div class="ex_wrap">
       <div class="de_title">同类兑换</div>
-      <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listSameData" :key="index">
+      <div class="ex_list" v-for="(items,index) in listSameData" :key="index">
         <router-link :to="{path: '/exchange/detail/', query: { Did: items[5] }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items[3]" alt="" class="ex_list_pic"
                v-if="items[3]">
@@ -46,12 +45,10 @@
           <div class="ex_list_name">{{items[0]}}</div>
           <div class="ex_list_score">{{items[1]}}</div>
           <div class="ex_list_address">
-            <img src="@/assets/ex_icon_address.png" alt="" v-if="items[7]">
-            <img src="@/assets/ex_icon_address_select.png" alt="" v-else>
+            <img src="@/assets/ex_icon_address.png" alt="">
             {{items[6]}}领取
           </div>
-          <div class="ex_list_time" v-if="items[7]">{{items[2]}}提供</div>
-          <div class="ex_list_btn" v-else>立即兑换</div>
+          <div class="ex_list_time">{{items[2]}}提供</div>
         </router-link>
       </div>
     </div>
@@ -93,9 +90,6 @@
             id: this.Did,
           },
         }).then(res => {
-          res.data.sameTypeLi.map(items => {
-            items.push(true)
-          });
           this.listData = res.data.info;
           this.$store.dispatch('getDetailsid', res.data.info);
           this.listSameData = res.data.sameTypeLi;
@@ -128,13 +122,10 @@
           }
         })
       },
-      listHover:function(status, index) {
-        this.listSameData[index].splice(7, 1);
-        this.listSameData[index].push(status);
-      },
       ajaxCheckCanSubmit:function() {
         if (!this.islogin) {
-          this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
+          this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id);
+          return;
         }
         api.ajaxCheckCanSubmit({
           data: {
@@ -157,7 +148,7 @@
         })
       },
       count:function(status) {
-        if (!status && this.productNum === 0) return
+        if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
         status ? this.productNum += 1 : this.productNum -= 1
       }

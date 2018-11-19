@@ -51,8 +51,7 @@
       <div class="ex_select_brand" @click="jumpBrand">爱心品牌专区</div>
     </div>
     <div class="ex_wrap">
-      <div class="ex_list" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)"
-           v-for="(items,index) in listData" v-show="listData.length !== 0" :key="index">
+      <div class="ex_list" v-for="(items,index) in listData" v-show="listData.length !== 0" :key="index">
         <router-link :to="{path: '/exchange/detail/', query: { Did: items.productInfo.id }}">
           <img :src="'https://www.greenfortune.sh.cn/images/' + items.prodPic" alt="" class="ex_list_pic"
                v-if="items.prodPic">
@@ -60,12 +59,10 @@
           <div class="ex_list_name">{{items.prodName}}</div>
           <div class="ex_list_score">{{items.prodPoints}}积分</div>
           <div class="ex_list_address">
-            <img src="@/assets/ex_icon_address.png" alt="" v-if="items.hoverShow">
-            <img src="@/assets/ex_icon_address_select.png" alt="" v-else>
+            <img src="@/assets/ex_icon_address.png" alt="">
             {{items.productInfo.prodReceiveAddress}}领取
           </div>
-          <div class="ex_list_time" v-if="items.hoverShow">{{items.productInfo.prodProvider}}提供</div>
-          <div class="ex_list_btn" v-else>立即兑换</div>
+          <div class="ex_list_time">{{items.productInfo.prodProvider}}提供</div>
         </router-link>
       </div>
       <div class="ex_nodata" v-show="listData.length == 0">
@@ -207,9 +204,6 @@
             pageSize: pageSize,
           },
         }).then(res => {
-          res.data.content.map(items => {
-            items.hoverShow = true;
-          });
           this.listData = res.data.content;
           this.pageCount = res.data.totalElements;
         })
@@ -220,9 +214,6 @@
       pageChange(startPage) {
         this.getProductList(startPage, this.pageSize);
         this.scrollToTop();
-      },
-      listHover:function(status, index) {
-        this.listData[index].hoverShow = status;
       },
       jumpBrand:function() {
         this.$router.push({

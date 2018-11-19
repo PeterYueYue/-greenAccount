@@ -63,6 +63,7 @@
   background: #f7f7f7;
   font-size: 14px;
   color: #333;
+  margin-bottom: 30px;
 }
 
 .ex_remind img {
@@ -101,7 +102,7 @@
 }
 
 .ex_select {
-  margin-top: 30px;
+  margin: 30px auto 10px;
 }
 
 .ex_select_name {
@@ -201,29 +202,28 @@
 
 .ex_list {
   width: 300px;
-  height: 386px;
+  height: 370px;
   float: left;
-  margin: 50px 0 0 21px;
+  margin: 30px 0 20px 21px;
   border: 1px #fff solid;
 }
 
 .ex_list:hover {
-  box-shadow: 0 0 15px #e5e5e5;
+  box-shadow: 0 0 20px #e9f0db;
   border: 1px #52b54b solid;
   cursor: pointer;
-  background: #52b54b;
-  color: #fff;
+}
+
+.ex_list_integral {
+  height: auto;
 }
 
 .ex_list_integral:hover {
-  box-shadow: 0 0 15px #e5e5e5;
+  height: auto;
+  box-shadow: 0 0 20px #e9f0db;
   border: 1px #52b54b solid;
   cursor: pointer;
   background: #fff;
-}
-
-.ex_list:hover div {
-  color: #fff;
 }
 
 .ex_list:nth-child(4n-3) {
@@ -299,6 +299,16 @@
   border-top: 1px #57B751 solid;
   margin-top: 23px;
   background: #57B751;
+}
+
+.ex_list_btn_integral_hover {
+  line-height: 46px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border-top: 1px #ccc solid;
+  margin-top: 23px;
+  background: #ccc;
 }
 
 .ex_nodata {
