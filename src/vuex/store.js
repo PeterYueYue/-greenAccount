@@ -19,26 +19,30 @@ export default new Vuex.Store({
         resUuid:'',
         username:'',
         expire:'',
-        userdetail:{}
+        userdetail:{},
+        isloginPage:0
     },
     mutations:{
-        GetArea:function(state,areadate){
+        GetArea(state,areadate){
             this.state.area = areadate;
         },
-        GetToken:function(state,data){
+        GetToken(state,data){
             this.state.username=data.userName;
             this.state.user_islogin=data.islogin;
             this.state.token = data.token;
         },
-        GetResUuid:function(state,data){
+        GetResUuid(state,data){
             this.state.resUuid=data.resUuid
         },
-        GetUserdetail:function(state,data){
+        GetUserdetail(state,data){
             this.state.userdetail=data
         },
-        GetDetailsid:function(state,data){
+        GetDetailsid(state,data){
             this.state.id=data.id
         },
+        GetPage(state,data){
+            this.state.isloginPage=data
+        }
     },
     // plugins: [createPersistedState({storage: window.sessionStorage})]
 })

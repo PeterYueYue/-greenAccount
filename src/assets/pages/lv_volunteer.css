@@ -46,8 +46,8 @@
 }
 
 .lv_volunteer_list:hover {
-  border: 1px #20A345 solid;
-  background: #20A345;
+  border: 1px #6FA007 solid;
+  background: #6FA007;
 }
 
 .lv_volunteer_list:nth-child(2n+1) {

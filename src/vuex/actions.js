@@ -17,3 +17,6 @@ export var chooseArea = ({commit}, data) => {
   export var getDetailsid = ({commit}, data) => {
     commit(types.GetDetailsid, data);
   }
+  export var getPage = ({commit}, data) => {
+    commit(types.GetPage, data);
+  }

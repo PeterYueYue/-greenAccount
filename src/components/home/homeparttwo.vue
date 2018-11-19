@@ -18,75 +18,57 @@
                         <span class="active-line"></span> 公益志愿    
                     </p>
                 </div>
-                <div class="active-content-right" v-if="whichpart">
-                    <div class="active-content-big-img" :style="scrollbig?' opacity: 1;transform: translateY(0);transition:all 1.5s .2s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .2s'">
+                <div class="active-content-right" v-show="whichpart">
+                    <!-- <div class="active-content-big-img" :style="scrollbig?' opacity: 1;transform: translateY(0);transition:all 1.5s .2s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .2s'">
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==0}">
                         <img src="@/assets/activeone.png" alt="" class="img-items" :class="{active:activeIndex==1}">
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==2}">
-                    </div>
+                    </div> -->
                     <div class="active-content-des" :style="scrollcontent?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(300px);transition:all 1.5s .3s'">
                         <div class="active-content-item" :class="{active:activeIndex==index}" v-for="(item,index) in activeList" :key="index">
-                            <div class="active-content-des-title">
-                                <p>{{item.activityName}}</p>
-                            </div>
-                            <div class="active-content-detail">
-                                <!-- <p>{{item.activityInfo}}</p> -->
-                                <p>
-                                    主办单位： 
-                                    <span v-for="(items,index) in item.organizer" :key="index">{{items}}&#x3000;</span>
-                                    <!-- <span>松江区方松街道办事处&#x3000;</span>
-                                    <span>松江区益行企业家促进会</span>             -->
-                                </p>
-                                <p>
-                                    活动时间：{{item.beginDateVo}}——{{item.endDateVo}}
-                                </p>
-                                <p>
-                                    捐分范围：{{item.donateFor}}
-                                </p>
-                                <p>
-                                    爱心企业：{{item.caringEnterprise}}
-                                </p>
-                                <p>
-                                    爱心礼包：{{item.donateGoods}}
-                                </p>
-                            </div>
-                            <div class="active-content-more">
+                           <div class="active-content-item-left">
+                               <img src="@/assets/activeItem.png" alt="">
+                           </div>
+                           <div class="active-content-item-right">
+                                <div class="active-content-des-title">
+                                    <p>{{item.activityName}}</p>
+                                </div>
+                                <div class="active-content-detail">
+                                    <!-- <p>{{item.activityInfo}}</p> -->
+                                    <p>
+                                        主办单位： 
+                                        <span v-for="(items,index) in item.organizer" :key="index">{{items}}&#x3000;</span>
+                                        <!-- <span>松江区方松街道办事处&#x3000;</span>
+                                        <span>松江区益行企业家促进会</span>             -->
+                                    </p>
+                                    <p>
+                                        活动时间：{{item.beginDateVo}}——{{item.endDateVo}}
+                                    </p>
+                                    <p>
+                                        捐分范围：{{item.donateFor}}
+                                    </p>
+                                    <p>
+                                        爱心企业：{{item.caringEnterprise}}
+                                    </p>
+                                    <p>
+                                        爱心礼包：{{item.donateGoods}}
+                                    </p>
+                                </div>
+                           </div>
+                           <div class="active-content-more">
                                 <router-link :to="'/integral_detail/?id='+item.id">
-                                    <span>点击查看全部</span> 
+                                    <span>点击捐赠</span> 
                                     <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon">
                                 </router-link>        
                             </div>
                         </div> 
                     </div>
-                    <div class="active-maintitle" :style="scrollmaintitle?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .3s'">
-                        <div class="white-back">
-                            <div>01</div>
-                            <div>
-                                积分捐赠
-                            </div>
-                        </div>
-                        <div class="tip-icon">新活动</div>
-                    </div>
-                    <div class="active-content-small-img" :style="scrollsmall?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .3s'">
-                        <div class="active-content-small-inside">
-                            <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==0}">
-                            <img src="@/assets/activeone.png" alt="" class="small-img-items" :class="{active:activeIndex==1}">
-                            <!-- <img src="@/assets/heart.png" alt="" class="small-img-items" :class="{active:activeIndex==2}"> -->
-                        </div>
-                    </div>
-                    <div class="active-btn partone" :style="scrollbtn?' opacity: 1;transform: translateY(0);':' opacity: 0;transform: translateY(200px);'">
-                        <div class="active-btn-left" @click="activeChangelast" @mouseenter="leftbtnHover" @mouseleave="activebtnleft=0">
-                            <img src="@/assets/icon/doleft.png" alt="" v-show="activeIndex==0||!activebtnleft">
-                            <img src="@/assets/icon/activedoleft.png" alt="" v-show="activeIndex!=0&&activebtnleft">
-                        </div>
-                        <span class="active-btn-line"></span>
-                        <div class="active-btn-right" @click="activeChangenext" @mouseenter="rightbtnHover" @mouseleave="activebtnright=0">
-                            <img src="@/assets/icon/doright.png" alt="" v-show="activeIndex==activeCount||!activebtnright">
-                            <img src="@/assets/icon/activedoright.png" alt="" v-show="activeIndex!=activeCount&&activebtnright">
-                        </div>
+                     <div class="active-rabit" >
+                        <img src="@/assets/rabit.png" alt="">
                     </div> 
                 </div>
-                <div class="active-content-right" v-if="!whichpart">
+                
+                <div class="active-content-right" v-show="!whichpart">
                     <div class="lv_volunteer_list" v-for="(items,index) in activelistData" @mouseenter.stop="listHover(false,index)" @mouseleave.stop="listHover(true,index)" :key="index">
                         <router-link :to="{path: '/lv_volunteer_details/', query: { id: items[5] }}">
                         <div class="title">{{items[1]}}</div>
@@ -104,8 +86,8 @@
                 <div class="bottom-title-right">
                     <router-link :to="whichpart?'/integral_list':'/lv_volunteer'">
                         <p>
-                            <span class="lv_volunteer_hover">点击查看全部 ></span>
-                            <!--<img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  -->
+                            <span class="lv_volunteer_hover">查看更多 ></span>
+                            <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  -->
                         </p>
                     </router-link>
                     
@@ -184,6 +166,7 @@ export default {
         getDonateActivity(){
             api.getDonateActivity().then(res =>{
                 this.activeList=res.data;
+                console.log(res.data)
                 // this.activeList.organizer=this.activeList.organizer.split(",");
                 this.activeList.forEach(item => {
                     item.organizer=item.organizer.split(",")

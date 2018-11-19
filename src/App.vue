@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header>
+      <el-header v-if="!isloginPage">
         <head-content :username="userName"></head-content>
       </el-header>
-      <el-main>
+      <el-main :class="isloginPage?'login':''">
         <router-view/>
       </el-main>
-      <el-footer>
+      <el-footer v-if="!isloginPage">
         <footer-content></footer-content>
         <div class="footer-copyright">
           <p>
@@ -40,6 +40,9 @@
          login:false,
       }
     },
+    computed: mapGetters({
+        isloginPage:"isloginPage",
+    }),
     beforeCreate(){
        if(window.sessionStorage.getItem("username")){
           this.login=true
