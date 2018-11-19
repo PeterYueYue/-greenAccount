@@ -23,7 +23,8 @@
             </ul>
           </li>　　
         </ul>
-        <div class="ex_shop_btn" @click="donatePointsSubmit">我要捐赠</div>
+        <div class="ex_shop_btn" @click="donatePointsSubmit" v-show="this.listData.status == '02'">我要捐赠</div>
+        <div class="ex_shop_btn_hover" v-show="this.listData.status == '03'">活动已结束</div>
         <router-link to="/integral_list"><span class="ex_shop_more">查看更多爱心捐赠</span></router-link>
       </div>
     </div>
@@ -113,7 +114,7 @@
         this.showUl = type;
       },
       count:function(status) {
-        if (!status && this.productNum === 0) return
+        if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
         status ? this.productNum += this.productNum : this.productNum -= this.productNum
       }
