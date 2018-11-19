@@ -8,7 +8,8 @@
           <div class="ex_list_name">{{items.activityName}}</div>
           <div class="ex_list_score">{{items.leastPoints}}积分</div>
           <div class="ex_list_address">活动时间：{{items.beginDateVo}} - {{items.endDateVo}}</div>
-          <div class="ex_list_btn_integral">我要捐赠</div>
+          <div class="ex_list_btn_integral" v-show="items.status == '02'">我要捐赠</div>
+          <div class="ex_list_btn_integral_hover" v-show="items.status == '03'">活动已结束</div>
         </router-link>
       </div>
     </div>
