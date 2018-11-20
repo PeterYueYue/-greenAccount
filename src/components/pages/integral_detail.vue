@@ -117,7 +117,7 @@
       count: function (status) {
         if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
-        status ? this.productNum += 100 : this.productNum -= 100
+        status ? this.productNum += this.productNum : this.productNum -= this.productNum
       }
     }
   }
