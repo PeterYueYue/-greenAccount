@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="ex_banner">
-      <div class="banner" v-if="listImg.length > 0">
-        <div class="banner_pic" v-for="item in listImg">
-          <img :src="'https://www.greenfortune.sh.cn/banner/' + item.bname" alt="">
-        </div>
-      </div>
+      <swiper :options="swiperOption" v-if="listImg.length > 0">
+        <swiper-slide v-for="(item,index) in listImg" :key="index">
+          <img :src="'https://www.greenfortune.sh.cn/banner/' + item.bname" alt="" class="ex_banner_pic">
+        </swiper-slide>
+      </swiper>
       <img src="@/assets/ex_banner.png" alt="" style="width:100%;display:block" v-else>
     </div>
     <div class="ex_remind">
@@ -52,6 +52,7 @@
   import {mapGetters} from 'vuex';
   import '@/assets/pages/exchange.css';
   import '@/components/common/pagination.css';
+  import {swiper, swiperSlide} from 'vue-awesome-swiper'
 
   export default {
     data() {
@@ -59,10 +60,26 @@
         listData: [],
         listImg: [],
         message: '',
-        pageCount: 0,    //总条数
-        pageSize: 12,     //每页条数
-        startPage: 1,    //当前页
+        pageCount: 0,      //总条数
+        pageSize: 12,      //每页条数
+        startPage: 1,      //当前页
+        swiperOption: {
+          loop: true,
+          autoplay: {
+            delay: 1000, //自动切换的时间间隔，单位ms
+            stopOnLastSlide: false, //当切换到最后一个slide时停止自动切换
+            stopOnLastSlide: true, //如果设置为true，当切换到最后一个slide时停止自动切换。
+            disableOnInteraction: true, //用户操作swiper之后，是否禁止autoplay。
+            reverseDirection: false, //开启反向自动轮播。
+            waitForTransition: true, //等待过渡完毕。自动切换会在slide过渡完毕后才开始计时。
+          },
+          speed: 1000,
+        }
       }
+    },
+    components: {
+      swiper,
+      swiperSlide
     },
     mounted() {
       this.allList4NewStyle();

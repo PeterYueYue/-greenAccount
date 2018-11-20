@@ -3,24 +3,10 @@
   overflow: hidden;
 }
 
-.ex_banner .banner {
-  width: 400%;
-  animation: banner 10s ease infinite;
-}
-
-.ex_banner .banner .banner_pic {
-  width: 25%;
-  overflow: hidden;
-  float: left;
-}
-
-.ex_banner .banner .banner_pic img {
+.ex_banner .ex_banner_pic {
   display: block;
-  width: 1920px;
   height: 500px;
-  position: relative;
-  left: 50%;
-  margin-left: -960px;
+  width: 100%;
 }
 
 @keyframes banner {
