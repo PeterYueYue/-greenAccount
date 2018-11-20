@@ -228,3 +228,11 @@
 .integral_content .points_wrap img {
   margin-top: 10px;
 }
+
+input.input-num::-webkit-outer-spin-button,
+input.input-num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input.input-num[type="number"]{
+  -moz-appearance: textfield;
+}
