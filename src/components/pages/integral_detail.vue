@@ -18,10 +18,11 @@
           <li>
             <ul class="count">
               <li><span class="num-jian" @click="count(false)">-</span></li>
-              <li><input type="number" class="input-num" v-model="productNum"/></li>
+              <li><input type="number" class="input-num" v-model="productNum" disabled/></li>
               <li><span class="num-jia" @click="count(true)">+</span></li>
             </ul>
-          </li>　　
+          </li>
+          　　
         </ul>
         <div class="ex_shop_btn" @click="donatePointsSubmit" v-show="this.listData.status == '02'">我要捐赠</div>
         <div class="ex_shop_btn_hover" v-show="this.listData.status == '03'">活动已结束</div>
@@ -61,7 +62,7 @@
   import '@/assets/pages/ex_details.css';
 
   export default {
-    data:function() {
+    data: function () {
       return {
         id: this.$route.query.id,
         listData: {},
@@ -76,11 +77,11 @@
       isusername: "username",
       islogin: "user_islogin",
     }),
-    mounted:function() {
+    mounted: function () {
       this.donateActivityDetail()
     },
     methods: {
-      donateActivityDetail:function() {
+      donateActivityDetail: function () {
         api.donateActivityDetail({
           data: {
             donateActivityId: this.id,
@@ -91,7 +92,7 @@
           this.productNum = res.data.data.activityInfo.leastPoints;
         })
       },
-      donatePointsSubmit:function() {
+      donatePointsSubmit: function () {
         if (!this.islogin) {
           this.$router.push({
             path: '/login?backUrl=integral_list'
@@ -104,19 +105,19 @@
           },
           token: this.token,
         }).then(res => {
-          if(res.data.message !== '操作失败，用户未登录'){
+          if (res.data.message !== '操作失败，用户未登录') {
             alert(res.data.message)
           }
           this.donateActivityDetail();
         })
       },
-      openUl:function(type) {
+      openUl: function (type) {
         this.showUl = type;
       },
-      count:function(status) {
+      count: function (status) {
         if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
-        status ? this.productNum += this.productNum : this.productNum -= this.productNum
+        status ? this.productNum += 100 : this.productNum -= 100
       }
     }
   }
