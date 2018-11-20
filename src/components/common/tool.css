@@ -35,6 +35,9 @@ body,html{
     margin-top: 175px;
     /* position: relative; */
 }
+.el-main.login{
+    margin-top: 0;
+}
 .footer-copyright{
     padding: 30px 0;
     font-size: 14px;

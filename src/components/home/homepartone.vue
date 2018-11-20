@@ -16,7 +16,7 @@
                 </div>
             </div>     
             <div class="part-content">
-                <div class="exchange-content-left partone"  :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
+                <!-- <div class="exchange-content-left partone"  :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
                     <div class="exchange-detail">
                         <p class="green-line"></p>
                     </div>
@@ -33,12 +33,12 @@
                             <p>微信扫码关注<br>签到绿豆抽奖</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="exchange-content-right">
                     <div class="exchange-inside-contain" ref="exchangeInside">
                         <router-link :to="'/exchange/detail/?Did='+item.id" v-for="(item,index) in product"
                                      :key="item.id">
-                            <div class="exchange-content"  :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:transform 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:transform 1.5s .'+index+'s'">
+                            <div class="exchange-content"  :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
                                 <div class="change-content-top">
                                     <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
                                 </div>
@@ -87,15 +87,15 @@ export default {
             exchange_scrollitem:false,
         }
     },
-    mounted:function(){
+    mounted(){
         this.getProductList();
         window.addEventListener('scroll',this.exchangepage)
     },
-    destroyed:function(){
+    destroyed(){
          window.removeEventListener('scroll',this.exchangepage)
     },
     methods:{
-        exchangepage:function(){
+        exchangepage(){
             var top=$('.home-exchange-content .part-title').offset().top;
             var client=document.documentElement.clientHeight;
             var scroll=document.documentElement.scrollTop || document.body.scrollTop;
@@ -107,25 +107,25 @@ export default {
                 this.exchange_scrollitem=true
             }
         },
-        exchangeNext:function(){
-            if(this.exchangeSideIndex>(this.exchangeSideCount-2)){
+        exchangeNext(){
+            if(this.exchangeSideIndex>(this.exchangeSideCount-4)){
                 return;
             }else {
                 this.exchangeSideIndex+=1;
                 $('.exchange-content').css('transition','all .5s')
-                $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)');
+                $('.exchange-content').css('transform','translateX(-'+(326*this.exchangeSideIndex)+'px)');
             }
         },
-        exchangeLast:function(){
+        exchangeLast(){
              if(this.exchangeSideIndex<1){
                 return;
             }else {
                 this.exchangeSideIndex-=1;
                 $('.exchange-content').css('transition','all .5s')
-                $('.exchange-content').css('transform','translateX(-'+(378.5*this.exchangeSideIndex)+'px)'); 
+                $('.exchange-content').css('transform','translateX(-'+(326*this.exchangeSideIndex)+'px)'); 
             }
         },
-        getProductList:function(){
+        getProductList(){
             api.getProductList({
                 data:{
                 "prodExchBrid":"310000000000",

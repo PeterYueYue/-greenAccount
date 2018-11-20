@@ -1,9 +1,14 @@
 <template>
   <div class="login-contain">
     <div class="loginlogo">
-			<img src="@/assets/loginlogo.png" alt="">
+			<router-link to="/">
+				<img src="@/assets/whitelogo.png" alt="">
+			</router-link>
     </div>
     <form class="login-form">
+			<div class="form-title">
+				欢迎登录绿色账户
+			</div>
       <div class="form-item">
         <span class="form-item-name">绿账卡号：</span>
         <el-input v-model="account" placeholder="请输入绿账卡号/手机号" width="410"></el-input>
@@ -20,11 +25,12 @@
       <div class="form-item login">
         <button @click.prevent="login" class="submit-btn">登录</button>
       </div>
-    </form>
-    <div>
-      <p class="tool">
+			 <p class="tool">
         温馨提示：登录初始密码，套卡为身份证后6位单独卡密码为"111111"
       </p>
+    </form>
+    <div>
+     
     </div>
   </div>
 </template>
@@ -40,11 +46,15 @@
 				uuId: ''
 			}
 		},
-		mounted:function(){
-			this.getpcrimg()
+		mounted(){
+			this.getpcrimg();
+			this.$store.dispatch('getPage', 1);
+		},
+		destroyed(){
+				this.$store.dispatch('getPage', 0);
 		},
 		methods: {
-			login:function(){
+			login(){
 				api.userlogin({
 					data: {
 						account: this.account,
@@ -79,7 +89,7 @@
 					}
 				})
 			},
-			getpcrimg:function(){
+			getpcrimg(){
 				api.pcrimg().then(res => {
 					this.$refs.yanzhengma.setAttribute('src', 'data:image/png;base64,' + res.data.pcrImg);
 					this.uuId = res.data.uuid;

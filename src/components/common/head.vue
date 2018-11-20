@@ -25,7 +25,10 @@
               <a href="http://180.153.19.162:8081/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a>
             </div>
             <div class="login-area islogin" v-if="isusername">
-              <div class="username-area">Hi.{{isusername}}</div>
+               <router-link to="/lvzx">
+                <div class="username-area">Hi.{{isusername}}</div>
+                </router-link>
+             
               <div class="quit-btn" @click="quitHandle()">退出</div>
             </div>
           </el-col>
