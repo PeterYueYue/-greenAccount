@@ -21,8 +21,7 @@
               <li><input type="number" class="input-num" v-model="productNum" disabled/></li>
               <li><span class="num-jia" @click="count(true)">+</span></li>
             </ul>
-          </li>
-          　　
+          </li>　　
         </ul>
         <div class="ex_shop_btn" @click="donatePointsSubmit" v-show="this.listData.status == '02'">我要捐赠</div>
         <div class="ex_shop_btn_hover" v-show="this.listData.status == '03'">活动已结束</div>
@@ -52,6 +51,16 @@
         <img :src="'https://www.greenfortune.sh.cn/images/'+items.imgUrl" alt="">
       </div>
     </div>
+
+    <!-- 弹窗 -->
+    <div class="box_shadow" v-if="showShadow"></div>
+    <!-- 取消理由弹窗 -->
+    <div class="box_shadow_box" v-if="showBox">
+      <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
+      <div class="title">兑换确认</div>
+      <div class="rules">是否确认兑换？</div>
+      <div class="rules_btn" @click="saveData">确定</div>
+    </div>
   </div>
 </template>
 <script>
@@ -69,6 +78,8 @@
         pointsDirectionData: [],
         productNum: 1,
         showUl: true,
+        showShadow: false,
+        showBox: false,
       }
     },
     // components: {bread},
@@ -99,6 +110,14 @@
             path: '/login?backUrl=integral_list'
           })
         }
+        this.showShadow = true;
+        this.showBox = true;
+        document.querySelector('body').style.overflow = 'hidden';
+      },
+      saveData:function() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
         api.donatePoints({
           data: {
             donateActivityId: this.id,
@@ -112,6 +131,11 @@
           this.donateActivityDetail();
         })
       },
+      closeBox:function() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
+      },
       openUl: function (type) {
         this.showUl = type;
       },
@@ -119,7 +143,7 @@
         if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
         status ? this.productNum += this.productAddNum : this.productNum -= this.productAddNum
-      }
+      },
     }
   }
 </script>
