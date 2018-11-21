@@ -90,6 +90,7 @@
           this.listData = res.data.data.activityInfo;
           this.pointsDirectionData = res.data.data.pointsDirection;
           this.productNum = res.data.data.activityInfo.leastPoints;
+          this.productAddNum = res.data.data.activityInfo.leastPoints;
         })
       },
       donatePointsSubmit: function () {
@@ -117,7 +118,7 @@
       count: function (status) {
         if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
-        status ? this.productNum += this.productNum : this.productNum -= this.productNum
+        status ? this.productNum += this.productAddNum : this.productNum -= this.productAddNum
       }
     }
   }
