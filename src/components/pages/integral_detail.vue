@@ -57,8 +57,8 @@
     <!-- 取消理由弹窗 -->
     <div class="box_shadow_box" v-if="showBox">
       <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
-      <div class="title">兑换确认</div>
-      <div class="rules">是否确认兑换？</div>
+      <div class="title">积分捐赠确认</div>
+      <div class="rules">是否确认捐赠？</div>
       <div class="rules_btn" @click="saveData">确定</div>
     </div>
   </div>

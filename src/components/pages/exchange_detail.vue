@@ -52,6 +52,16 @@
         </router-link>
       </div>
     </div>
+
+    <!-- 弹窗 -->
+    <div class="box_shadow" v-if="showShadow"></div>
+    <!-- 取消理由弹窗 -->
+    <div class="box_shadow_box" v-if="showBox">
+      <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
+      <div class="title">兑换确认</div>
+      <div class="rules">是否确认兑换？</div>
+      <div class="rules_btn" @click="saveData">确定</div>
+    </div>
   </div>
 </template>
 <script>
@@ -69,7 +79,9 @@
         listSameData: [],
         address: [],
         productNum: 1,
-        receiveAddressId: ''
+        receiveAddressId: '',
+        showShadow: false,
+        showBox: false,
       }
     },
     // components: {bread},
@@ -127,6 +139,14 @@
           this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id);
           return;
         }
+        this.showShadow = true;
+        this.showBox = true;
+        document.querySelector('body').style.overflow = 'hidden';
+      },
+      saveData:function() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
         api.ajaxCheckCanSubmit({
           data: {
             id: this.Did,
@@ -146,6 +166,11 @@
             this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id)
           }
         })
+      },
+      closeBox:function() {
+        this.showShadow = false;
+        this.showBox = false;
+        document.querySelector('body').style.overflow = 'auto';
       },
       count:function(status) {
         if (!status && this.productNum === 0) return;
