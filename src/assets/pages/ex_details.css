@@ -233,6 +233,61 @@ input.input-num::-webkit-outer-spin-button,
 input.input-num::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-input.input-num[type="number"]{
+
+input.input-num[type="number"] {
   -moz-appearance: textfield;
+}
+
+.box_shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.7);
+  z-index: 99;
+}
+
+.box_shadow_box {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  height: 260px;
+  background: #fff;
+  z-index: 100;
+}
+
+.box_shadow_icon_close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.box_shadow_box .title {
+  font-size: 16px;
+  color: #20A345;
+  font-weight: bold;
+  margin: 20px 0 0 20px;
+}
+
+.box_shadow_box .rules {
+  overflow: hidden;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.box_shadow_box .rules_btn {
+  width: 160px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  background: rgba(32, 163, 69, 1);
+  font-size: 18px;
+  color: #fff;
+  margin: 50px auto 0;
+  cursor: pointer;
 }
