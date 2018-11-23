@@ -48,7 +48,7 @@
       <div v-for="items in pointsDirectionData" class="points_wrap">
         <div class="title">{{items.createDate | moment}}<span>{{items.title}}</span></div>
         <div class="text">{{items.content}}</div>
-        <img :src="'https://www.greenfortune.sh.cn/images/'+items.imgUrl" alt="">
+        <img :src="'https://www.greenfortune.sh.cn/images/'+items.imgUrl" alt="" class="integral_content_pic">
       </div>
     </div>
 
