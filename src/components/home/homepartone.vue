@@ -6,14 +6,14 @@
                     <p class="title-name">礼品兑换</p>
                     <p class="en-title-name">REDEEM GIFT</p>
                 </div>
-                <div class="title-right">
+                <!-- <div class="title-right">
                     <router-link to="/exchange">
                         <p>
                             <span>点击查看全部</span> 
                             <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
                         </p>
                     </router-link>
-                </div>
+                </div> -->
             </div>     
             <div class="part-content">
                 <!-- <div class="exchange-content-left partone"  :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
@@ -39,35 +39,43 @@
                         <router-link :to="'/exchange/detail/?Did='+item.id" v-for="(item,index) in product"
                                      :key="item.id">
                             <div class="exchange-content"  :class="{active:exchangeSideIndex==index}" :style="exchange_scrollitem?'opacity: 1;transform: translateY(0);transition:all 1.5s .'+index*2+'s':' opacity: 0;transform: translateY(200px);transition:all 1.5s .'+index+'s'">
-                                <div class="change-content-top">
-                                    <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
-                                </div>
-                                <div class="exchange-content-bottom">
-                                    <p class="exchange-detail-name">{{item.prodName}}</p>
-                                    <p class="exchange-detail-count">{{item.prodPoints}}积分</p>
-                                    <p class="exchange-detail-address">
-                                        <img src="@/assets/icon/position.png" alt="">
-                                        <span>
-                                            {{item.productInfo.prodReceiveAddress}}领取
-                                        </span>
-                                    <!-- {{item.productInfo.prodReceiveAddress}}领取 -->
-                                    </p>
-                                    <p class="exchange-detail-time">
-                                    {{item.productInfo.prodProvider}}提供
-                                    </p>
-                                </div>
+                                <div class="exchange-content-border">
+                                    <div class="change-content-top">
+                                        <img :src="'https://www.greenfortune.sh.cn/images/'+item.prodPic" alt="">
+                                    </div>
+                                    <div class="exchange-content-bottom">
+                                        <p class="exchange-detail-name">{{item.prodName}}</p>
+                                        <p class="exchange-detail-count">{{item.prodPoints}}积分</p>
+                                        <p class="exchange-detail-address">
+                                            <img src="@/assets/icon/position.png" alt="">
+                                            <span>
+                                                {{item.productInfo.prodReceiveAddress}}领取
+                                            </span>
+                                        <!-- {{item.productInfo.prodReceiveAddress}}领取 -->
+                                        </p>
+                                        <p class="exchange-detail-time">
+                                        {{item.productInfo.prodProvider}}提供
+                                        </p>
+                                    </div>
+                                </div> 
                             </div>
                         </router-link>
                         
                     </div>                 
                 </div>
                 <div class="exchange-content-right-btn">
-                    <div class="exchange-left-btn">
+                    <!-- <div class="exchange-left-btn">
                         <img src="@/assets/icon/left.png" alt="" @click="exchangeLast()">
                     </div>
                     <div class="exchange-right-btn">
                         <img src="@/assets/icon/right.png" alt="" @click="exchangeNext()">
-                    </div>
+                    </div> -->
+                    <router-link to="/exchange">
+                        <p>
+                            <span class="exchange-more">点击查看全部</span>
+                            <img src="@/assets/icon/exchangeright.png" alt="" class="title-bottom-icon"> 
+                        </p>
+                    </router-link>
                 </div>
             </div>
         </div>
