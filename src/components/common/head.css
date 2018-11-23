@@ -1,5 +1,5 @@
 .head-contain{
-    padding:20px 60px;
+    padding:20px 60px 0 60px;
     margin: 0 auto;
     z-index: 999;
     width: 1400px
@@ -21,7 +21,8 @@
 }
 .search-area{
     width: 245px;
-    border-bottom: 1px solid #E8ECF3
+    border-bottom: 1px solid #E8ECF3;
+    text-align: left;
 }
 .select-city-contain{
     display: inline-block;
@@ -86,7 +87,7 @@
     background-repeat: no-repeat;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 .search-btn:hover{
     cursor: pointer;
