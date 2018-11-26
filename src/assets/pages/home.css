@@ -108,14 +108,14 @@
   margin-top: 9px;
 }
 
-.part-title .title-left .title-name::before {
+/* .part-title .title-left .title-name::before {
   content: '';
   display: inline-block;
   width: 22px;
   border-top: 3px solid #333333;
   vertical-align: middle;
   margin-right: 18px;
-}
+} */
 
 .home-exchange-contain, .home-active-contain, .home-action-contain, .home-rank-contain, .home-video-containt, .home-other-contain, .home-map-contain {
   padding-top: 45px;
@@ -260,8 +260,27 @@
   /* bottom: -73px; */
   bottom:-30px
 }
-.exchange-content-right-btn .exchange-more,.exchange-content-right-btn .title-bottom-icon{
+.exchange-content-right-btn:hover .exchange-more{
+  color: #20A345 !important;
+}
+.exchange-content-right-btn:hover .more-right-icon{
+  border-top: 1px solid #20a345 !important;
+  border-right: 1px solid #20a345 !important;
+}
+.exchange-content-right-btn .more-right-icon{
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+  transform: rotate(45deg);
+  display: inline-block;
+  width: 9px;
+  height:9px;
   vertical-align: middle;
+  margin-left: 3px;
+}
+
+.exchange-content-right-btn .exchange-more{
+  vertical-align: middle;
+  /* color: #20A345 */
 }
 .exchange-content-right-btn .title-bottom-icon{
   height: 20px;
@@ -369,7 +388,8 @@
 
 .active-content-item {
   padding: 30px 10px;
-  border-bottom: 1px solid #E8ECF3
+  border-bottom: 1px solid #E8ECF3;
+  cursor: pointer;
 }
 
 .active-content-des .active-content-des-title {
@@ -378,9 +398,8 @@
   font-weight: bold
 }
 
-.active-content-des .active-content-des-title:hover{
+.active-content-item.active .active-content-des-title{
   color: #20A345;
-  cursor: pointer;
 }
 .active-content-des .active-content-detail {
   font-size: 12px;
@@ -390,22 +409,30 @@
 .active-content-des .active-content-detail p {
   line-height: 18px;
 }
-
 .active-content-des .active-content-more {
   text-align: right;
   font-size: 12px;
   width: auto;
 
 }
-.active-content-more span:hover{
-  color: #20a345;
+.active-content-item.active .active-content-more span{
+  color: #20A345;
 }
 .active-content-des .active-content-more span {
   vertical-align: middle;
 }
 
+.active-content-item.active .more-right-icon{
+  border-top: 1px solid #20A345 !important;
+  border-right: 1px solid #20A345 !important;
+}
 .active-content-des .active-content-more .more-right-icon {
-  width: 12px;
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+  transform: rotate(45deg);
+  display: inline-block;
+  width: 8px;
+  height:8px;
   vertical-align: middle;
   margin-left: 8px;
 }
@@ -555,17 +582,30 @@
 
 .home-active-contain .bottom-title-right {
   float: right;
-  margin-top: 30px;
-  margin-right: 50px;
+  margin-top: 15px;
+  margin-right: 40px;
 }
-
+.home-active-contain .bottom-title-right:hover .more-right-icon{
+  border-top: 1px solid #20a345;
+  border-right: 1px solid #20a345;
+}
+.home-active-contain .bottom-title-right:hover span.lv_volunteer_hover{
+  color: #20A345
+}
+.home-active-contain .bottom-title-right .more-right-icon {
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+  transform: rotate(45deg);
+  display: inline-block;
+  width: 9px;
+  height:9px;
+  vertical-align: middle;
+  margin-left: 3px;
+}
 .home-active-contain .bottom-title-right span, .home-active-contain .bottom-title-right img {
   vertical-align: middle;
 }
 
-.home-active-contain .bottom-title-right span.lv_volunteer_hover:hover {
-  color: #20A345;
-}
 
 /* -----------------------------首页活动结束-----------------------------*/
 
@@ -688,7 +728,7 @@
 .action-content-right {
   width: 705px;
   height: 406px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   display: inline-block;
   vertical-align: top;
 }
@@ -754,6 +794,9 @@
   border-bottom: 1px #E8ECF3 solid;
 }
 
+.action-content-right .action-list:nth-last-of-type(1).active{
+  border-bottom: 1px #E8ECF3 solid !important;
+}
 .action-content-right .action-list.active {
   border-bottom: 1px transparent solid;
 }
@@ -798,11 +841,29 @@
 .action-bottom .bottom-right {
   float: right;
   line-height: 59px;
+  margin-right: 40px;
+}
+.action-bottom .bottom-right:hover .more-right-icon{
+  border-top: 1px solid #20a345;
+  border-right: 1px solid #20a345;
+}
+.action-bottom .bottom-right:hover span{
+  color: #20A345;
+}
+.action-bottom .bottom-right .more-right-icon{
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+  transform: rotate(45deg);
+  display: inline-block;
+  width: 9px;
+  height:9px;
+  vertical-align: middle;
+  margin-left: 3px;
 }
 
 .action-bottom .bottom-right span, .title-right-icon {
   vertical-align: middle;
-  font-size: 18px;
+  /* font-size: 18px; */
   line-height: 24px;
 }
 

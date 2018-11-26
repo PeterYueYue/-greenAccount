@@ -25,7 +25,7 @@
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==2}">
                     </div> -->
                     <div class="active-content-des" :style="scrollcontent?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(300px);transition:all 1.5s .3s'">
-                        <div class="active-content-item" :class="{active:activeIndex==index}" v-for="(item,index) in activeList" :key="index">
+                        <div class="active-content-item" :class="{active:activeIndex==index}" v-for="(item,index) in activeList" :key="index" @mouseenter="activeIndex=index" @mouseleave="activeIndex=100">
                            <div class="active-content-item-left">
                                <img src="@/assets/activeItem.png" alt="">
                            </div>
@@ -58,7 +58,9 @@
                            <div class="active-content-more">
                                 <router-link :to="'/integral_detail/?id='+item.id">
                                     <span>点击捐赠</span> 
-                                    <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon">
+                                    <span class="more-right-icon"></span>
+                                    <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="more-right-icon" v-show="true">
+                                    <img src="@/assets/icon/activedoright.png" alt="" class="more-right-icon" v-show="true"> -->
                                 </router-link>        
                             </div>
                         </div> 
@@ -86,7 +88,8 @@
                 <div class="bottom-title-right">
                     <router-link :to="whichpart?'/integral_list':'/lv_volunteer'">
                         <p>
-                            <span class="lv_volunteer_hover">查看更多 ></span>
+                            <span class="lv_volunteer_hover">查看更多</span>
+                             <span class="more-right-icon"></span>
                             <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  -->
                         </p>
                     </router-link>
@@ -110,7 +113,7 @@ export default {
             scrollcontent:false,
             scrollsmall:false,
             scrollbtn:false,
-            activeIndex:0,
+            activeIndex:100,
             activeCount:0,
             activebtnleft:0,
             activebtnright:0,

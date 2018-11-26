@@ -76,8 +76,9 @@
                 </div>
                 <div class="action-bottom partone" :style="action_scrollbottom?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
                     <p class="bottom-right" @click="lookmore">
-                        <span>点击查看全部</span> 
-                        <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
+                        <span>查看更多</span> 
+                        <span class="more-right-icon"></span>
+                        <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">   -->
                     </p>
                 </div>           
             </div>
@@ -91,7 +92,7 @@ export default {
     data:function(){
         return {
             activeIndex:1,
-            contentIndex:null,
+            contentIndex:0,
             noticelist:[],
             noticefirst:{},
             action_scroll:0,

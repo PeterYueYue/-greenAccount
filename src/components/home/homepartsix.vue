@@ -3,7 +3,7 @@
         <div class="part-contain">
             <div class="home-map-content partone" :style="map_scrolltitle?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(100px)'">
                 <div class="part-title" >
-                    <div class="title-left">
+                    <div class="title-left" style="padding-left:20px">
                         <p class="title-name">绿账地图数据</p>
                         <p class="en-title-name">VIDEO ZONE</p>
                     </div>

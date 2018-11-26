@@ -72,8 +72,9 @@
                     </div> -->
                     <router-link to="/exchange">
                         <p>
-                            <span class="exchange-more">点击查看全部</span>
-                            <img src="@/assets/icon/exchangeright.png" alt="" class="title-bottom-icon"> 
+                            <span class="exchange-more">查看更多</span>
+                            <span class="more-right-icon"></span>
+                            <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="title-bottom-icon">  -->
                         </p>
                     </router-link>
                 </div>
