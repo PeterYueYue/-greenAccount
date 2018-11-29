@@ -15,6 +15,14 @@ module.exports = {
       //   // 正式
       //   // target: 'http://b.tingzhijun.com',
       //   // target: 'http://192.168.1.194:8080',
+        // '/green':{
+        //   target:'https://www.greenfortune.sh.cn',
+        //   changeOrigin: true,
+        //   pathRewrite: {
+        //       '^/green': 'https://www.greenfortune.sh.cn'
+        //   }
+
+        // }
 
       //   // 测试
       //   target:'http://180.153.19.162:8081',

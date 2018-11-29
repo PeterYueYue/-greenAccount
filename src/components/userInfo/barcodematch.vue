@@ -64,7 +64,9 @@ export default {
                         })
                     }
                    if(res.data.msg){
-                       alert('匹配成功')
+                       alert('匹配成功');
+                       this.accountBarcode='';
+                       this.rebarcode='';
                    }else{
                        alert('粘贴条码已被匹配，请核对正确后输入')
                    }

@@ -10,7 +10,7 @@
                 
             </div>
             <div class="part-content">
-                <div class="active-content-left partone" :style="scrolllist?' opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
+                <div class="active-content-left partone" :style="scrolllist?' opacity: 1;transform: translateX(0)':' opacity: 0;transform: translateX(-300px)'">
                     <p class="active-content-title" :class="whichpart?'active':''" @click="whichpart=true">
                         <span class="active-line"></span> 积分捐赠
                     </p>
@@ -24,8 +24,8 @@
                         <img src="@/assets/activeone.png" alt="" class="img-items" :class="{active:activeIndex==1}">
                         <img src="@/assets/heart.png" alt="" class="img-items" :class="{active:activeIndex==2}">
                     </div> -->
-                    <div class="active-content-des" :style="scrollcontent?' opacity: 1;transform: translateY(0);transition:all 1.5s .3s':' opacity: 0;transform: translateY(300px);transition:all 1.5s .3s'">
-                        <div class="active-content-item" :class="{active:activeIndex==index}" v-for="(item,index) in activeList" :key="index" @mouseenter="activeIndex=index" @mouseleave="activeIndex=100">
+                    <div class="active-content-des" >
+                        <div class="active-content-item" :class="{active:activeIndex==index}" v-for="(item,index) in activeList" :key="index" @mouseenter="activeIndex=index" @mouseleave="activeIndex=100" :style="scrollcontent?' opacity: 1;transform: translateX(0);transition:all 1.5s .'+(index*2+3)+'s':' opacity: 0;transform: translateX(-300px);transition:all 1.5s .'+(index*2+3)+'s'">
                            <div class="active-content-item-left">
                                <img src="@/assets/activeItem.png" alt="">
                            </div>
@@ -65,7 +65,7 @@
                             </div>
                         </div> 
                     </div>
-                     <div class="active-rabit" >
+                     <div class="active-rabit" :style="scrolllist?' opacity: 1;transform: translateX(0);transition:all 1.5s .3s':' opacity: 0;transform: translateX(-300px);transition:all 1.5s .3s'">
                         <img src="@/assets/rabit.png" alt="">
                     </div> 
                 </div>
@@ -80,7 +80,7 @@
                               src="@/assets/lv_v_icon_address_select.png" alt="" class="lv_volunteer_icon_address" v-else>{{items[2]}}
                         </div>
                         <div class="text">
-                            <img src="@/assets/lv_v_icon_date.png" alt="" class="lv_volunteer_icon" v-if="items[7]"><img src="@/assets/lv_v_icon_date_select.png" alt="" class="lv_volunteer_icon" v-else>活动日期：{{items[3]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span><span class="finished" v-show="items[4]==='已结束'">已结束</span>
+                            <img src="@/assets/lv_v_icon_date.png" alt="" class="lv_volunteer_icon" v-if="items[7]"><img src="@/assets/lv_v_icon_date_select.png" alt="" class="lv_volunteer_icon" v-else>活动日期：{{items[3]}}<span class="progress" v-show="items[4]==='进行中'">进行中</span><span class="finished" v-show="items[4]==='已结束'">已结束</span><span class="enlist" v-show="items[4]==='报名中'">报名中</span> <span class="progress" v-show="items[4]==='未开始'">未开始</span>
                         </div>
                         </router-link>
                     </div>

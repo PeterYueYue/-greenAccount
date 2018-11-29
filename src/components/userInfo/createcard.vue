@@ -1,20 +1,23 @@
 <template>
     <div class="createcard-contain">
         <div class="createcard-stepone" v-show="step">
+
             <div class="createcard-item userInfo-item">
-                <div class="createcard-itemname userInfo-itemname">
-                    <span class="musticon">*</span>
-                    <span>身份证号:</span>
-                </div>
-                <div class="createcard-iteminput userInfo-iteminput">
+                 <span>补卡业务请在附近的中行线下网点办理！谢谢</span>
+                <!-- <div class="createcard-itemname userInfo-itemname"> -->
+                    <!-- <span class="musticon">*</span> -->
+                    <!-- <span>身份证号:</span> -->
+                    <!-- <span>补卡业务请在附近的中行线下网点办理！谢谢</span> -->
+                <!-- </div> -->
+                <!-- <div class="createcard-iteminput userInfo-iteminput">
                     <el-input v-model="userIdcard" @change="idCardtest"></el-input>
-                </div>
+                </div> -->
             </div>
-            <div class="createcard-item userInfo-item">
+            <!-- <div class="createcard-item userInfo-item">
                 <button class="createcard-btn userInfo-btn" @click="nextStep">下一步</button>
-            </div>
+            </div> -->
         </div>
-        <div  class="createcard-steptwo" v-show="!step">
+        <!-- <div  class="createcard-steptwo" v-show="!step">
             <div class="createcard-item userInfo-item">
                 <p class="createcard-int">当前可用绿色积分：<span>0</span></p>
                 <p class="createcard-tools"> (单次补卡需扣除200绿色积分，不足200积分将扣除当前全部积分)</p>
@@ -58,7 +61,7 @@
             <div class="createcard-item userInfo-item">
                 <button class="createcard-btn userInfo-btn" @click="submitHandle">确认绑定</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
@@ -93,11 +96,7 @@ export default {
             }
             this.step=false
         },
-        submitHandle:function(){
-            if(this.userIdcard==''){
-                alert('地址不能为空');
-                return
-            }
+        submitHandle(){
             if(this.address==''){
                 alert('地址不能为空');
                 return
@@ -130,7 +129,12 @@ export default {
                     })
                 }
                 if(res.msg=='操作成功！'){
-                    alert(res.data.msg)
+                    alert(res.data.msg);
+                    this.address=''
+                    this.user_name=''
+                    this.telephone=''
+                    this.post_cod=''
+                    this.step=true;
                 }
             })
         },

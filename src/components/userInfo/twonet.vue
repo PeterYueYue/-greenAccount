@@ -1,13 +1,13 @@
 <template>
     <div class="twonet-contain">
-        <div class="notmatch" v-if="!userdetail.alaBinding.info=='ACCOUNT_BLIND'">
+        <div class="notmatch" v-if="userdetail.alaBinding.info!='ACCOUNT_BLIND'">
             <div class="twonet-item userInfo-item">
                 <div class="twonet-itemname userInfo-itemname">
                     <span class="musticon">*</span>
                     <span>绿色账户号:</span>
                 </div>
                 <div class="twonet-iteminput userInfo-iteminput">
-                    <p>1111111111111111111111</p>
+                    <p>{{userdetail.residentVO.userCode}}</p>
                 </div>
             </div>
             <div class="twonet-item userInfo-item">
@@ -72,9 +72,6 @@ export default {
         token:"token",
          userdetail:"userdetail"
     }),
-   created(){
-        
-    },
     methods:{
         blind(){
             api.blind({
@@ -86,6 +83,14 @@ export default {
             }).then(res =>{
                  if(res.msg=='操作成功！'){
                     alert(res.data.msg)
+                    this.thirdAccountCode='';
+                    this.thirdPwd='';
+                }
+                 if(res.msg=='token不能为空'||res.msg=='token已失效'){
+                    alert('请重新登录');
+                        this.$router.push({
+                        path:'/login'
+                    })
                 }
             })
         }

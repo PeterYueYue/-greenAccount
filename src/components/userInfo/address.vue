@@ -202,7 +202,7 @@ export default {
             }
         },
         zipcodetest(){
-            var zipcodetest=/[1-9]d{5}(?!d)/
+            var zipcodetest=/^[0-9]{6}$/
              if((!zipcodetest.test(this.newaddress.zipCode)&&this.newaddress.zipCode!='')||(!zipcodetest.test(this.editaddress.zipCode)&&this.editaddress.zipCode!='')){
                 alert('请填写正确的邮编');
                 this.newaddress.zipCode=''

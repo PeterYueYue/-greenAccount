@@ -17,49 +17,55 @@
     <div class="lv_volunteer_details_enlist active" v-show="listData.actStatus == '0'">活动未开始</div>
 
     <div class="lv_volunteer_details_tab">
-      <div class="title">基本信息</div>
-      <div class="content">
-        <div class="left">活动组织方名称：</div>
-        <div class="right">{{listData.pubWelOrgName}}</div>
-      </div>
-      <div class="content">
-        <div class="left">报名时间：</div>
-        <div class="right">
-          {{listData.pubAct ? listData.pubAct.registStartTime : '' | moment}} 至 {{listData.pubAct ?
-          listData.pubAct.registEndTime : '' | moment}}
+      <div class="title">基本信息 <span class="title-line"></span></div>
+      
+      <div class="content-left">
+        <div class="content">
+          <div class="left">活动组织方名称：</div>
+          <div class="right">{{listData.pubWelOrgName}}</div>
+        </div>
+        <div class="content">
+          <div class="left">报名时间：</div>
+          <div class="right">
+            {{listData.pubAct ? listData.pubAct.registStartTime : '' | moment}} 至 {{listData.pubAct ?
+            listData.pubAct.registEndTime : '' | moment}}
+          </div>
+        </div>
+        <div class="content">
+          <div class="left">活动时间：</div>
+          <div class="right">
+            {{listData.pubAct ? listData.pubAct.actStartTime : '' | moment}} 至 {{listData.pubAct ?
+            listData.pubAct.actEndTime : '' | moment}}
+          </div>
+        </div>
+        <div class="content">
+          <div class="left">服务时间：</div>
+          <div class="right">{{listData.pubAct ? listData.pubAct.serviceTime : ''}}</div>
         </div>
       </div>
-      <div class="content">
-        <div class="left">活动时间：</div>
-        <div class="right">
-          {{listData.pubAct ? listData.pubAct.actStartTime : '' | moment}} 至 {{listData.pubAct ?
-          listData.pubAct.actEndTime : '' | moment}}
+      <div class="content-right">
+        <div class="content">
+          <div class="left">联系人姓名：</div>
+          <div class="right">{{listData.pubAct ? listData.pubAct.actLinkName : ''}}</div>
+        </div>
+        <div class="content">
+          <div class="left">联系人电话：</div>
+          <div class="right">{{listData.pubAct ? listData.pubAct.actLinkTel : ''}}</div>
+        </div>
+        <div class="content">
+          <div class="left">招募人数：</div>
+          <div class="right">{{listData.pubAct ? listData.pubAct.actRecruitment : ''}}</div>
+        </div>
+        <div class="content">
+          <div class="left">活动详细地址：</div>
+          <div class="right">{{listData.pubAct ? listData.pubAct.actFullAddress : ''}}</div>
         </div>
       </div>
-      <div class="content">
-        <div class="left">服务时间：</div>
-        <div class="right">{{listData.pubAct ? listData.pubAct.serviceTime : ''}}</div>
-      </div>
-      <div class="content">
-        <div class="left">联系人姓名：</div>
-        <div class="right">{{listData.pubAct ? listData.pubAct.actLinkName : ''}}</div>
-      </div>
-      <div class="content">
-        <div class="left">联系人电话：</div>
-        <div class="right">{{listData.pubAct ? listData.pubAct.actLinkTel : ''}}</div>
-      </div>
-      <div class="content">
-        <div class="left">招募人数：</div>
-        <div class="right">{{listData.pubAct ? listData.pubAct.actRecruitment : ''}}</div>
-      </div>
-      <div class="content">
-        <div class="left">活动详细地址：</div>
-        <div class="right">{{listData.pubAct ? listData.pubAct.actFullAddress : ''}}</div>
-      </div>
+      
     </div>
 
     <div class="lv_volunteer_details_tab">
-      <div class="title">详细信息</div>
+      <div class="title">详细信息 <span class="title-line"></span></div>
       <div class="content">
         <div class="left">活动内容：</div>
         <div class="right" v-html="listData.pubAct?listData.pubAct.actContent:''"></div>

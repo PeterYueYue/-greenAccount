@@ -110,7 +110,11 @@ export default {
                 if(res.status=='error'&&res.msg!='token不能为空'&&res.msg!='token已失效'){
                     alert(res.msg)
                 }else {
-                    alert(res.data.msg)
+                    alert(res.data.msg);
+                    this.pwd=''
+                    this.yzm=''
+                    this.newGreenCode=''
+                    this.recardcode=''
                 }
             })
         }

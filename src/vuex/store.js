@@ -35,7 +35,9 @@ export default new Vuex.Store({
             this.state.resUuid=data.resUuid
         },
         GetUserdetail(state,data){
+
             this.state.userdetail=data
+            console.log(this.state.userdetail)
         },
         GetDetailsid(state,data){
             this.state.id=data.id

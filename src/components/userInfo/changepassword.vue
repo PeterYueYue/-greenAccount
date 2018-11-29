@@ -6,7 +6,7 @@
                 <span>原密码:</span>
             </div>
             <div class="changepassword-iteminput userInfo-iteminput">
-                <el-input v-model="pwd"></el-input>
+                <el-input v-model="pwd" type="password"></el-input>
             </div>
         </div>
         <div class="changepassword-item userInfo-item  userInfo-includetools">
@@ -89,7 +89,7 @@ export default {
                 return
             }
             if(this.reNewPwd==''){
-                alert('电重复新密码不能为空');
+                alert('重复复新密码不能为空');
                 return
             }
             if(this.yzm==''){
@@ -115,6 +115,13 @@ export default {
                         this.$router.push({
                         path:'/login'
                     })
+                }
+                if(res.msg=='操作成功！'){
+                    alert('密码修改成功');
+                    this.pwd='';
+                    this.newPwd='';
+                    this.reNewPwd='';
+                    this.yzm='';
                 }
                
             })

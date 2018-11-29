@@ -172,7 +172,14 @@ export default {
                     })
                 }
                 if(res.msg=='操作成功！' ){
-                    alert(res.data.message)
+                    alert(res.data.message);
+                    this.adviceTitle='';
+                    this.adviceContent='';
+                    this.contactName='';
+                    this.contactPhone='';
+                    this.email='';
+                     this.yzm='';
+
                 }
             })
         }

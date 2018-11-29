@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <!-- <div>
             <p class="base-title">虚拟卡</p>
             <div class="base-content">
                 <div class="base-item">
@@ -78,7 +78,7 @@
                 </div>
                
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>

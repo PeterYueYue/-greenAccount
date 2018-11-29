@@ -54,14 +54,16 @@
     </div>
 
     <!-- 弹窗 -->
-    <div class="box_shadow" v-if="showShadow"></div>
-    <!-- 取消理由弹窗 -->
-    <div class="box_shadow_box" v-if="showBox">
-      <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
-      <div class="title">兑换确认</div>
-      <div class="rules">是否确认兑换？</div>
-      <div class="rules_btn" @click="saveData">确定</div>
+    <div class="box_shadow" v-if="showShadow">
+      <!-- 取消理由弹窗 --> 
+       <div class="box_shadow_box" >
+        <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
+        <div class="title">兑换确认</div>
+        <div class="rules">是否确认兑换？</div>
+        <div class="rules_btn" @click="saveData">确定</div>
+      </div>
     </div>
+    
   </div>
 </template>
 <script>
@@ -141,12 +143,12 @@
         }
         this.showShadow = true;
         this.showBox = true;
-        document.querySelector('body').style.overflow = 'hidden';
+        // document.querySelector('body').style.overflow = 'hidden';
       },
       saveData:function() {
         this.showShadow = false;
         this.showBox = false;
-        document.querySelector('body').style.overflow = 'auto';
+        // document.querySelector('body').style.overflow = 'auto';
         api.ajaxCheckCanSubmit({
           data: {
             id: this.Did,

@@ -16,7 +16,7 @@
                                 <td style="width:1%">排名</td>
                                 <td style="width:10%">组织名称</td>
                                 <td style="width:8%">组织活动次数</td>
-                                <td style="width:3%">荣誉</td>
+                                <td style="width:3%">荣誉值</td>
                             </tr>  
                         </thead>
                         <tbody>
@@ -42,7 +42,7 @@
                             <tr class="table-title">
                                 <td style="width:1%">排名</td>
                                 <td style="width:15%">姓名</td>
-                                <td style="width:4%">活动数</td>
+                                <td style="width:4%">捐赠积分</td>
                             </tr>  
                         </thead>
                         <tbody>
@@ -95,7 +95,6 @@ export default {
         }
     },
     mounted(){
-        console.log('2222')
         this.getActNotice();
         this.getdoninteglist();
         this.getActivityNotice();
