@@ -74,7 +74,7 @@
   import '@/assets/pages/ex_details.css';
 
   export default {
-    data:function() {
+    data() {
       return {
         Did: this.$route.query.Did,
         listData: {},
@@ -87,7 +87,7 @@
       }
     },
     // components: {bread},
-    mounted:function() {
+    mounted() {
       this.getProductDetail()
     },
     computed: mapGetters({
@@ -97,8 +97,17 @@
       islogin: "user_islogin",
       id: "id",
     }),
+    watch:{
+      $route(){
+        this.Did = this.$route.query.Did
+      },
+      Did(){
+        this.getProductDetail()
+      }
+    },
     methods: {
-      getProductDetail:function() {
+      getProductDetail() {
+        console.log('2222')
         api.getProductDetail({
           data: {
             id: this.Did,
@@ -136,7 +145,7 @@
           }
         })
       },
-      ajaxCheckCanSubmit:function() {
+      ajaxCheckCanSubmit() {
         if (!this.islogin) {
           this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id);
           return;
@@ -145,7 +154,7 @@
         this.showBox = true;
         // document.querySelector('body').style.overflow = 'hidden';
       },
-      saveData:function() {
+      saveData() {
         this.showShadow = false;
         this.showBox = false;
         // document.querySelector('body').style.overflow = 'auto';
@@ -169,12 +178,12 @@
           }
         })
       },
-      closeBox:function() {
+      closeBox() {
         this.showShadow = false;
         this.showBox = false;
         document.querySelector('body').style.overflow = 'auto';
       },
-      count:function(status) {
+      count(status) {
         if (!status && this.productNum === 0) return;
         this.productNum = this.productNum === '' ? 0 : parseInt(this.productNum);
         status ? this.productNum += 1 : this.productNum -= 1

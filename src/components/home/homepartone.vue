@@ -6,14 +6,30 @@
                     <p class="title-name">礼品兑换</p>
                     <p class="en-title-name">REDEEM GIFT</p>
                 </div>
-                <!-- <div class="title-right">
-                    <router-link to="/exchange">
+                <div class="title-right">
+                    <!-- <router-link to="/exchange">
                         <p>
                             <span>点击查看全部</span> 
                             <img src="@/assets/icon/exchangeright.png" alt="" class="title-right-icon">  
                         </p>
+                    </router-link> -->
+                    <div class="exchange-content-right-btn">
+                    <!-- <div class="exchange-left-btn">
+                        <img src="@/assets/icon/left.png" alt="" @click="exchangeLast()">
+                    </div>
+                    <div class="exchange-right-btn">
+                        <img src="@/assets/icon/right.png" alt="" @click="exchangeNext()">
+                    </div> -->
+                    <router-link to="/exchange">
+                        <p>
+                            <span class="exchange-more">查看更多</span>
+                            <span class="more-right-icon"></span>
+                            <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="title-bottom-icon">  -->
+                        </p>
                     </router-link>
-                </div> -->
+                </div>
+                    
+                </div>
             </div>     
             <div class="part-content">
                 <!-- <div class="exchange-content-left partone"  :style="exchange_scrollleft?'opacity: 1;transform: translateY(0)':' opacity: 0;transform: translateY(200px)'">
@@ -70,13 +86,12 @@
                     <div class="exchange-right-btn">
                         <img src="@/assets/icon/right.png" alt="" @click="exchangeNext()">
                     </div> -->
-                    <router-link to="/exchange">
+                    <!-- <router-link to="/exchange">
                         <p>
                             <span class="exchange-more">查看更多</span>
                             <span class="more-right-icon"></span>
-                            <!-- <img src="@/assets/icon/exchangeright.png" alt="" class="title-bottom-icon">  -->
                         </p>
-                    </router-link>
+                    </router-link> -->
                 </div>
             </div>
         </div>

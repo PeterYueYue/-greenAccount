@@ -99,9 +99,8 @@
     </div>
 
     <!-- 弹窗 -->
-    <div class="change_shadow" v-if="showShadow"></div>
-    <!-- 取消理由弹窗 -->
-    <div class="change_shadow_box" v-if="showBox">
+    <div class="change_shadow" v-if="showShadow">
+      <div class="change_shadow_box" v-if="showBox">
       <img src="@/assets/lv_v_icon_close.png" alt="" class="lv_volunteer_icon_close" @click="closeBox">
       <div class="title">用户反馈</div>
       <div class="rules">
@@ -133,6 +132,9 @@
       </div>
       <div class="rules_btn" @click="saveData">提交</div>
     </div>
+    </div>
+    <!-- 取消理由弹窗 -->
+    
   </div>
 </template>
 <script>
@@ -203,7 +205,7 @@
           this.itemList = res.data.itemList;
           this.showShadow = true;
           this.showBox = true;
-          document.querySelector('body').style.overflow = 'hidden';
+          // document.querySelector('body').style.overflow = 'hidden';
         })
       },
       saveData:function() {
@@ -217,7 +219,7 @@
           alert(res.msg);
           this.showShadow = false;
           this.showBox = false;
-          document.querySelector('body').style.overflow = 'auto';
+          // document.querySelector('body').style.overflow = 'auto';
         })
       },
       closeBox:function() {

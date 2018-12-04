@@ -53,14 +53,16 @@
     </div>
 
     <!-- 弹窗 -->
-    <div class="box_shadow" v-if="showShadow"></div>
-    <!-- 取消理由弹窗 -->
-    <div class="box_shadow_box" v-if="showBox">
-      <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
-      <div class="title">积分捐赠确认</div>
-      <div class="rules">是否确认捐赠？</div>
-      <div class="rules_btn" @click="saveData">确定</div>
+    <div class="box_shadow" v-if="showShadow">
+       <!-- 取消理由弹窗 -->
+      <div class="box_shadow_box" v-if="showBox">
+        <img src="@/assets/lv_v_icon_close.png" alt="" class="box_shadow_icon_close" @click="closeBox">
+        <div class="title">积分捐赠确认</div>
+        <div class="rules">是否确认捐赠？</div>
+        <div class="rules_btn" @click="saveData">确定</div>
+      </div>
     </div>
+   
   </div>
 </template>
 <script>
@@ -71,7 +73,7 @@
   import '@/assets/pages/ex_details.css';
 
   export default {
-    data: function () {
+    data() {
       return {
         id: this.$route.query.id,
         listData: {},
@@ -88,11 +90,11 @@
       isusername: "username",
       islogin: "user_islogin",
     }),
-    mounted: function () {
+    mounted() {
       this.donateActivityDetail()
     },
     methods: {
-      donateActivityDetail: function () {
+      donateActivityDetail () {
         api.donateActivityDetail({
           data: {
             donateActivityId: this.id,
@@ -104,7 +106,7 @@
           this.productAddNum = res.data.data.activityInfo.leastPoints;
         })
       },
-      donatePointsSubmit: function () {
+      donatePointsSubmit () {
         if (!this.islogin) {
           this.$router.push({
             path: '/login?backUrl=integral_list'
@@ -112,12 +114,12 @@
         }
         this.showShadow = true;
         this.showBox = true;
-        document.querySelector('body').style.overflow = 'hidden';
+        // document.querySelector('body').style.overflow = 'hidden';
       },
-      saveData:function() {
+      saveData() {
         this.showShadow = false;
         this.showBox = false;
-        document.querySelector('body').style.overflow = 'auto';
+        // document.querySelector('body').style.overflow = 'auto';
         api.donatePoints({
           data: {
             donateActivityId: this.id,

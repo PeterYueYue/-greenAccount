@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="ex-wrap-contain">
     <div class="ex_wrap ex_area">
-      <div class="ex_area_name">所在区域：</div>
+      <div class="ex_area_name">所在区域</div>
       <ul>
         <router-link :to="{path: '/exchange'}">
           <li @click="chooseArea('全市','310000000000')" :class="isArea.id=='310000000000'?'active':''">全市</li>
@@ -12,7 +12,47 @@
       </ul>
     </div>
     <div class="ex_wrap ex_select">
-      <div class="ex_select_name">类型：
+      <div class="ex_select_name">排序筛选</div>
+      <div class="ex_select_menu" >
+        <el-dropdown @click.native="selectType='';selectHot='';selectDate='';selectScore='';getType()">
+          <span class="el-dropdown-link default" >
+            默认
+          </span>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectType?selectType.name:'类型'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in typeList" :key="index" @click.native="selectType={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectHot?selectHot.name:'热度'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in hotList" :key="index" @click.native="selectHot={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectDate?selectDate.name:'上架时间'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in dateList" :key="index" @click.native="selectDate={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectScore?selectScore.name:'积分值'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in scoreList" :key="index" @click.native="selectScore={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+      <!-- <div class="ex_select_name">类型：
         <select name="" v-model="selectType" @change="getType">
           <option value="">请选择类型</option>
           <option :value="{id:items.id,name:items.mallInfo}" v-for="(items,index) in typeList"
@@ -47,7 +87,7 @@
             {{items.name}}
           </option>
         </select>
-      </div>
+      </div> -->
       <div class="ex_select_brand" @click="jumpBrand">爱心品牌专区</div>
     </div>
     <div class="ex_wrap">
@@ -193,6 +233,7 @@
         this.getProductList(1, 12);
       },
       getProductList:function(startPage, pageSize) {
+        console.log(this.selectType)
         api.getProductList({
           data: {
             "prodExchBrid": this.isArea.id,

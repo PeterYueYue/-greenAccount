@@ -238,7 +238,7 @@
 .lv_volunteer_shadow_box {
   box-sizing: border-box;
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 800px;

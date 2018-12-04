@@ -20,7 +20,7 @@
             <div class="video-mask" @click.prevent="videomask_display=false;video_display=false" v-if="videomask_display">
                 <transition name="isvideo">
                     <div class="video-mask-contain" v-if="video_display">
-                        <video class="home-video" width="1000px" controls="controls" autoplay="autoplay" src="https://www.greenfortune.sh.cn/images/20171222133126_848.mp4"></video>
+                        <video class="home-video" width="1000px" controls="controls" controlsList="nodownload" autoplay="autoplay" src="https://www.greenfortune.sh.cn/images/20171222133126_848.mp4"></video>
                     </div>
                 </transition> 
             </div>

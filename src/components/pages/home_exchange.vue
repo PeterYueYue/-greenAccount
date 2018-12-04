@@ -1,16 +1,20 @@
 <template>
   <div>
     <div class="ex_banner">
-      <swiper :options="swiperOption" v-if="listImg.length > 0">
+      <!-- <swiper :options="swiperOption" v-if="listImg.length > 0">
         <swiper-slide v-for="(item,index) in listImg" :key="index">
           <img :src="'https://www.greenfortune.sh.cn/banner/' + item.bname" alt="" class="ex_banner_pic">
         </swiper-slide>
-      </swiper>
-      <img src="@/assets/ex_banner.png" alt="" style="width:100%;display:block" v-else>
+      </swiper> -->
+      <img src="@/assets/ex_banner.png" alt="" style="width:100%;display:block">
     </div>
     <div class="ex_remind">
       <div class="ex_wrap marquee">
-        <div><img src="@/assets/ex_icon_remind.png" alt="">{{message}}</div>
+        <img src="@/assets/ex_icon_remind.png" alt="">
+        <div class="new-contain">
+          <div class="new-content">{{message}}</div>
+        </div>
+        
       </div>
     </div>
     <div class="ex_wrap">

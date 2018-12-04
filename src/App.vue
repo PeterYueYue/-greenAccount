@@ -16,7 +16,10 @@
           </p>
           <p>
             <span>沪ICP 15028111号-1</span>&#x3000;
-            <span>沪公网安备 310105020000208</span>
+            <span>
+              <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010502000208"> 沪公网安备 310105020000208</a>
+             
+              </span>
           </p>
         </div>
       </el-footer>

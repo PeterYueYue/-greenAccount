@@ -258,7 +258,7 @@
   position: absolute;
   right: 40px;
   /* bottom: -73px; */
-  bottom:-30px
+  /* bottom:-30px */
 }
 .exchange-content-right-btn:hover .exchange-more{
   color: #20A345 !important;

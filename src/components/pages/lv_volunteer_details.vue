@@ -86,21 +86,23 @@
       </div>
     </div>
     <!-- 弹窗 -->
-    <div class="lv_volunteer_shadow" v-if="showShadow"></div>
-    <!-- 取消理由弹窗 -->
-    <div class="lv_volunteer_shadow_box" v-if="showBox">
-      <img src="@/assets/lv_v_icon_close.png" alt="" class="lv_volunteer_icon_close" @click="closeBox">
-      <div class="title">请填写报名信息</div>
-      <div class="rules">
-        <div class="name">姓名:</div>
-        <input type="text" placeholder="请输入姓名" v-model="form.name">
+    <div class="lv_volunteer_shadow" v-if="showShadow">
+      <div class="lv_volunteer_shadow_box" v-if="showBox">
+        <img src="@/assets/lv_v_icon_close.png" alt="" class="lv_volunteer_icon_close" @click="closeBox">
+        <div class="title">请填写报名信息</div>
+        <div class="rules">
+          <div class="name">姓名:</div>
+          <input type="text" placeholder="请输入姓名" v-model="form.name">
+        </div>
+        <div class="rules">
+          <div class="name">手机号:</div>
+          <input type="text" placeholder="请输入手机号" v-model="form.tel">
+        </div>
+        <div class="rules_btn" @click="saveData">报名</div>
       </div>
-      <div class="rules">
-        <div class="name">手机号:</div>
-        <input type="text" placeholder="请输入手机号" v-model="form.tel">
-      </div>
-      <div class="rules_btn" @click="saveData">报名</div>
     </div>
+    <!-- 取消理由弹窗 -->
+    
 
   </div>
 </template>
@@ -158,12 +160,12 @@
       openBox:function() {
         this.showShadow = true;
         this.showBox = true;
-        document.querySelector('body').style.overflow = 'hidden';
+        // document.querySelector('body').style.overflow = 'hidden';
       },
       closeBox:function() {
         this.showShadow = false;
         this.showBox = false;
-        document.querySelector('body').style.overflow = 'auto';
+        // document.querySelector('body').style.overflow = 'auto';
       },
       saveData:function() {
         //为空验证

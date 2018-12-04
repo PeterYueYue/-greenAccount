@@ -98,10 +98,10 @@
             <div class="map-date-item" v-for="(item,index) in statedata" :key="index">
                 <!-- <p><span class="map-date-count">{{item.number}}</span><span>{{item.unit}}</span></p> -->
                 <p><span :ref="index+'Grow'" :data-time="2" :data-value="item.number" class="map-date-count">0</span><span>{{item.unit}}</span></p>
-                <p v-if="index=='amoOfAccess'">绿色访问量</p>
-                <p v-if="index=='amoOfCard'">发卡数量</p>
                 <p v-if="index=='amoOfCover'">覆盖户数</p>
+                <p v-if="index=='amoOfCard'">发卡数量</p>
                 <p v-if="index=='amoOfInteg'">积分统计</p>
+                <p v-if="index=='amoOfAccess'">绿色访问量</p>
             </div>
         </div>
 

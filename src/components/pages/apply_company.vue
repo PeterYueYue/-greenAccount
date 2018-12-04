@@ -39,7 +39,7 @@
   import '@/assets/pages/apply.css';
 
   export default {
-    data:function() {
+    data() {
       return {
         ruleForm: {
           name: '',
@@ -85,11 +85,11 @@
         uuId: '',
       }
     },
-    mounted:function() {
+    mounted() {
       this.pcrImg();
     },
     methods: {
-      submitForm:function(formName) {
+      submitForm(formName) {
         api.caringUnitSubmit({
           data: {
             "id": "-1",
@@ -111,6 +111,7 @@
             }
           });
           if (res.data.success) {
+            alert('非常感谢您的爱心，我们会及时审核您的申请!')
             this.$router.push({
               path: '/'
             })
@@ -119,7 +120,7 @@
           }
         })
       },
-      pcrImg:function() {
+      pcrImg() {
         api.pcrimg({}).then(res => {
           this.pcrImgSrc = 'data:image/png;base64,' + res.data.pcrImg;
           this.uuId = res.data.uuid;
