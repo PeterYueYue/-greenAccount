@@ -295,10 +295,10 @@ export default {
                 alert('邮编号不能为空');
                 return
             }
-            if(this.editaddress.status==''){
-                alert('默认状态不能为空');
-                return
-            }
+            // if(this.editaddress.status==''){
+            //     alert('默认状态不能为空');
+            //     return
+            // }
             api.modifyAddress({
                data:{
                     id:this.editId,
@@ -317,13 +317,12 @@ export default {
                     })
                 }
                 if(res.msg=='操作成功！'){
-                    if(res.data.msg){
+                    if(res.data.msg=='修改成功'){
+                        alert(res.data.msg);
                         this.getuserAddress();
                         this.isedit=false;
                     }
                 }
-                
-                       
             })
         },
         editHandle(addressid){
