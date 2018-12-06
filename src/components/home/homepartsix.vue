@@ -98,10 +98,10 @@
             <div class="map-date-item" v-for="(item,index) in statedata" :key="index">
                 <!-- <p><span class="map-date-count">{{item.number}}</span><span>{{item.unit}}</span></p> -->
                 <p><span :ref="index+'Grow'" :data-time="2" :data-value="item.number" class="map-date-count">0</span><span>{{item.unit}}</span></p>
-                <p v-if="index=='amoOfCover'">覆盖户数</p>
-                <p v-if="index=='amoOfCard'">发卡数量</p>
-                <p v-if="index=='amoOfInteg'">积分统计</p>
-                <p v-if="index=='amoOfAccess'">绿色访问量</p>
+                <p v-if="index=='amoOf1Cover'">覆盖户数</p>
+                <p v-if="index=='amoOf2Card'">发卡数量</p>
+                <p v-if="index=='amoOf3Integ'">累计积分</p>
+                <p v-if="index=='amoOf4Access'">绿色访问</p>
             </div>
         </div>
 
@@ -282,10 +282,10 @@ export default {
                 this.map_scrolltitle=true
             }
             if(top-client+800<=scroll){
-                this.numberGrow(this.$refs.amoOfAccessGrow,this.statedata.amoOfAccess.number)
-                this.numberGrow(this.$refs.amoOfCardGrow,this.statedata.amoOfCard.number)
-                this.numberGrow(this.$refs.amoOfCoverGrow,this.statedata.amoOfCover.number)
-                this.numberGrow(this.$refs.amoOfIntegGrow,this.statedata.amoOfInteg.number)
+                this.numberGrow(this.$refs.amoOf4AccessGrow,this.statedata.amoOf4Access.number)
+                this.numberGrow(this.$refs.amoOf2CardGrow,this.statedata.amoOf2Card.number)
+                this.numberGrow(this.$refs.amoOf1CoverGrow,this.statedata.amoOf1Cover.number)
+                this.numberGrow(this.$refs.amoOf3IntegGrow,this.statedata.amoOf3Integ.number)
                 this.isnum=true
             }
         },
