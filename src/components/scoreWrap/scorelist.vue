@@ -3,6 +3,7 @@
     <div class="score_wrap_head">累计积分：<span class="score_wrap_head_num">{{pointData.totalPoint}}</span><span
       class="score_wrap_head_fen">分</span>消纳积分：<span class="score_wrap_head_num">{{pointData.elimPoint}}</span><span
       class="score_wrap_head_fen">分</span>可用积分：<span class="score_wrap_head_num">{{pointData.availPoint}}</span><span
+      class="score_wrap_head_fen">分</span>逾期积分：<span class="score_wrap_head_num">{{pointData.overduePoint}}</span><span
       class="score_wrap_head_fen">分</span></div>
   </div>
 </template>
