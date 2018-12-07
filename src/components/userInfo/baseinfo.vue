@@ -26,7 +26,7 @@
                 </div>
                 <div  class="base-item">
                     <span>街道：</span>
-                    <span>{{userdetail.residentVO.address}}</span>
+                    <span>{{userdetail.residentVO.streetName}}</span>
                 </div>
                 <div  class="base-item">
                     <span>居委：</span>
