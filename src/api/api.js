@@ -4,9 +4,9 @@ import axios from 'axios';
 // let base = '/green'
 // let base = 'http://10.100.3.51:8080';
 // 测试
-let base = 'http://180.153.19.162:8081';
+// let base = 'http://180.153.19.162:8081';
 // 张强
-// let base = 'http://192.168.1.133:8080';
+let base = 'http://192.168.1.133:8080';
 
 const configarea = {
   "version": "1.0",

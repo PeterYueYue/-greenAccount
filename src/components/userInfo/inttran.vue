@@ -110,14 +110,28 @@ export default {
                 if(res.status=='error'&&res.msg!='token不能为空'&&res.msg!='token已失效'){
                     alert(res.msg)
                 }else {
-                    alert(res.data.msg);
+                    alert("当前卡号已被注销，请重新登录");
                     this.pwd=''
                     this.yzm=''
                     this.newGreenCode=''
                     this.recardcode=''
+                    this.quitHandle();
+                    this.$router.push({
+                        path:'/login'
+                    });
                 }
             })
-        }
+        },
+      quitHandle() {
+        window.sessionStorage.removeItem("token");
+        window.sessionStorage.removeItem("username");
+        window.sessionStorage.removeItem('resUuid')
+        this.$store.dispatch('getToken', {token: '', userName: '', islogin: false});
+        this.$store.dispatch('getResUuid', {resUuid:''});
+        this.$router.push({
+          path: '/'
+        })
+      }
     }
 }
 </script>

@@ -50,6 +50,10 @@ export default {
                 alert('粘贴条码不能为空');
                 return
             }
+            if(this.rebarcode == ''){
+              alert('请输入确认条码号');
+              return
+            }
             if(this.accountBarcode==this.rebarcode){
                 api.getbarCodeMatch({
                     data:{
@@ -71,6 +75,9 @@ export default {
                        alert('粘贴条码已被匹配，请核对正确后输入')
                    }
                 })
+            }else{
+              alert('请输入相同条码号');
+              return
             }
         }
     }
