@@ -36,7 +36,7 @@
   import '@/components/common/pagination.css';
 
   export default {
-    data:function() {
+    data() {
       return {
         listData: [],
         pageCount: 0,    //总条数
@@ -44,11 +44,11 @@
         startPage: 1,    //当前页
       }
     },
-    mounted:function() {
+    mounted() {
       this.allList4NewStyle(1, 8);
     },
     methods: {
-      allList4NewStyle:function(startPage, pageSize, jumpPage) {
+      allList4NewStyle(startPage, pageSize, jumpPage) {
         api.allList4NewStyle({
           data: {
             category: "16",
@@ -66,14 +66,14 @@
           }
         })
       },
-      scrollToTop:function() {
+      scrollToTop() {
         window.scrollTo(0,0);
       },
-      pageChange:function(startPage) {
+      pageChange(startPage) {
         this.allList4NewStyle(startPage, this.pageSize, true);
         this.scrollToTop();
       },
-      listHover:function(status, index) {
+      listHover(status, index) {
         this.listData[index].hoverShow = status;
       },
     }

@@ -7,27 +7,41 @@
 }
 .login-form-mian{
     width: 100%;
+    height: calc(80vh);
     position: relative;
     overflow: hidden;
-    padding: 60px 0 193px 0;
+    padding: 60px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .login-background{
     position: absolute;
     top: -60px;
     width: 1920px;
-    height: 857px;
-    background-image: url('../../assets/login-background.png');
+    height: calc(83vh);
+    background-image: url('../../assets/loginbackground-back.png');
     background-position: center;
     background-size:100%;
     background-repeat: no-repeat;
-    padding-bottom: 80px;
+    /* padding-bottom: 80px; */
+    margin-top: 60px;
     z-index: -999999;
 }
 .login-form{
     width: 482px;
-    margin: 0 0 0 60%;
+    /* margin: 0 0 0 60%; */
     background-color: white;
     padding: 61px 48px;
+    margin-bottom: 100px;
+    vertical-align: middle;
+}
+.background-write{
+    float: left;   
+    width: 48%;
+    /* margin: 0 0 0 10%; */
+    margin-right: 5%;
+    vertical-align: middle
 }
 .login-contain .el-input{
     width: 291px;

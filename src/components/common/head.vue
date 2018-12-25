@@ -19,10 +19,10 @@
                 <div class="login-btn">登录</div>
               </router-link>
 
-              <!-- <a href="https://www.greenfortune.sh.cn/company" target="view_window"><div class="login-btn">企业账户登录</div></a> -->
-              <a href="http://180.153.19.162:8081/company" target="view_window"><div class="login-btn">企业账户登录</div></a>
-              <!-- <a href="https://www.greenfortune.sh.cn/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a> -->
-              <a href="http://180.153.19.162:8081/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a>
+              <a href="https://www.greenfortune.sh.cn/company" target="view_window"><div class="login-btn">企业账户登录</div></a>
+              <!-- <a href="http://180.153.19.162:8081/company" target="view_window"><div class="login-btn">企业账户登录</div></a> -->
+              <a href="https://www.greenfortune.sh.cn/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a>
+              <!-- <a href="http://180.153.19.162:8081/admin/toLogin" target="view_window"><div class="login-btn">管理员登录</div></a> -->
             </div>
             <div class="login-area islogin" v-if="isusername">
                <router-link to="/lvzx">
@@ -159,7 +159,6 @@
       this.getarea();
       window.onscroll = ()=>{   
         const t = document.documentElement.scrollTop || document.body.scrollTop;
-        
         if (t != 0) {
           $('header').css('box-shadow', '0 0 6px rgba(0,0,0,.5)')
           this.smallNav=true

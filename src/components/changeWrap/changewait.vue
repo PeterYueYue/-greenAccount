@@ -52,10 +52,11 @@
         </template>
       </el-table-column>
       <el-table-column
+        width="150"
         prop="date"
         label="兑换时间">
         <template slot-scope="scope">
-          <span>{{ scope.row.order_time | momentYear }}</span>
+          <span>{{ scope.row.order_time | moment}}</span>
         </template>
       </el-table-column>
       <el-table-column

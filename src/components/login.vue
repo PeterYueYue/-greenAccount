@@ -8,7 +8,9 @@
 		
 		<div class="login-form-mian">
 			<div class="login-background"> 
-    </div>
+				
+    		</div>
+			<img src="@/assets/loginbackground-write.png" alt="" class="background-write">		
 			<form class="login-form">
 				<div class="form-title">
 					欢迎登录绿色账户
@@ -81,7 +83,7 @@
 					} else {
 						res.data.islogin = true;
 						this.$store.dispatch('getToken', res.data);
-            this.$store.dispatch('getResUuid', res.data);
+            			this.$store.dispatch('getResUuid', res.data);
 
 						 window.sessionStorage.setItem("token", res.data.token);
 						 window.sessionStorage.setItem("username", res.data.userName);

@@ -32,7 +32,9 @@
   background: white !important;
   position: relative;
 }
-
+.banner-img{
+  width: 100%;
+}
 .swiper-pagination-bullet-active::before {
   content: '';
   display: inline-block;
