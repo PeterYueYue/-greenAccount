@@ -20,3 +20,6 @@ export var chooseArea = ({commit}, data) => {
   export var getPage = ({commit}, data) => {
     commit(types.GetPage, data);
   }
+  export var gethomemask = ({commit}, data) => {
+    commit(types.GetHomemask, data);
+  }

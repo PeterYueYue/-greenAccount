@@ -10,3 +10,4 @@ export var user_islogin               = state => state.user_islogin;
 export var userdetail              = state => state.userdetail;
 export var id                         = state => state.id;
 export var isloginPage              = state => state.isloginPage;
+export var homemask              = state => state.homemask;

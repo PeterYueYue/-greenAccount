@@ -2,6 +2,61 @@
   position: relative;
 }
 
+.int-mask{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0,.5);
+  z-index:999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.int-mask .mask-content{
+  background-color: white;
+  width: 38%;
+  min-width: 400px;
+  padding: 21px 0
+}
+.int-mask .mask-content .title{
+  margin: 20px 10% 30px 10%;
+  color: #F4333B;
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center
+}
+.int-mask .mask-content .main-content{
+  margin: 15px 10%;
+  color: #333333;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold
+}
+.int-mask .mask-content .mask-icon{
+  text-align: right;
+  margin: 15px 5%;
+}
+.int-mask .mask-content .mask-icon img{
+ cursor: pointer;
+}
+.int-mask .mask-content .small-content{
+  margin: 15px 10%;
+  color: #333333;
+  font-size: 14px;
+  text-align: center;
+}
+.int-mask .mask-content .detail-button{
+  padding: 45px 10% 30px 10%;
+  text-align: center;
+}
+.int-mask .mask-content .detail-button span{
+  background-color: #20a345;
+  color: white;
+  padding: 8px 30px;
+  cursor: pointer;
+}
 /*----------------------- 轮播图------------------- */
 .banner-contain {
   transform: translate3d(0px, 0px, 0px);

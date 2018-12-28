@@ -20,7 +20,9 @@ export default new Vuex.Store({
         username:'',
         expire:'',
         userdetail:{},
-        isloginPage:0
+        isloginPage:0,
+        // 一进首页会弹出来的弹框
+        homemask:true
     },
     mutations:{
         GetArea(state,areadate){
@@ -42,6 +44,9 @@ export default new Vuex.Store({
         },
         GetPage(state,data){
             this.state.isloginPage=data
+        },
+        GetHomemask(state,data){
+            this.state.homemask=data
         }
     },
     // plugins: [createPersistedState({storage: window.sessionStorage})]

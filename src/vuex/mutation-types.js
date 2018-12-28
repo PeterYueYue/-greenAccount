@@ -4,3 +4,4 @@ export var GetResUuid                 = 'GetResUuid';
 export var GetUserdetail                 = 'GetUserdetail';
 export var GetDetailsid                 = 'GetDetailsid';
 export var GetPage                 = 'GetPage';
+export var GetHomemask                 = 'GetHomemask';

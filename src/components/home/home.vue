@@ -9,7 +9,7 @@
           <img class="banner-img" src="@/assets/lvbanner2.jpg" alt="">
         </swiper-slide>
         <swiper-slide>
-          <img class="banner-img" src="@/assets/banner.png" alt="">
+          <img class="banner-img" src="@/assets/lvbanner3.jpg" alt="">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
         <div class="swiper-button-prev" slot="button-prev"></div>
@@ -42,6 +42,28 @@
         <div class="text">微信扫码关注<br>签到绿豆抽奖</div>
       </div>
     </div>
+
+    <!-- 弹窗 -->
+
+    <div class="int-mask" v-if="homemask">
+      <div class="mask-content">
+        <p class="mask-icon">
+          <img src="@/assets/icon/close.png" alt="" @click="homemaskHandle">
+        </p>
+        <div class="mask-content-detail">
+          <p class="title">重要通知</p>
+          <p class="main-content">2016年获取的绿色账户积分将于2018年12月31日逾期清零!</p>
+          <p class="small-content">上海绿色账户准备了丰富的礼品供用户兑换，年底前也将开展各式各样的线上线下积分兑换活动。请各位用户密切留意，抓紧兑换哦！</p>
+          <p class="detail-button">
+            <router-link to="/lvzhanghu/?id=100379&style=13">
+              <span>查看详情</span>
+            </router-link>
+            
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -124,14 +146,15 @@
     computed: mapGetters({
       isArea: "area",
       isusername: "username",
-      islogin: "user_islogin"
+      islogin: "user_islogin",
+      homemask:'homemask'
     }),
-    mounted: function () {
+    mounted () {
       window.addEventListener('scroll', this.page);
       this.bannerList();
     },
     methods: {
-      page: function () {
+      page () {
         this.scroll += 1;
         if (this.scroll == 2) {
           // console.log(document.querySelector('.home-exchange-contain'))
@@ -142,7 +165,7 @@
 
         // console.log(document.documentElement.scrollTop)
       },
-      bannerList: function () {
+      bannerList(){
         api.getbannerList({
           "data": {
             prodExchBrid: this.isArea.id
@@ -152,15 +175,18 @@
           console.log(res)
         })
       },
-      scrollToTop: function () {
+      scrollToTop() {
         window.scrollTo(0, 0);
       },
-      codeZfbHover:function(status) {
+      codeZfbHover(status) {
         this.showzfbma = status;
       },
-      codeWxHover:function(status) {
+      codeWxHover(status) {
         this.showwxma = status;
       },
+      homemaskHandle(){
+        this.$store.dispatch('gethomemask', false);
+      }
     }
   }
 </script>
