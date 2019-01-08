@@ -22,7 +22,7 @@ export default new Vuex.Store({
         userdetail:{},
         isloginPage:0,
         // 一进首页会弹出来的弹框
-        homemask:true
+        homemask:false
     },
     mutations:{
         GetArea(state,areadate){

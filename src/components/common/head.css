@@ -124,6 +124,7 @@
     padding: 32px 31px 0 35px;
     width: 91%;
     vertical-align: top;
+    position: relative;
 }
 .head-right.small{
     padding:  0 31px 0 35px;
@@ -232,4 +233,15 @@
 .list-detail div:hover{
     background-color: #20a345;
     color: white;
+}
+
+.toold{
+   
+    position: absolute;
+    right: 45px;
+    top: 0px;
+    cursor: pointer;
+}
+.toold a{
+    color: #20a345;
 }

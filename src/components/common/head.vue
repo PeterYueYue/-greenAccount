@@ -6,6 +6,7 @@
         <router-link to="/"><img src="@/assets/smalllogo.png" alt="" v-show="smallNav"></router-link>
       </div>
       <div class="head-right" :class="smallNav?'small':''">
+        <span class="toold" v-show="!smallNav"><a href="https://www.greenfortune.sh.cn/">&gt;回旧版</a></span>
         <el-row :gutter="24" v-show="!smallNav">
           <el-col :span="24" :offset="0" class="head-right-top">
             <div class="search-area">
