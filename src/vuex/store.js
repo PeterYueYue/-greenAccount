@@ -22,7 +22,10 @@ export default new Vuex.Store({
         userdetail:{},
         isloginPage:0,
         // 一进首页会弹出来的弹框
-        homemask:false
+        homemask:false,
+        id:'',
+        approveStatus:'',
+        usercode:''
     },
     mutations:{
         GetArea(state,areadate){
@@ -47,6 +50,13 @@ export default new Vuex.Store({
         },
         GetHomemask(state,data){
             this.state.homemask=data
+        },
+        GetApproveStatus(state,data){
+            this.state.approveStatus=data.approveStatus
+        },
+        GetUsercode(state,data){
+            console.log(data)
+            this.state.usercode=data
         }
     },
     // plugins: [createPersistedState({storage: window.sessionStorage})]

@@ -11,3 +11,5 @@ export var userdetail              = state => state.userdetail;
 export var id                         = state => state.id;
 export var isloginPage              = state => state.isloginPage;
 export var homemask              = state => state.homemask;
+export var approveStatus              = state => state.approveStatus;
+export var usercode              = state => state.usercode;

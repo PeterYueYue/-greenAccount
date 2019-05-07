@@ -89,6 +89,7 @@
     // components: {bread},
     mounted() {
       this.getProductDetail()
+     
     },
     computed: mapGetters({
       token: "token",
@@ -96,6 +97,7 @@
       isusername: "username",
       islogin: "user_islogin",
       id: "id",
+      approveStatus:'approveStatus'
     }),
     watch:{
       $route(){
@@ -107,26 +109,32 @@
     },
     methods: {
       getProductDetail() {
-        console.log('2222')
         api.getProductDetail({
           data: {
             id: this.Did,
           },
         }).then(res => {
           this.listData = res.data.info;
+          console.log(res.data.info)
           this.$store.dispatch('getDetailsid', res.data.info);
           this.listSameData = res.data.sameTypeLi;
           if (res.data.info.prodStatus == '02') {
             alert("该商品已全部兑换完，无法继续兑换。");
-            location.href = "/exchange#/exchange";
+              this.$router.push({
+                  path: '/',
+                })
           }
           if (res.data.info.prodStatus == '03') {
             alert("该商品已下架，无法继续兑换。");
-            location.href = "/exchange#/exchange";
+             this.$router.push({
+                  path: '/',
+                })
           }
           if (res.data.info.prodStatus == '04') {
             alert("该商品未上架，无法继续兑换。");
-            location.href = "/exchange#/exchange";
+              this.$router.push({
+                  path: '/',
+                })
           }
           if (res.data.info.prodReceiveWay == '02') {
             api.getuserAddress({
@@ -148,6 +156,11 @@
       ajaxCheckCanSubmit() {
         if (!this.islogin) {
           this.$router.push('/login?backUrl=exchange/detail/?Did=' + this.id);
+          return;
+        }
+         console.log(this.id,this.approveStatus)
+        if(this.approveStatus=='02'){
+          this.$router.push('/exchange/realname');
           return;
         }
         this.showShadow = true;

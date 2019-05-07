@@ -1,0 +1,109 @@
+.realname-contain{
+    /* position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #F5F5F9;
+    height: calc(100vh);   */
+    width: 700px;
+    margin: 0 auto
+}
+.realname-title{
+    /* font-size: .3rem; */
+    border-bottom: 1px solid #20a345;
+    color: #20a345;
+    padding: 6px 15px
+}
+.realname-content{
+    padding: 0 0.15rem;
+    background-color: white;
+}
+.input-title,.realname-contain .address-title{
+    /* font-size: 0.32rem; */
+    /* color: #888888; */
+    /* font-weight: bold; */
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 30px
+}
+.yzmbtn{
+    /* font-size: 0.32rem; */
+    color: #21825E;
+    float: right;
+}
+.realname-input,.realname-yzminput,.address-item{
+   display: flex;
+   align-items: center;
+   padding: 15px;
+   /* border-bottom: 1px solid #DDDDDD; */
+}
+.realname-input .el-input,.realname-yzminput .el-input,.address-item .el-input{
+    /* height:15px; */
+    width: 50%;
+    margin-right: 20px;
+    /* font-size: 0.32rem; */
+    /* padding-left: .3rem; */
+    /* background-color: white; */
+    vertical-align: middle;
+    border-radius: 5px;
+    outline:none
+}
+
+.address-item.select .el-select .el-input{
+    width: 100%;
+}
+.realname-yzminput input{
+    /* width: 2.7rem; */
+}
+.address-content,.address-edit{
+    padding: .2rem 0.2rem
+}
+.address-content .address{
+    display: inline-block;
+    vertical-align: middle;
+    /* font-size: .32rem; */
+    color: #333333;
+}
+.address-content .address.left{
+    width: 75%;
+}
+.address-content .address.right{
+    width: 20px;
+    margin-left: .85rem;
+}
+.address-content .address.right img{
+    width: 100%;
+}
+.address-item select{
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    background-color: white;
+    appearance: none;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: 0;
+    padding: 0 15px;
+    width: 330px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.realname-btn{
+    text-align: center;
+}
+.realname-btn button{
+    width:100px;
+    margin: 0 auto;
+    padding:8px 0;
+    /* height: 0.9rem; */
+    /* font-size: 0.32rem; */
+    border: none;
+    background-color: #21825E;
+    border-radius: .13rem;
+    color: white;
+}

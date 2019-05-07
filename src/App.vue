@@ -15,9 +15,10 @@
             <span>上海惠众绿色公益发展促进中心 版权所有 2014-2019</span>
           </p>
           <p>
-            <span>沪ICP 15028111号-1</span>&#x3000;
             <span>
-              <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010502000208"><img
+              <a href="http://www.miibeian.gov.cn/" target="view_window">沪ICP 15028111号-1 </a></span>&#x3000;
+            <span>
+              <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010502000208" target="view_window"><img
                 src="@/assets/icon_security.png" alt="" class="app_security"> 沪公网安备 310105020000208</a>
              
               </span>
@@ -54,6 +55,9 @@
           this.userName=window.sessionStorage.getItem("username")
           this.$store.dispatch('getToken', {token: window.sessionStorage.getItem("token"),userName: window.sessionStorage.getItem("username"),islogin:this.login})
           this.$store.dispatch('getResUuid', {resUuid: window.sessionStorage.getItem("resUuid")});
+          this.$store.dispatch('getapproveStatus', {approveStatus: window.sessionStorage.getItem("approveStatus")});
+          console.log()
+          this.$store.dispatch('getusercode', window.sessionStorage.getItem("usercode"));
     },
   }
 </script>

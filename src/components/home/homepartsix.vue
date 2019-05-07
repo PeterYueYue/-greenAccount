@@ -18,8 +18,8 @@
                        </div>
                        <div class="rank-list" v-show="ranklist">
                            <span class="rank-item " :class="isrank=='发卡排行榜'?'active':''" @click="getRank(1,'发卡排行榜','areaAommRank')">发卡排行榜</span>
-                           <span class="rank-item" :class="isrank=='积分排行榜'?'active':''" @click="getRank(2,'积分排行榜','aresCountRank')">积分排行榜</span>
-                           <span class="rank-item" :class="isrank=='覆盖户数排行'?'active':''" @click="getRank(3,'覆盖户数排行','avalidPointRank')">覆盖户数排行</span>
+                           <span class="rank-item" :class="isrank=='覆盖户数排行'?'active':''" @click="getRank(2,'覆盖户数排行','aresCountRank')">覆盖户数排行</span>
+                           <span class="rank-item" :class="isrank=='积分排行榜'?'active':''" @click="getRank(3,'积分排行榜','avalidPointRank')">积分排行榜</span>
                            <span class="rank-item " v-if="rankDetail" :class="isrank=='所有排行榜'?'active':''" @click="isrank='所有排行榜';getArearescount(1)">所有排行榜</span>
                        </div>
                    </div>

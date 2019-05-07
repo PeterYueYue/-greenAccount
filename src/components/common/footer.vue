@@ -52,7 +52,7 @@
                 <p class="part-title">
                     绿色账户爱心单位
                 </p>
-                <p><a href="http://www.pptv.com/aboutus/">上海聚力传媒技术有限公司</a></p>
+                <!-- <p><a href="http://www.pptv.com/aboutus/">上海聚力传媒技术有限公司</a></p> -->
                 <p><a href="http://www.ocj.com.cn/">上海东方希杰商务有限公司</a></p>
                 <p><a href="http://www.brightdairy.com/">光明乳业股份有限公司</a></p>
                 <router-link to="/apply_company">
@@ -104,7 +104,7 @@
             <div class="footer-code-part middle">
                 <img src="@/assets/paycode.png" alt="">
                 <p>
-                    绿色账户支付端
+                    绿色账户支付宝端
                 </p>
             </div>
             <div class="footer-code-part middle">
@@ -117,6 +117,18 @@
                 <img src="@/assets/cleaner.png" alt="">
                 <p>
                     保洁员版绿色账户APP
+                </p>
+            </div>
+              <div class="footer-code-part middle">
+                <img src="@/assets/lehuishou.png" alt="" style="width:136px;height:136px">
+                <p>
+                    保洁员版乐惠收APP
+                </p>
+            </div>
+              <div class="footer-code-part middle">
+                <img src="@/assets/pufaxuanchuan.png" alt="" style="width:136px;height:136px">
+                <p>
+                    生活垃圾管理普法宣传
                 </p>
             </div>
             <div class="footer-code-part right">

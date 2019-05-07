@@ -23,3 +23,10 @@ export var chooseArea = ({commit}, data) => {
   export var gethomemask = ({commit}, data) => {
     commit(types.GetHomemask, data);
   }
+  export var getapproveStatus = ({commit}, data) => {
+    commit(types.GetApproveStatus, data);
+  }
+  export var getusercode = ({commit}, data) => {
+    commit(types.GetUsercode, data);
+  }
+  

@@ -77,7 +77,7 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  top: 20% !important;
+  top: 28% !important;
   width: 28px !important;
   height: 28px !important;
   background-size: cover !important;
@@ -1309,6 +1309,8 @@
   width: 800px;
   margin: 67px auto;
   padding: 28px 0;
+  height: 80%;
+  
 }
 
 .allrank-mask .allrank-content .allrank-title {
@@ -1318,10 +1320,17 @@
 .allrank-mask .allrank-content .allrank {
   padding: 0 104px;
   margin-top: 25px;
+  height: 96%;
+  overflow-y:scroll;
+}
+.allrank-mask .allrank-content .allrank::-webkit-scrollbar{
+  display: none;
 }
 
 .allrank-mask .allrank-content .allrank table {
   font-size: 12px;
+ 
+ 
 }
 
 .allrank-mask .allrank-content .allrank .allrank-name {

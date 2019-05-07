@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ex_wrap ex_select">
+    <!-- <div class="ex_wrap ex_select">
       <div class="ex_select_name">类型：
         <select name="" v-model="selectType" @change="getType">
           <option value="">请选择类型</option>
@@ -37,6 +37,59 @@
           </option>
         </select>
       </div>
+    </div> -->
+    <!-- <div class="ex_wrap ex_area">
+      <div class="ex_area_name">所在区域</div>
+      <ul>
+        <router-link :to="{path: '/exchange'}">
+          <li @click="chooseArea('全市','310000000000')" :class="isArea.id=='310000000000'?'active':''">全市</li>
+        </router-link>
+        <router-link :to="{path: '/exchange'}" v-for="item in area" :key="item.id">
+          <li @click="chooseArea(item.brName,item.brID)" :class="isArea.id==item.brID?'active':''">{{item.brName}}</li>
+        </router-link>
+      </ul>
+    </div> -->
+    <div class="ex_wrap ex_select">
+      <div class="ex_select_name">排序筛选</div>
+      <div class="ex_select_menu" >
+        <el-dropdown @click.native="selectType='';selectHot='';selectDate='';selectScore='';getType()">
+          <span class="el-dropdown-link default" >
+            默认
+          </span>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectType?selectType.name:'类型'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in typeList" :key="index" @click.native="selectType={id:items.loveUnitCode,name:items.mallInfo};getType()">{{items.mallInfo}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectHot?selectHot.name:'热度'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in hotList" :key="index" @click.native="selectHot={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectDate?selectDate.name:'上架时间'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in dateList" :key="index" @click.native="selectDate={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{selectScore?selectScore.name:'积分值'}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(items,index) in scoreList" :key="index" @click.native="selectScore={id:items.id,name:items.name};getType()">{{items.name}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
     <div class="ex_wrap">
       <div class="ex_list" v-for="(items,index) in listData" v-show="listData.length !== 0" :key="index">
@@ -48,9 +101,9 @@
           <div class="ex_list_score">{{items.prodPoints}}积分</div>
           <div class="ex_list_address">
             <img src="@/assets/ex_icon_address.png" alt="">
-            {{items.prodName}}领取
+            {{items.prodReceiveAddress}}领取
           </div>
-          <div class="ex_list_time">{{items.prodName}}提供</div>
+          <div class="ex_list_time">{{items.prodProvider}}提供</div>
         </router-link>
       </div>
       <div class="ex_nodata" v-show="listData.length == 0">
@@ -129,23 +182,24 @@
         }],
       }
     },
-    mounted:function() {
+    mounted() {
       this.getMallProductList(1, 12);
       this.getMallLogoList();
     },
     methods: {
-      getMallLogoList:function() {
+      getMallLogoList() {
         api.getMallLogoList({}).then(res => {
           this.typeList = res.data
         })
       },
-      getType:function() {
+      getType() {
         this.getMallProductList(1, 12);
       },
       getMallProductList(startPage, pageSize) {
+        console.log(this.selectType)
         api.getMallProductList({
           data: {
-            "mallCode": this.selectType ? this.selectType.loveUnitCode : '',
+            "mallCode": this.selectType ? this.selectType.id : '',
             "hotExchange": this.selectHot ? this.selectHot.id : '',
             "productPoints": this.selectScore ? this.selectScore.id : '',
             "createDate": this.selectDate ? this.selectDate.id : '',

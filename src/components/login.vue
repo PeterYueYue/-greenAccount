@@ -41,9 +41,14 @@
 					<span>COPYRIGHT 2014-2019 SHANGHAI HUIZHONG GREEN C.S.R</span>&#x3000;
 					<span>上海惠众绿色公益发展促进中心 版权所有 2014-2019</span>
 				</p>
-				<p>
-					<span>沪ICP 15028111号-1</span>&#x3000;
-					<span>沪公网安备 310105020000208</span>
+				 <p>
+					<span>
+					<a href="http://www.miibeian.gov.cn/" target="view_window">沪ICP 15028111号-1 </a></span>&#x3000;
+					<span>
+					<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010502000208" target="view_window"><img
+						src="@/assets/icon_security.png" alt="" class="app_security"> 沪公网安备 310105020000208</a>
+					
+					</span>
 				</p>
 			</div>
   </div>
@@ -82,12 +87,18 @@
 						this.getpcrimg();
 					} else {
 						res.data.islogin = true;
+						console.log(res)
 						this.$store.dispatch('getToken', res.data);
             			this.$store.dispatch('getResUuid', res.data);
+						this.$store.dispatch('getapproveStatus', res.data);
+						this.$store.dispatch('getusercode', this.account);
+
 
 						 window.sessionStorage.setItem("token", res.data.token);
 						 window.sessionStorage.setItem("username", res.data.userName);
 						 window.sessionStorage.setItem("resUuid", res.data.resUuid);
+						 window.sessionStorage.setItem("approveStatus", res.data.approveStatus);
+						 window.sessionStorage.setItem("usercode", this.account);
 
 						let backUrl = this.$route.query.backUrl;
 						if (backUrl) {

@@ -8,6 +8,7 @@ import Login from '@/components/login.vue'  //登录
 import exchange from '@/components/pages/exchange.vue'  //礼品兑换
 import exchangeList from '@/components/pages/exchange_list.vue'  //礼品兑换 列表
 import exchangeDetail from '@/components/pages/exchange_detail.vue'  //礼品兑换 详情
+import realname from '@/components/pages/realname.vue'  //礼品兑换 实名认证
 import homeExchange from '@/components/pages/home_exchange.vue'  //首页兑换
 import integralList from '@/components/pages/integral_list.vue'  //积分捐赠
 import integralDetail from '@/components/pages/integral_detail.vue'  //积分捐赠 详情
@@ -78,7 +79,12 @@ export default new Router({
           path: 'brand',
           name: '爱心品牌专区',
           component: exchangeBrand,
-        }
+        },{
+          path: 'realname',
+          name: '实名认证',
+          component: realname,
+        },
+
       ]
     }, {
       path: '/integral_list',

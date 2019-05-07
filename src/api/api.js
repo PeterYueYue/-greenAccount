@@ -5,8 +5,9 @@ let base = 'https://www.greenfortune.sh.cn';
 // let base = 'http://10.100.3.51:8080';
 // 测试
 // let base = 'http://180.153.19.162:8081';
+// let base = 'http://180.153.19.162:8082';
 // 张强
-// let base = 'http://192.168.1.133:8080';
+// let base = 'http://192.168.1.102:8080';
 
 const configarea = {
   "version": "1.0",
@@ -434,5 +435,23 @@ export default {
   getDonateActivity(params){
     let config = Object.assign(configDonateActivity, params, {"nonce": this.Uuid()}, {"timestamp": this.timestamp()});
     return axios.post(`${base}/api/web`, config).then(res => res.data);
-  }
+  },
+  getuserinfo(params){
+    return axios.post(`${base}/openapi/v2/app/hm/getUserApproveInfo`, params).then(res => res.data);
+  },
+  getaddress(params){
+    return axios.post(`${base}/openapi/v2/app/hm/getUserAddress`,params).then(res => res.data);
+  },
+  getrealarea() {
+    return axios.post(`${base}/openapi/v2/app/hm/districts`).then(res => res.data);
+  },
+  getnextaddress(params){
+    return axios.post(`${base}/openapi/v2/app/hm/getChildBranchBySupId`,params).then(res => res.data);
+  },
+  sendCodeToPhone(params){
+    return axios.post(`${base}/openapi/v2/app/hm/sendCodeToPhone`,params).then(res => res.data);
+  },
+  userApprove(params){
+    return axios.post(`${base}/openapi/v2/app/hm/userApproveAndEditAddress`,params).then(res => res.data);
+  },
 }

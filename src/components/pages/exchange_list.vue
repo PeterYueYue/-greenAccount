@@ -52,42 +52,6 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-      <!-- <div class="ex_select_name">类型：
-        <select name="" v-model="selectType" @change="getType">
-          <option value="">请选择类型</option>
-          <option :value="{id:items.id,name:items.mallInfo}" v-for="(items,index) in typeList"
-                  :key="index">
-            {{items.name}}
-          </option>
-        </select>
-      </div>
-      <div class="ex_select_name">热度：
-        <select name="" v-model="selectHot" @change="getType">
-          <option value="">请选择热度</option>
-          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in hotList"
-                  :key="index">
-            {{items.name}}
-          </option>
-        </select>
-      </div>
-      <div class="ex_select_name">上架时间：
-        <select name="" v-model="selectDate" @change="getType">
-          <option value="">请选择上架时间</option>
-          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in dateList"
-                  :key="index">
-            {{items.name}}
-          </option>
-        </select>
-      </div>
-      <div class="ex_select_name">积分值：
-        <select name="" v-model="selectScore" @change="getType">
-          <option value="">请选择积分值</option>
-          <option :value="{id:items.id,name:items.name}" v-for="(items,index) in scoreList"
-                  :key="index">
-            {{items.name}}
-          </option>
-        </select>
-      </div> -->
       <div class="ex_select_brand" @click="jumpBrand">爱心品牌专区</div>
     </div>
     <div class="ex_wrap">
@@ -233,7 +197,6 @@
         this.getProductList(1, 12);
       },
       getProductList:function(startPage, pageSize) {
-        console.log(this.selectType)
         api.getProductList({
           data: {
             "prodExchBrid": this.isArea.id,
